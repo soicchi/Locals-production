@@ -13,15 +13,17 @@ ENV LANG=C.UTF-8 \
     API_DOMAIN=$API_DOMAIN
 
 WORKDIR /app
-COPY Gemfile* ./
 
 RUN apt-get update -qq && apt-get install --no-install-recommends -y \
   node.js \
   yarn \
   imagemagick \
-  && bundle install -j4\
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
+
+COPY Gemfile* ./
+
+RUN bundle install -j4
 
 COPY . .
 EXPOSE 3000
