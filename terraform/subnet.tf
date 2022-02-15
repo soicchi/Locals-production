@@ -1,6 +1,7 @@
 resource "aws_subnet" "front_1a" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "10.0.0.0/24"
+  availability_zone = "ap-northeast-1a"
   map_public_ip_on_launch = true
 
   tags = {
@@ -11,6 +12,7 @@ resource "aws_subnet" "front_1a" {
 resource "aws_subnet" "front_1c" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "10.0.1.0/24"
+  availability_zone = "ap-northeast-1c"
   map_public_ip_on_launch = true
 
   tags = {
@@ -21,6 +23,7 @@ resource "aws_subnet" "front_1c" {
 resource "aws_subnet" "back_1a" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "10.0.2.0/24"
+  availability_zone = "ap-northeast-1a"
   map_public_ip_on_launch = true
 
   tags = {
@@ -31,6 +34,7 @@ resource "aws_subnet" "back_1a" {
 resource "aws_subnet" "back_1c" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "10.0.3.0/24"
+  availability_zone = "ap-northeast-1c"
   map_public_ip_on_launch = true
 
   tags = {
@@ -41,6 +45,7 @@ resource "aws_subnet" "back_1c" {
 resource "aws_subnet" "db_1a" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "10.0.4.0/24"
+  availability_zone = "ap-northeast-1a"
   map_public_ip_on_launch = false
 
   tags = {
@@ -51,6 +56,7 @@ resource "aws_subnet" "db_1a" {
 resource "aws_subnet" "db_1c" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "10.0.5.0/24"
+  availability_zone = "ap-northeast-1c"
   map_public_ip_on_launch = false
 
   tags = {
