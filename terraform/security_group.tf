@@ -69,32 +69,14 @@ resource "aws_security_group_rule" "alb_3" {
 
 resource "aws_security_group_rule" "alb_4" {
   type              = "ingress"
-  from_port         = 8080
-  to_port           = 8080
+  from_port         = 3000
+  to_port           = 3000
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.alb.id
 }
 
 resource "aws_security_group_rule" "alb_5" {
-  type              = "ingress"
-  from_port         = 3000
-  to_port           = 3000
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.alb.id
-}
-
-resource "aws_security_group_rule" "alb_6" {
-  type              = "ingress"
-  from_port         = 3000
-  to_port           = 3000
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.alb.id
-}
-
-resource "aws_security_group_rule" "alb_7" {
   type              = "ingress"
   from_port         = 8
   to_port           = 0
