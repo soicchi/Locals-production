@@ -18,14 +18,14 @@ jobs:
     working_directory: ~/locals-apps.com
     docker:
       - image: cimg/ruby:3.0.3
-      - image: circleci/mysql:8.0.0
+      - image: circleci/mysql:8.0
         environment:
-          MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+          MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}" #環境変数化
         command: mysqld --default-authentication-plugin=mysql_native_password
     environment:
       RAILS_ENV: test
       TEST_DB_HOST: "127.0.0.1"
-      DB_PASSWORD: ${DBPASSWORD}
+      DB_PASSWORD: "${DB_PASSWORD}"
     steps:
       - checkout
       - install-bundler
@@ -39,7 +39,6 @@ jobs:
           name: RSpec
           command: bundle exec rspec
           working_directory: ~/locals-apps.com/backend
-
   rubocop:
     working_directory: ~/locals-apps.com
     docker:
@@ -49,7 +48,7 @@ jobs:
       - install-bundler
       - run:
           name: Rubocop
-          command: bundle exec rubocop
+          command: bundle exec rubocop --require rubocop-rails
           working_directory: ~/locals-apps.com/backend
 
   jest:
@@ -67,21 +66,6 @@ jobs:
           command: yarn test
           working_directory: ~/locals-apps.com/frontend
 
-  eslint:
-    docker:
-      - image: cimg/node:16.13.1
-    working_directory: ~/locals-apps.com
-    steps:
-      - checkout
-      - run:
-          name: install-packages
-          command: yarn install
-          working_directory: ~/locals-apps.com/frontend
-      - run:
-          name: lint
-          command: yarn lint
-          working_directory: ~/locals-apps.com/frontend
-
 workflows:
   version: 2
   build-test-deploy:
@@ -90,7 +74,6 @@ workflows:
           context: locals-apps
       - rubocop
       - jest
-      - eslint
       # - aws-ecr/build-and-push-image:
       #     name: build-and-push-image-frontend
       #     account-url: AWS_ECR_ACCOUNT_URL
@@ -111,12 +94,12 @@ workflows:
       #     aws-secret-access-key: AWS_SECRET_ACCESS_KEY
       #     region: AWS_REGION
       #     path: ./backend
-      #     repo: locals-backend-repo
+      #     repo: locals-app-backend-repo
       #     tag: "${CIRCLE_SHA1}"
       #     requires:
       #       - rspec
       #       - rubocop
-      #       - jest
+      #       # - jest
       # - aws-ecs/deploy-service-update:
       #     family: frontend
       #     service-name: locals-frontend-service
@@ -133,19 +116,19 @@ workflows:
       #     requires:
       #       - build-and-push-image-backend
       # - aws-ecs/run-task:
-      #     name: db-migrate-task
+      #     name: db-migrate
       #     cluster: ${CLUSTER_NAME}
       #     task-definition: db-migrate
-      #     security-group-ids: sg-00d4f24a4402141bc # 環境再構築時は再設定が必要 最終的には環境変数化
-      #     subnet-ids: subnet-0f496758f7590a60d, subnet-0d9f0367f7a38180e # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     security-group-ids: sg-0a71085110fb6bb7c # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     subnet-ids: subnet-075418ad74722a734, subnet-084194d03ce45b3d5 # 環境再構築時は再設定が必要 最終的には環境変数化
       #     requires:
-      #       - backend-sevice-update
+      #       - backend-service-update
       # - aws-ecs/run-task:
       #     name: db-seed-task
       #     cluster: ${CLUSTER_NAME}
       #     task-definition: db-seed
-      #     security-group-ids: sg-00d4f24a4402141bc # 環境再構築時は再設定が必要 最終的には環境変数化
-      #     subnet-ids: subnet-0f496758f7590a60d, subnet-0d9f0367f7a38180e # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     security-group-ids: sg-0a71085110fb6bb7c # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     subnet-ids: subnet-075418ad74722a734, subnet-084194d03ce45b3d5 # 環境再構築時は再設定が必要 最終的には環境変数化
       #     requires:
-      #       - db-migrate-task
+      #       - db-migrate
         
