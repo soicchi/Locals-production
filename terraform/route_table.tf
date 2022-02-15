@@ -19,22 +19,22 @@ resource "aws_route_table" "public" {
 
 # Association #
 
-resource "aws_route_table_association" "rtb_association_1a" {
+resource "aws_route_table_association" "front_1a" {
   route_table_id = aws_route_table.public.id
   subnet_id      = aws_subnet.front_1a.id
 }
 
-resource "aws_route_table_association" "rtb_association_1c" {
+resource "aws_route_table_association" "front_1c" {
   route_table_id = aws_route_table.public.id
   subnet_id      = aws_subnet.front_1c.id
 }
 
-resource "aws_route_table_association" "rtb_association_1a" {
+resource "aws_route_table_association" "back_1a" {
   route_table_id = aws_route_table.public.id
   subnet_id      = aws_subnet.back_1a.id
 }
 
-resource "aws_route_table_association" "rtb_association_1c" {
+resource "aws_route_table_association" "back_1c" {
   route_table_id = aws_route_table.public.id
   subnet_id      = aws_subnet.back_1c.id
 }
