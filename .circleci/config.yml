@@ -98,6 +98,7 @@ workflows:
       #     region: AWS_REGION
       #     path: ./frontend
       #     repo: locals-frontend-repo
+      #     dockerfile: Dockerfile.prd
       #     tag: "${CIRCLE_SHA1}"
       #     requires:
       #       - rspec
