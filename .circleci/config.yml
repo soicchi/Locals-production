@@ -11,11 +11,9 @@ commands:
             gem install bundler
             bundle config set path 'vendor/bundle'
             bundle install --jobs=4 --retry=3
-          working_directory: ~/backend
 
 jobs:
   rspec:
-    working_directory: ~/backend
     docker:
       - image: cimg/ruby:3.0.3
       - image: circleci/mysql:8.0
@@ -31,17 +29,16 @@ jobs:
       - install-bundler
       - run:
           command: bundle exec rails db:create
-          working_directory: ~/backend
+          working_directory: ~/Locals-production/backend
       - run:
           command: bundle exec rails db:migrate
-          working_directory: ~/backend
+          working_directory: ~/Locals-production/backend
       - run:
           name: RSpec
           command: bundle exec rspec
-          working_directory: ~/backend
+          working_directory: ~/Locals-production/backend
 
   rubocop:
-    working_directory: ~/frontend
     docker:
       - image: cimg/ruby:3.0.3
     steps:
@@ -50,37 +47,35 @@ jobs:
       - run:
           name: Rubocop
           command: bundle exec rubocop --require rubocop-rails
-          working_directory: ~/backend
+          working_directory: ~/Locals-production/backend
 
   jest:
     docker:
       - image: cimg/node:16.13.1
-    working_directory: ~/
     steps:
       - checkout
       - run:
           name: install-packages
           command: yarn install
-          working_directory: ~/frontend
+          working_directory: ~/Locals-production/frontend
       - run:
           name: test
           command: yarn test
-          working_directory: ~/frontend
+          working_directory: ~/Locals-production/frontend
 
   eslint:
     docker:
       - image: cimg/node:16.13.1
-    working_directory: ~/frontend
     steps:
       - checkout
       - run:
           name: install-packages
           command: yarn install
-          working_directory: ~/frontend
+          working_directory: ~/Locals-production/frontend
       - run:
           name: lint
           command: yarn lint
-          working_directory: ~/frontend
+          working_directory: ~/Locals-production/frontend
 
 workflows:
   version: 2
