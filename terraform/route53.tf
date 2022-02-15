@@ -19,8 +19,8 @@ resource "aws_route53_record" "record" {
 #########################
 
 resource "aws_route53_record" "validation_record" {
-  name = tolist(aws_acm_certificate.acm.domain_validation_options)[0].resource_record_name
-  type = tolist(aws_acm_certificate.acm.domain_validation_options)[0].resource_record_type
+  name    = tolist(aws_acm_certificate.acm.domain_validation_options)[0].resource_record_name
+  type    = tolist(aws_acm_certificate.acm.domain_validation_options)[0].resource_record_type
   records = [tolist(aws_acm_certificate.acm.domain_validation_options)[0].resource_record_value]
   zone_id = data.aws_route53_zone.zone.id
   ttl     = 60
