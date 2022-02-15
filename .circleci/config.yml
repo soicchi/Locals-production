@@ -89,60 +89,60 @@ workflows:
       - rubocop
       - jest
       - eslint
-      - aws-ecr/build-and-push-image:
-          name: build-and-push-image-frontend
-          account-url: AWS_ECR_ACCOUNT_URL
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          region: AWS_REGION
-          path: ./frontend
-          repo: ${FRONTEND_REPO}
-          dockerfile: Dockerfile.prd
-          tag: "${CIRCLE_SHA1}"
-          requires:
-            - jest
-            - eslint
-      - aws-ecr/build-and-push-image:
-          name: build-and-push-image-backend
-          account-url: AWS_ECR_ACCOUNT_URL
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          region: AWS_REGION
-          path: ./backend
-          repo: ${BACKEND_REPO}
-          tag: "${CIRCLE_SHA1}"
-          requires:
-            - rspec
-            - rubocop
-      - aws-ecs/deploy-service-update:
-          family: frontend
-          service-name: locals-frontend-service
-          cluster-name: ${CLUSTER_NAME}
-          container-image-name-updates: "container=${CONTAINER_NAME_FRONT},tag=${CIRCLE_SHA1}"
-          requires:
-            - build-and-push-image-frontend
-      - aws-ecs/deploy-service-update:
-          name: backend-service-update
-          family: backend
-          service-name: locals-backend-service
-          cluster-name: ${CLUSTER_NAME}
-          container-image-name-updates: "container=${CONTAINER_NAME_BACK},tag=${CIRCLE_SHA1}"
-          requires:
-            - build-and-push-image-backend
-      - aws-ecs/run-task:
-          name: db-migrate
-          cluster: ${CLUSTER_NAME}
-          task-definition: db-migrate
-          security-group-ids: sg-0a71085110fb6bb7c # 環境再構築時は再設定が必要 最終的には環境変数化
-          subnet-ids: subnet-075418ad74722a734, subnet-084194d03ce45b3d5 # 環境再構築時は再設定が必要 最終的には環境変数化
-          requires:
-            - backend-service-update
-      - aws-ecs/run-task:
-          name: db-seed-task
-          cluster: ${CLUSTER_NAME}
-          task-definition: db-seed
-          security-group-ids: sg-0a71085110fb6bb7c # 環境再構築時は再設定が必要 最終的には環境変数化
-          subnet-ids: subnet-075418ad74722a734, subnet-084194d03ce45b3d5 # 環境再構築時は再設定が必要 最終的には環境変数化
-          requires:
-            - db-migrate
+      # - aws-ecr/build-and-push-image:
+      #     name: build-and-push-image-frontend
+      #     account-url: AWS_ECR_ACCOUNT_URL
+      #     aws-access-key-id: AWS_ACCESS_KEY_ID
+      #     aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+      #     region: AWS_REGION
+      #     path: ./frontend
+      #     repo: ${FRONTEND_REPO}
+      #     dockerfile: Dockerfile.prd
+      #     tag: "${CIRCLE_SHA1}"
+      #     requires:
+      #       - jest
+      #       - eslint
+      # - aws-ecr/build-and-push-image:
+      #     name: build-and-push-image-backend
+      #     account-url: AWS_ECR_ACCOUNT_URL
+      #     aws-access-key-id: AWS_ACCESS_KEY_ID
+      #     aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+      #     region: AWS_REGION
+      #     path: ./backend
+      #     repo: ${BACKEND_REPO}
+      #     tag: "${CIRCLE_SHA1}"
+      #     requires:
+      #       - rspec
+      #       - rubocop
+      # - aws-ecs/deploy-service-update:
+      #     family: frontend
+      #     service-name: locals-frontend-service
+      #     cluster-name: ${CLUSTER_NAME}
+      #     container-image-name-updates: "container=${CONTAINER_NAME_FRONT},tag=${CIRCLE_SHA1}"
+      #     requires:
+      #       - build-and-push-image-frontend
+      # - aws-ecs/deploy-service-update:
+      #     name: backend-service-update
+      #     family: backend
+      #     service-name: locals-backend-service
+      #     cluster-name: ${CLUSTER_NAME}
+      #     container-image-name-updates: "container=${CONTAINER_NAME_BACK},tag=${CIRCLE_SHA1}"
+      #     requires:
+      #       - build-and-push-image-backend
+      # - aws-ecs/run-task:
+      #     name: db-migrate
+      #     cluster: ${CLUSTER_NAME}
+      #     task-definition: db-migrate
+      #     security-group-ids: sg-0a71085110fb6bb7c # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     subnet-ids: subnet-075418ad74722a734, subnet-084194d03ce45b3d5 # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     requires:
+      #       - backend-service-update
+      # - aws-ecs/run-task:
+      #     name: db-seed-task
+      #     cluster: ${CLUSTER_NAME}
+      #     task-definition: db-seed
+      #     security-group-ids: sg-0a71085110fb6bb7c # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     subnet-ids: subnet-075418ad74722a734, subnet-084194d03ce45b3d5 # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     requires:
+      #       - db-migrate
         
