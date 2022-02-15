@@ -203,7 +203,7 @@ DEPENDENCIES
   rails (= 6.1.4)
   rspec-rails (= 5.1.0)
   rubocop (= 1.25.1)
-  rubocop-discourse
+  rubocop-discourse (= 2.5.0)
   rubocop-rails (= 2.13.2)
   rubocop-rspec (= 2.8.0)
   spring
