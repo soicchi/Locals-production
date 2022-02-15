@@ -20,7 +20,7 @@ jobs:
       - image: cimg/ruby:3.0.3
       - image: circleci/mysql:8.0
         environment:
-          MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}" #環境変数化
+          MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
         command: mysqld --default-authentication-plugin=mysql_native_password
     environment:
       RAILS_ENV: test
