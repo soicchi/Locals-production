@@ -70,7 +70,7 @@ jobs:
   eslint:
     docker:
       - image: cimg/node:16.13.1
-    working_directroy: ~/local-s-app.com
+    working_directory: ~/local-s-app.com
     steps:
       - checkout
       - run:
