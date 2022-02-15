@@ -1,0 +1,150 @@
+version: 2.1
+# orbs:
+#   aws-ecr: circleci/aws-ecr@7.0.0
+#   aws-ecs: circleci/aws-ecs@2.2.1
+
+commands:
+  install-bundler:
+    steps:
+      - run:
+          command: |
+            gem install bundler
+            bundle config set path 'vendor/bundle'
+            bundle install --jobs=4 --retry=3
+          working_directory: ~/local-s-app.com/backend
+
+jobs:
+  rspec:
+    working_directory: ~/local-s-app.com
+    docker:
+      - image: cimg/ruby:3.0.3
+      - image: circleci/mysql:8.0.0
+        environment:
+          MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+        command: mysqld --default-authentication-plugin=mysql_native_password
+    environment:
+      RAILS_ENV: test
+      TEST_DB_HOST: "127.0.0.1"
+      DB_PASSWORD: ${DBPASSWORD}
+    steps:
+      - checkout
+      - install-bundler
+      - run:
+          command: bundle exec rails db:create
+          working_directory: ~/local-s-app.com/backend
+      - run:
+          command: bundle exec rails db:migrate
+          working_directory: ~/local-s-app.com/backend
+      - run:
+          name: RSpec
+          command: bundle exec rspec
+          working_directory: ~/local-s-app.com/backend
+
+  rubocop:
+    working_directory: ~/local-s-app.com
+    docker:
+      - image: cimg/ruby:3.0.3
+    steps:
+      - checkout
+      - install-bundler
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+          working_directory: ~/local-s-app.com/backend
+
+  jest:
+    docker:
+      - image: cimg/node:16.13.1
+    working_directory: ~/local-s-app.com
+    steps:
+      - checkout
+      - run:
+          name: install-packages
+          command: yarn install
+          working_directory: ~/local-s-app.com/frontend
+      - run:
+          name: test
+          command: yarn test
+          working_directory: ~/local-s-app.com/frontend
+
+  eslint:
+    docker:
+      - image: cimg/node:16.13.1
+    working_directroy: ~/local-s-app.com
+    steps:
+      - checkout
+      - run:
+          name: install-packages
+          command: yarn install
+          working_directory: ~/local-s-app.com/frontend
+      - run:
+          name: lint
+          command: yarn lint
+          working_directory: ~/local-s-app.com/frontend
+
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - rspec
+      - rubocop
+      - jest
+      - eslint
+      # - aws-ecr/build-and-push-image:
+      #     name: build-and-push-image-frontend
+      #     account-url: AWS_ECR_ACCOUNT_URL
+      #     aws-access-key-id: AWS_ACCESS_KEY_ID
+      #     aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+      #     region: AWS_REGION
+      #     path: ./frontend
+      #     repo: locals-frontend-repo
+      #     tag: "${CIRCLE_SHA1}"
+      #     requires:
+      #       - rspec
+      #       - rubocop
+      #       - jest
+      # - aws-ecr/build-and-push-image:
+      #     name: build-and-push-image-backend
+      #     account-url: AWS_ECR_ACCOUNT_URL
+      #     aws-access-key-id: AWS_ACCESS_KEY_ID
+      #     aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+      #     region: AWS_REGION
+      #     path: ./backend
+      #     repo: locals-backend-repo
+      #     tag: "${CIRCLE_SHA1}"
+      #     requires:
+      #       - rspec
+      #       - rubocop
+      #       - jest
+      # - aws-ecs/deploy-service-update:
+      #     family: frontend
+      #     service-name: locals-frontend-service
+      #     cluster-name: ${CLUSTER_NAME}
+      #     container-image-name-updates: "container=${CONTAINER_NAME_FRONT},tag=${CIRCLE_SHA1}"
+      #     requires:
+      #       - build-and-push-image-frontend
+      # - aws-ecs/deploy-service-update:
+      #     name: backend-service-update
+      #     family: backend
+      #     service-name: locals-backend-service
+      #     cluster-name: ${CLUSTER_NAME}
+      #     container-image-name-updates: "container=${CONTAINER_NAME_BACK},tag=${CIRCLE_SHA1}"
+      #     requires:
+      #       - build-and-push-image-backend
+      # - aws-ecs/run-task:
+      #     name: db-migrate-task
+      #     cluster: ${CLUSTER_NAME}
+      #     task-definition: db-migrate
+      #     security-group-ids: sg-00d4f24a4402141bc # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     subnet-ids: subnet-0f496758f7590a60d, subnet-0d9f0367f7a38180e # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     requires:
+      #       - backend-sevice-update
+      # - aws-ecs/run-task:
+      #     name: db-seed-task
+      #     cluster: ${CLUSTER_NAME}
+      #     task-definition: db-seed
+      #     security-group-ids: sg-00d4f24a4402141bc # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     subnet-ids: subnet-0f496758f7590a60d, subnet-0d9f0367f7a38180e # 環境再構築時は再設定が必要 最終的には環境変数化
+      #     requires:
+      #       - db-migrate-task
+        
