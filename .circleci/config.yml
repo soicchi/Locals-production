@@ -39,6 +39,7 @@ jobs:
           name: RSpec
           command: bundle exec rspec
           working_directory: ~/locals-apps.com/backend
+
   rubocop:
     working_directory: ~/locals-apps.com
     docker:
@@ -66,14 +67,29 @@ jobs:
           command: yarn test
           working_directory: ~/locals-apps.com/frontend
 
+  eslint:
+    docker:
+      - image: cimg/node:16.13.1
+    working_directory: ~/locals-apps.com
+    steps:
+      - checkout
+      - run:
+          name: install-packages
+          command: yarn install
+          working_directory: ~/locals-apps.com/frontend
+      - run:
+          name: lint
+          command: yarn lint
+          working_directory: ~/locals-apps.com/frontend
+
 workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - rspec:
-          context: locals-apps
+      - rspec
       - rubocop
       - jest
+      - eslint
       # - aws-ecr/build-and-push-image:
       #     name: build-and-push-image-frontend
       #     account-url: AWS_ECR_ACCOUNT_URL
