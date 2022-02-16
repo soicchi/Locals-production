@@ -8,6 +8,11 @@ resource "aws_cloudwatch_log_group" "back" {
   retention_in_days = 180
 }
 
+resource "aws_cloudwatch_log_group" "db_create" {
+  name              = "/ecs/db_create"
+  retention_in_days = 180
+}
+
 resource "aws_cloudwatch_log_group" "db_migrate" {
   name              = "/ecs/db_migrate"
   retention_in_days = 180

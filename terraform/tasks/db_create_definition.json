@@ -7,8 +7,8 @@
       "logDriver": "awslogs",
       "options": {
         "awslogs-region": "ap-northeast-1",
-        "awslogs-stream-prefix": "db-seed",
-        "awslogs-group": "/ecs/db-seed"
+        "awslogs-stream-prefix": "db-create",
+        "awslogs-group": "/ecs/db-create"
       }
     },
     "portMapping": [
@@ -17,7 +17,7 @@
         "containerPort": 3000
       }
     ],
-    "command": ["bundle", "exec", "rails", "db:seed"],
+    "command": ["bundle", "exec", "rails", "db:create"],
     "environment": [
       {
         "name": "RAILS_ENV",
@@ -42,8 +42,8 @@
         "valueFrom": "db-username"
       },
       {
-        "name": "DB_USERNAME",
-        "valueFrom": "db-username"
+        "name": "DB_NAME",
+        "valueFrom": "db-name"
       }
     ]
   }

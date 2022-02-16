@@ -26,13 +26,6 @@ resource "aws_ssm_parameter" "aws_region" {
   description = "AWSのリージョン"
 }
 
-resource "aws_ssm_parameter" "db_password" {
-  name        = "db-password"
-  type        = "SecureString"
-  value       = var.DB_PASSWORD
-  description = "LocalsのDBのパスワード"
-}
-
 resource "aws_ssm_parameter" "rails_master_key" {
   name        = "rails-master-key"
   type        = "SecureString"
@@ -40,11 +33,25 @@ resource "aws_ssm_parameter" "rails_master_key" {
   description = "Railsのマスターキー"
 }
 
+resource "aws_ssm_parameter" "db_password" {
+  name        = "db-password"
+  type        = "SecureString"
+  value       = var.DB_PASSWORD
+  description = "LocalsのDBのパスワード"
+}
+
 resource "aws_ssm_parameter" "db_username" {
   name        = "db-username"
   type        = "SecureString"
   value       = var.DB_USERNAME
   description = "LocalsのDBのユーザーネーム"
+}
+
+resource "aws_ssm_parameter" "db_name" {
+  name        = "db-name"
+  type        = "SecureString"
+  value       = var.DB_NAME
+  description = "LocalsのDB名"
 }
 
 resource "aws_ssm_parameter" "google_api_key" {

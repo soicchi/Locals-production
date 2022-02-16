@@ -7,4 +7,5 @@ variable "AWS_ACCOUNT_ID" {}
 variable "RAILS_MASTER_KEY" {}
 variable "DB_PASSWORD" {}
 variable "DB_USERNAME" {}
+variable "DB_NAME" {}
 variable "GOOGLE_API_KEY" {}
