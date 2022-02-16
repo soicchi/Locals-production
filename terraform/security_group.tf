@@ -122,6 +122,15 @@ resource "aws_security_group_rule" "ecs_3" {
   security_group_id = aws_security_group.ecs.id
 }
 
+resource "aws_security_group_rule" "ecs_4" {
+  type = "ingress"
+  from_port = 0
+  to_port = 0
+  protocol = "tcp"
+  source_security_group_id = aws_security_group.endpoint.id
+  security_group_id = aws_security_group.ecs.id
+}
+
 // RDS //
 
 resource "aws_security_group_rule" "rds_1" {
