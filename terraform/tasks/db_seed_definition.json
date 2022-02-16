@@ -42,8 +42,8 @@
         "valueFrom": "db-username"
       },
       {
-        "name": "DB_USERNAME",
-        "valueFrom": "db-username"
+        "name": "DB_NAME",
+        "valueFrom": "db-name"
       }
     ]
   }
