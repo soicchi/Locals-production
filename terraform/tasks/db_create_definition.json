@@ -11,7 +11,7 @@
         "awslogs-group": "/ecs/db-create"
       }
     },
-    "portMapping": [
+    "portMappings": [
       {
         "protocol": "tcp",
         "containerPort": 3000

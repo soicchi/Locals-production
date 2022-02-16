@@ -11,7 +11,7 @@
         "awslogs-group": "/ecs/back"
       }
     },
-    "portMapping": [
+    "portMappings": [
       {
         "protocol": "tcp",
         "containerPort": 3000

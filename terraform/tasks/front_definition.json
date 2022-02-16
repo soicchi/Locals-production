@@ -11,7 +11,7 @@
         "awslogs-group": "/ecs/front"
       }
     },
-    "portMapping": [
+    "portMappings": [
       {
         "protocol": "tcp",
         "containerPort": 80

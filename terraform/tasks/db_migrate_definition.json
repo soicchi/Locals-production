@@ -11,7 +11,7 @@
         "awslogs-group": "/ecs/db-migrate"
       }
     },
-    "portMapping": [
+    "portMappings": [
       {
         "protocol": "tcp",
         "containerPort": 3000
