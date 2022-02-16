@@ -56,7 +56,7 @@ resource "aws_db_instance" "db" {
   allocated_storage       = 20
   max_allocated_storage   = 100
   storage_type            = "gp2"
-  name                    = var.DB_NAME
+  db_name                 = var.DB_NAME
   username                = var.DB_USERNAME
   password                = var.DB_PASSWORD
   multi_az                = true
@@ -76,4 +76,12 @@ resource "aws_db_instance" "db" {
     "general",
     "slowquery"
   ]
+
+  lifecycle {
+    ignore_changes = [password]
+  }
+
+  tags = {
+    Name = "locals-db"
+  }
 }
