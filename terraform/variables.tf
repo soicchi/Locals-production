@@ -4,3 +4,7 @@ variable "AWS_REGION" {}
 variable "FRONT_CONTAINER_NAME" {}
 variable "BACK_CONTAINER_NAME" {}
 variable "AWS_ACCOUNT_ID" {}
+variable "RAILS_MASTER_KEY" {}
+variable "DB_PASSWORD" {}
+variable "DB_USERNAME" {}
+variable "GOOGLE_API_KEY" {}

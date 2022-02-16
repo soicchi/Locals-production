@@ -25,7 +25,7 @@
       },
       {
         "name": "API_URL",
-        "value": "https://local-s-app.com"
+        "value": "https://local-s-app.com/api/v1"
       }
     ]
   }
