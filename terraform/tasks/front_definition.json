@@ -27,6 +27,12 @@
         "name": "API_URL",
         "value": "https://local-s-app.com/api/v1"
       }
+    ],
+    "secrets": [
+      {
+        "name": "GOOGLE_API_KEY",
+        "valueFrom": "google-api-key"
+      }
     ]
   }
 ]

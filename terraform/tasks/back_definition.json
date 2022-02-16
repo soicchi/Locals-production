@@ -27,6 +27,20 @@
         "name": "API_DOMAIN",
         "value": "https://local-s-app.com"
       }
+    ],
+    "secrets": [
+      {
+        "name": "RAILS_MASTER_KEY",
+        "valueFrom": "rails-master-key"
+      },
+      {
+        "name": "DB_PASSWORD",
+        "valueFrom": "db-password"
+      },
+      {
+        "name": "DB_USERNAME",
+        "valueFrom": "db-username"
+      }
     ]
   }
 ]
