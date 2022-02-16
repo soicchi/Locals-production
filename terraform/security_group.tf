@@ -36,9 +36,7 @@ resource "aws_security_group" "rds" {
 # Security Group Rule #
 #######################
 
-#######
-# ALB #
-#######
+// ALB //
 
 resource "aws_security_group_rule" "alb_1" {
   type              = "egress"
@@ -85,9 +83,7 @@ resource "aws_security_group_rule" "alb_5" {
   security_group_id = aws_security_group.alb.id
 }
 
-#######
-# ECS #
-#######
+// ECS //
 
 resource "aws_security_group_rule" "ecs_1" {
   type              = "egress"
@@ -116,9 +112,7 @@ resource "aws_security_group_rule" "ecs_3" {
   security_group_id = aws_security_group.ecs.id
 }
 
-#######
-# RDS #
-#######
+// RDS //
 
 resource "aws_security_group_rule" "rds_1" {
   type              = "egress"
