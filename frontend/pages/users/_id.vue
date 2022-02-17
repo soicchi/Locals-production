@@ -26,6 +26,12 @@ export default {
       return this.$route.path === `/users/${this.user.id}`
     }
   },
+  created() {
+    const userId = this.$route.params.id
+    this.getUser(userId)
+    this.getUserPosts(userId)
+    this.setLoggedInUserFollowing(this.loggedInUser.id)
+  },
   methods: {
     ...mapActions({
       getUser: 'user/getUser',
@@ -33,11 +39,5 @@ export default {
       setLoggedInUserFollowing: 'user/setLoggedInUserFollowing'
     })
   },
-  created() {
-    const userId = this.$route.params.id
-    this.getUser(userId)
-    this.getUserPosts(userId)
-    this.setLoggedInUserFollowing(this.loggedInUser.id)
-  }
 }
 </script>

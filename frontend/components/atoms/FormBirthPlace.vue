@@ -13,7 +13,8 @@ export default {
   props: {
     birthPlace: {
       type: String,
-      reuquired: true
+      reuquired: true,
+      default: ''
     }
   },
   computed: {

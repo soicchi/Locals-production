@@ -33,7 +33,7 @@ export const mutations = {
   },
   removeBookMarkUser(state, user) {
     state.post.bookMarkUsers = state.post.bookMarkUsers.filter(bookMarkUser => {
-      bookMarkUser.id !== user.id
+      return bookMarkUser.id !== user.id
     })
   },
   addLikeUser(state, user) {
@@ -41,7 +41,7 @@ export const mutations = {
   },
   removeLikeUser(state, user) {
     state.post.like_users = state.post.like_users.filter(likeUser => {
-      likeUser.id !== user.id
+      return likeUser.id !== user.id
     })
   },
   addDislikeUser(state, user) {
@@ -49,7 +49,7 @@ export const mutations = {
   },
   removeDislikeUser(state, user) {
     state.post.dislike_users = state.post.dislike_users.filter(dislikeUser => {
-      dislikeUser.id !== user.id
+      return  dislikeUser.id !== user.id
     })
   }
 }

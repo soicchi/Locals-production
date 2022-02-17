@@ -12,5 +12,25 @@ module.exports = {
   ],
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
+    "vue/multi-word-component-names": ["error", {
+      "ignores": [
+        'Modal',
+        'default',
+        'error',
+        'signin',
+        'signup',
+        'index',
+        'email',
+        'reset',
+        'all',
+        'bookmark',
+        'create',
+        'followers',
+        'following',
+        'edit',
+        'password',
+        'Footer',
+      ]
+    }]
   },
 }

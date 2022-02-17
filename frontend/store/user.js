@@ -82,19 +82,19 @@ export const actions = {
     })
   },
   async setLoggedInUserBookMarks({ commit }) {
-    this.$axios.get('/users/book_mark_posts')
+    await this.$axios.get('/users/book_mark_posts')
     .then(res => {
       commit('setLoggedInUserBookMarks', res.data)
     })
   },
   async setLoggedInUserLikedPosts({ commit }) {
-    this.$axios.get('/users/liked_posts_ids')
+    await this.$axios.get('/users/liked_posts_ids')
     .then(res => {
       commit('setLoggedInUserLikedPosts', res.data)
     })
   },
   async setLoggedInUserDislikedPosts({ commit }) {
-    this.$axios.get('/users/disliked_posts_ids')
+    await this.$axios.get('/users/disliked_posts_ids')
     .then(res => {
       commit('setLoggedInUserDislikedPosts', res.data)
     })

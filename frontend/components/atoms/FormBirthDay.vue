@@ -67,7 +67,7 @@ export default {
         days = [...Array(29)].map((v, i) => i + 1)
       } else if (this.month === 2) {
         days = [...Array(28)].map((v, i) => i + 1)
-      } else if (this.month === 2 || this.month === 4 || this.month === 6 || this.month === 9 || this.month == 11) {
+      } else if (this.month === 2 || this.month === 4 || this.month === 6 || this.month === 9 || this.month === 11) {
         days = [...Array(30)].map((v, i) => i + 1)
       } else {
         days = [...Array(31)].map((v, i) => i + 1)
