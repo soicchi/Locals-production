@@ -1,10 +1,10 @@
 <template>
   <v-footer
-    color='subColor'
-    height='60px'
+    color="subColor"
+    height="60px"
   >
-    <v-row justify='end'>
-      <v-col class='text-center'>
+    <v-row justify="end">
+      <v-col class="text-center">
         <AtomsCommonCopyRight />
       </v-col>
     </v-row>

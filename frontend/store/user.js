@@ -1,135 +1,135 @@
 export const state = () => ({
   user: {},
-  loggedInUser: {}
+  loggedInUser: {},
 })
 
 export const getters = {
   user: state => state.user,
-  loggedInUser: state => state.loggedInUser
+  loggedInUser: state => state.loggedInUser,
 }
 
 export const mutations = {
-  setUser(state, userData) {
+  setUser (state, userData) {
     state.user = userData
   },
-  setLoggedInUser(state, userData) {
+  setLoggedInUser (state, userData) {
     state.loggedInUser = userData
   },
-  resetLoggedInUser(state) {
+  resetLoggedInUser (state) {
     state.loggedInUser = {}
   },
-  setLoggedInUserFollowing(state, following) {
+  setLoggedInUserFollowing (state, following) {
     state.loggedInUser.following = following
   },
-  addLoggedInUserFollowing(state, followed) {
+  addLoggedInUserFollowing (state, followed) {
     state.loggedInUser.following.unshift(followed)
   },
-  removeLoggedInUserFollowing(state, followed) {
-    state.loggedInUser.following = state.loggedInUser.following.filter(user => {
+  removeLoggedInUserFollowing (state, followed) {
+    state.loggedInUser.following = state.loggedInUser.following.filter((user) => {
       return user !== followed
     })
   },
-  setLoggedInUserBookMarks(state, bookMarks) {
+  setLoggedInUserBookMarks (state, bookMarks) {
     state.loggedInUser.bookMarks = bookMarks
   },
-  addLoggedInUserBookMark(state, bookMark) {
+  addLoggedInUserBookMark (state, bookMark) {
     state.loggedInUser.bookMarks.unshift(bookMark)
   },
-  removeLoggedInUserBookMark(state, post) {
-    state.loggedInUser.bookMarks = state.loggedInUser.bookMarks.filter(bookMark => {
+  removeLoggedInUserBookMark (state, post) {
+    state.loggedInUser.bookMarks = state.loggedInUser.bookMarks.filter((bookMark) => {
       return bookMark.id !== post.id
     })
   },
-  setLoggedInUserLikedPosts(state, likedPostsIds) {
+  setLoggedInUserLikedPosts (state, likedPostsIds) {
     state.loggedInUser.likedPosts = likedPostsIds
   },
-  addLoggedInUserLikedPost(state, likedPostId) {
+  addLoggedInUserLikedPost (state, likedPostId) {
     state.loggedInUser.likedPosts.unshift(likedPostId)
   },
-  removeLoggedInUserLikedPost(state, postId) {
-    state.loggedInUser.likedPosts = state.loggedInUser.likedPosts.filter(likedPost => {
+  removeLoggedInUserLikedPost (state, postId) {
+    state.loggedInUser.likedPosts = state.loggedInUser.likedPosts.filter((likedPost) => {
       return likedPost !== postId
     })
   },
-  setLoggedInUserDislikedPosts(state, dislikedPostsIds) {
+  setLoggedInUserDislikedPosts (state, dislikedPostsIds) {
     state.loggedInUser.dislikedPosts = dislikedPostsIds
   },
-  addLoggedInUserDislikedPost(state, dislikedPostId) {
+  addLoggedInUserDislikedPost (state, dislikedPostId) {
     state.loggedInUser.dislikedPosts.unshift(dislikedPostId)
   },
-  removeLoggedInUserDislikedPost(state, postId) {
-    state.loggedInUser.dislikedPosts = state.loggedInUser.dislikedPosts.filter(dislikePost => {
+  removeLoggedInUserDislikedPost (state, postId) {
+    state.loggedInUser.dislikedPosts = state.loggedInUser.dislikedPosts.filter((dislikePost) => {
       return dislikePost !== postId
     })
-  }
+  },
 }
 
 export const actions = {
-  async getUser({ commit }, userId) {
+  async getUser ({ commit }, userId) {
     await this.$axios.get(`/users/${userId}`)
-    .then(res => {
-      commit('setUser', res.data)
-      commit('relationShip/setFollowing', res.data.following, { root: true })
-      commit('relationShip/setFollowers', res.data.followers, { root: true })
-      commit('bookMark/setBookMarks', res.data.book_mark_posts, { root: true })
-      commit('like/setLikedPosts', res.data.liked_posts, { root: true })
-    })
+      .then((res) => {
+        commit('setUser', res.data)
+        commit('relationShip/setFollowing', res.data.following, { root: true })
+        commit('relationShip/setFollowers', res.data.followers, { root: true })
+        commit('bookMark/setBookMarks', res.data.book_mark_posts, { root: true })
+        commit('like/setLikedPosts', res.data.liked_posts, { root: true })
+      })
   },
-  async setLoggedInUserFollowing({ commit }, userId) {
+  async setLoggedInUserFollowing ({ commit }, userId) {
     await this.$axios.get(`/users/${userId}`)
-    .then(res => {
-      commit('setLoggedInUserFollowing', res.data.following)
-    })
+      .then((res) => {
+        commit('setLoggedInUserFollowing', res.data.following)
+      })
   },
-  async setLoggedInUserBookMarks({ commit }) {
+  async setLoggedInUserBookMarks ({ commit }) {
     await this.$axios.get('/users/book_mark_posts')
-    .then(res => {
-      commit('setLoggedInUserBookMarks', res.data)
-    })
+      .then((res) => {
+        commit('setLoggedInUserBookMarks', res.data)
+      })
   },
-  async setLoggedInUserLikedPosts({ commit }) {
+  async setLoggedInUserLikedPosts ({ commit }) {
     await this.$axios.get('/users/liked_posts_ids')
-    .then(res => {
-      commit('setLoggedInUserLikedPosts', res.data)
-    })
+      .then((res) => {
+        commit('setLoggedInUserLikedPosts', res.data)
+      })
   },
-  async setLoggedInUserDislikedPosts({ commit }) {
+  async setLoggedInUserDislikedPosts ({ commit }) {
     await this.$axios.get('/users/disliked_posts_ids')
-    .then(res => {
-      commit('setLoggedInUserDislikedPosts', res.data)
-    })
+      .then((res) => {
+        commit('setLoggedInUserDislikedPosts', res.data)
+      })
   },
-  setUser({ commit }, userData) {
+  setUser ({ commit }, userData) {
     commit('setUser', userData)
   },
-  setLoggedInUser({ commit }, userData) {
+  setLoggedInUser ({ commit }, userData) {
     commit('setLoggedInUser', userData)
   },
-  resetLoggedInUser({ commit }) {
+  resetLoggedInUser ({ commit }) {
     commit('resetLoggedInUser')
   },
-  addLoggedInUserFollowing({ commit }, followed) {
+  addLoggedInUserFollowing ({ commit }, followed) {
     commit('addLoggedInUserFollowing', followed)
   },
-  removeLoggedInUserFollowing({ commit }, followed) {
+  removeLoggedInUserFollowing ({ commit }, followed) {
     commit('removeLoggedInUserFollowing', followed)
   },
-  addLoggedInUserBookMark({ commit }, bookMark) {
+  addLoggedInUserBookMark ({ commit }, bookMark) {
     commit('addLoggedInUserBookMark', bookMark)
   },
-  removeLoggedInUserBookMark({ commit }, post) {
+  removeLoggedInUserBookMark ({ commit }, post) {
     commit('removeLoggedInUserBookMark', post)
   },
-  addLoggedInUserLikedPost({ commit }, likedPostId) {
+  addLoggedInUserLikedPost ({ commit }, likedPostId) {
     commit('addLoggedInUserLikedPost', likedPostId)
   },
-  removeLoggedInUserLikedPost({ commit }, postId) {
+  removeLoggedInUserLikedPost ({ commit }, postId) {
     commit('removeLoggedInUserLikedPost', postId)
   },
-  addLoggedInUserDislikedPost({ commit }, dislikedPostId) {
+  addLoggedInUserDislikedPost ({ commit }, dislikedPostId) {
     commit('addLoggedInUserDislikedPost', dislikedPostId)
   },
-  removeLoggedInUserDislikedPost({ commit }, postId) {
+  removeLoggedInUserDislikedPost ({ commit }, postId) {
     commit('removeLoggedInUserDislikedPost', postId)
-  }
+  },
 }

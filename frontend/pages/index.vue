@@ -1,23 +1,23 @@
 <template>
   <TemplatesTopPage
-    :title='title'
-    :posts='posts'  
+    :title="title"
+    :posts="posts"
   />
 </template>
 
 <script>
 export default {
   auth: false,
-  layout({ store }) {
+  layout ({ store }) {
     return store.state.auth.loggedIn ? 'default' : 'beforeLogin'
   },
   computed: {
     title: () => '投稿一覧',
-    posts() {
+    posts () {
       return this.$store.getters['post/posts']
-    }
+    },
   },
-  created() {
+  created () {
     if (this.$auth.loggedIn) {
       // 下記メソッドをstoreファイル上でまとめる
       this.$store.dispatch('post/getFollowingPosts')
@@ -27,6 +27,6 @@ export default {
     } else {
       this.$store.dispatch('post/getPosts')
     }
-  }
+  },
 }
 </script>

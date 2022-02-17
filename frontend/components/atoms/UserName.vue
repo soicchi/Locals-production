@@ -2,9 +2,9 @@
   <v-btn
     text
     plain
-    :to='`/users/${user.id}`'
-    color='fontColor'
-    class='user-name'
+    :to="`/users/${user.id}`"
+    color="fontColor"
+    class="user-name"
   >
     {{ user.name }}
   </v-btn>
@@ -15,9 +15,9 @@ export default {
   props: {
     user: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

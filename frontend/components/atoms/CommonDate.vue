@@ -9,13 +9,13 @@ export default {
   props: {
     date: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
-    createDate() {
+    createDate () {
       return this.$dateFns.format(this.date, 'yyyy/MM/dd HH:mm')
-    }
-  }
+    },
+  },
 }
 </script>

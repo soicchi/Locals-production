@@ -4,8 +4,8 @@
 
 <script>
 export default {
-  created() {
+  created () {
     this.$store.dispatch('category/getCategories')
-  }
+  },
 }
 </script>

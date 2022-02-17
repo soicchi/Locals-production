@@ -1,30 +1,30 @@
 <template>
   <v-row>
-    <v-col cols='6'>
+    <v-col cols="6">
       <v-select
-        v-model='setBirthYear'
-        label='生年月日 西暦'
-        :items='birthYears'
-        :rules='rules'
-        @change='resetDay'
-        prepend-icon='mdi-cake'
+        v-model="setBirthYear"
+        label="生年月日 西暦"
+        :items="birthYears"
+        :rules="rules"
+        prepend-icon="mdi-cake"
+        @change="resetDay"
       />
     </v-col>
-    <v-col cols='3'>
+    <v-col cols="3">
       <v-select
-        v-model='setBirthMonth'
-        label='月'
-        :items='birthMonths'
-        :rules='rules'
-        @change='resetDay'
+        v-model="setBirthMonth"
+        label="月"
+        :items="birthMonths"
+        :rules="rules"
+        @change="resetDay"
       />
     </v-col>
-    <v-col cols='3'>
+    <v-col cols="3">
       <v-select
-        v-model='setBirthDay'
-        label='日'
-        :rules='rules'
-        :items='birthDays'
+        v-model="setBirthDay"
+        label="日"
+        :rules="rules"
+        :items="birthDays"
       />
     </v-col>
   </v-row>
@@ -35,35 +35,35 @@ export default {
   props: {
     birthYear: {
       type: Number,
-      required: true
+      required: true,
     },
     birthMonth: {
-      type: Number, 
-      required: true
+      type: Number,
+      required: true,
     },
     birthDay: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
-    rules() {
+    rules () {
       return [v => !!v || '']
     },
-    birthYears() {
-      const years = [];
+    birthYears () {
+      const years = []
       for (let year = 1920; year <= new Date().getFullYear(); year++) {
         years.push(year)
       }
-      return years.reverse();
+      return years.reverse()
     },
-    birthMonths() {
+    birthMonths () {
       const months = [...Array(12)].map((v, i) => i + 1)
-      return months;
+      return months
     },
-    birthDays() {
-      let days = [];
-      if (this.month === 2 && this.year % 4 === 0 && this.year % 100 === 0 && this.year % 400 !== 0 ) {
+    birthDays () {
+      let days = []
+      if (this.month === 2 && this.year % 4 === 0 && this.year % 100 === 0 && this.year % 400 !== 0) {
         days = [...Array(29)].map((v, i) => i + 1)
       } else if (this.month === 2) {
         days = [...Array(28)].map((v, i) => i + 1)
@@ -72,25 +72,25 @@ export default {
       } else {
         days = [...Array(31)].map((v, i) => i + 1)
       }
-      return days;
+      return days
     },
     setBirthYear: {
-      get() { return this.birthYear },
-      set(newVal) { return this.$emit('update:birthYear', newVal) }
+      get () { return this.birthYear },
+      set (newVal) { return this.$emit('update:birthYear', newVal) },
     },
     setBirthMonth: {
-      get() { return this.birthMonth },
-      set(newVal) { return this.$emit('update:birthMonth', newVal) }
+      get () { return this.birthMonth },
+      set (newVal) { return this.$emit('update:birthMonth', newVal) },
     },
     setBirthDay: {
-      get() { return this.birthDay },
-      set(newVal) { return this.$emit('update:birthDay', newVal) }
-    }
+      get () { return this.birthDay },
+      set (newVal) { return this.$emit('update:birthDay', newVal) },
+    },
   },
   methods: {
-    resetDay() {
+    resetDay () {
       this.$emit('resetDay')
-    }
-  }
+    },
+  },
 }
 </script>

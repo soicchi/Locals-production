@@ -1,9 +1,9 @@
 <template>
   <v-btn
-    to='/auth/signin'
+    to="/auth/signin"
     text
     exact
-    color='white'
+    color="white"
   >
     ログイン
   </v-btn>

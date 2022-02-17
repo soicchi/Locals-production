@@ -5,6 +5,6 @@
 <script>
 export default {
   auth: false,
-  layout: 'beforeLogin'
+  layout: 'beforeLogin',
 }
 </script>

@@ -1,37 +1,37 @@
 export const state = () => ({
   messages: [],
   type: '',
-  existed: false
+  existed: false,
 })
 
 export const getters = {
   messages: state => state.messages,
   type: state => state.type,
-  existed: state => state.existed
+  existed: state => state.existed,
 }
 
 export const mutations = {
-  setMessages(state, message) {
+  setMessages (state, message) {
     state.messages = message
   },
-  existedMessage(state) {
+  existedMessage (state) {
     state.existed = true
   },
-  notExistedMessage(state) {
+  notExistedMessage (state) {
     state.existed = false
   },
-  setType(state, type) {
+  setType (state, type) {
     state.type = type
-  }  
+  },
 }
 
 export const actions = {
-  setMessages( { commit }, { messages, type }) {
+  setMessages ({ commit }, { messages, type }) {
     commit('setMessages', messages)
     commit('setType', type)
     commit('existedMessage')
     setTimeout(() => {
       commit('notExistedMessage')
-    }, 3000);
-  }
+    }, 3000)
+  },
 }

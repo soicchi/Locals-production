@@ -1,112 +1,112 @@
 export const state = () => ({
   posts: [],
   post: {},
-  likedPosts: []
+  likedPosts: [],
 })
 
 export const getters = {
   posts: state => state.posts,
   post: state => state.post,
-  likedPosts: state => state.likedPosts
+  likedPosts: state => state.likedPosts,
 }
 
 export const mutations = {
-  setPosts(state, postData) {
+  setPosts (state, postData) {
     state.posts = postData
   },
-  setPost(state, postData) {
+  setPost (state, postData) {
     state.post = postData
   },
-  setLikedPosts(state, posts) {
+  setLikedPosts (state, posts) {
     state.likedPosts = posts
   },
-  removePost(state, postData) {
-    state.posts = state.posts.filter(post => {
+  removePost (state, postData) {
+    state.posts = state.posts.filter((post) => {
       return post !== postData
     })
   },
-  setBookMarkUsers(state, users) {
+  setBookMarkUsers (state, users) {
     state.post.bookMarkUsers = users
   },
-  addBookMarkUser(state, user) {
+  addBookMarkUser (state, user) {
     state.post.bookMarkUsers.unshift(user)
   },
-  removeBookMarkUser(state, user) {
-    state.post.bookMarkUsers = state.post.bookMarkUsers.filter(bookMarkUser => {
+  removeBookMarkUser (state, user) {
+    state.post.bookMarkUsers = state.post.bookMarkUsers.filter((bookMarkUser) => {
       return bookMarkUser.id !== user.id
     })
   },
-  addLikeUser(state, user) {
+  addLikeUser (state, user) {
     state.post.like_users.unshift(user)
   },
-  removeLikeUser(state, user) {
-    state.post.like_users = state.post.like_users.filter(likeUser => {
+  removeLikeUser (state, user) {
+    state.post.like_users = state.post.like_users.filter((likeUser) => {
       return likeUser.id !== user.id
     })
   },
-  addDislikeUser(state, user) {
+  addDislikeUser (state, user) {
     state.post.dislike_users.unshift(user)
   },
-  removeDislikeUser(state, user) {
-    state.post.dislike_users = state.post.dislike_users.filter(dislikeUser => {
-      return  dislikeUser.id !== user.id
+  removeDislikeUser (state, user) {
+    state.post.dislike_users = state.post.dislike_users.filter((dislikeUser) => {
+      return dislikeUser.id !== user.id
     })
-  }
+  },
 }
 
 export const actions = {
-  async getPosts({ commit }) {
+  async getPosts ({ commit }) {
     await this.$axios.get('/posts')
-    .then(res => {
-      commit('setPosts', res.data)
-    })
+      .then((res) => {
+        commit('setPosts', res.data)
+      })
   },
-  async getPost({ commit }, postId) {
+  async getPost ({ commit }, postId) {
     await this.$axios.get(`/posts/${postId}`)
-    .then(res => {
-      commit('setPost', res.data)
-    })
+      .then((res) => {
+        commit('setPost', res.data)
+      })
   },
-  async getUserPosts({ commit }, userId) {
+  async getUserPosts ({ commit }, userId) {
     await this.$axios.get(`/users/${userId}/user_posts`)
-    .then(res => {
-      commit('setPosts', res.data)
-    })
+      .then((res) => {
+        commit('setPosts', res.data)
+      })
   },
-  async getFollowingPosts({commit}) {
+  async getFollowingPosts ({ commit }) {
     await this.$axios.get('/users/following_posts')
-    .then(res => {
-      commit('setPosts', res.data)
-    })
+      .then((res) => {
+        commit('setPosts', res.data)
+      })
   },
-  async getLikedPosts({ commit }, userId) {
+  async getLikedPosts ({ commit }, userId) {
     await this.$axios.get('/users/liked_posts', { params: { id: userId } })
-    .then(res => {
-      commit('setLikedPosts', res.data)
-    })
+      .then((res) => {
+        commit('setLikedPosts', res.data)
+      })
   },
-  setPosts({ commit }, posts) {
+  setPosts ({ commit }, posts) {
     commit('setPosts', posts)
   },
-  removePost({ commit }, postData) {
+  removePost ({ commit }, postData) {
     commit('removePost', postData)
   },
-  addBookMarkUser({ commit }, user) {
+  addBookMarkUser ({ commit }, user) {
     commit('addBookMarkUser', user)
   },
-  removeBookMarkUser({ commit }, user) {
+  removeBookMarkUser ({ commit }, user) {
     commit('removeBookMarkUser', user)
   },
-  addLikeUser({ commit }, user) {
+  addLikeUser ({ commit }, user) {
     commit('addLikeUser', user)
   },
-  removeLikeUser({ commit }, likeUser) {
+  removeLikeUser ({ commit }, likeUser) {
     commit('removeLikeUser', likeUser)
   },
-  addDislikeUser({ commit }, user) {
+  addDislikeUser ({ commit }, user) {
     commit('addDislikeUser', user)
   },
-  removeDislikeUser({ commit }, dislikeUser) {
+  removeDislikeUser ({ commit }, dislikeUser) {
     commit('removeDislikeUser', dislikeUser)
-  }
+  },
 }

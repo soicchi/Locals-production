@@ -7,30 +7,30 @@ export const getters = {
 }
 
 export const mutations = {
-  setBookMarks(state, bookMarks) {
+  setBookMarks (state, bookMarks) {
     state.bookMarks = bookMarks
   },
-  addBookMarks(state, postData) {
+  addBookMarks (state, postData) {
     state.bookMarks.unshift(postData)
   },
-  removeBookMarks(state,postData) {
-    state.bookMarks = state.bookMarks.filter(bookMark => {
+  removeBookMarks (state, postData) {
+    state.bookMarks = state.bookMarks.filter((bookMark) => {
       return bookMark !== postData
     })
-  }
+  },
 }
 
 export const actions = {
-  async getBookMarks({ commit }) {
+  async getBookMarks ({ commit }) {
     await this.$axios.get('/users/book_mark_posts')
-    .then(res => {
-      commit('setBookMarks', res.data)
-    })
+      .then((res) => {
+        commit('setBookMarks', res.data)
+      })
   },
-  addBookMarks({ commit }, postData) {
+  addBookMarks ({ commit }, postData) {
     commit('addBookMarks', postData)
   },
-  removeBookMarks({ commit }, postData) {
+  removeBookMarks ({ commit }, postData) {
     commit('removeBookMarks', postData)
-  }
+  },
 }

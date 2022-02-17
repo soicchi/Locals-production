@@ -1,16 +1,16 @@
 <template>
-  <TemplatesBookMarkPage :title='title' />
+  <TemplatesBookMarkPage :title="title" />
 </template>
 
 <script>
 export default {
   computed: {
-    title() {
+    title () {
       return '保存した投稿'
-    }
+    },
   },
-  created() {
+  created () {
     this.$store.dispatch('bookMark/getBookMarks')
-  }
+  },
 }
 </script>

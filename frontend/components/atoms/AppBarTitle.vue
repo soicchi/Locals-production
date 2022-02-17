@@ -1,8 +1,8 @@
 <template>
   <v-btn
-    to='/'
+    to="/"
     text
-    class='home-button'
+    class="home-button"
   >
     Local's
   </v-btn>

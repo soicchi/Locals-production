@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-col
-      cols='12'
-      class='my-5'
+      cols="12"
+      class="my-5"
     >
-      <AtomsCommonTitle :title='title' />
+      <AtomsCommonTitle :title="title" />
     </v-col>
-    <OrganismsPostFeed :posts='likedPosts' />
+    <OrganismsPostFeed :posts="likedPosts" />
   </div>
 </template>
 
@@ -14,13 +14,13 @@
 export default {
   computed: {
     title: () => 'いいね済み投稿一覧',
-    likedPosts() {
+    likedPosts () {
       return this.$store.getters['post/likedPosts']
-    }
+    },
   },
-  created() {
+  created () {
     const userId = this.$route.params.id
     this.$store.dispatch('post/getLikedPosts', userId)
-  }
+  },
 }
 </script>

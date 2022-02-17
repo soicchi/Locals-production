@@ -1,6 +1,6 @@
 <template>
   <v-app-bar
-    color='mainColor'
+    color="mainColor"
     fixed
     app
     dense

@@ -94,7 +94,7 @@ export default {
           subColor: '#672f21',
           fontColor: '#58554e',
           borderColor: '#e0dfdd',
-          backgroundColor: '#abaaa6'
+          backgroundColor: '#abaaa6',
         },
       },
     },

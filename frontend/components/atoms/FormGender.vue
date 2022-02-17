@@ -1,19 +1,19 @@
 <template>
   <v-radio-group
-    label='性別'
-    v-model='setGender'
-    prepend-icon='mdi-human-male-female'
+    v-model="setGender"
+    label="性別"
+    prepend-icon="mdi-human-male-female"
     row
-    :rules='rules'
+    :rules="rules"
   >
     <v-radio
-      label='男'
-      value='man'
-    ></v-radio>
+      label="男"
+      value="man"
+    />
     <v-radio
-      label='女'
-      value='woman'
-    ></v-radio>
+      label="女"
+      value="woman"
+    />
   </v-radio-group>
 </template>
 
@@ -22,19 +22,19 @@ export default {
   props: {
     gender: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
-    rules() {
+    rules () {
       return [
-        v => !!v || ''
+        v => !!v || '',
       ]
     },
     setGender: {
-      get() { return this.gender },
-      set(newVal) { return this.$emit('update:gender', newVal) }
-    }
-  }
+      get () { return this.gender },
+      set (newVal) { return this.$emit('update:gender', newVal) },
+    },
+  },
 }
 </script>

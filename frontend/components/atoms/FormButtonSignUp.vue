@@ -1,13 +1,13 @@
 <template>
   <v-btn
-    :disabled='!isValid || loading'
-    :loading='loading'
+    :disabled="!isValid || loading"
+    :loading="loading"
     rounded
-    color='mainColor'
-    class='signup-btn'
-    width='50%'
-    height='40px'
-    @click='signUp'
+    color="mainColor"
+    class="signup-btn"
+    width="50%"
+    height="40px"
+    @click="signUp"
   >
     登録する
   </v-btn>
@@ -19,19 +19,19 @@ export default {
     loading: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     isValid: {
       type: Boolean,
       required: true,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
-    signUp() {
+    signUp () {
       this.$emit('sign-up')
-    }
-  }
+    },
+  },
 }
 </script>
 

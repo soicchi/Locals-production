@@ -12,8 +12,8 @@ module.exports = {
   ],
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
-    "vue/multi-word-component-names": ["error", {
-      "ignores": [
+    'vue/multi-word-component-names': ['error', {
+      ignores: [
         'Modal',
         'default',
         'error',
@@ -30,7 +30,7 @@ module.exports = {
         'edit',
         'password',
         'Footer',
-      ]
-    }]
+      ],
+    }],
   },
 }

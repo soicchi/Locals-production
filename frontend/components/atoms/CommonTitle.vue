@@ -1,5 +1,5 @@
 <template>
-  <p class='text-center main-title'>
+  <p class="text-center main-title">
     {{ title }}
   </p>
 </template>
@@ -9,9 +9,9 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

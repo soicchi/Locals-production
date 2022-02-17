@@ -1,14 +1,14 @@
 <template>
   <v-text-field
-    label='パスワード（確認）'
-    v-model='setPasswordConfirmation'
-    :rules='rules'
-    :type='type'
-    :append-icon='icon'
-    prepend-icon='mdi-lock'
-    @click:append='show = !show'
-    placeholder='8文字以上'
+    v-model="setPasswordConfirmation"
+    label="パスワード（確認）"
+    :rules="rules"
+    :type="type"
+    :append-icon="icon"
+    prepend-icon="mdi-lock"
+    placeholder="8文字以上"
     autocomplete="on"
+    @click:append="show = !show"
   />
 </template>
 
@@ -17,34 +17,34 @@ export default {
   props: {
     passwordConfirmation: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  data() {
+  data () {
     return {
-      show: false
+      show: false,
     }
   },
   computed: {
-    min() {
+    min () {
       return 8
     },
-    rules() {
+    rules () {
       return [
         v => !!v || '',
-        v => v.length >= this.min || ''
+        v => v.length >= this.min || '',
       ]
     },
-    icon() {
+    icon () {
       return this.show ? 'mdi-eye' : 'mdi-eye-off'
     },
-    type() {
+    type () {
       return this.show ? 'text' : 'password'
     },
     setPasswordConfirmation: {
-      get() { return this.passwordConfirmation },
-      set(newVal) { return this.$emit('update:passwordConfirmation', newVal) }
-    }
-  }
+      get () { return this.passwordConfirmation },
+      set (newVal) { return this.$emit('update:passwordConfirmation', newVal) },
+    },
+  },
 }
 </script>

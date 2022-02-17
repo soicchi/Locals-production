@@ -1,32 +1,31 @@
 <template>
   <div>
     <TemplatesUserPage
-      v-if='matchName'
-      :posts='posts'  
+      v-if="matchName"
+      :posts="posts"
     />
     <NuxtChild
-      :user='user'
-      :logged-in-user='loggedInUser'
+      :user="user"
+      :logged-in-user="loggedInUser"
     />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: {
     ...mapGetters({
       loggedInUser: 'user/loggedInUser',
       user: 'user/user',
-      posts: 'post/posts'
+      posts: 'post/posts',
     }),
-    matchName() {
+    matchName () {
       return this.$route.path === `/users/${this.user.id}`
-    }
+    },
   },
-  created() {
+  created () {
     const userId = this.$route.params.id
     this.getUser(userId)
     this.getUserPosts(userId)
@@ -36,8 +35,8 @@ export default {
     ...mapActions({
       getUser: 'user/getUser',
       getUserPosts: 'post/getUserPosts',
-      setLoggedInUserFollowing: 'user/setLoggedInUserFollowing'
-    })
+      setLoggedInUserFollowing: 'user/setLoggedInUserFollowing',
+    }),
   },
 }
 </script>

@@ -1,11 +1,11 @@
 <template>
-  <MoleculesFormCard :is-valid.sync='isValid'>
+  <MoleculesFormCard :is-valid.sync="isValid">
     <template #form-title>
-      <AtomsFormTitle :title='title' />
+      <AtomsFormTitle :title="title" />
     </template>
     <template #form-card-content>
-      <AtomsFormEmail :email.sync='user.email' />
-      <AtomsFormPassword :password.sync='user.password' />
+      <AtomsFormEmail :email.sync="user.email" />
+      <AtomsFormPassword :password.sync="user.password" />
       <!-- <div class='password-forget pl-8 mb-2'>
         パスワードを忘れた場合は
         <span>
@@ -24,56 +24,56 @@
     </template>
     <template #form-card-button>
       <AtomsFormButtonSignIn
-        :loading='loading'
-        @sign-in='signIn'
-        :is-valid='isValid'
+        :loading="loading"
+        :is-valid="isValid"
+        @sign-in="signIn"
       />
     </template>
   </MoleculesFormCard>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
-  data() {
+  data () {
     return {
       isValid: false,
       loading: false,
       user: {
         email: '',
-        password: ''
-      }
+        password: '',
+      },
     }
   },
   computed: {
-    title() {
+    title () {
       return 'ログイン'
-    }
+    },
   },
   methods: {
     ...mapActions({
       setLoggedInUser: 'user/setLoggedInUser',
-      setMessages: 'message/setMessages'
+      setMessages: 'message/setMessages',
     }),
-    async signIn() {
+    async signIn () {
       this.loading = true
       setTimeout(() => {
         this.loading = false
       }, 1500)
       await this.$auth.loginWith('local', { data: this.user })
-      .then(res => {
+        .then((res) => {
           this.setLoggedInUser(res.data.data)
           const message = ['ログインしました']
-          this.setMessages({ messages: message, type: 'success' }  )
+          this.setMessages({ messages: message, type: 'success' })
           this.$router.replace('/')
-      })
-      .catch(e => {
-        const messages = e.response.data.errors
-        this.setMessages({ messages: messages, type: 'error' })
-      })
-    }
-  }
+        })
+        .catch((e) => {
+          const messages = e.response.data.errors
+          this.setMessages({ messages, type: 'error' })
+        })
+    },
+  },
 }
 </script>
 

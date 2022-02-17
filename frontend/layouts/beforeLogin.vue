@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <OrganismsBefHeader />
-    <v-main class='background-setting'>
+    <v-main class="background-setting">
       <OrganismsSnackBar />
       <Nuxt />
     </v-main>

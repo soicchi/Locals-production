@@ -1,15 +1,15 @@
 <template>
   <v-text-field
-    label='パスワード'
-    v-model='setPassword'
-    :rules='rules'
-    :counter='!noValidation'
-    :type='type'
-    :append-icon='icon'
-    prepend-icon='mdi-lock'
-    @click:append='show = !show'
-    :placeholder='placeHolder'
+    v-model="setPassword"
+    label="パスワード"
+    :rules="rules"
+    :counter="!noValidation"
+    :type="type"
+    :append-icon="icon"
+    prepend-icon="mdi-lock"
+    :placeholder="placeHolder"
     autocomplete="on"
+    @click:append="show = !show"
   />
 </template>
 
@@ -18,40 +18,40 @@ export default {
   props: {
     noValidation: {
       type: Boolean,
-      default: true
+      default: true,
     },
     password: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  data() {
+  data () {
     return {
-      show: false
+      show: false,
     }
   },
   computed: {
-    min() {
+    min () {
       return 8
     },
-    placeHolder() {
+    placeHolder () {
       return this.noValidation ? undefined : `${this.min}文字以上`
     },
-    rules() {
+    rules () {
       const requiredRule = v => !!v || ''
-      const lengthRule =  v => v.length >= this.min || ''
+      const lengthRule = v => v.length >= this.min || ''
       return this.noValidation ? [requiredRule] : [requiredRule, lengthRule]
     },
-    icon() {
+    icon () {
       return this.show ? 'mdi-eye' : 'mdi-eye-off'
     },
-    type() {
+    type () {
       return this.show ? 'text' : 'password'
     },
     setPassword: {
-      get() { return this.password },
-      set(newVal) { return this.$emit('update:password', newVal) }
-    }
-  }
+      get () { return this.password },
+      set (newVal) { return this.$emit('update:password', newVal) },
+    },
+  },
 }
 </script>

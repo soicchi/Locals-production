@@ -1,13 +1,13 @@
 <template>
   <v-btn
-    :disabled='!isValid || loading'
-    :loading='loading'
+    :disabled="!isValid || loading"
+    :loading="loading"
     rounded
-    @click='signIn'
-    color='mainColor'
-    class='signin-btn'
-    width='50%'
-    height='40px'
+    color="mainColor"
+    class="signin-btn"
+    width="50%"
+    height="40px"
+    @click="signIn"
   >
     ログイン
   </v-btn>
@@ -16,22 +16,22 @@
 <script>
 export default {
   props: {
-    loading : {
+    loading: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     isValid: {
       type: Boolean,
       required: true,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
-    signIn() {
+    signIn () {
       this.$emit('sign-in')
-    }
-  }
+    },
+  },
 }
 </script>
 

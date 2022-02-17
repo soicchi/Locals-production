@@ -1,14 +1,14 @@
 export const state = () => ({
-  likedPosts: []
+  likedPosts: [],
 })
 
 export const getters = {
   likedPosts: state => state.likedPosts,
-  likedPostsCount: state => state.likedPosts.length
+  likedPostsCount: state => state.likedPosts.length,
 }
 
 export const mutations = {
-  setLikedPosts(state, posts) {
+  setLikedPosts (state, posts) {
     state.likedPosts = posts
-  }
+  },
 }

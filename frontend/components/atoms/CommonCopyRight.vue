@@ -1,5 +1,5 @@
 <template>
-  <div class='locals'>
+  <div class="locals">
     &copy;{{ copyRightYear }}<strong>Local's</strong>
   </div>
 </template>
@@ -7,12 +7,12 @@
 <script>
 export default {
   computed: {
-    copyRightYear() {
+    copyRightYear () {
       const beginningYear = 2021
       const thisYear = new Date().getFullYear()
       return (beginningYear < thisYear) ? `${beginningYear} - ${thisYear}` : beginningYear
-    }
-  }
+    },
+  },
 }
 </script>
 

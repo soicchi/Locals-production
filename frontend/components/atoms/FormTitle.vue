@@ -1,5 +1,5 @@
 <template>
-  <h1 class='form-title'>
+  <h1 class="form-title">
     {{ title }}
   </h1>
 </template>
@@ -9,9 +9,9 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
