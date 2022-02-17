@@ -10,8 +10,8 @@ resource "aws_alb" "alb" {
   enable_deletion_protection = false
 
   subnets = [
-    aws_subnet.front_1a.id,
-    aws_subnet.front_1c.id
+    aws_subnet.public_1a.id,
+    aws_subnet.public_1c.id
   ]
 
   access_logs {

@@ -18,10 +18,8 @@ resource "aws_vpc_endpoint" "ecr_dkr" {
     aws_security_group.endpoint.id
   ]
   subnet_ids = [
-    aws_subnet.front_1a.id,
-    aws_subnet.front_1c.id,
-    aws_subnet.back_1a.id,
-    aws_subnet.back_1c.id
+    aws_subnet.public_1a.id,
+    aws_subnet.public_1c.id,
   ]
 
   tags = {
@@ -38,10 +36,8 @@ resource "aws_vpc_endpoint" "ecr_api" {
     aws_security_group.endpoint.id
   ]
   subnet_ids = [
-    aws_subnet.front_1a.id,
-    aws_subnet.front_1c.id,
-    aws_subnet.back_1a.id,
-    aws_subnet.back_1c.id
+    aws_subnet.public_1a.id,
+    aws_subnet.public_1c.id,
   ]
 
   tags = {
@@ -58,10 +54,8 @@ resource "aws_vpc_endpoint" "log" {
     aws_security_group.endpoint.id
   ]
   subnet_ids = [
-    aws_subnet.front_1a.id,
-    aws_subnet.front_1c.id,
-    aws_subnet.back_1a.id,
-    aws_subnet.back_1c.id
+    aws_subnet.public_1a.id,
+    aws_subnet.public_1c.id,
   ]
 
   tags = {
@@ -75,10 +69,8 @@ resource "aws_vpc_endpoint" "ssm" {
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
   subnet_ids = [
-    aws_subnet.front_1a.id,
-    aws_subnet.front_1c.id,
-    aws_subnet.back_1a.id,
-    aws_subnet.back_1c.id
+    aws_subnet.public_1a.id,
+    aws_subnet.public_1c.id,
   ]
   security_group_ids = [
     aws_security_group.endpoint.id

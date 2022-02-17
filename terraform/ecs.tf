@@ -38,8 +38,8 @@ resource "aws_ecs_service" "front" {
     security_groups  = [aws_security_group.ecs.id]
 
     subnets = [
-      aws_subnet.front_1a.id,
-      aws_subnet.front_1c.id
+      aws_subnet.public_1a.id,
+      aws_subnet.public_1c.id
     ]
   }
 
@@ -102,8 +102,8 @@ resource "aws_ecs_service" "back" {
     security_groups  = [aws_security_group.ecs.id]
 
     subnets = [
-      aws_subnet.back_1a.id,
-      aws_subnet.back_1c.id
+      aws_subnet.public_1a.id,
+      aws_subnet.public_1c.id
     ]
   }
 
