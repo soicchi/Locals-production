@@ -99,7 +99,7 @@ resource "aws_security_group_rule" "ecs_2" {
   type                     = "ingress"
   from_port                = 0
   to_port                  = 0
-  protocol                 = "tcp"
+  protocol                 = "-1"
   source_security_group_id = aws_security_group.alb.id
   security_group_id        = aws_security_group.ecs.id
 }
@@ -117,7 +117,7 @@ resource "aws_security_group_rule" "ecs_4" {
   type                     = "ingress"
   from_port                = 0
   to_port                  = 0
-  protocol                 = "tcp"
+  protocol                 = "-1"
   source_security_group_id = aws_security_group.endpoint.id
   security_group_id        = aws_security_group.ecs.id
 }
@@ -137,7 +137,7 @@ resource "aws_security_group_rule" "rds_2" {
   type                     = "ingress"
   from_port                = 3306
   to_port                  = 3306
-  protocol                 = "tcp"
+  protocol                 = "-1"
   source_security_group_id = aws_security_group.ecs.id
   security_group_id        = aws_security_group.rds.id
 }

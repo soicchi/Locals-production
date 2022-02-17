@@ -4,6 +4,10 @@
 
 resource "aws_ecs_cluster" "cluster" {
   name = "locals-cluster"
+
+  tags = {
+    Name = "locals-cluster"
+  }
 }
 
 #########
@@ -31,7 +35,7 @@ resource "aws_ecs_service" "front" {
   desired_count                     = 2
   launch_type                       = "FARGATE"
   platform_version                  = "1.4.0"
-  health_check_grace_period_seconds = 600
+  health_check_grace_period_seconds = 60
 
   network_configuration {
     assign_public_ip = true
@@ -95,7 +99,7 @@ resource "aws_ecs_service" "back" {
   desired_count                     = 2
   launch_type                       = "FARGATE"
   platform_version                  = "1.4.0"
-  health_check_grace_period_seconds = 600
+  health_check_grace_period_seconds = 60
 
   network_configuration {
     assign_public_ip = true

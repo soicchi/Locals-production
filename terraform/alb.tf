@@ -26,20 +26,24 @@ resource "aws_alb" "alb" {
   }
 }
 
+output "alb_dns_name" {
+  value = aws_alb.alb.dns_name
+}
+
 ############
 # Listener #
 ############
 
 resource "aws_alb_listener" "http" {
   load_balancer_arn = aws_alb.alb.arn
-  port              = 80
+  port              = "80"
   protocol          = "HTTP"
 
   default_action {
     type = "redirect"
 
     redirect {
-      port        = 443
+      port        = "443"
       protocol    = "HTTPS"
       status_code = "HTTP_301"
     }
@@ -48,7 +52,7 @@ resource "aws_alb_listener" "http" {
 
 resource "aws_alb_listener" "https" {
   load_balancer_arn = aws_alb.alb.arn
-  port              = 443
+  port              = "443"
   protocol          = "HTTPS"
   certificate_arn   = aws_acm_certificate.acm.arn
   ssl_policy        = "ELBSecurityPolicy-2016-08"
@@ -88,9 +92,7 @@ resource "aws_alb_listener_rule" "backend_rule" {
 # Target Group #
 ################
 
-############
-# Frontend #
-############
+// Frontend //
 
 resource "aws_alb_target_group" "front" {
   name                 = "front"
@@ -114,9 +116,7 @@ resource "aws_alb_target_group" "front" {
   depends_on = [aws_alb.alb]
 }
 
-###########
-# Backend #
-###########
+// Backend //
 
 resource "aws_alb_target_group" "back" {
   name                 = "back"
