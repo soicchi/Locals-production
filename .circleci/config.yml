@@ -115,7 +115,7 @@ workflows:
             - rspec
             - rubocop
       - aws-ecs/deploy-service-update:
-          family: frontend
+          family: ${FRONT_FAMILY}
           service-name: ${FRONT_SERVICE}
           cluster-name: ${CLUSTER_NAME}
           container-image-name-updates: "container=${FRONT_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
@@ -123,7 +123,7 @@ workflows:
             - build-and-push-image-frontend
       - aws-ecs/deploy-service-update:
           name: backend-service-update
-          family: backend
+          family: ${BACK_FAMILY}
           service-name: ${BACK_SERVICE}
           cluster-name: ${CLUSTER_NAME}
           container-image-name-updates: "container=${BACK_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
