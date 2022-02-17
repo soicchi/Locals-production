@@ -118,7 +118,6 @@ workflows:
           family: frontend
           service-name: ${FRONT_SERVICE}
           cluster-name: ${CLUSTER_NAME}
-          container-image-name-updates: "container=${FRONT_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
           requires:
             - build-and-push-image-frontend
       - aws-ecs/deploy-service-update:
@@ -126,7 +125,6 @@ workflows:
           family: backend
           service-name: ${BACK_SERVICE}
           cluster-name: ${CLUSTER_NAME}
-          container-image-name-updates: "container=${BACK_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
           requires:
             - build-and-push-image-backend
       - aws-ecs/run-task:
