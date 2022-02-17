@@ -54,6 +54,13 @@ resource "aws_ssm_parameter" "db_name" {
   description = "LocalsのDB名"
 }
 
+resource "aws_ssm_parameter" "db_host" {
+  name        = "db-host"
+  type        = "SecureString"
+  value       = aws_db_instance.db.address
+  description = "本番環境用のDBホスト名"
+}
+
 resource "aws_ssm_parameter" "google_api_key" {
   name        = "google-api-key"
   type        = "SecureString"

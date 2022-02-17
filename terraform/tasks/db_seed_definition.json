@@ -44,6 +44,10 @@
       {
         "name": "DB_NAME",
         "valueFrom": "db-name"
+      },
+      {
+        "name": "DB_HOST",
+        "valueFrom": "db-host"
       }
     ]
   }
