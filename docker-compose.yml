@@ -41,7 +41,6 @@ services:
       context: ./frontend
     environment:
       GOOGLE_API_KEY: $GOOGLE_API_KEY
-      API_URL: "http://localhost:${BACKEND_PORT}/api/v1"
     command: yarn run dev
     volumes:
       - ./frontend:/frontend

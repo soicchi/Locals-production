@@ -50,6 +50,10 @@ export default {
     '@nuxtjs/auth',
   ],
 
+  axios: {
+    baseURL: process.env.NODE_ENV === 'production' ? 'https:local-s-app.com/api/v1' : 'http://localshost:3000/api/v1',
+  },
+
   router: {
     // 未認証時、ホーム画面にリダイレクトされる際にメッセージ表示機能実装予定
     middleware: [

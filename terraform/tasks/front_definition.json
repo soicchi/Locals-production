@@ -22,10 +22,6 @@
       {
         "name": "NODE_ENV",
         "value": "production"
-      },
-      {
-        "name": "API_URL",
-        "value": "https://local-s-app.com/api/v1"
       }
     ],
     "secrets": [
