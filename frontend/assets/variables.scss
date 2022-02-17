@@ -1,4 +1,41 @@
-// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
-//
-// The variables you want to modify
-// $font-size-root: 20px;
+// カラー変数
+$mainColor: #ef6f4d;
+$baseColor: #fef9ef;
+$subColor: #672f21;
+$fontColor: #58554e;
+$borderColor: #e0dfdd;
+$backgroundColor: #abaaa6;
+
+// ボタンの共通設定
+.v-btn {
+  color: #fff;
+  text-transform: none
+}
+
+// APIに対して通信を行うボタンの共通設定
+@mixin commonBtn {
+  color: #fff;
+  font-size: 16px;
+}
+
+// 各フォームのタイトルの共通設定
+@mixin commonTitle {
+  font-size: 18px;
+}
+
+// ブレイクポイントの設定
+$grid-breakpoints: (
+  'ipad': 768px,
+  'mobile': 426px
+);
+
+$display-breakpoints: (
+  'ipad-and-down':
+  'only screen and (max-width: #{map-get($grid-breakpoints, 'ipad') - 1})',
+  'ipad-and-up':
+  'only screen and (min-width: #{map-get($grid-breakpoints, 'ipad')})',
+  'mobile-and-down':
+  'only screen and (max-width: #{map-get($grid-breakpoints, 'mobile') - 1})',
+  'mobile-and-up':
+  'only screen and (min-width: #{map-get($grid-breakpoints, 'mobile')})'
+);

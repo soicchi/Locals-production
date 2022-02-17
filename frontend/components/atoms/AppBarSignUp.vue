@@ -1,0 +1,10 @@
+<template>
+  <v-btn
+    to='/auth/signup'
+    text
+    exact
+    color='white'
+  >
+    新規登録
+  </v-btn>
+</template>

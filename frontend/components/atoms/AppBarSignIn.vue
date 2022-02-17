@@ -1,0 +1,10 @@
+<template>
+  <v-btn
+    to='/auth/signin'
+    text
+    exact
+    color='white'
+  >
+    ログイン
+  </v-btn>
+</template>
