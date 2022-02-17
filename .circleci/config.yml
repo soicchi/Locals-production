@@ -132,7 +132,7 @@ workflows:
       - aws-ecs/run-task:
           name: db-create
           cluster: ${CLUSTER_NAME}
-          task-definition: db-create
+          task-definition: locals-db-create
           security-group-ids: sg-01584d7914ab83e79 # 環境再構築時は再設定が必要 最終的には環境変数化
           subnet-ids: subnet-0d06ee885d66a7fe5, subnet-07d33d84659327c1c # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
@@ -140,7 +140,7 @@ workflows:
       - aws-ecs/run-task:
           name: db-migrate
           cluster: ${CLUSTER_NAME}
-          task-definition: db-migrate
+          task-definition: locals-db-migrate
           security-group-ids: sg-01584d7914ab83e79 # 環境再構築時は再設定が必要 最終的には環境変数化
           subnet-ids: subnet-0d06ee885d66a7fe5, subnet-07d33d84659327c1c # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
@@ -148,7 +148,7 @@ workflows:
       - aws-ecs/run-task:
           name: db-seed-task
           cluster: ${CLUSTER_NAME}
-          task-definition: db-seed
+          task-definition: locals-db-seed
           security-group-ids: sg-01584d7914ab83e79 # 環境再構築時は再設定が必要 最終的には環境変数化
           subnet-ids: subnet-0d06ee885d66a7fe5, subnet-07d33d84659327c1c # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
