@@ -5,6 +5,10 @@ ENV LANG=C.UTF-8 \
     GOOGLE_API_KEY=$GOOGLE_API_KEY \
     API_URL=$API_URL
 
-WORKDIR /frontend
+WORKDIR /app
+COPY . .
+
+RUN yarn install \
+    && yarn build
 
 EXPOSE 80

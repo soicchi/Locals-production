@@ -10,6 +10,8 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - ./backend/tmp/db:/var/lib/mysql
+    cap_add:
+      - SYS_NICE
   
   backend:
     build:

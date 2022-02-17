@@ -12,7 +12,7 @@ ENV LANG=C.UTF-8 \
     RAILS_MASTER_KEY=$RAILS_MASTER_KEY \
     API_DOMAIN=$API_DOMAIN
 
-WORKDIR /backend
+WORKDIR /app
 COPY Gemfile* ./
 
 RUN apt-get update -qq && apt-get install --no-install-recommends -y \
@@ -23,5 +23,5 @@ RUN apt-get update -qq && apt-get install --no-install-recommends -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-COPY . /backend
+COPY . .
 EXPOSE 3000
