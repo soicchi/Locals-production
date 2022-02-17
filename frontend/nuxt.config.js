@@ -47,22 +47,54 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
   ],
+
+  router: {
+    // 未認証時、ホーム画面にリダイレクトされる際にメッセージ表示機能実装予定
+    middleware: [
+      'auth',
+    ],
+  },
+
+  auth: {
+    redirect: {
+      login: '/auth/signin',
+      logout: '/auth/signin',
+      callback: false,
+      home: '/',
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth/sign_in', method: 'post', propertyName: 'access-token' },
+          logout: { url: '/auth/sign_out', method: 'delete' },
+          user: false,
+        },
+      },
+    },
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
-        dark: {
+        light: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
+          error: '#c65252',
+          success: '#83c652',
+          mainColor: '#ef6f4d',
+          baseColor: '#fef9ef',
+          subColor: '#672f21',
+          fontColor: '#58554e',
+          borderColor: '#e0dfdd',
+          backgroundColor: '#abaaa6'
         },
       },
     },

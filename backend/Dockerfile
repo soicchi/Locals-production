@@ -12,7 +12,7 @@ ENV LANG=C.UTF-8 \
     RAILS_MASTER_KEY=$RAILS_MASTER_KEY \
     API_DOMAIN=$API_DOMAIN
 
-WORKDIR /app
+WORKDIR /backend
 COPY Gemfile* ./
 
 RUN apt-get update -qq && apt-get install --no-install-recommends -y \
