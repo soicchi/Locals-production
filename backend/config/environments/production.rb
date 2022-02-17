@@ -110,4 +110,15 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  # devise default URL option
+  config.action_mailer.default_url_options = { host: 'local-s-app.com', port: 80 }
+
+  # url_forの設定
+  Rails.application.routes.default_url_options[:host] = 'locals-apps.com'
+  Rails.application.routes.default_url_options[:port] = 3000
+
+  config.active_storage.resolve_model_to_route = :rails_storage_proxy
+
+  config.hosts << 'local-s-app.com'
 end
