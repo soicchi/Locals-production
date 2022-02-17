@@ -116,7 +116,7 @@ workflows:
             - rubocop
       - aws-ecs/deploy-service-update:
           family: frontend
-          service-name: locals-frontend-service
+          service-name: ${FRONT_SERVICE}
           cluster-name: ${CLUSTER_NAME}
           container-image-name-updates: "container=${FRONT_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
           requires:
@@ -124,7 +124,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           name: backend-service-update
           family: backend
-          service-name: locals-backend-service
+          service-name: ${BACK_SERVICE}
           cluster-name: ${CLUSTER_NAME}
           container-image-name-updates: "container=${BACK_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
           requires:
