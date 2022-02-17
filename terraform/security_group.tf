@@ -32,6 +32,16 @@ resource "aws_security_group" "rds" {
   }
 }
 
+resource "aws_security_group" "endpoint" {
+  name        = "endpoint-sg"
+  vpc_id      = aws_vpc.vpc.id
+  description = "endpoint security group"
+
+  tags = {
+    Name = "locals-endpoint-sg"
+  }
+}
+
 #######################
 # Security Group Rule #
 #######################
@@ -66,15 +76,6 @@ resource "aws_security_group_rule" "alb_3" {
 }
 
 resource "aws_security_group_rule" "alb_4" {
-  type              = "ingress"
-  from_port         = 3000
-  to_port           = 3000
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.alb.id
-}
-
-resource "aws_security_group_rule" "alb_5" {
   type              = "ingress"
   from_port         = 8
   to_port           = 0
@@ -112,6 +113,15 @@ resource "aws_security_group_rule" "ecs_3" {
   security_group_id = aws_security_group.ecs.id
 }
 
+resource "aws_security_group_rule" "ecs_4" {
+  type                     = "ingress"
+  from_port                = 0
+  to_port                  = 0
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.endpoint.id
+  security_group_id        = aws_security_group.ecs.id
+}
+
 // RDS //
 
 resource "aws_security_group_rule" "rds_1" {
@@ -130,4 +140,24 @@ resource "aws_security_group_rule" "rds_2" {
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.ecs.id
   security_group_id        = aws_security_group.rds.id
+}
+
+// Endpoint //
+
+resource "aws_security_group_rule" "endpoint_1" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.endpoint.id
+}
+
+resource "aws_security_group_rule" "endpoint_2" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.endpoint.id
 }

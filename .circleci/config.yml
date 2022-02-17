@@ -98,7 +98,6 @@ workflows:
       #     region: AWS_REGION
       #     path: ./frontend
       #     repo: ${FRONTEND_REPO}
-      #     dockerfile: Dockerfile.prd
       #     tag: "${CIRCLE_SHA1}"
       #     requires:
       #       - jest
