@@ -9,16 +9,16 @@ resource "aws_cloudwatch_log_group" "back" {
 }
 
 resource "aws_cloudwatch_log_group" "db_create" {
-  name              = "/ecs/db_create"
+  name              = "/ecs/db-create"
   retention_in_days = 180
 }
 
 resource "aws_cloudwatch_log_group" "db_migrate" {
-  name              = "/ecs/db_migrate"
+  name              = "/ecs/db-migrate"
   retention_in_days = 180
 }
 
 resource "aws_cloudwatch_log_group" "db_seed" {
-  name              = "/ecs/db_seed"
+  name              = "/ecs/db-seed"
   retention_in_days = 180
 }
