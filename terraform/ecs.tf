@@ -38,12 +38,12 @@ resource "aws_ecs_service" "front" {
   health_check_grace_period_seconds = 60
 
   network_configuration {
-    assign_public_ip = true
+    assign_public_ip = false
     security_groups  = [aws_security_group.ecs.id]
 
     subnets = [
-      aws_subnet.public_1a.id,
-      aws_subnet.public_1c.id
+      aws_subnet.private_1a.id,
+      aws_subnet.private_1c.id
     ]
   }
 
@@ -112,12 +112,12 @@ resource "aws_ecs_service" "back" {
   health_check_grace_period_seconds = 60
 
   network_configuration {
-    assign_public_ip = true
+    assign_public_ip = false
     security_groups  = [aws_security_group.ecs.id]
 
     subnets = [
-      aws_subnet.public_1a.id,
-      aws_subnet.public_1c.id
+      aws_subnet.private_1a.id,
+      aws_subnet.private_1c.id
     ]
   }
 

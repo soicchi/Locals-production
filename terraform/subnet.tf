@@ -20,9 +20,31 @@ resource "aws_subnet" "public_1c" {
   }
 }
 
+resource "aws_subnet" "private_1a" {
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "10.0.30.0/24"
+  availability_zone       = "ap-northeast-1a"
+  map_public_ip_on_launch = false
+
+  tags = {
+    Name = "locals-private-1a"
+  }
+}
+
+resource "aws_subnet" "private_1c" {
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "10.0.40.0/24"
+  availability_zone       = "ap-northeast-1c"
+  map_public_ip_on_launch = false
+
+  tags = {
+    Name = "locals-private-1c"
+  }
+}
+
 resource "aws_subnet" "db_1a" {
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = "10.0.4.0/24"
+  cidr_block              = "10.0.50.0/24"
   availability_zone       = "ap-northeast-1a"
   map_public_ip_on_launch = false
 
@@ -33,7 +55,7 @@ resource "aws_subnet" "db_1a" {
 
 resource "aws_subnet" "db_1c" {
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = "10.0.5.0/24"
+  cidr_block              = "10.0.60.0/24"
   availability_zone       = "ap-northeast-1c"
   map_public_ip_on_launch = false
 
