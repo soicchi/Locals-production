@@ -55,8 +55,6 @@ resource "aws_db_instance" "db" {
   instance_class          = "db.t2.micro"
   allocated_storage       = 20
   max_allocated_storage   = 100
-  storage_encrypted       = true
-  kms_key_id              = aws_kms_key.kms_key.arn
   storage_type            = "gp2"
   name                    = var.DB_NAME
   username                = var.DB_USERNAME

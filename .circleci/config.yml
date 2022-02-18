@@ -133,24 +133,24 @@ workflows:
           name: db-create
           cluster: ${CLUSTER_NAME}
           task-definition: locals-db-create
-          security-group-ids: sg-05b508c238c30c098 # 環境再構築時は再設定が必要 最終的には環境変数化
-          subnet-ids: subnet-0a82cdafba0f1755d, subnet-09839b73ea5664679 # 環境再構築時は再設定が必要 最終的には環境変数化
+          security-group-ids: sg-0fca6d9c2b496af17 # 環境再構築時は再設定が必要 最終的には環境変数化
+          subnet-ids: subnet-08c2ccd5767c9469f, subnet-0b9020ed72c93602d # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
             - backend-service-update
       - aws-ecs/run-task:
           name: db-migrate
           cluster: ${CLUSTER_NAME}
           task-definition: locals-db-migrate
-          security-group-ids: sg-05b508c238c30c098 # 環境再構築時は再設定が必要 最終的には環境変数化
-          subnet-ids: subnet-0a82cdafba0f1755d, subnet-09839b73ea5664679 # 環境再構築時は再設定が必要 最終的には環境変数化
+          security-group-ids: sg-0fca6d9c2b496af17 # 環境再構築時は再設定が必要 最終的には環境変数化
+          subnet-ids: subnet-08c2ccd5767c9469f, subnet-0b9020ed72c93602d # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
             - db-create
       - aws-ecs/run-task:
           name: db-seed-task
           cluster: ${CLUSTER_NAME}
           task-definition: locals-db-seed
-          security-group-ids: sg-05b508c238c30c098 # 環境再構築時は再設定が必要 最終的には環境変数化
-          subnet-ids: subnet-0a82cdafba0f1755d, subnet-09839b73ea5664679 # 環境再構築時は再設定が必要 最終的には環境変数化
+          security-group-ids: sg-0fca6d9c2b496af17 # 環境再構築時は再設定が必要 最終的には環境変数化
+          subnet-ids: subnet-08c2ccd5767c9469f, subnet-0b9020ed72c93602d # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
             - db-migrate
         
