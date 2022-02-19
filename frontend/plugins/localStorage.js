@@ -5,6 +5,6 @@ export default ({ store, req, isDev }) => {
     key: 'locals',
     paths: [
       'user.loggedInUser',
-    ]
+    ],
   })(store)
 }
