@@ -42,6 +42,11 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/date-fns',
+  ],
+
+  dateFns: [
+    'ja',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -106,5 +111,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    vender: [
+      'vue-awesome-swiper',
+    ],
+  },
+
+  publicRuntimeConfig: {
+    googleApiKey: process.env.GOOGLE_API_KEY,
   },
 }
