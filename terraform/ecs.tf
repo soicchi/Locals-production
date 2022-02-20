@@ -35,7 +35,7 @@ resource "aws_ecs_service" "front" {
   desired_count                     = 2
   launch_type                       = "FARGATE"
   platform_version                  = "1.4.0"
-  health_check_grace_period_seconds = 60
+  health_check_grace_period_seconds = 600
 
   network_configuration {
     assign_public_ip = false
@@ -70,16 +70,6 @@ resource "aws_ecs_task_definition" "back" {
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 
-resource "aws_ecs_task_definition" "db_migrate" {
-  family                   = "locals-db-migrate"
-  cpu                      = "256"
-  memory                   = "512"
-  network_mode             = "awsvpc"
-  requires_compatibilities = ["FARGATE"]
-  container_definitions    = file("./tasks/db_migrate_definition.json")
-  execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
-}
-
 resource "aws_ecs_task_definition" "db_migrate_reset" {
   family                   = "locals-db-migrate-reset"
   cpu                      = "256"
@@ -109,7 +99,7 @@ resource "aws_ecs_service" "back" {
   desired_count                     = 2
   launch_type                       = "FARGATE"
   platform_version                  = "1.4.0"
-  health_check_grace_period_seconds = 60
+  health_check_grace_period_seconds = 600
 
   network_configuration {
     assign_public_ip = false
