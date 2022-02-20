@@ -41,40 +41,40 @@ end
 # end
 
 # カテゴリーのデータ作成
-# category_list = [
-#   'ラーメン',
-#   '焼肉',
-#   'イタリアン',
-#   'ピザ',
-#   'そば',
-#   'うどん',
-#   'ステーキ',
-#   'ハンバーグ',
-#   '定食',
-#   'パスタ',
-#   '寿司',
-#   '焼き鳥',
-#   'ハンバーガー',
-#   '中華',
-#   '洋食',
-#   'お好み焼き',
-#   '天ぷら',
-#   '串揚げ',
-#   '居酒屋',
-#   'バー',
-#   'もんじゃ焼き',
-#   'とんかつ',
-#   '丼',
-#   'カレー',
-#   'スープカレー',
-#   'モツ鍋',
-#   'ジンギスカン',
-#   'その他'
-# ]
-# category_list.each{ |category| Category.create!(
-#   name: category
-#   )
-# }
+category_list = [
+  'ラーメン',
+  '焼肉',
+  'イタリアン',
+  'ピザ',
+  'そば',
+  'うどん',
+  'ステーキ',
+  'ハンバーグ',
+  '定食',
+  'パスタ',
+  '寿司',
+  '焼き鳥',
+  'ハンバーガー',
+  '中華',
+  '洋食',
+  'お好み焼き',
+  '天ぷら',
+  '串揚げ',
+  '居酒屋',
+  'バー',
+  'もんじゃ焼き',
+  'とんかつ',
+  '丼',
+  'カレー',
+  'スープカレー',
+  'モツ鍋',
+  'ジンギスカン',
+  'その他'
+]
+category_list.each{ |category| Category.create!(
+  name: category
+  )
+}
 
 # 投稿サンプルデータ
 # image_meet_group = [
@@ -103,28 +103,28 @@ post1 = Post.new({
   restaurant_name: '牛角　武蔵浦和店',
   comment: '王様ハラミが柔らかくて美味しい!店長さんの接客も非常に良く、大満足です',
   station: '武蔵浦和',
-  # category_ids: [2],
+  category_ids: [2],
   user_id: 1
 })
 post2 = Post.new({
   restaurant_name: '新時代　渋谷道玄坂店',
   comment: '名物の伝串は1本50円でとても美味しかったです。ぜひまた行きたいです!',
   station: '渋谷',
-  # category_ids: [12, 19],
+  category_ids: [12, 19],
   user_id: 2
 })
 post3 = Post.new({
   restaurant_name: '串鳥　琴似店',
   comment: '基本的に焼鳥屋さんなので居酒屋さんほどメニューの種類は多くはありませんが、どの料理も安くて美味しいと思います。',
   station: '琴似駅',
-  # category_ids: [2, 19],
+  category_ids: [2, 19],
   user_id: 3
 })
 post4 = Post.new({
   restaurant_name: '五右衛門　新発寒店',
   comment: 'どのパスタを食べてもはずれはありません！ぜひ食べに行ってみってください。',
   station: '発寒駅',
-  # category_ids: [3, 10],
+  category_ids: [3, 10],
   user_id: 4
 })
 # image_meet_group.each do |image|
@@ -154,33 +154,33 @@ followers = users[8..20]
 following.each{ |followed| user.follow(followed) }
 followers.each{ |follower| follower.follow(user) }
 
-# like, dislike作成
-# users_group_1 = User.all[1..14]
-# users_group_2 = User.all[15..29]
-# users_group_3 = User.all[30..44]
-# users_group_4 = User.all[45..49]
-# posts = Post.all
-# users_group_1.each do |user|
-#   user.like(posts[0])
-# end
-# users_group_2.each do |user|
-#   user.like(posts[1])
-# end
-# users_group_3.each do |user|
-#   user.like(posts[2])
-# end
-# users_group_4.each do |user|
-#   user.like(posts[3])
-# end
-# users_group_1.each do |user|
-#   user.dislike(posts[3])
-# end
-# users_group_2.each do |user|
-#   user.dislike(posts[2])
-# end
-# users_group_3.each do |user|
-#   user.dislike(posts[1])
-# end
-# users_group_4.each do |user|
-#   user.dislike(posts[0])
-# end
+like, dislike作成
+users_group_1 = User.all[1..14]
+users_group_2 = User.all[15..29]
+users_group_3 = User.all[30..44]
+users_group_4 = User.all[45..49]
+posts = Post.all
+users_group_1.each do |user|
+  user.like(posts[0])
+end
+users_group_2.each do |user|
+  user.like(posts[1])
+end
+users_group_3.each do |user|
+  user.like(posts[2])
+end
+users_group_4.each do |user|
+  user.like(posts[3])
+end
+users_group_1.each do |user|
+  user.dislike(posts[3])
+end
+users_group_2.each do |user|
+  user.dislike(posts[2])
+end
+users_group_3.each do |user|
+  user.dislike(posts[1])
+end
+users_group_4.each do |user|
+  user.dislike(posts[0])
+end

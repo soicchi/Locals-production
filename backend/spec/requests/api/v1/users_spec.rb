@@ -113,8 +113,8 @@ RSpec.describe "Api::V1::Users", type: :request do
     let!(:book_mark) { create(:book_mark, user_id: user.id, post_id: other_user1_post.id) }
     let!(:like) { create(:like, user_id: user.id, post_id: other_user1_post.id) }
     let!(:dislike) { create(:dislike, user_id: other_user2.id, post_id: other_user1_post.id) }
-    # let!(:category) { create(:category) }
-    # let!(:classificaton) { create(:classification, post_id: other_user1_post.id, category_id: category.id) }
+    let!(:category) { create(:category) }
+    let!(:classificaton) { create(:classification, post_id: other_user1_post.id, category_id: category.id) }
     let(:auth_tokens) { sign_in user }
 
     before do
@@ -141,9 +141,9 @@ RSpec.describe "Api::V1::Users", type: :request do
       expect(response.body).to include other_user2.to_json
     end
 
-    # it 'カテゴリーのnameが返ってくる' do
-    #   expect(response.body).to include category.name.to_json
-    # end
+    it 'カテゴリーのnameが返ってくる' do
+      expect(response.body).to include category.name.to_json
+    end
   end
 
   describe 'GET /liked_posts_ids' do
@@ -196,8 +196,8 @@ RSpec.describe "Api::V1::Users", type: :request do
     let!(:relationship) { create(:relationship, follower_id: user.id, followed_id: other_user1.id) }
     let!(:like) { create(:like, user_id: user.id, post_id: other_user1_post.id) }
     let!(:dislike) { create(:dislike, user_id: other_user2.id, post_id: other_user1_post.id) }
-    # let!(:category) { create(:category) }
-    # let!(:classificaton) { create(:classification, post_id: other_user1_post.id, category_id: category.id) }
+    let!(:category) { create(:category) }
+    let!(:classificaton) { create(:classification, post_id: other_user1_post.id, category_id: category.id) }
     let(:auth_tokens) { sign_in user }
 
     before do
@@ -224,9 +224,9 @@ RSpec.describe "Api::V1::Users", type: :request do
       expect(response.body).to include other_user2.to_json
     end
 
-    # it 'カテゴリーのnameが返ってくる' do
-    #   expect(response.body).to include category.name.to_json
-    # end
+    it 'カテゴリーのnameが返ってくる' do
+      expect(response.body).to include category.name.to_json
+    end
   end
 
   describe 'GET /liked_posts' do

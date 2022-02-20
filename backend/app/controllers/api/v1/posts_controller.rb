@@ -3,13 +3,26 @@ class Api::V1::PostsController < ApplicationController
   before_action :correct_user, only: [:destroy]
 
   def index
-    posts = Post.includes(:user, :like_users, :dislike_users).all
-    render json: posts.to_json(include: [:user, :like_users, :dislike_users])
+    posts = Post.includes(:user, :like_users, :dislike_users, :categories).all
+    render json: posts.to_json(include: [
+      :user,
+      :like_users,
+      :dislike_users,
+      { categories: { only: [:id, :name] } }
+    ])
   end
 
   def show
-    post = Post.includes(:user, :like_users, :dislike_users).find(params[:id])
-    render json: post.to_json(include: [:user, :like_users, :dislike_users])
+    post = Post.includes(:user, :like_users, :dislike_users, :categories).find(params[:id])
+    render json: post.to_json(include:
+      [
+        :user,
+        :like_users,
+        :dislike_users,
+        { categories: { only: [:id, :name] } }
+      ],
+                              methods: [:liked_age_group, :disliked_age_group]
+    )
   end
 
   def create

@@ -23,25 +23,25 @@ RSpec.describe "Api::V1::Likes", type: :request do
       end
     end
 
-    # context 'う〜んしている投稿をいいねする場合' do
-    #   let!(:dislike) { create(:dislike, user_id: user.id, post_id: other_user_post.id) }
+    context 'う〜んしている投稿をいいねする場合' do
+      let!(:dislike) { create(:dislike, user_id: user.id, post_id: other_user_post.id) }
 
-    #   before do
-    #     post api_v1_likes_path, params: { post_id: other_user_post.id }, headers: auth_tokens
-    #   end
+      before do
+        post api_v1_likes_path, params: { post_id: other_user_post.id }, headers: auth_tokens
+      end
 
-    #   it 'ステータスコード204が返ってくる' do
-    #     expect(response.status).to eq 204
-    #   end
+      it 'ステータスコード204が返ってくる' do
+        expect(response.status).to eq 204
+      end
 
-    #   it 'いいねが登録される' do
-    #     expect(user.liked?(other_user_post)).to eq true
-    #   end
+      it 'いいねが登録される' do
+        expect(user.liked?(other_user_post)).to eq true
+      end
 
-    #   it 'う〜んが削除される' do
-    #     expect(user.disliked?(other_user_post)).to eq false
-    #   end
-    # end
+      it 'う〜んが削除される' do
+        expect(user.disliked?(other_user_post)).to eq false
+      end
+    end
 
     context 'いいね済みの投稿をいいねする場合' do
       let(:error_message) { 'いいねができませんでした' }
