@@ -21,9 +21,9 @@ class User < ActiveRecord::Base
   has_many :likes,                  dependent: :destroy
   has_many :liked_posts,            through: 'likes',
                                     source: :post
-  # has_many :dislikes,               dependent: :destroy
-  # has_many :disliked_posts,         through: 'dislikes',
-  #                                   source: :post
+  has_many :dislikes,               dependent: :destroy
+  has_many :disliked_posts,         through: 'dislikes',
+                                    source: :post
   # has_one_attached :avatar,         dependent: :destroy
 
   validates :name,         presence: true,
@@ -84,25 +84,25 @@ class User < ActiveRecord::Base
     likes.find_by(post_id: post.id).destroy
   end
 
-  # # 投稿にいいねをしていたらtrueを返す
-  # def liked?(post)
-  #   liked_posts.include?(post)
-  # end
+  # 投稿にいいねをしていたらtrueを返す
+  def liked?(post)
+    liked_posts.include?(post)
+  end
 
-  # # 投稿にう〜ん...をつける
-  # def dislike(post)
-  #   dislikes.create(post_id: post.id)
-  # end
+  # 投稿にう〜ん...をつける
+  def dislike(post)
+    dislikes.create(post_id: post.id)
+  end
 
-  # # 投稿のう〜ん...をはずす
-  # def undislike(post)
-  #   dislikes.find_by(post_id: post.id).destroy
-  # end
+  # 投稿のう〜ん...をはずす
+  def undislike(post)
+    dislikes.find_by(post_id: post.id).destroy
+  end
 
-  # # 投稿にう〜ん...つけていたらtrueを返す
-  # def disliked?(post)
-  #   disliked_posts.include?(post)
-  # end
+  # 投稿にう〜ん...つけていたらtrueを返す
+  def disliked?(post)
+    disliked_posts.include?(post)
+  end
 
   # # avatarのURLを返す
   # def avatar_url

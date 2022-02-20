@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_20_075127) do
+ActiveRecord::Schema.define(version: 2022_02_20_081121) do
 
   create_table "book_marks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2022_02_20_075127) do
     t.index ["post_id"], name: "index_book_marks_on_post_id"
     t.index ["user_id", "post_id"], name: "index_book_marks_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_book_marks_on_user_id"
+  end
+
+  create_table "dislikes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_dislikes_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_dislikes_on_user_id_and_post_id", unique: true
+    t.index ["user_id"], name: "index_dislikes_on_user_id"
   end
 
   create_table "likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -89,6 +99,8 @@ ActiveRecord::Schema.define(version: 2022_02_20_075127) do
 
   add_foreign_key "book_marks", "posts"
   add_foreign_key "book_marks", "users"
+  add_foreign_key "dislikes", "posts"
+  add_foreign_key "dislikes", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"

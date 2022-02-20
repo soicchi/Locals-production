@@ -21,13 +21,13 @@ RSpec.describe "Api::V1::Posts", type: :request do
       expect(response.body).to include post1.user.name, post2.user.name
     end
 
-    # it '投稿に紐づくlike_usersが返ってくる' do
-    #   expect(response.body).to include post1.like_users.to_json, post2.like_users.to_json
-    # end
+    it '投稿に紐づくlike_usersが返ってくる' do
+      expect(response.body).to include post1.like_users.to_json, post2.like_users.to_json
+    end
 
-    # it '投稿に紐づくdislike_usersが返ってくる' do
-    #   expect(response.body).to include post1.dislike_users.to_json, post2.dislike_users.to_json
-    # end
+    it '投稿に紐づくdislike_usersが返ってくる' do
+      expect(response.body).to include post1.dislike_users.to_json, post2.dislike_users.to_json
+    end
 
     # it '投稿に紐づくカテゴリーのidが返ってくる' do
     #   expect(response.body).to include post1.categories.ids.to_json, post2.categories.ids.to_json
@@ -53,13 +53,13 @@ RSpec.describe "Api::V1::Posts", type: :request do
       expect(response.body).to include post.user.id.to_json
     end
 
-    # it 'postにいいねの評価をしたユーザー数が返ってくる' do
-    #   expect(response.body).to include post.like_users.to_json
-    # end
+    it 'postにいいねの評価をしたユーザー数が返ってくる' do
+      expect(response.body).to include post.like_users.to_json
+    end
 
-    # it 'postにう〜んの評価をしたユーザー数が返ってくる' do
-    #   expect(response.body).to include post.dislike_users.to_json
-    # end
+    it 'postにう〜んの評価をしたユーザー数が返ってくる' do
+      expect(response.body).to include post.dislike_users.to_json
+    end
 
     # it 'postに紐づくカテゴリーのidが返ってくる' do
     #   expect(response.body).to include post.categories.ids.to_json

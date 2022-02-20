@@ -8,9 +8,9 @@ class Post < ApplicationRecord
   has_many :likes,           dependent: :destroy
   has_many :like_users,      through: 'likes',
                              source: :user
-  # has_many :dislikes,        dependent: :destroy
-  # has_many :dislike_users,   through: 'dislikes',
-  #                            source: :user
+  has_many :dislikes,        dependent: :destroy
+  has_many :dislike_users,   through: 'dislikes',
+                             source: :user
   # has_many :classifications, dependent: :destroy
   # has_many :categories,      through: 'classifications'
   # has_many_attached :images, dependent: :destroy

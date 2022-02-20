@@ -224,65 +224,65 @@ RSpec.describe User, type: :model do
         end
       end
 
-    #   context 'likeメソッド' do
-    #     before do
-    #       user.like other_user_post
-    #     end
+      context 'likeメソッド' do
+        before do
+          user.like other_user_post
+        end
 
-    #     it 'userはother_user_postをいいねしている' do
-    #       expect(user.liked_posts).to include other_user_post
-    #     end
+        it 'userはother_user_postをいいねしている' do
+          expect(user.liked_posts).to include other_user_post
+        end
 
-    #     it 'liked?メソッドがtrueを返す' do
-    #       expect(user.liked? other_user_post).to be true
-    #     end
-    #   end
+        it 'liked?メソッドがtrueを返す' do
+          expect(user.liked? other_user_post).to be true
+        end
+      end
 
-    #   context 'unlikeメソッド' do
-    #     let!(:like) { create(:like, user_id: user.id, post_id: other_user_post.id) }
+      context 'unlikeメソッド' do
+        let!(:like) { create(:like, user_id: user.id, post_id: other_user_post.id) }
 
-    #     before do
-    #       user.unlike other_user_post
-    #     end
+        before do
+          user.unlike other_user_post
+        end
 
-    #     it 'userのいいね一覧にother_userの投稿は含まれない' do
-    #       expect(user.liked_posts).not_to include other_user_post
-    #     end
+        it 'userのいいね一覧にother_userの投稿は含まれない' do
+          expect(user.liked_posts).not_to include other_user_post
+        end
 
-    #     it 'liked?メソッドはfalseを返す' do
-    #       expect(user.liked? other_user_post).to be false
-    #     end
-    #   end
+        it 'liked?メソッドはfalseを返す' do
+          expect(user.liked? other_user_post).to be false
+        end
+      end
 
-    #   context 'dislikeメソッド' do
-    #     before do
-    #       user.dislike other_user_post
-    #     end
+      context 'dislikeメソッド' do
+        before do
+          user.dislike other_user_post
+        end
 
-    #     it 'userはother_user_postにう〜んの評価をしている' do
-    #       expect(user.disliked_posts).to include other_user_post
-    #     end
+        it 'userはother_user_postにう〜んの評価をしている' do
+          expect(user.disliked_posts).to include other_user_post
+        end
 
-    #     it 'disliked?メソッドはtrueを返す' do
-    #       expect(user.disliked? other_user_post).to be true
-    #     end
-    #   end
+        it 'disliked?メソッドはtrueを返す' do
+          expect(user.disliked? other_user_post).to be true
+        end
+      end
 
-    #   context 'undislikeメソッド' do
-    #     let!(:dislike) { create(:dislike, user_id: user.id, post_id: other_user_post.id) }
+      context 'undislikeメソッド' do
+        let!(:dislike) { create(:dislike, user_id: user.id, post_id: other_user_post.id) }
 
-    #     before do
-    #       user.undislike(other_user_post)
-    #     end
+        before do
+          user.undislike(other_user_post)
+        end
 
-    #     it 'userのう〜んの評価をした投稿一覧にother_user_postは含まれない' do
-    #       expect(user.disliked_posts).not_to include other_user_post
-    #     end
+        it 'userのう〜んの評価をした投稿一覧にother_user_postは含まれない' do
+          expect(user.disliked_posts).not_to include other_user_post
+        end
 
-    #     it 'disliked?メソッドはfalseを返す' do
-    #       expect(user.disliked? other_user_post).to be false
-    #     end
-    #   end
+        it 'disliked?メソッドはfalseを返す' do
+          expect(user.disliked? other_user_post).to be false
+        end
+      end
 
     #   context 'avatar_urlメソッド' do
     #     let(:attached_user) { build(:user) }
@@ -323,15 +323,15 @@ RSpec.describe User, type: :model do
     let!(:active_relationships) { create(:relationship, followed_id: user.id, follower_id: other_user.id) }
     let!(:passive_relationships) { create(:relationship, followed_id: other_user.id, follower_id: user.id) }
     let!(:book_marks) { create(:book_mark, user_id: user.id, post_id: other_user_post1.id) }
-    # let!(:likes) { create(:like, user_id: user.id, post_id: other_user_post1.id) }
-    # let!(:dislikes) { create(:dislike, user_id: user.id, post_id: other_user_post2.id) }
+    let!(:likes) { create(:like, user_id: user.id, post_id: other_user_post1.id) }
+    let!(:dislikes) { create(:dislike, user_id: user.id, post_id: other_user_post2.id) }
 
     context 'Userが削除された場合' do
       let!(:user_posts_count) { user.posts.count }
       let!(:user_relationships_count) { user.active_relationships.count + user.passive_relationships.count }
       let!(:user_bookmarks_count) { user.book_marks.count }
-      # let!(:user_likes_count) { user.likes.count }
-      # let!(:user_dislikes_count) { user.dislikes.count }
+      let!(:user_likes_count) { user.likes.count }
+      let!(:user_dislikes_count) { user.dislikes.count }
 
       it '紐付いた投稿も削除される' do
         expect { user.destroy }.to change { Post.count }.by(-user_posts_count)
@@ -345,13 +345,13 @@ RSpec.describe User, type: :model do
         expect { user.destroy }.to change { BookMark.count }.by(-user_bookmarks_count)
       end
 
-      # it '紐付いたいいねも削除される' do
-      #   expect { user.destroy }.to change { Like.count }.by(-user_likes_count)
-      # end
+      it '紐付いたいいねも削除される' do
+        expect { user.destroy }.to change { Like.count }.by(-user_likes_count)
+      end
 
-      # it '紐付いたう〜んも削除される' do
-      #   expect { user.destroy }.to change { Dislike.count }.by(-user_dislikes_count)
-      # end
+      it '紐付いたう〜んも削除される' do
+        expect { user.destroy }.to change { Dislike.count }.by(-user_dislikes_count)
+      end
     end
   end
 end
