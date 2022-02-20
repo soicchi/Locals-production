@@ -19,13 +19,13 @@ RSpec.describe "Api::V1::Users", type: :request do
       expect(response.body).to include user.id.to_json
     end
 
-    # it 'ユーザーに紐付いたフォローしているユーザーのデータが返ってくる' do
-    #   expect(response.body).to include user.following.to_json
-    # end
+    it 'ユーザーに紐付いたフォローしているユーザーのデータが返ってくる' do
+      expect(response.body).to include user.following.to_json
+    end
 
-    # it 'ユーザーに紐付いたフォロワーのデータが返ってくる' do
-    #   expect(response.body).to include user.followers.to_json
-    # end
+    it 'ユーザーに紐付いたフォロワーのデータが返ってくる' do
+      expect(response.body).to include user.followers.to_json
+    end
 
     # it 'ユーザーに紐付いたブックマークした投稿が返ってくる' do
     #   expect(response.body).to include user.book_mark_posts.to_json
@@ -69,41 +69,41 @@ RSpec.describe "Api::V1::Users", type: :request do
   #   end
   # end
 
-  # describe 'GET /:id/following' do
-  #   let!(:user) { create(:user) }
-  #   let!(:other_user) { create(:user) }
-  #   let!(:relationship) { create(:relationship, follower_id: user.id, followed_id: other_user.id) }
+  describe 'GET /:id/following' do
+    let!(:user) { create(:user) }
+    let!(:other_user) { create(:user) }
+    let!(:relationship) { create(:relationship, follower_id: user.id, followed_id: other_user.id) }
 
-  #   before do
-  #     get following_api_v1_user_path user
-  #   end
+    before do
+      get following_api_v1_user_path user
+    end
 
-  #   it 'ステータスコードが200が返ってくる' do
-  #     expect(response.status).to eq 200
-  #   end
+    it 'ステータスコードが200が返ってくる' do
+      expect(response.status).to eq 200
+    end
 
-  #   it 'ユーザーがフォローしているユーザー一覧が返ってくる' do
-  #     expect(response.body).to eq [other_user].to_json
-  #   end
-  # end
+    it 'ユーザーがフォローしているユーザー一覧が返ってくる' do
+      expect(response.body).to eq [other_user].to_json
+    end
+  end
 
-  # describe 'GET /:id/followers' do
-  #   let!(:user) { create(:user) }
-  #   let!(:other_user) { create(:user) }
-  #   let!(:relationship) { create(:relationship, follower_id: other_user.id, followed_id: user.id) }
+  describe 'GET /:id/followers' do
+    let!(:user) { create(:user) }
+    let!(:other_user) { create(:user) }
+    let!(:relationship) { create(:relationship, follower_id: other_user.id, followed_id: user.id) }
 
-  #   before do
-  #     get followers_api_v1_user_path user
-  #   end
+    before do
+      get followers_api_v1_user_path user
+    end
 
-  #   it 'ステータスコードが200' do
-  #     expect(response.status).to eq 200
-  #   end
+    it 'ステータスコードが200' do
+      expect(response.status).to eq 200
+    end
 
-  #   it 'ユーザーのフォロワー一覧が返ってくる' do
-  #     expect(response.body).to eq [other_user].to_json
-  #   end
-  # end
+    it 'ユーザーのフォロワー一覧が返ってくる' do
+      expect(response.body).to eq [other_user].to_json
+    end
+  end
 
   # describe 'GET /book_mark_posts' do
   #   let!(:user) { create(:user) }
@@ -188,46 +188,46 @@ RSpec.describe "Api::V1::Users", type: :request do
   #   end
   # end
 
-  # describe 'GET /following_posts' do
-  #   let!(:user) { create(:user) }
-  #   let!(:other_user1) { create(:user) }
-  #   let!(:other_user2) { create(:user) }
-  #   let!(:other_user1_post) { create(:post, user_id: other_user1.id) }
-  #   let!(:relationship) { create(:relationship, follower_id: user.id, followed_id: other_user1.id) }
-  #   let!(:like) { create(:like, user_id: user.id, post_id: other_user1_post.id) }
-  #   let!(:dislike) { create(:dislike, user_id: other_user2.id, post_id: other_user1_post.id) }
-  #   let!(:category) { create(:category) }
-  #   let!(:classificaton) { create(:classification, post_id: other_user1_post.id, category_id: category.id) }
-  #   let(:auth_tokens) { sign_in user }
+  describe 'GET /following_posts' do
+    let!(:user) { create(:user) }
+    let!(:other_user1) { create(:user) }
+    let!(:other_user2) { create(:user) }
+    let!(:other_user1_post) { create(:post, user_id: other_user1.id) }
+    let!(:relationship) { create(:relationship, follower_id: user.id, followed_id: other_user1.id) }
+    # let!(:like) { create(:like, user_id: user.id, post_id: other_user1_post.id) }
+    # let!(:dislike) { create(:dislike, user_id: other_user2.id, post_id: other_user1_post.id) }
+    # let!(:category) { create(:category) }
+    # let!(:classificaton) { create(:classification, post_id: other_user1_post.id, category_id: category.id) }
+    let(:auth_tokens) { sign_in user }
 
-  #   before do
-  #     get following_posts_api_v1_users_path, headers: auth_tokens
-  #   end
+    before do
+      get following_posts_api_v1_users_path, headers: auth_tokens
+    end
 
-  #   it 'ステータスコード200が返ってくる' do
-  #     expect(response.status).to eq 200
-  #   end
+    it 'ステータスコード200が返ってくる' do
+      expect(response.status).to eq 200
+    end
 
-  #   it 'フォローしているユーザーの投稿が返ってくる' do
-  #     expect(response.body).to include other_user1_post.id.to_json
-  #   end
+    it 'フォローしているユーザーの投稿が返ってくる' do
+      expect(response.body).to include other_user1_post.id.to_json
+    end
 
-  #   it '投稿に紐付いたuserが含まれている' do
-  #     expect(response.body).to include other_user1.to_json(methods: :avatar_url)
-  #   end
+    it '投稿に紐付いたuserが含まれている' do
+      expect(response.body).to include other_user1.to_json # (methods: :avatar_url)
+    end
 
-  #   # it 'いいねしているユーザーのデータが返ってくる' do
-  #   #   expect(response.body).to include [user].to_json
-  #   # end
+    # it 'いいねしているユーザーのデータが返ってくる' do
+    #   expect(response.body).to include [user].to_json
+    # end
 
-  #   it 'う〜んの評価をしたユーザーのデータが返ってくる' do
-  #     expect(response.body).to include other_user2.to_json
-  #   end
+    # it 'う〜んの評価をしたユーザーのデータが返ってくる' do
+    #   expect(response.body).to include other_user2.to_json
+    # end
 
-  #   it 'カテゴリーのnameが返ってくる' do
-  #     expect(response.body).to include category.name.to_json
-  #   end
-  # end
+    # it 'カテゴリーのnameが返ってくる' do
+    #   expect(response.body).to include category.name.to_json
+    # end
+  end
 
   # describe 'GET /liked_posts' do
   #   let!(:user) { create(:user) }

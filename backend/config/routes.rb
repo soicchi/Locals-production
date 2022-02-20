@@ -5,15 +5,15 @@ Rails.application.routes.draw do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth'
       resources :users, only: [:show] do
-        # member do
-        #   get :following, :followers, :user_posts
-        # end
-        # collection do
-        #   get :book_mark_posts, :liked_posts_ids, :disliked_posts_ids, :following_posts, :liked_posts
-        # end
+        member do
+          get :following, :followers, :user_posts
+        end
+        collection do
+          get :book_mark_posts, :liked_posts_ids, :disliked_posts_ids, :following_posts, :liked_posts
+        end
       end
       resources :posts,           only: [:index, :show, :create, :destroy]
-      # resources :relationships,   only: [:create, :destroy]
+      resources :relationships,   only: [:create, :destroy]
       # resources :book_marks,      only: [:create, :destroy]
       # resources :likes,           only: [:create, :destroy]
       # resources :dislikes,        only: [:create, :destroy]
