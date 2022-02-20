@@ -130,21 +130,13 @@ workflows:
           requires:
             - build-and-push-image-backend
       - aws-ecs/run-task:
-          name: db-create
-          cluster: ${CLUSTER_NAME}
-          task-definition: locals-db-create
-          security-group-ids: sg-0f184092fa6975892 # 環境再構築時は再設定が必要 最終的には環境変数化
-          subnet-ids: subnet-0d3088f22522a6474, subnet-08cee39c32336f9b8 # 環境再構築時は再設定が必要 最終的には環境変数化
-          requires:
-            - backend-service-update
-      - aws-ecs/run-task:
           name: db-migrate-reset
           cluster: ${CLUSTER_NAME}
           task-definition: locals-db-migrate-reset
           security-group-ids: sg-0f184092fa6975892 # 環境再構築時は再設定が必要 最終的には環境変数化
           subnet-ids: subnet-0d3088f22522a6474, subnet-08cee39c32336f9b8 # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
-            - db-create
+            - backend-service-update
       - aws-ecs/run-task:
           name: db-seed-task
           cluster: ${CLUSTER_NAME}

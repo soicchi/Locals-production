@@ -70,16 +70,6 @@ resource "aws_ecs_task_definition" "back" {
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 
-resource "aws_ecs_task_definition" "db_create" {
-  family                   = "locals-db-create"
-  cpu                      = "256"
-  memory                   = "512"
-  network_mode             = "awsvpc"
-  requires_compatibilities = ["FARGATE"]
-  container_definitions    = file("./tasks/db_create_definition.json")
-  execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
-}
-
 resource "aws_ecs_task_definition" "db_migrate_reset" {
   family                   = "locals-db-migrate-reset"
   cpu                      = "256"
