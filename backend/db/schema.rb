@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_20_081121) do
+ActiveRecord::Schema.define(version: 2022_02_20_110707) do
 
   create_table "book_marks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -20,6 +20,22 @@ ActiveRecord::Schema.define(version: 2022_02_20_081121) do
     t.index ["post_id"], name: "index_book_marks_on_post_id"
     t.index ["user_id", "post_id"], name: "index_book_marks_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_book_marks_on_user_id"
+  end
+
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "classifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_classifications_on_category_id"
+    t.index ["post_id", "category_id"], name: "index_classifications_on_post_id_and_category_id", unique: true
+    t.index ["post_id"], name: "index_classifications_on_post_id"
   end
 
   create_table "dislikes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -99,6 +115,8 @@ ActiveRecord::Schema.define(version: 2022_02_20_081121) do
 
   add_foreign_key "book_marks", "posts"
   add_foreign_key "book_marks", "users"
+  add_foreign_key "classifications", "categories"
+  add_foreign_key "classifications", "posts"
   add_foreign_key "dislikes", "posts"
   add_foreign_key "dislikes", "users"
   add_foreign_key "likes", "posts"

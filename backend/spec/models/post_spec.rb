@@ -122,36 +122,36 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  # describe 'インスタンスメソッドに関するテスト' do
-  #   let!(:user) { create(:user) }
+  describe 'インスタンスメソッドに関するテスト' do
+    #   let!(:user) { create(:user) }
 
-  #   context 'image_urlメソッド' do
-  #     let(:post) { build(:post, user_id: user.id) }
-  #     let(:not_attached_post) { build(:post, user_id: user.id) }
+    #   context 'image_urlメソッド' do
+    #     let(:post) { build(:post, user_id: user.id) }
+    #     let(:not_attached_post) { build(:post, user_id: user.id) }
 
-  #     it 'imagesのURLを返す' do
-  #       expect(post.image_url).to eq [rails_storage_proxy_url(post.images.blobs[0])]
-  #     end
-  #   end
+    #     it 'imagesのURLを返す' do
+    #       expect(post.image_url).to eq [rails_storage_proxy_url(post.images.blobs[0])]
+    #     end
+    #   end
 
-  #   context 'liked_age_groupメソッド' do
-  #     let!(:user) { create(:user, :age_10s) }
-  #     let!(:post) { create(:post) }
-  #     let!(:like) { create(:like, user_id: user.id, post_id: post.id) }
+    context 'liked_age_groupメソッド' do
+      let!(:user) { create(:user, :age_10s) }
+      let!(:post) { create(:post) }
+      let!(:like) { create(:like, user_id: user.id, post_id: post.id) }
 
-  #     it '年代別の人数を配列で返す' do
-  #       expect(post.liked_age_group).to match_array([1, 0, 0, 0, 0, 0])
-  #     end
-  #   end
+      it '年代別の人数を配列で返す' do
+        expect(post.liked_age_group).to match_array([1, 0, 0, 0, 0, 0])
+      end
+    end
 
-  #   context 'disliked_age_groupメソッド' do
-  #     let!(:user) { create(:user, :age_10s) }
-  #     let!(:post) { create(:post) }
-  #     let!(:dislike) { create(:dislike, user_id: user.id, post_id: post.id) }
+    context 'disliked_age_groupメソッド' do
+      let!(:user) { create(:user, :age_10s) }
+      let!(:post) { create(:post) }
+      let!(:dislike) { create(:dislike, user_id: user.id, post_id: post.id) }
 
-  #     it '年代別の人数を配列で返す' do
-  #       expect(post.disliked_age_group).to match_array([1, 0, 0, 0, 0, 0])
-  #     end
-  #   end
-  # end
+      it '年代別の人数を配列で返す' do
+        expect(post.disliked_age_group).to match_array([1, 0, 0, 0, 0, 0])
+      end
+    end
+  end
 end

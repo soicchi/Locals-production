@@ -109,11 +109,11 @@ class User < ActiveRecord::Base
   #   avatar.attached? ? rails_storage_proxy_url(avatar) : nil
   # end
 
-  # #ユーザーの年齢を返す
-  # def age
-  #   birthday = Date.new(self.birth_year, self.birth_month, self.birth_day)
-  #   birthday_value = (birthday.to_s.delete('-')).to_i
-  #   today_value = (Date.today.to_s.delete('-')).to_i
-  #   age = ((today_value - birthday_value) / 10000).floor
-  # end
+  #ユーザーの年齢を返す
+  def age
+    birthday = Date.new(self.birth_year, self.birth_month, self.birth_day)
+    birthday_value = (birthday.to_s.delete('-')).to_i
+    today_value = (Date.today.to_s.delete('-')).to_i
+    age = ((today_value - birthday_value) / 10000).floor
+  end
 end
