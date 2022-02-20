@@ -57,14 +57,14 @@
             class="d-flex"
           >
             <v-sheet
-              v-for="(image, i) in limitCount"
+              v-for="i in 3"
               :key="i"
               outlined
               width="200px"
               height="200px"
               class="mr-4"
             >
-              <AtomsPostImage :image="image" />
+              <!-- <AtomsPostImage /> -->
             </v-sheet>
           </v-col>
           <v-col cols="3">
@@ -109,9 +109,9 @@ export default {
     myPost () {
       return this.post.user_id === this.loggedInUser.id
     },
-    limitCount () {
-      return this.post.image_url.slice(0, 3)
-    },
+    // limitCount () {
+    //   return this.post.image_url.slice(0, 3)
+    // },
   },
   methods: {
     destroyPost () {

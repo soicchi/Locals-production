@@ -154,7 +154,7 @@ followers = users[8..20]
 following.each{ |followed| user.follow(followed) }
 followers.each{ |follower| follower.follow(user) }
 
-like, dislike作成
+# like, dislike作成
 users_group_1 = User.all[1..14]
 users_group_2 = User.all[15..29]
 users_group_3 = User.all[30..44]
