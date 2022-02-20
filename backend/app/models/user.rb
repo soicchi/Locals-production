@@ -15,9 +15,9 @@ class User < ActiveRecord::Base
   has_many :following,              through: :active_relationships,
                                     source: :followed
   has_many :followers,              through: :passive_relationships
-  # has_many :book_marks,             dependent: :destroy
-  # has_many :book_mark_posts,        through: 'book_marks',
-  #                                   source: :post
+  has_many :book_marks,             dependent: :destroy
+  has_many :book_mark_posts,        through: 'book_marks',
+                                    source: :post
   # has_many :likes,                  dependent: :destroy
   # has_many :liked_posts,            through: 'likes',
   #                                   source: :post
@@ -64,15 +64,15 @@ class User < ActiveRecord::Base
     Post.where('user_id IN (?) OR user_id = ?', following_ids, id)
   end
 
-  # # ブックマークをする
-  # def book_mark(post)
-  #   book_marks.create(post_id: post.id)
-  # end
+  # ブックマークをする
+  def book_mark(post)
+    book_marks.create(post_id: post.id)
+  end
 
-  # # ブックマークを外す
-  # def remove_book_mark(post)
-  #   book_marks.find_by(post_id: post.id).destroy
-  # end
+  # ブックマークを外す
+  def remove_book_mark(post)
+    book_marks.find_by(post_id: post.id).destroy
+  end
 
   # # いいねをつける
   # def like(post)

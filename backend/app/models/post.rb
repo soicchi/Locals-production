@@ -2,9 +2,9 @@ class Post < ApplicationRecord
   # include Rails.application.routes.url_helpers
 
   belongs_to :user
-  # has_many :book_marks,      dependent: :destroy
-  # has_many :book_mark_users, through: 'book_marks',
-  #                            source: :user
+  has_many :book_marks,      dependent: :destroy
+  has_many :book_mark_users, through: 'book_marks',
+                             source: :user
   # has_many :likes,           dependent: :destroy
   # has_many :like_users,      through: 'likes',
   #                            source: :user
