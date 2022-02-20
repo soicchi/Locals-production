@@ -23,5 +23,5 @@ RUN apt-get update -qq && apt-get install --no-install-recommends -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-COPY . .
+COPY . /backend
 EXPOSE 3000

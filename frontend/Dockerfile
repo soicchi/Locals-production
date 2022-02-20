@@ -5,7 +5,7 @@ ENV LANG=C.UTF-8 \
     GOOGLE_API_KEY=$GOOGLE_API_KEY
 
 WORKDIR /frontend
-COPY . .
+COPY . /frontend
 
 RUN yarn install \
     && yarn build
