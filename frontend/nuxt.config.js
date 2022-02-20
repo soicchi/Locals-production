@@ -34,7 +34,7 @@ export default {
   plugins: [
     '~/plugins/axios',
     { src: '~/plugins/localStorage.js', ssr: false },
-    { src: '~/plugins/vue-awesome-swiper.js', ssr: false }
+    { src: '~/plugins/vue-awesome-swiper.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
