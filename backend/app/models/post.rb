@@ -5,9 +5,9 @@ class Post < ApplicationRecord
   has_many :book_marks,      dependent: :destroy
   has_many :book_mark_users, through: 'book_marks',
                              source: :user
-  # has_many :likes,           dependent: :destroy
-  # has_many :like_users,      through: 'likes',
-  #                            source: :user
+  has_many :likes,           dependent: :destroy
+  has_many :like_users,      through: 'likes',
+                             source: :user
   # has_many :dislikes,        dependent: :destroy
   # has_many :dislike_users,   through: 'dislikes',
   #                            source: :user

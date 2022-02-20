@@ -18,9 +18,9 @@ class User < ActiveRecord::Base
   has_many :book_marks,             dependent: :destroy
   has_many :book_mark_posts,        through: 'book_marks',
                                     source: :post
-  # has_many :likes,                  dependent: :destroy
-  # has_many :liked_posts,            through: 'likes',
-  #                                   source: :post
+  has_many :likes,                  dependent: :destroy
+  has_many :liked_posts,            through: 'likes',
+                                    source: :post
   # has_many :dislikes,               dependent: :destroy
   # has_many :disliked_posts,         through: 'dislikes',
   #                                   source: :post
@@ -74,15 +74,15 @@ class User < ActiveRecord::Base
     book_marks.find_by(post_id: post.id).destroy
   end
 
-  # # いいねをつける
-  # def like(post)
-  #   likes.create(post_id: post.id)
-  # end
+  # いいねをつける
+  def like(post)
+    likes.create(post_id: post.id)
+  end
 
-  # # いいねをはずす
-  # def unlike(post)
-  #   likes.find_by(post_id: post.id).destroy
-  # end
+  # いいねをはずす
+  def unlike(post)
+    likes.find_by(post_id: post.id).destroy
+  end
 
   # # 投稿にいいねをしていたらtrueを返す
   # def liked?(post)
