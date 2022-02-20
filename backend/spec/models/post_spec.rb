@@ -103,7 +103,7 @@ RSpec.describe Post, type: :model do
   describe 'アソシエーションに関するテスト' do
     let!(:post) { create(:post) }
     let!(:user) { create(:user) }
-    # let!(:book_marks) { create(:book_mark, user_id: user.id, post_id: post.id) }
+    let!(:book_marks) { create(:book_mark, user_id: user.id, post_id: post.id) }
 
     context 'userに紐付いていない場合' do
       let(:invalid_post) { build(:post, user_id: nil) }
@@ -113,13 +113,13 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    # context 'postが削除された場合' do
-    #   let!(:book_marks_count) { post.book_marks.count }
+    context 'postが削除された場合' do
+      let!(:book_marks_count) { post.book_marks.count }
 
-    #   it '紐付いたブックマークも削除される' do
-    #     expect { post.destroy }.to change { BookMark.count }.by(-book_marks_count)
-    #   end
-    # end
+      it '紐付いたブックマークも削除される' do
+        expect { post.destroy }.to change { BookMark.count }.by(-book_marks_count)
+      end
+    end
   end
 
   # describe 'インスタンスメソッドに関するテスト' do

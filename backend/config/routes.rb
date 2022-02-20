@@ -14,11 +14,11 @@ Rails.application.routes.draw do
       end
       resources :posts,           only: [:index, :show, :create, :destroy]
       resources :relationships,   only: [:create, :destroy]
-      # resources :book_marks,      only: [:create, :destroy]
-      # resources :likes,           only: [:create, :destroy]
-      # resources :dislikes,        only: [:create, :destroy]
-      # resources :categories,      only: [:index]
-      # get       '/search',        to: 'searches#search'
+      resources :book_marks,      only: [:create, :destroy]
+      resources :likes,           only: [:create, :destroy]
+      resources :dislikes,        only: [:create, :destroy]
+      resources :categories,      only: [:index]
+      get       '/search',        to: 'searches#search'
       get       '/health_checks', to: 'health_checks#index'
     end
   end

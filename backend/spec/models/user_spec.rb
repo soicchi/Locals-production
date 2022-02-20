@@ -202,27 +202,27 @@ RSpec.describe User, type: :model do
       end
     end
 
-    #   context 'book_markメソッド' do
-    #     before do
-    #       user.book_mark other_user_post
-    #     end
+      context 'book_markメソッド' do
+        before do
+          user.book_mark other_user_post
+        end
 
-    #     it 'ブックマークが作成される' do
-    #       expect(user.book_mark_posts).to include other_user_post
-    #     end
-    #   end
+        it 'ブックマークが作成される' do
+          expect(user.book_mark_posts).to include other_user_post
+        end
+      end
 
-    #   context 'remove_book_markメソッド' do
-    #     let!(:book_mark) { create(:book_mark, user_id: user.id, post_id: other_user_post.id) }
+      context 'remove_book_markメソッド' do
+        let!(:book_mark) { create(:book_mark, user_id: user.id, post_id: other_user_post.id) }
 
-    #     before do
-    #       user.remove_book_mark other_user_post
-    #     end
+        before do
+          user.remove_book_mark other_user_post
+        end
 
-    #     it 'userのブックマークしている投稿には含まれていない' do
-    #       expect(user.book_mark_posts).not_to include other_user_post
-    #     end
-    #   end
+        it 'userのブックマークしている投稿には含まれていない' do
+          expect(user.book_mark_posts).not_to include other_user_post
+        end
+      end
 
     #   context 'likeメソッド' do
     #     before do
@@ -320,16 +320,16 @@ RSpec.describe User, type: :model do
     let!(:other_user) { create(:user) }
     let!(:other_user_post1) { create(:post, user_id: other_user.id) }
     let!(:other_user_post2) { create(:post, user_id: other_user.id) }
-    # let!(:active_relationships) { create(:relationship, followed_id: user.id, follower_id: other_user.id) }
-    # let!(:passive_relationships) { create(:relationship, followed_id: other_user.id, follower_id: user.id) }
-    # let!(:book_marks) { create(:book_mark, user_id: user.id, post_id: other_user_post1.id) }
+    let!(:active_relationships) { create(:relationship, followed_id: user.id, follower_id: other_user.id) }
+    let!(:passive_relationships) { create(:relationship, followed_id: other_user.id, follower_id: user.id) }
+    let!(:book_marks) { create(:book_mark, user_id: user.id, post_id: other_user_post1.id) }
     # let!(:likes) { create(:like, user_id: user.id, post_id: other_user_post1.id) }
     # let!(:dislikes) { create(:dislike, user_id: user.id, post_id: other_user_post2.id) }
 
     context 'Userが削除された場合' do
       let!(:user_posts_count) { user.posts.count }
-      # let!(:user_relationships_count) { user.active_relationships.count + user.passive_relationships.count }
-      # let!(:user_bookmarks_count) { user.book_marks.count }
+      let!(:user_relationships_count) { user.active_relationships.count + user.passive_relationships.count }
+      let!(:user_bookmarks_count) { user.book_marks.count }
       # let!(:user_likes_count) { user.likes.count }
       # let!(:user_dislikes_count) { user.dislikes.count }
 
@@ -337,13 +337,13 @@ RSpec.describe User, type: :model do
         expect { user.destroy }.to change { Post.count }.by(-user_posts_count)
       end
 
-      # it '紐付いたリレーションシップは削除される' do
-      #   expect { user.destroy }.to change { Relationship.count }.by(-user_relationships_count)
-      # end
+      it '紐付いたリレーションシップは削除される' do
+        expect { user.destroy }.to change { Relationship.count }.by(-user_relationships_count)
+      end
 
-      # it '紐付いたブックマークも削除される' do
-      #   expect { user.destroy }.to change { BookMark.count }.by(-user_bookmarks_count)
-      # end
+      it '紐付いたブックマークも削除される' do
+        expect { user.destroy }.to change { BookMark.count }.by(-user_bookmarks_count)
+      end
 
       # it '紐付いたいいねも削除される' do
       #   expect { user.destroy }.to change { Like.count }.by(-user_likes_count)
