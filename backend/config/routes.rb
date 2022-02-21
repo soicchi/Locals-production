@@ -18,8 +18,8 @@ Rails.application.routes.draw do
       resources :likes,           only: [:create, :destroy]
       resources :dislikes,        only: [:create, :destroy]
       resources :categories,      only: [:index]
+      resources :health_checks,   only: [:index]
       get       '/search',        to: 'searches#search'
-      get       '/health_checks', to: 'health_checks#index'
     end
   end
 end
