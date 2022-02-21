@@ -36,6 +36,10 @@ resource "aws_s3_bucket" "alb_log" {
   }
 }
 
+output "s3_bucket_name" {
+  value = aws_s3_bucket.public.id
+}
+
 ########
 # 権限 #
 ########
