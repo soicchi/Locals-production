@@ -34,8 +34,8 @@ Rails.application.configure do
   config.active_storage.service = :amazon
 
   # url_forの設定
-  Rails.application.routes.default_url_options[:host] = 'local-s-apps.com/api/v1'
-  Rails.application.routes.default_url_options[:port] = 443
+  Rails.application.routes.default_url_options[:host] = 'local-s-apps.com'
+  Rails.application.routes.default_url_options[:port] = 3000
   Rails.application.routes.default_url_options[:protocol] = "https"
   
   # Mount Action Cable outside main process or domain.

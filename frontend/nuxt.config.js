@@ -58,7 +58,7 @@ export default {
   ],
 
   axios: {
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://local-s-app.com/api/v1' : 'http://localhost:3000/api/v1',
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://local-s-app.com:3000/api/v1' : 'http://localhost:3000/api/v1',
   },
 
   router: {
