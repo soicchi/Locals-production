@@ -71,7 +71,7 @@ export default {
       if (confirm) {
         await this.$axios.delete('/auth')
         await this.$auth.logout()
-          .then(() => {
+          .then((res) => {
             this.$store.dispatch('user/resetLoggedInUser')
             localStorage.remove('access-token')
             localStorage.remove('token-type')
