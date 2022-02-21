@@ -133,16 +133,16 @@ workflows:
           name: db-migrate-reset
           cluster: ${CLUSTER_NAME}
           task-definition: locals-db-migrate-reset
-          security-group-ids: sg-0cc3345fb26e63ac6 # 環境再構築時は再設定が必要 最終的には環境変数化
-          subnet-ids: subnet-068cef69b58dcfb8b, subnet-0871466ade84f679a # 環境再構築時は再設定が必要 最終的には環境変数化
+          security-group-ids: sg-01a08f6c4949ef550 # 環境再構築時は再設定が必要 最終的には環境変数化
+          subnet-ids: subnet-071f7b175384e092c, subnet-0b03c24bca68e7a94 # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
             - backend-service-update
       - aws-ecs/run-task:
           name: db-seed-task
           cluster: ${CLUSTER_NAME}
           task-definition: locals-db-seed
-          security-group-ids: sg-0cc3345fb26e63ac6 # 環境再構築時は再設定が必要 最終的には環境変数化
-          subnet-ids: subnet-068cef69b58dcfb8b, subnet-0871466ade84f679a # 環境再構築時は再設定が必要 最終的には環境変数化
+          security-group-ids: sg-01a08f6c4949ef550 # 環境再構築時は再設定が必要 最終的には環境変数化
+          subnet-ids: subnet-071f7b175384e092c, subnet-0b03c24bca68e7a94 # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
             - db-migrate-reset
         

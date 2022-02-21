@@ -148,11 +148,11 @@ end
 
 # リレーションシップ作成
 users = User.all
-user = users.first
-following = users[2..13]
-followers = users[8..20]
-following.each{ |followed| user.follow(followed) }
-followers.each{ |follower| follower.follow(user) }
+guest_user = users.first
+following = users[2..9]
+followers = users[5..12]
+following.each{ |followed| guest_user.follow(followed) }
+followers.each{ |follower| follower.follow(guest_user) }
 
 # like, dislike作成
 users_group_1 = User.all[1..14]
