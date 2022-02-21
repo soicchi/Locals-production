@@ -29,7 +29,7 @@ export default {
       post: {
         restaurant_name: '',
         comment: '',
-        station: null,
+        station: '',
         images: [],
         category_ids: [],
       },
