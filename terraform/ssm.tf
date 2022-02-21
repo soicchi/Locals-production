@@ -26,6 +26,13 @@ resource "aws_ssm_parameter" "aws_region" {
   description = "AWSのリージョン"
 }
 
+resource "aws_ssm_parameter" "aws_bucket" {
+  name        = "bucket"
+  type        = "SecureString"
+  value       = aws_s3_bucket.public.bucket
+  description = "AWSのpublic budket"
+}
+
 resource "aws_ssm_parameter" "rails_master_key" {
   name        = "rails-master-key"
   type        = "SecureString"
