@@ -70,24 +70,24 @@ RSpec.describe "Api::V1::Posts", type: :request do
     let!(:user) { create(:user) }
     let(:auth_tokens) { sign_in user }
 
-    # context '投稿が成功する場合' do
-    #   let!(:category) { create(:category) }
-    #   let(:image_url) { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '5mb_image.jpg')) }
-    #   let(:post_params) { attributes_for(:post, category_ids: [category.id], images: [image_url]) }
-    #   let(:success_message) { '投稿が作成されました' }
+    context '投稿が成功する場合' do
+      let!(:category) { create(:category) }
+      let(:image_url) { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '5mb_image.jpg')) }
+      let(:post_params) { attributes_for(:post, category_ids: [category.id], images: [image_url]) }
+      let(:success_message) { '投稿が作成されました' }
 
-    #   before do
-    #     post api_v1_posts_path, params: post_params, headers: auth_tokens
-    #   end
+      before do
+        post api_v1_posts_path, params: post_params, headers: auth_tokens
+      end
 
-    #   it 'ステータスコード200が返ってくる' do
-    #     expect(response.status).to eq 200
-    #   end
+      it 'ステータスコード200が返ってくる' do
+        expect(response.status).to eq 200
+      end
 
-    #   it '投稿作成時のmessageが返ってくる' do
-    #     expect(json['message']).to eq success_message
-    #   end
-    # end
+      it '投稿作成時のmessageが返ってくる' do
+        expect(json['message']).to eq success_message
+      end
+    end
 
     context '投稿が失敗する場合' do
       before do

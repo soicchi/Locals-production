@@ -3,25 +3,38 @@ class Api::V1::PostsController < ApplicationController
   before_action :correct_user, only: [:destroy]
 
   def index
-    posts = Post.includes(:user, :like_users, :dislike_users, :categories).all
-    render json: posts.to_json(include: [
-      :user,
+    posts = Post.includes(
+      { user: { avatar_attachment: :blob } },
       :like_users,
       :dislike_users,
-      { categories: { only: [:id, :name] } }
-    ])
-  end
-
-  def show
-    post = Post.includes(:user, :like_users, :dislike_users, :categories).find(params[:id])
-    render json: post.to_json(include:
+      :categories
+    ).with_attached_images.all
+    render json: posts.to_json(include:
       [
-        :user,
+        { user: { methods: :avatar_url } },
         :like_users,
         :dislike_users,
         { categories: { only: [:id, :name] } }
       ],
-                              methods: [:liked_age_group, :disliked_age_group]
+                               methods: :image_url
+    )
+  end
+
+  def show
+    post = Post.includes(
+      { user: { avatar_attachment: :blob } },
+      :like_users,
+      :dislike_users,
+      :categories
+    ).with_attached_images.find(params[:id])
+    render json: post.to_json(include:
+      [
+        { user: { methods: :avatar_url } },
+        :like_users,
+        :dislike_users,
+        { categories: { only: [:id, :name] } }
+      ],
+                              methods: [:image_url, :liked_age_group, :disliked_age_group]
     )
   end
 

@@ -57,7 +57,7 @@ RSpec.describe "Api::V1::Users", type: :request do
     end
 
     it '投稿に紐付いたユーザーが返ってくる' do
-      expect(response.body).to include user.to_json # (methods: :avatar_url)
+      expect(response.body).to include user.to_json(methods: :avatar_url)
     end
 
     it 'いいねしているユーザーのデータが返ってくる' do
@@ -130,7 +130,7 @@ RSpec.describe "Api::V1::Users", type: :request do
     end
 
     it '投稿に紐づくユーザーが返ってくる' do
-      expect(response.body).to include other_user1.to_json # (methods: :avatar_url)
+      expect(response.body).to include other_user1.to_json(methods: :avatar_url)
     end
 
     it 'いいねしているユーザーのデータが返ってくる' do
@@ -213,7 +213,7 @@ RSpec.describe "Api::V1::Users", type: :request do
     end
 
     it '投稿に紐付いたuserが含まれている' do
-      expect(response.body).to include other_user1.to_json # (methods: :avatar_url)
+      expect(response.body).to include other_user1.to_json(methods: :avatar_url)
     end
 
     it 'いいねしているユーザーのデータが返ってくる' do

@@ -123,7 +123,7 @@ RSpec.describe Post, type: :model do
   end
 
   describe 'インスタンスメソッドに関するテスト' do
-      let!(:user) { create(:user) }
+    let!(:user) { create(:user) }
 
       context 'image_urlメソッド' do
         let(:post) { build(:post, user_id: user.id) }

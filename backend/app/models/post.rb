@@ -25,8 +25,8 @@ class Post < ApplicationRecord
   validates :images, content_type: { in: %w[image/png image/gif image/jpeg image/jpg],
                                      message: '正しいフォーマットのファイルを選択してください' },
                      size: { less_than: 20.megabytes,
-                             message: '20MB以下のファイルを選択してください' }
-                    #  attached: true
+                             message: '20MB以下のファイルを選択してください' },
+                     attached: true
 
   # imagesのURLを返す（仮）
   def image_url
