@@ -8,9 +8,13 @@
     color="subColor"
   >
     <v-list>
-      <v-subheader class="nav-menu">
-        メニュー
-      </v-subheader>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="nav-menu">
+            メニュー
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-divider />
       <v-list-item
         v-for="(menu, i) in drawerMenuList"

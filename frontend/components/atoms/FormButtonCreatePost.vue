@@ -30,7 +30,7 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.loading = false
-      }, 1500)
+      }, 3000)
       this.$emit('create-post')
     },
   },

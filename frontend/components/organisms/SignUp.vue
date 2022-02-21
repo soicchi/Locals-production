@@ -67,7 +67,7 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.loading = false
-      }, 1500)
+      }, 3000)
       await this.$axios.post('/auth', this.user)
         .then(() => {
           this.$auth.loginWith('local', { data: { email: this.user.email, password: this.user.password } })

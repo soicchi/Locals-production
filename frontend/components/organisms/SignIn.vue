@@ -60,7 +60,7 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.loading = false
-      }, 1500)
+      }, 3000)
       await this.$auth.loginWith('local', { data: this.user })
         .then((res) => {
           this.setLoggedInUser(res.data.data)
