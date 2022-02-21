@@ -6,9 +6,9 @@ FactoryBot.define do
     after(:build) do |post|
       post.category_ids << build(:category)
     end
-    # after(:build) do |post|
-    #   post.images.attach(io: File.open('spec/fixtures/files/5.1mb_image.jpg'), filename: '5.1mb_image.jpg', content_type: 'image/jpg')
-    # end
+    after(:build) do |post|
+      post.images.attach(io: File.open('spec/fixtures/files/5.1mb_image.jpg'), filename: '5.1mb_image.jpg', content_type: 'image/jpg')
+    end
     association :user
 
     trait :valid_comment do

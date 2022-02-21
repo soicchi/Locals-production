@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable, :trackable
 
   include DeviseTokenAuth::Concerns::User
-  # include Rails.application.routes.url_helpers
+  include Rails.application.routes.url_helpers
 
   has_many :posts,                  dependent: :destroy
   has_many :active_relationships,   class_name: 'Relationship',
@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   has_many :dislikes,               dependent: :destroy
   has_many :disliked_posts,         through: 'dislikes',
                                     source: :post
-  # has_one_attached :avatar,         dependent: :destroy
+  has_one_attached :avatar,         dependent: :destroy
 
   validates :name,         presence: true,
                            uniqueness: true,
@@ -40,10 +40,10 @@ class User < ActiveRecord::Base
   validates :gender,       presence: true
   validates :introduction, length: { maximum: 255 },
                            allow_nil: true
-  # validates :avatar,       content_type: { in: %w[image/jpeg image/png image/gif image/jpg],
-  #                                          message: '正しいフォーマットを選択してください' },
-  #                          size: { less_than: 5.megabytes,
-  #                                  message: '5MB以下のファイルサイズを選んでください' }
+  validates :avatar,       content_type: { in: %w[image/jpeg image/png image/gif image/jpg],
+                                           message: '正しいフォーマットを選択してください' },
+                           size: { less_than: 5.megabytes,
+                                   message: '5MB以下のファイルサイズを選んでください' }
 
   # ユーザーをフォローする
   def follow(user)
@@ -104,10 +104,10 @@ class User < ActiveRecord::Base
     disliked_posts.include?(post)
   end
 
-  # # avatarのURLを返す
-  # def avatar_url
-  #   avatar.attached? ? rails_storage_proxy_url(avatar) : nil
-  # end
+  # avatarのURLを返す
+  def avatar_url
+    avatar.attached? ? rails_storage_proxy_url(avatar) : nil
+  end
 
   #ユーザーの年齢を返す
   def age

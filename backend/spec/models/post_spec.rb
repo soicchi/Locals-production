@@ -36,29 +36,29 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    # context 'imagesのフォーマットが正しい場合' do
-    #   let(:post) { build(:post, user_id: user.id) }
+    context 'imagesのフォーマットが正しい場合' do
+      let(:post) { build(:post, user_id: user.id) }
 
-    #   before do
-    #     post.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '5mb_image.jpg')))
-    #   end
+      before do
+        post.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '5mb_image.jpg')))
+      end
 
-    #   it '投稿は有効である' do
-    #     expect(post).to be_valid
-    #   end
-    # end
+      it '投稿は有効である' do
+        expect(post).to be_valid
+      end
+    end
 
-    # context 'imagesのフォーマットが正しくない場合' do
-    #   let(:invalid_post) { build(:post, user_id: user.id) }
+    context 'imagesのフォーマットが正しくない場合' do
+      let(:invalid_post) { build(:post, user_id: user.id) }
 
-    #   before do
-    #     invalid_post.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', 'example.txt')))
-    #   end
+      before do
+        invalid_post.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', 'example.txt')))
+      end
 
-    #   it 'インスタンスは有効ではない' do
-    #     expect(invalid_post).to be_invalid
-    #   end
-    # end
+      it 'インスタンスは有効ではない' do
+        expect(invalid_post).to be_invalid
+      end
+    end
 
     # context 'imagesのサイズが20MBより大きい場合' do
     #   let!(:invalid_post) { build(:post, user_id: user.id) }
@@ -78,17 +78,17 @@ RSpec.describe Post, type: :model do
     #   end
     # end
 
-    # context 'imagesのサイズが20MB以下の場合' do
-    #   let(:post) { build(:post, user_id: user.id) }
+    context 'imagesのサイズが20MB以下の場合' do
+      let(:post) { build(:post, user_id: user.id) }
 
-    #   before do
-    #     post.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '5mb_image.jpg')))
-    #   end
+      before do
+        post.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '5mb_image.jpg')))
+      end
 
-    #   it 'インスタンスは有効である' do
-    #     expect(post).to be_valid
-    #   end
-    # end
+      it 'インスタンスは有効である' do
+        expect(post).to be_valid
+      end
+    end
   end
 
   describe '投稿の作成順序に関するテスト' do
@@ -123,16 +123,16 @@ RSpec.describe Post, type: :model do
   end
 
   describe 'インスタンスメソッドに関するテスト' do
-    #   let!(:user) { create(:user) }
+      let!(:user) { create(:user) }
 
-    #   context 'image_urlメソッド' do
-    #     let(:post) { build(:post, user_id: user.id) }
-    #     let(:not_attached_post) { build(:post, user_id: user.id) }
+      context 'image_urlメソッド' do
+        let(:post) { build(:post, user_id: user.id) }
+        let(:not_attached_post) { build(:post, user_id: user.id) }
 
-    #     it 'imagesのURLを返す' do
-    #       expect(post.image_url).to eq [rails_storage_proxy_url(post.images.blobs[0])]
-    #     end
-    #   end
+        it 'imagesのURLを返す' do
+          expect(post.image_url).to eq [rails_storage_proxy_url(post.images.blobs[0])]
+        end
+      end
 
     context 'liked_age_groupメソッド' do
       let!(:user) { create(:user, :age_10s) }

@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  # include Rails.application.routes.url_helpers
+  include Rails.application.routes.url_helpers
 
   belongs_to :user
   has_many :book_marks,      dependent: :destroy
@@ -13,7 +13,7 @@ class Post < ApplicationRecord
                              source: :user
   has_many :classifications, dependent: :destroy
   has_many :categories,      through: 'classifications'
-  # has_many_attached :images, dependent: :destroy
+  has_many_attached :images, dependent: :destroy
 
   default_scope -> { order(created_at: :desc) }
 
@@ -22,20 +22,20 @@ class Post < ApplicationRecord
   validates :restaurant_name, presence: true
   validates :station,         presence: true
   validates :category_ids, presence: true
-  # validates :images, content_type: { in: %w[image/png image/gif image/jpeg image/jpg],
-  #                                    message: '正しいフォーマットのファイルを選択してください' },
-  #                    size: { less_than: 20.megabytes,
-  #                            message: '20MB以下のファイルを選択してください' },
-  #                    attached: true
+  validates :images, content_type: { in: %w[image/png image/gif image/jpeg image/jpg],
+                                     message: '正しいフォーマットのファイルを選択してください' },
+                     size: { less_than: 20.megabytes,
+                             message: '20MB以下のファイルを選択してください' }
+                    #  attached: true
 
-  # # imagesのURLを返す（仮）
-  # def image_url
-  #   image_url = []
-  #   images.blobs.each do |image|
-  #     image_url.unshift(rails_storage_proxy_url(image))
-  #   end
-  #   image_url
-  # end
+  # imagesのURLを返す（仮）
+  def image_url
+    image_url = []
+    images.blobs.each do |image|
+      image_url.unshift(rails_storage_proxy_url(image))
+    end
+    image_url
+  end
 
   # いいねしているユーザーの人数を年代別で抽出
   def liked_age_group

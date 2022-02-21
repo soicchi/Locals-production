@@ -124,29 +124,29 @@ RSpec.describe User, type: :model do
       end
     end
 
-    # context 'avatarが有効なcontent_typeの場合' do
-    #   let(:user) { build(:user, :with_avatar) }
+    context 'avatarが有効なcontent_typeの場合' do
+      let(:user) { build(:user, :with_avatar) }
 
-    #   it 'インスタンスは有効である' do
-    #     expect(user).to be_valid
-    #   end
-    # end
+      it 'インスタンスは有効である' do
+        expect(user).to be_valid
+      end
+    end
 
-    # context 'avatarが無効なcontent_typeの場合' do
-    #   let!(:user) { build(:user, :with_invalid_format_avatar) }
+    context 'avatarが無効なcontent_typeの場合' do
+      let!(:user) { build(:user, :with_invalid_format_avatar) }
 
-    #   it 'インスタンスは有効ではない' do
-    #     expect(user).to be_invalid
-    #   end
-    # end
+      it 'インスタンスは有効ではない' do
+        expect(user).to be_invalid
+      end
+    end
 
-    # context 'avatarのファイルサイズが5MBより大きい場合' do
-    #   let(:user) { build(:user, :with_over_size_avatar) }
+    context 'avatarのファイルサイズが5MBより大きい場合' do
+      let(:user) { build(:user, :with_over_size_avatar) }
 
-    #   it 'インスタンスは有効ではない' do
-    #     expect(user).to be_invalid
-    #   end
-    # end
+      it 'インスタンスは有効ではない' do
+        expect(user).to be_invalid
+      end
+    end
   end
 
   ##################################
@@ -284,30 +284,30 @@ RSpec.describe User, type: :model do
         end
       end
 
-    #   context 'avatar_urlメソッド' do
-    #     let(:attached_user) { build(:user) }
+      context 'avatar_urlメソッド' do
+        let(:attached_user) { build(:user) }
 
-    #     before do
-    #       attached_user.avatar.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '510534.jpg')))
-    #     end
+        before do
+          attached_user.avatar.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '510534.jpg')))
+        end
 
-    #     it 'with_avatar_userのavatarのURLが返ってくる' do
-    #       expect(attached_user.avatar_url).to eq rails_storage_proxy_url attached_user.avatar
-    #     end
+        it 'with_avatar_userのavatarのURLが返ってくる' do
+          expect(attached_user.avatar_url).to eq rails_storage_proxy_url attached_user.avatar
+        end
 
-    #     it 'avatarがattachされてないuserはnilが返ってくる' do
-    #       expect(user.avatar_url).to eq nil
-    #     end
-    #   end
+        it 'avatarがattachされてないuserはnilが返ってくる' do
+          expect(user.avatar_url).to eq nil
+        end
+      end
 
-    #   context 'ageメソッド' do
-    #     let!(:user3) { create(:user, birth_year: 1992, birth_month: 4, birth_day: 4) }
-    #     subject { user3.age }
+      context 'ageメソッド' do
+        let!(:user3) { create(:user, birth_year: 1992, birth_month: 4, birth_day: 4) }
+        subject { user3.age }
 
-    #     it '年齢が29で算出される' do
-    #       is_expected.to eq 29
-    #     end
-    #   end
+        it '年齢が29で算出される' do
+          is_expected.to eq 29
+        end
+      end
   end
 
   ##################################
