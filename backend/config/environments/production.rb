@@ -114,10 +114,6 @@ Rails.application.configure do
   # devise default URL option
   config.action_mailer.default_url_options = { host: 'local-s-app.com', port: 80 }
 
-  # url_forの設定
-  Rails.application.routes.default_url_options[:host] = 'local-s-apps.com'
-  Rails.application.routes.default_url_options[:port] = 3000
-
   config.active_storage.resolve_model_to_route = :rails_storage_proxy
 
   config.hosts << 'local-s-app.com'
