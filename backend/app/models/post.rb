@@ -32,7 +32,7 @@ class Post < ApplicationRecord
   def image_url
     image_url = []
     images.blobs.each do |image|
-      image_url.unshift(url_for(image))
+      image_url.unshift(rails_storage_proxy_url(image))
     end
     image_url
   end

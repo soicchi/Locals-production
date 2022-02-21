@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
 
   # avatarのURLを返す
   def avatar_url
-    avatar.attached? ? url_for(avatar) : nil
+    avatar.attached? ? rails_storage_proxy_url(avatar) : nil
   end
 
   #ユーザーの年齢を返す
