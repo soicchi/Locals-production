@@ -55,11 +55,11 @@
       },
       {
         "name": "AWS_ACCESS_KEY_ID",
-        "valueFrom": "access-key"
+        "valueFrom": "access-key-id"
       },
       {
         "name": "AWS_SECRET_ACCESS_KEY",
-        "valueFrom": "secret-key"
+        "valueFrom": "secret-access-key"
       },
       {
         "name": "AWS_REGION",
