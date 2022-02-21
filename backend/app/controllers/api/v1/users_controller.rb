@@ -19,12 +19,12 @@ class Api::V1::UsersController < ApplicationController
 
   def user_posts
     user = User.with_attached_avatar.find(params[:id])
-    posts = Post.includes(
+    posts = user.posts.includes(
       { user: { avatar_attachment: :blob } },
       :like_users,
       :dislike_users,
       :categories
-    ).find_by(user_id: user.id)
+    )
     render json: posts.to_json(include:
       [
         { user: { methods: :avatar_url } },

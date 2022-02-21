@@ -12,8 +12,8 @@ User.create!(
   password: 'password',
   password_confirmation: 'password'
 )
-# user = User.find(1)
-# user.avatar.attach(io: File.open('app/assets/images/avatar1.jpeg'), filename: 'avatar1.jpeg')
+user = User.find(1)
+user.avatar.attach(io: File.open('app/assets/images/avatar1.jpeg'), filename: 'avatar1.jpeg')
 
 # 50人のuserサンプルデータ作成
 50.times do |n|
@@ -30,15 +30,15 @@ User.create!(
   )
 end
 
-# user2 = User.find(2)
-# user2.avatar.attach(io: File.open('app/assets/images/avatar2.jpeg'), filename: 'avatar2.jpeg')
-# user3 = User.find(3)
-# user3.avatar.attach(io: File.open('app/assets/images/avatar3.jpeg'), filename: 'avatar3.jpeg')
-# user4 = User.find(4)
-# user4.avatar.attach(io: File.open('app/assets/images/avatar4.jpg'), filename: 'avatar4.jpg')
-# User.all[4..49].each do |user|
-#   user.avatar.attach(io: File.open('app/assets/images/avatar1.jpeg'), filename: 'avatar1.jpeg')
-# end
+user2 = User.find(2)
+user2.avatar.attach(io: File.open('app/assets/images/avatar2.jpeg'), filename: 'avatar2.jpeg')
+user3 = User.find(3)
+user3.avatar.attach(io: File.open('app/assets/images/avatar3.jpeg'), filename: 'avatar3.jpeg')
+user4 = User.find(4)
+user4.avatar.attach(io: File.open('app/assets/images/avatar4.jpg'), filename: 'avatar4.jpg')
+User.all[4..49].each do |user|
+  user.avatar.attach(io: File.open('app/assets/images/avatar1.jpeg'), filename: 'avatar1.jpeg')
+end
 
 # カテゴリーのデータ作成
 category_list = [
@@ -77,28 +77,28 @@ category_list.each{ |category| Category.create!(
 }
 
 # 投稿サンプルデータ
-# image_meet_group = [
-#   'meet1.jpg',
-#   'meet2.jpg',
-#   'meet3.jpg',
-#   'meet4.jpg',
-#   'meet5.jpg',
-#   'meet6.jpg',
-#   'meet7.jpg',
-#   'meet8.jpg'
-# ]
-# image_pasta_group = [
-#   'pasta1.jpg',
-#   'pasta2.jpg',
-#   'pasta3.jpg'
-# ]
-# image_chiken_group = [
-#   'chiken1.jpg',
-#   'chiken2.jpg',
-#   'chiken3.jpg',
-#   'chiken4.jpg',
-#   'chiken5.jpg'
-# ]
+image_meet_group = [
+  'meet1.jpg',
+  'meet2.jpg',
+  'meet3.jpg',
+  'meet4.jpg',
+  'meet5.jpg',
+  'meet6.jpg',
+  'meet7.jpg',
+  'meet8.jpg'
+]
+image_pasta_group = [
+  'pasta1.jpg',
+  'pasta2.jpg',
+  'pasta3.jpg'
+]
+image_chiken_group = [
+  'chiken1.jpg',
+  'chiken2.jpg',
+  'chiken3.jpg',
+  'chiken4.jpg',
+  'chiken5.jpg'
+]
 post1 = Post.new({
   restaurant_name: '牛角　武蔵浦和店',
   comment: '王様ハラミが柔らかくて美味しい!店長さんの接客も非常に良く、大満足です',
@@ -127,18 +127,18 @@ post4 = Post.new({
   category_ids: [3, 10],
   user_id: 4
 })
-# image_meet_group.each do |image|
-#   post1.images.attach(io: File.open("app/assets/images/#{image}"), filename: image)
-# end
-# image_chiken_group.each do |image|
-#   post2.images.attach(io: File.open("app/assets/images/#{image}"), filename: image)
-# end
-# image_chiken_group.each do |image|
-#   post3.images.attach(io: File.open("app/assets/images/#{image}"), filename: image)
-# end
-# image_pasta_group.each do |image|
-#   post4.images.attach(io: File.open("app/assets/images/#{image}"), filename: image)
-# end
+image_meet_group.each do |image|
+  post1.images.attach(io: File.open("app/assets/images/#{image}"), filename: image)
+end
+image_chiken_group.each do |image|
+  post2.images.attach(io: File.open("app/assets/images/#{image}"), filename: image)
+end
+image_chiken_group.each do |image|
+  post3.images.attach(io: File.open("app/assets/images/#{image}"), filename: image)
+end
+image_pasta_group.each do |image|
+  post4.images.attach(io: File.open("app/assets/images/#{image}"), filename: image)
+end
 
 posts = [post1, post2, post3, post4]
 
