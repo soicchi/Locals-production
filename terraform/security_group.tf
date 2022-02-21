@@ -84,6 +84,15 @@ resource "aws_security_group_rule" "alb_4" {
   security_group_id = aws_security_group.alb.id
 }
 
+resource "aws_security_group_rule" "alb_5" {
+  type              = "ingress"
+  from_port         = 3000
+  to_port           = 3000
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.alb.id
+}
+
 // ECS //
 
 resource "aws_security_group_rule" "ecs_1" {

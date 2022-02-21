@@ -68,24 +68,22 @@ resource "aws_alb_listener" "https" {
   ]
 }
 
-#################
-# Listener Rule #
-#################
+resource "aws_alb_listener" "https_3000" {
+  load_balancer_arn = aws_alb.alb.arn
+  port              = "3000"
+  protocol          = "HTTPS"
+  certificate_arn   = aws_acm_certificate.acm.arn
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
 
-resource "aws_alb_listener_rule" "backend_rule" {
-  listener_arn = aws_alb_listener.https.arn
-  priority     = 100
-
-  action {
+  default_action {
     type             = "forward"
     target_group_arn = aws_alb_target_group.back.arn
   }
 
-  condition {
-    path_pattern {
-      values = ["/api/*"]
-    }
-  }
+  depends_on = [
+    aws_acm_certificate.acm,
+    aws_acm_certificate_validation.acm_validation
+  ]
 }
 
 ################
