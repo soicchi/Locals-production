@@ -29,7 +29,7 @@ resource "aws_ssm_parameter" "aws_region" {
 resource "aws_ssm_parameter" "aws_bucket" {
   name        = "bucket"
   type        = "SecureString"
-  value       = aws_s3_bucket.public.bucket
+  value       = aws_s3_bucket.public.id
   description = "AWSのpublic budket"
 }
 

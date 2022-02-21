@@ -48,7 +48,23 @@
       {
         "name": "DB_HOST",
         "valueFrom": "db-host"
-      }
+      },
+      {
+        "name": "AWS_BUCKET",
+        "valueFrom": "bucket"
+      },
+      {
+        "name": "AWS_ACCESS_KEY_ID",
+        "valueFrom": "access-key-id"
+      },
+      {
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "valueFrom": "secret-access-key"
+      },
+      {
+        "name": "AWS_REGION",
+        "valueFrom": "region"
+      } 
     ]
   }
 ]
