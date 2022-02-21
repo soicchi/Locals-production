@@ -2,18 +2,18 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-
+  
   # Do not eager load code on boot.
   config.eager_load = false
-
+  
   # Show full error reports.
   config.consider_all_requests_local = true
-
+  
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
@@ -23,12 +23,17 @@ Rails.application.configure do
     }
   else
     config.action_controller.perform_caching = false
-
+    
     config.cache_store = :null_store
   end
-
+  
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # seed.rbの初期データを本番環境へ投入するために指定
+  config.active_storage.service = :amazon
+
+  # url_forの設定
+  Rails.application.routes.default_url_options[:host] = 'localhost'
+  Rails.application.routes.default_url_options[:port] = 3000
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -67,9 +72,6 @@ Rails.application.configure do
   # devise default URL setting
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  # url_forの設定
-  Rails.application.routes.default_url_options[:host] = 'localhost'
-  Rails.application.routes.default_url_options[:port] = 3000
 
   config.active_storage.resolve_model_to_route = :rails_storage_proxy
 end
