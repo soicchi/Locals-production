@@ -130,7 +130,7 @@ RSpec.describe Post, type: :model do
         let(:not_attached_post) { build(:post, user_id: user.id) }
 
         it 'imagesのURLを返す' do
-          expect(post.image_url).to eq [rails_storage_proxy_url(post.images.blobs[0])]
+          expect(post.image_url).to eq [url_for(post.images.blobs[0])]
         end
       end
 

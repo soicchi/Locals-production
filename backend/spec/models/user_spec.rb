@@ -292,7 +292,7 @@ RSpec.describe User, type: :model do
         end
 
         it 'with_avatar_userのavatarのURLが返ってくる' do
-          expect(attached_user.avatar_url).to eq rails_storage_proxy_url attached_user.avatar
+          expect(attached_user.avatar_url).to eq url_for attached_user.avatar
         end
 
         it 'avatarがattachされてないuserはnilが返ってくる' do

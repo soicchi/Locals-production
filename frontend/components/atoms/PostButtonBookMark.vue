@@ -57,7 +57,7 @@ export default {
     },
   },
   created () {
-    if (this.$auth.loggedIn && this.myPage) {
+    if (this.$auth.loggedIn || !this.myPage) {
       this.loading = true
       setTimeout(() => {
         const bookMarkedState = this.loggedInUser.bookMarks.some((bookMark) => {
