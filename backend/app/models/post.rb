@@ -28,13 +28,16 @@ class Post < ApplicationRecord
                              message: '20MB以下のファイルを選択してください' },
                      attached: true
 
-  # imagesのURLを返す（仮）
+  # imagesのURLを返す
   def image_url
-    image_url = []
-    images.blobs.each do |image|
-      image_url.unshift(rails_storage_proxy_url(image))
+    i = 0
+    count = images.length
+    image_list = []
+    while i < count
+      image_list.unshift(rails_storage_proxy_url(images[i]))
+      i += 1
     end
-    image_url
+    return image_list
   end
 
   # いいねしているユーザーの人数を年代別で抽出
