@@ -1,6 +1,9 @@
 <template>
   <div>
-    <v-avatar v-if="!avatarUrl">
+    <v-avatar
+      v-if="!avatarUrl"
+      :size='iconSize'  
+    >
       <v-icon
         :size="iconSize"
       >
