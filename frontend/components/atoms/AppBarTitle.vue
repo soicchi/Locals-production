@@ -2,7 +2,7 @@
   <v-btn
     to="/"
     text
-    color='white'
+    color="white"
     :style="{'font-size': '2rem'}"
   >
     Local's

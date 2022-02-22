@@ -2,7 +2,7 @@
   <div>
     <v-avatar
       v-if="!avatarUrl"
-      :size='iconSize'  
+      :size="iconSize"
     >
       <v-icon
         :size="iconSize"

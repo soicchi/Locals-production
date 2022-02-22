@@ -37,7 +37,7 @@ class Post < ApplicationRecord
       image_list.unshift(rails_storage_proxy_url(images[i]))
       i += 1
     end
-    return image_list
+    image_list
   end
 
   # いいねしているユーザーの人数を年代別で抽出
