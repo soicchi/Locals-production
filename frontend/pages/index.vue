@@ -26,6 +26,7 @@ export default {
       this.$store.dispatch('user/setLoggedInUserDislikedPosts')
     } else {
       this.$store.dispatch('post/getPosts')
+      this.$store.dispatch('category/getCategories')
     }
   },
 }
