@@ -27,7 +27,7 @@ export default {
       user: {
         email: '',
         introduction: '',
-        avatar: null,
+        avatar: '',
       },
     }
   },
