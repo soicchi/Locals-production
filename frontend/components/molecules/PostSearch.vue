@@ -2,17 +2,18 @@
   <v-row justify="center">
     <v-dialog
       v-model="dialog"
-      max-width="600px"
+      max-width="500px"
     >
       <template #activator="{ on, attrs }">
         <v-btn
           color="subColor"
-          class="search-btn pa-4"
+          class="search-btn"
           height="60"
-          width="12%"
+          :width="btnWidth"
           v-bind="attrs"
           rounded
           v-on="on"
+          :style="btnFontSize"
         >
           カテゴリー検索
         </v-btn>
@@ -26,23 +27,37 @@
             v-model="setIsValid"
             class="d-flex align-center"
           >
-            <v-col cols="7">
-              <AtomsFormCategory
-                :category-ids.sync="setCategoryIds"
-                :category-items="categoryItems"
-              />
-            </v-col>
-            <v-spacer />
-            <v-col cols="3">
-              <AtomsFormButtonSearch
-                :loading="loading"
-                :category-ids="categoryIds"
-                @search="search"
-              />
-            </v-col>
-            <v-col cols="3">
-              <AtomsFormButtonSearchReset @reset="reset" />
-            </v-col>
+            <v-row>
+              <v-col
+                cols="12"
+                sm='6'
+              >
+                <AtomsFormCategory
+                  :category-ids.sync="setCategoryIds"
+                  :category-items="categoryItems"
+                />
+              </v-col>
+              <v-col
+                cols="6"
+                sm='3'
+                align-self='center'
+                class='d-flex justify-center'
+              >
+                <AtomsFormButtonSearch
+                  :loading="loading"
+                  :category-ids="categoryIds"
+                  @search="search"
+                />
+              </v-col>
+              <v-col
+                cols="6"
+                sm='3'
+                align-self='center'
+                class='d-flex justify-center'
+              >
+                <AtomsFormButtonSearchReset @reset="reset" />
+              </v-col>
+            </v-row>
           </v-form>
         </template>
       </MoleculesModal>
@@ -90,6 +105,12 @@ export default {
       get () { return this.isValid },
       set (newVal) { return this.$emit('update:is-valid', newVal) },
     },
+    btnWidth () {
+      return this.$vuetify.breakpoint.xs ? '50%' : '12%'
+    },
+    btnFontSize () {
+      return this.$vuetify.breakpoint.xs ? { 'font-size': '20px' } : { 'font-size': '24px' }
+    }
   },
   methods: {
     search () {
@@ -105,5 +126,4 @@ export default {
 <style lang="sass" scoped>
   .search-btn
     color: #fff
-    font-size: 26px
 </style>

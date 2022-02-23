@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     iconSize () {
-      return this.$vuetify.breakpoint.xs ? '40' : '60'
+      return this.$vuetify.breakpoint.xs ? 40 : 60
     },
     loggedInUser () {
       return this.$store.getters['user/loggedInUser']
