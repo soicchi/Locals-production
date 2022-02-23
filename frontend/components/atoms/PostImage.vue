@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     v-model="dialog"
-    max-width="60%"
+    :max-width="dialogWidth"
   >
     <template #activator="{ on, attrs }">
       <v-img
@@ -10,6 +10,7 @@
         width="100%"
         v-bind="attrs"
         v-on="on"
+        :style="{ 'cursor': 'pointer' }"
       />
     </template>
     <v-img
@@ -30,6 +31,11 @@ export default {
   data () {
     return {
       dialog: false
+    }
+  },
+  computed: {
+    dialogWidth () {
+      return this.$vuetify.breakpoint.xs ? "80%" : "60%"
     }
   }
 }
