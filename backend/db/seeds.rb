@@ -36,9 +36,6 @@ user3 = User.find(3)
 user3.avatar.attach(io: File.open('app/assets/images/avatar3.jpeg'), filename: 'avatar3.jpeg')
 user4 = User.find(4)
 user4.avatar.attach(io: File.open('app/assets/images/avatar4.jpg'), filename: 'avatar4.jpg')
-User.all[4..49].each do |user|
-  user.avatar.attach(io: File.open('app/assets/images/avatar1.jpeg'), filename: 'avatar1.jpeg')
-end
 
 # カテゴリーのデータ作成
 category_list = [
