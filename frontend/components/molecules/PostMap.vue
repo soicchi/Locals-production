@@ -6,7 +6,7 @@
     loading="lazy"
     allowfullscreen
     :src="`https://www.google.com/maps/embed/v1/place?key=${$config.googleApiKey}
-      &q=${restaurantName} ${station}駅`"
+      &q=${restaurantName} ${station}駅 飲食店`"
   >
     >
   </iframe>
