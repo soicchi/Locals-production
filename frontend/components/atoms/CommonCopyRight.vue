@@ -1,6 +1,6 @@
 <template>
   <div class="locals">
-    &copy;{{ copyRightYear }}<strong>Local's</strong>
+    <strong>&copy;{{ copyRightYear }} Local's</strong>
   </div>
 </template>
 
