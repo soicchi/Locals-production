@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_021411) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "unique_session_id"
     t.string "name", null: false
     t.string "email", null: false
     t.string "birth_place", null: false

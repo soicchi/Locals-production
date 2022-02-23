@@ -6,7 +6,7 @@
     <div>
       <v-icon
         :size="iconSize"
-        color='mainColor'  
+        color="mainColor"
       >
         mdi-account
       </v-icon>
