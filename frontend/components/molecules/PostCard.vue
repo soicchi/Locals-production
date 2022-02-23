@@ -62,22 +62,24 @@
           <AtomsPostRestaurantName :post="post" />
         </V-card-title>
         <v-row class="d-flex">
-          <v-col
-            cols="12"
-            class="d-flex"
-            sm="9"
+          <div
+            v-for="(image, i) in limitCount"
+            :key="i"
           >
-            <v-sheet
-              v-for="(image, i) in limitCount"
-              :key="i"
-              outlined
-              :width="imageWidth"
-              :height="imageHeight"
-              class="mr-4"
+            <v-col
+              cols="6"
+              sm="3"
             >
-              <AtomsPostImage :image="image" />
-            </v-sheet>
-          </v-col>
+              <v-sheet
+                outlined
+                :width="imageWidth"
+                :height="imageHeight"
+                class="mr-4"
+              >
+                <AtomsPostImage :image="image" />
+              </v-sheet>
+            </v-col>
+          </div>
           <v-col
             v-if="$vuetify.breakpoint.xs"
             cols="6"
@@ -136,10 +138,10 @@ export default {
       return this.$vuetify.breakpoint.xs ? this.post.image_url.slice(0, 2) : this.post.image_url.slice(0, 3)
     },
     imageWidth () {
-      return this.$vuetify.breakpoint.xs ? '45%' : '200px'
+      return this.$vuetify.breakpoint.xs ? '120px' : '200px'
     },
     imageHeight () {
-      return this.$vuetify.breakpoint.xs ? '100%' : '200px'
+      return this.$vuetify.breakpoint.xs ? '100px' : '200px'
     },
     postCardWidth () {
       return this.$vuetify.breakpoint.xs ? '90%' : '55%'
