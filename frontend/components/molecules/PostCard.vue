@@ -5,31 +5,40 @@
       justify="center"
     >
       <v-card
-        width="55%"
+        :width="postCardWidth"
         height="auto"
         elevation="1"
         class="my-5 pa-5"
       >
         <v-row align="center">
-          <v-col cols="1">
+          <v-col
+            cols="2"
+            sm='1'
+          >
             <AtomsUserIcon
               :icon-size="iconSize"
               :avatar-url="post.user.avatar_url"
             />
           </v-col>
-          <v-col cols="2">
+          <v-col
+            cols="3"
+            sm='2'
+            class='pl-0'
+          >
             <slot name="post-card-user-name" />
           </v-col>
-          <v-spacer />
+          <v-spacer v-if='!$vuetify.breakpoint.xs' />
           <v-col
-            cols="2"
+            cols="4"
             class="d-flex justify-center"
+            sm='2'
           >
             <AtomsCommonDate :date="post.created_at" />
           </v-col>
           <v-col
             v-if="$auth.loggedIn && !myPost"
-            cols="2"
+            cols="3"
+            sm='2'
             class="d-flex justify-center"
           >
             <AtomsPostButtonBookMark
@@ -39,7 +48,8 @@
           </v-col>
           <v-col
             v-if="$auth.loggedIn && myPost"
-            cols="2"
+            cols="3"
+            sm='2'
             class="d-flex justify-center"
           >
             <AtomsPostButtonDestroy
@@ -53,31 +63,44 @@
         </V-card-title>
         <v-row class="d-flex">
           <v-col
-            cols="9"
+            cols="12"
             class="d-flex"
+            sm="9"
           >
             <v-sheet
               v-for="(image, i) in limitCount"
               :key="i"
               outlined
-              width="200px"
-              height="200px"
+              :width="imageWidth"
+              :height="imageHeight"
               class="mr-4"
             >
               <AtomsPostImage :image="image" />
             </v-sheet>
           </v-col>
-          <v-col cols="3">
-            <AtomsPostViews />
+          <v-col
+            v-if='$vuetify.breakpoint.xs'
+            cols='6'
+          >
+            <AtomsCategoryItem :categories="post.categories" />
+          </v-col>
+          <v-col
+            cols="6"
+            sm='3'
+            align-self='end'  
+          >
+            <!-- <AtomsPostViews /> -->
             <AtomsPostFavoriteRate :post="post" />
           </v-col>
         </v-row>
-        <v-row class="d-flex justify-end">
-          <v-col>
-            <AtomsCategoryItem :categories="post.categories" />
-          </v-col>
-          <v-spacer />
-        </v-row>
+        <template v-if='!$vuetify.breakpoint.xs'>
+          <v-row class="d-flex justify-end">
+            <v-col>
+              <AtomsCategoryItem :categories="post.categories" />
+            </v-col>
+            <v-spacer />
+          </v-row>
+        </template>
         <v-row
           justify="center"
           class="mb-5"
@@ -110,8 +133,17 @@ export default {
       return this.post.user_id === this.loggedInUser.id
     },
     limitCount () {
-      return this.post.image_url.slice(0, 3)
+      return this.$vuetify.breakpoint.xs ? this.post.image_url.slice(0, 2) : this.post.image_url.slice(0, 3)
     },
+    imageWidth () {
+      return this.$vuetify.breakpoint.xs ? '45%' : '200px'
+    },
+    imageHeight () {
+      return this.$vuetify.breakpoint.xs ? '100%' : '200px'
+    },
+    postCardWidth () {
+      return this.$vuetify.breakpoint.xs ? '90%' : '55%'
+    }
   },
   methods: {
     destroyPost () {

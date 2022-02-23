@@ -1,14 +1,16 @@
 <template>
   <div>
-    <p class="percent-font">
+    <p class="percent-font mb-0">
       また行きたい！
     </p>
-    <v-icon size="70">
-      mdi-account
-    </v-icon>
-    <span class="percentage">
-      {{ percentage }}<span>%</span>
-    </span>
+    <div>
+      <v-icon :size="iconSize">
+        mdi-account
+      </v-icon>
+      <span class="percentage">
+        {{ percentage }}<span>%</span>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -31,6 +33,9 @@ export default {
         return Math.round(percent)
       }
     },
+    iconSize () {
+      return this.$vuetify.breakpoint.xs ? '50' : '70'
+    }
   },
 }
 </script>

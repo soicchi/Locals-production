@@ -1,8 +1,8 @@
 <template>
   <v-img
     :src="image"
-    height="200px"
-    width="200px"
+    height="100%"
+    width="100%"
   />
 </template>
 
