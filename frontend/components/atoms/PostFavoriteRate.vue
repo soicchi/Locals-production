@@ -4,7 +4,10 @@
       また行きたい！
     </p>
     <div>
-      <v-icon :size="iconSize">
+      <v-icon
+        :size="iconSize"
+        color='mainColor'  
+      >
         mdi-account
       </v-icon>
       <span class="percentage">
