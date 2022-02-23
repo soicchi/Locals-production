@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if='!$vuetify.breakpoint.xs'>
+    <div v-if="!$vuetify.breakpoint.xs">
       <v-btn
         v-if="!liked"
         width="70px"
@@ -34,35 +34,35 @@
     <template v-else>
       <div>
         <v-btn
-        v-if="!liked"
-        width="70px"
-        icon
-        plain
-        :disabled="myPost || loading"
-        :loading="loading"
-        retain-focus-on-click
-        @click="like"
-      >
-        <v-icon>
-          mdi-thumb-up-outline
-        </v-icon>
-      </v-btn>
-      <v-btn
-        v-else
-        width="70px"
-        icon
-        plain
-        :disabled="myPost || loading"
-        :loading="loading"
-        retain-focus-on-click
-        @click="unlike"
-      >
-        <v-icon color="#2962FF">
-          mdi-thumb-up
-        </v-icon>
-      </v-btn>
+          v-if="!liked"
+          width="70px"
+          icon
+          plain
+          :disabled="myPost || loading"
+          :loading="loading"
+          retain-focus-on-click
+          @click="like"
+        >
+          <v-icon>
+            mdi-thumb-up-outline
+          </v-icon>
+        </v-btn>
+        <v-btn
+          v-else
+          width="70px"
+          icon
+          plain
+          :disabled="myPost || loading"
+          :loading="loading"
+          retain-focus-on-click
+          @click="unlike"
+        >
+          <v-icon color="#2962FF">
+            mdi-thumb-up
+          </v-icon>
+        </v-btn>
       </div>
-      <div class='text-center'>
+      <div class="text-center">
         {{ post.like_users.length }}
       </div>
     </template>

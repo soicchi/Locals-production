@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if='!$vuetify.breakpoint.xs'>
+    <div v-if="!$vuetify.breakpoint.xs">
       <v-btn
         v-if="!disliked"
         width="60px"
@@ -33,38 +33,38 @@
     </div>
     <template v-else>
       <div>
-      <v-btn
-        v-if="!disliked"
-        width="60px"
-        icon
-        plain
-        retain-focus-on-click
-        :loading="loading"
-        :disabled="myPost || loading"
-        @click="dislike"
-      >
-        <v-icon>
-          mdi-thumb-down-outline
-        </v-icon>
-      </v-btn>
-      <v-btn
-        v-else
-        width="60px"
-        icon
-        plain
-        retain-focus-on-click
-        :loading="loading"
-        :disabled="myPost || loading"
-        @click="undislike"
-      >
-        <v-icon color="#DD2C00">
-          mdi-thumb-down
-        </v-icon>
-      </v-btn>
-    </div>
-    <div class='text-center'>
-      {{ post.dislike_users.length }}
-    </div>
+        <v-btn
+          v-if="!disliked"
+          width="60px"
+          icon
+          plain
+          retain-focus-on-click
+          :loading="loading"
+          :disabled="myPost || loading"
+          @click="dislike"
+        >
+          <v-icon>
+            mdi-thumb-down-outline
+          </v-icon>
+        </v-btn>
+        <v-btn
+          v-else
+          width="60px"
+          icon
+          plain
+          retain-focus-on-click
+          :loading="loading"
+          :disabled="myPost || loading"
+          @click="undislike"
+        >
+          <v-icon color="#DD2C00">
+            mdi-thumb-down
+          </v-icon>
+        </v-btn>
+      </div>
+      <div class="text-center">
+        {{ post.dislike_users.length }}
+      </div>
     </template>
   </div>
 </template>

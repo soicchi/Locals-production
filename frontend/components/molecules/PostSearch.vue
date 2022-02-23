@@ -12,8 +12,8 @@
           :width="btnWidth"
           v-bind="attrs"
           rounded
-          v-on="on"
           :style="btnFontSize"
+          v-on="on"
         >
           カテゴリー検索
         </v-btn>
@@ -30,7 +30,7 @@
             <v-row>
               <v-col
                 cols="12"
-                sm='6'
+                sm="6"
               >
                 <AtomsFormCategory
                   :category-ids.sync="setCategoryIds"
@@ -39,9 +39,9 @@
               </v-col>
               <v-col
                 cols="6"
-                sm='3'
-                align-self='center'
-                class='d-flex justify-center'
+                sm="3"
+                align-self="center"
+                class="d-flex justify-center"
               >
                 <AtomsFormButtonSearch
                   :loading="loading"
@@ -51,9 +51,9 @@
               </v-col>
               <v-col
                 cols="6"
-                sm='3'
-                align-self='center'
-                class='d-flex justify-center'
+                sm="3"
+                align-self="center"
+                class="d-flex justify-center"
               >
                 <AtomsFormButtonSearchReset @reset="reset" />
               </v-col>
@@ -110,7 +110,7 @@ export default {
     },
     btnFontSize () {
       return this.$vuetify.breakpoint.xs ? { 'font-size': '20px' } : { 'font-size': '24px' }
-    }
+    },
   },
   methods: {
     search () {

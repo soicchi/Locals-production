@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if='!$vuetify.breakpoint.xs'>
+    <template v-if="!$vuetify.breakpoint.xs">
       <v-chip
         v-for="category in categories"
         :key="category.id"

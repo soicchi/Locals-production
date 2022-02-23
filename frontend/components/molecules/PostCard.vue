@@ -13,7 +13,7 @@
         <v-row align="center">
           <v-col
             cols="2"
-            sm='1'
+            sm="1"
           >
             <AtomsUserIcon
               :icon-size="iconSize"
@@ -22,8 +22,8 @@
           </v-col>
           <v-col
             cols="3"
-            sm='2'
-            class='pl-0'
+            sm="2"
+            class="pl-0"
           >
             <slot name="post-card-user-name" />
           </v-col>
@@ -31,14 +31,14 @@
           <v-col
             cols="4"
             class="d-flex justify-center"
-            sm='2'
+            sm="2"
           >
             <AtomsCommonDate :date="post.created_at" />
           </v-col>
           <v-col
             v-if="$auth.loggedIn && !myPost"
             cols="3"
-            sm='2'
+            sm="2"
             class="d-flex justify-center"
           >
             <AtomsPostButtonBookMark
@@ -49,7 +49,7 @@
           <v-col
             v-if="$auth.loggedIn && myPost"
             cols="3"
-            sm='2'
+            sm="2"
             class="d-flex justify-center"
           >
             <AtomsPostButtonDestroy
@@ -79,21 +79,21 @@
             </v-sheet>
           </v-col>
           <v-col
-            v-if='$vuetify.breakpoint.xs'
-            cols='6'
+            v-if="$vuetify.breakpoint.xs"
+            cols="6"
           >
             <AtomsCategoryItem :categories="post.categories" />
           </v-col>
           <v-col
             cols="6"
-            sm='3'
-            align-self='end'  
+            sm="3"
+            align-self="end"
           >
             <!-- <AtomsPostViews /> -->
             <AtomsPostFavoriteRate :post="post" />
           </v-col>
         </v-row>
-        <template v-if='!$vuetify.breakpoint.xs'>
+        <template v-if="!$vuetify.breakpoint.xs">
           <v-row class="d-flex justify-end">
             <v-col>
               <AtomsCategoryItem :categories="post.categories" />
@@ -143,7 +143,7 @@ export default {
     },
     postCardWidth () {
       return this.$vuetify.breakpoint.xs ? '90%' : '55%'
-    }
+    },
   },
   methods: {
     destroyPost () {

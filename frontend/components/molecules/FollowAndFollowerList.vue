@@ -90,8 +90,8 @@ export default {
   },
   computed: {
     listWidth () {
-      return this.$vuetify.breakpoint.xs ? '90%': '40%'
-    }
-  }
+      return this.$vuetify.breakpoint.xs ? '90%' : '40%'
+    },
+  },
 }
 </script>

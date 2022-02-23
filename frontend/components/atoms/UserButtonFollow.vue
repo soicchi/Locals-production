@@ -7,8 +7,8 @@
       rounded
       :loading="loading"
       :disabled="loading"
+      :style="fontSize"
       @click="follow"
-      :style='fontSize'
     >
       フォロー
     </v-btn>
@@ -19,8 +19,8 @@
       class="follow-btn"
       :loading="loading"
       :disabled="loading"
+      :style="fontSize"
       @click="unfollow"
-      :style='fontSize'
     >
       フォロー解除
     </v-btn>
@@ -50,7 +50,7 @@ export default {
   computed: {
     fontSize () {
       return this.$vuetify.breakpoint.xs ? { 'font-size': '12px' } : ''
-    }
+    },
   },
   created () {
     this.loading = true

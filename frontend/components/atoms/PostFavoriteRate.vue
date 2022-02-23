@@ -35,7 +35,7 @@ export default {
     },
     iconSize () {
       return this.$vuetify.breakpoint.xs ? '50' : '70'
-    }
+    },
   },
 }
 </script>

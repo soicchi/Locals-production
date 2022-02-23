@@ -1,23 +1,23 @@
 <template>
-  <div v-if='$vuetify.breakpoint.xs'>
+  <div v-if="$vuetify.breakpoint.xs">
     <p
-      class='mb-0'
-      :style='mainFontSize'
+      class="mb-0"
+      :style="mainFontSize"
     >
       {{ post.restaurant_name }}
     </p>
     <p
-      class='mb-0'
-      :style='subFontSize'
+      class="mb-0"
+      :style="subFontSize"
     >
       最寄り駅: {{ post.station }}
     </p>
   </div>
   <p
     v-else
-    :style='mainFontSize'
+    :style="mainFontSize"
   >
-    {{ post.restaurant_name }}<span :style='subFontSize'>/最寄り駅: {{ post.station }}</span>
+    {{ post.restaurant_name }}<span :style="subFontSize">/最寄り駅: {{ post.station }}</span>
   </p>
 </template>
 
@@ -31,11 +31,11 @@ export default {
   },
   computed: {
     mainFontSize () {
-      return this.$vuetify.breakpoint.xs ? { 'font-size': '24px' } : { 'font-size': '34px'}
+      return this.$vuetify.breakpoint.xs ? { 'font-size': '24px' } : { 'font-size': '34px' }
     },
     subFontSize () {
       return this.$vuetify.breakpoint.xs ? { 'font-size': '12px' } : { 'font-size': '18px' }
-    }
-  }
+    },
+  },
 }
 </script>

@@ -37,15 +37,15 @@ export default {
         scales: {
           yAxes: [
             {
-              ticks:  {
+              ticks: {
                 min: 0,
                 max: 100,
                 stepSize: 10,
-                callback: value => value + '%'
-              }
-            }
-          ]
-        }
+                callback: value => value + '%',
+              },
+            },
+          ],
+        },
       },
     }
   },

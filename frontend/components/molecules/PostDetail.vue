@@ -14,7 +14,7 @@
         <v-row align="center">
           <v-col
             cols="2"
-            sm='1'
+            sm="1"
           >
             <AtomsUserIcon
               :icon-size="iconSize"
@@ -23,7 +23,7 @@
           </v-col>
           <v-col
             cols="3"
-            sm='2'
+            sm="2"
           >
             <AtomsUserName :user="post.user" />
           </v-col>
@@ -31,7 +31,7 @@
           <v-col
             v-if="loggedInUser.id !== post.user_id && $auth.loggedIn"
             cols="2"
-            sm='1'
+            sm="1"
           >
             <AtomsPostButtonBookMark
               :post="post"
@@ -71,19 +71,19 @@
         <v-row>
           <v-col
             cols="12"
-            sm='6'
+            sm="6"
           >
             <AtomsPostComment :post="post" />
           </v-col>
           <v-col
             cols="6"
-            sm='2'  
+            sm="2"
           >
             <AtomsPostFavoriteRate :post="post" />
           </v-col>
           <v-col
             cols="3"
-            sm='1'
+            sm="1"
             align-self="center"
             class="mt-8 px-0"
           >
@@ -94,13 +94,13 @@
               :my-post="myPost"
               @change-to-liked="changeToLiked"
             />
-            <p class='text-center'>
+            <p class="text-center">
               <span :style="fontSize">また行きたい!</span>
             </p>
           </v-col>
           <v-col
             cols="3"
-            sm='1'
+            sm="1"
             align-self="center"
             class="mt-8 px-0"
           >
@@ -120,11 +120,11 @@
     </v-row>
     <v-row
       justify="center"
-      class='mb-3'
+      class="mb-3"
     >
       <v-col
         cols="12"
-        sm='5'  
+        sm="5"
       >
         <MoleculesPostChart
           :favorite-rate-group="favoriteRateGroup"
@@ -134,7 +134,7 @@
       </v-col>
       <v-col
         cols="12"
-        sm='4'
+        sm="4"
         class="mt-8"
       >
         <MoleculesPostMap
@@ -205,7 +205,7 @@ export default {
     },
     fontSize () {
       return this.$vuetify.breakpoint.xs ? { 'font-size': '7px' } : { 'font-size': '12px' }
-    }
+    },
   },
   methods: {
     changeToLiked (postId) {

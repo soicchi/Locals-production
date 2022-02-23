@@ -15,7 +15,7 @@ class Api::V1::SearchesController < ApplicationController
           :dislike_users,
           { categories: { only: [:id, :name] } }
         ],
-        methods: :image_url
+                                 methods: :image_url
       )
     else
       # カテゴリーに合致した投稿のIDを取得
@@ -34,7 +34,7 @@ class Api::V1::SearchesController < ApplicationController
             :dislike_users,
             { categories: { only: [:id, :name] } }
           ],
-          methods: :image_url
+                                   methods: :image_url
         )
       else
         render json: { message: '該当する投稿はありませんでした' }, status: 400

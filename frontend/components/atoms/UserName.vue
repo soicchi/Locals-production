@@ -21,7 +21,7 @@ export default {
   computed: {
     fontSize () {
       return this.$vuetify.breakpoint.xs ? { 'font-size': '15px' } : { 'font-size': '20px' }
-    }
-  }
+    },
+  },
 }
 </script>
