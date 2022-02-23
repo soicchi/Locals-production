@@ -3,6 +3,7 @@
     width="50%"
     color="baseColor"
     class="text-center"
+    :style="fontSize" 
   >
     {{ introduction }}
   </v-sheet>
@@ -16,5 +17,10 @@ export default {
       required: true,
     },
   },
+  computed: {
+    fontSize () {
+      return this.$vuetify.breakpoint.xs ? { 'font-size': '12px' } : { 'font-size': '16px' }
+    }
+  }
 }
 </script>
