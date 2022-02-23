@@ -74,8 +74,7 @@ export default {
     async follow () {
       this.followed = true
       await this.$axios.post('/relationships', { user_id: this.user.id })
-        .then((res) => {
-          this.addFollower(this.loggedInUser)
+        .then(() => {
           this.addLoggedInUserFollowing(this.user)
         })
     },
@@ -83,7 +82,6 @@ export default {
       this.followed = false
       await this.$axios.delete(`/relationships/${this.user.id}`)
         .then((res) => {
-          this.removeFollower(this.loggedInUser)
           this.removeLoggedInUserFollowing(this.user)
         })
     },
