@@ -8,8 +8,9 @@
       :loading="loading"
       :disabled="loading"
       @click="follow"
+      :style='fontSize'
     >
-      フォローする
+      フォロー
     </v-btn>
     <v-btn
       v-if="followed"
@@ -19,8 +20,9 @@
       :loading="loading"
       :disabled="loading"
       @click="unfollow"
+      :style='fontSize'
     >
-      フォローを解除する
+      フォロー解除
     </v-btn>
   </div>
 </template>
@@ -43,6 +45,11 @@ export default {
     return {
       loading: false,
       followed: false,
+    }
+  },
+  computed: {
+    fontSize () {
+      return this.$vuetify.breakpoint.xs ? { 'font-size': '12px' } : ''
     }
   },
   created () {

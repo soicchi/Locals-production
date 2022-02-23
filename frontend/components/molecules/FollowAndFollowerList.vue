@@ -5,7 +5,7 @@
       align="center"
     >
       <v-list
-        width="40%"
+        :width="listWidth"
         class="follow-box"
         elevation="1"
       >
@@ -88,5 +88,10 @@ export default {
       required: true,
     },
   },
+  computed: {
+    listWidth () {
+      return this.$vuetify.breakpoint.xs ? '90%': '40%'
+    }
+  }
 }
 </script>

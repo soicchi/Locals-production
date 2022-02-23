@@ -27,7 +27,7 @@
           >
             <slot name="post-card-user-name" />
           </v-col>
-          <v-spacer v-if='!$vuetify.breakpoint.xs' />
+          <v-spacer />
           <v-col
             cols="4"
             class="d-flex justify-center"
