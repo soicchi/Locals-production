@@ -8,8 +8,8 @@ resource "aws_cloudwatch_log_group" "back" {
   retention_in_days = 180
 }
 
-resource "aws_cloudwatch_log_group" "db_migrate_reset" {
-  name              = "/ecs/db-migrate-reset"
+resource "aws_cloudwatch_log_group" "db_migrate" {
+  name              = "/ecs/db-migrate"
   retention_in_days = 180
 }
 

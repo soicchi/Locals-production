@@ -7,8 +7,8 @@
       "logDriver": "awslogs",
       "options": {
         "awslogs-region": "ap-northeast-1",
-        "awslogs-stream-prefix": "db-migrate-reset",
-        "awslogs-group": "/ecs/db-migrate-reset"
+        "awslogs-stream-prefix": "db-migrate",
+        "awslogs-group": "/ecs/db-migrate"
       }
     },
     "portMappings": [
@@ -17,7 +17,7 @@
         "containerPort": 3000
       }
     ],
-    "command": ["bundle", "exec", "rails", "db:migrate:reset"],
+    "command": ["bundle", "exec", "rails", "db:migrate"],
     "environment": [
       {
         "name": "RAILS_ENV",
