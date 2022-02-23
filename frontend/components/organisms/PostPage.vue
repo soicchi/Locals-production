@@ -27,7 +27,9 @@ export default {
       post: 'post/post',
       loggedInUser: 'user/loggedInUser',
     }),
-    iconSize: () => 60,
+    iconSize () {
+      return this.$vuetify.breakpoint.xs ? 40 : 60
+    },
     myPost () {
       return this.loggedInUser.id === this.post.user_id
     },

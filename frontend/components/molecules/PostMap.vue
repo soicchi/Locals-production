@@ -1,7 +1,7 @@
 <template>
   <iframe
-    width="600"
-    height="520"
+    width="100%"
+    height="100%"
     style="border:0"
     loading="lazy"
     allowfullscreen
@@ -24,5 +24,10 @@ export default {
       required: true,
     },
   },
+  computed: {
+    mapWidth () {
+      return this.$vuetify.breakpoint.xs ? '100%' : ''
+    }
+  }
 }
 </script>

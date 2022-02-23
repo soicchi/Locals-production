@@ -5,26 +5,33 @@
       align="center"
     >
       <v-card
-        width="80%"
+        :width="cardWidth"
         class="mt-5 pa-5"
         height="auto"
         flat
         color="baseColor"
       >
         <v-row align="center">
-          <v-col cols="1">
+          <v-col
+            cols="2"
+            sm='1'
+          >
             <AtomsUserIcon
               :icon-size="iconSize"
               :avatar-url="post.user.avatar_url"
             />
           </v-col>
-          <v-col cols="2">
+          <v-col
+            cols="3"
+            sm='2'
+          >
             <AtomsUserName :user="post.user" />
           </v-col>
           <v-spacer />
           <v-col
             v-if="loggedInUser.id !== post.user_id && $auth.loggedIn"
-            cols="1"
+            cols="2"
+            sm='1'
           >
             <AtomsPostButtonBookMark
               :post="post"
@@ -41,7 +48,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="10">
+          <v-col cols="12">
             <swiper :options="swiperOptions">
               <swiper-slide
                 v-for="(image, i) in post.image_url"
@@ -62,16 +69,23 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="6">
+          <v-col
+            cols="12"
+            sm='6'
+          >
             <AtomsPostComment :post="post" />
           </v-col>
-          <v-col cols="2">
+          <v-col
+            cols="6"
+            sm='2'  
+          >
             <AtomsPostFavoriteRate :post="post" />
           </v-col>
           <v-col
-            cols="1"
+            cols="3"
+            sm='1'
             align-self="center"
-            class="mt-8"
+            class="mt-8 px-0"
           >
             <AtomsPostButtonLike
               :post="post"
@@ -80,14 +94,15 @@
               :my-post="myPost"
               @change-to-liked="changeToLiked"
             />
-            <p class="btn-font">
-              また行きたい!
+            <p class='text-center'>
+              <span :style="fontSize">また行きたい!</span>
             </p>
           </v-col>
           <v-col
-            cols="1"
+            cols="3"
+            sm='1'
             align-self="center"
-            class="mt-8"
+            class="mt-8 px-0"
           >
             <AtomsPostButtonDislike
               :post="post"
@@ -96,15 +111,21 @@
               :my-post="myPost"
               @change-to-disliked="changeToDisliked"
             />
-            <p class="btn-font bad">
-              う〜ん...
+            <p class="bad">
+              <span :style="fontSize">う〜ん...</span>
             </p>
           </v-col>
         </v-row>
       </v-card>
     </v-row>
-    <v-row justify="center">
-      <v-col cols="5">
+    <v-row
+      justify="center"
+      class='mb-3'
+    >
+      <v-col
+        cols="12"
+        sm='5'  
+      >
         <MoleculesPostChart
           :favorite-rate-group="favoriteRateGroup"
           :width="width"
@@ -112,7 +133,8 @@
         />
       </v-col>
       <v-col
-        cols="4"
+        cols="12"
+        sm='4'
         class="mt-8"
       >
         <MoleculesPostMap
@@ -178,6 +200,12 @@ export default {
   computed: {
     width: () => 500,
     height: () => 350,
+    cardWidth () {
+      return this.$vuetify.breakpoint.xs ? '90%' : '80%'
+    },
+    fontSize () {
+      return this.$vuetify.breakpoint.xs ? { 'font-size': '7px' } : { 'font-size': '12px' }
+    }
   },
   methods: {
     changeToLiked (postId) {
