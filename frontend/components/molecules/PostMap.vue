@@ -1,7 +1,7 @@
 <template>
   <iframe
     width="600"
-    height="500"
+    height="520"
     style="border:0"
     loading="lazy"
     allowfullscreen

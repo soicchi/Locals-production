@@ -35,10 +35,17 @@ export default {
       },
       chartOptions: {
         scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
+          yAxes: [
+            {
+              ticks:  {
+                min: 0,
+                max: 100,
+                stepSize: 10,
+                callback: value => value + '%'
+              }
+            }
+          ]
+        }
       },
     }
   },
