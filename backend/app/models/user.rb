@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable
+         :recoverable, :rememberable, :validatable,
+         :trackable, :session_limitable
 
   include DeviseTokenAuth::Concerns::User
   include Rails.application.routes.url_helpers

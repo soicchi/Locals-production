@@ -98,6 +98,8 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.10.1)
       devise (>= 4.8.0)
+    devise-security (0.17.0)
+      devise (>= 4.3.0)
     devise_token_auth (1.2.0)
       bcrypt (~> 3.0)
       devise (> 3.5.2, < 5)
@@ -254,6 +256,7 @@ DEPENDENCIES
   byebug
   devise (= 4.8.0)
   devise-i18n (= 1.10.1)
+  devise-security (= 0.17.0)
   devise_token_auth (= 1.2.0)
   factory_bot_rails (= 6.2.0)
   faker (= 2.19.0)
