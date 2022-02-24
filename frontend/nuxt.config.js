@@ -72,7 +72,7 @@ export default {
       login: '/auth/signin',
       logout: '/auth/signin',
       callback: false,
-      home: false,
+      home: '/',
     },
     strategies: {
       local: {

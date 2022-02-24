@@ -7,9 +7,6 @@
 
 <script>
 export default {
-  layout ({ store }) {
-    return store.state.auth.loggedIn ? 'default' : 'beforeLogin'
-  },
   computed: {
     title: () => '投稿一覧',
     posts () {

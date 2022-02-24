@@ -73,7 +73,6 @@ export default {
           this.$auth.loginWith('local', { data: { email: this.user.email, password: this.user.password } })
             .then((res) => {
               this.setLoggedInUser(res.data.data)
-              this.$router.replace('/')
             })
         })
         .catch((e) => {

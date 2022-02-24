@@ -1,6 +1,11 @@
 <template>
   <v-app>
-    <OrganismsTheHeader />
+    <template v-if="$auth.loggedIn">
+      <OrganismsTheHeader />
+    </template>
+    <template v-else>
+      <OrganismsBefHeader />
+    </template>
     <v-main class="background-setting">
       <OrganismsSnackBar />
       <Nuxt />

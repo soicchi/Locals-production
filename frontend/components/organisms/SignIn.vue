@@ -65,7 +65,6 @@ export default {
           this.setLoggedInUser(res.data.data)
           const message = ['ログインしました']
           this.setMessages({ messages: message, type: 'success' })
-          this.$router.replace('/')
         })
         .catch((e) => {
           const messages = e.response.data.errors
@@ -82,7 +81,6 @@ export default {
           this.setLoggedInUser(res.data.data)
           const message = ['ログインしました']
           this.setMessages({ messages: message, type: 'success' })
-          this.$router.replace('/')
         })
     }
   },

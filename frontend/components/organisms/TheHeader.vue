@@ -81,7 +81,6 @@ export default {
             this.$store.dispatch('user/resetLoggedInUser')
             const message = ['ログアウトしました']
             this.$store.dispatch('message/setMessages', { messages: message, type: 'success' })
-            this.$router.push('/auth/signin')
           })
       }
     },
