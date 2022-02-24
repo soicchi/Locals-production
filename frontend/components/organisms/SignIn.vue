@@ -13,9 +13,9 @@
         <v-btn
           text
           plain
-          color='fontColor'
-          @click='guestSignIn'
+          color="fontColor"
           class="text-decoration-underline"
+          @click="guestSignIn"
         >
           ゲストとしてログイン
         </v-btn>
@@ -74,7 +74,7 @@ export default {
     async guestSignIn () {
       const guestData = {
         email: 'guest@example.com',
-        password: 'password'
+        password: 'password',
       }
       await this.$auth.loginWith('local', { data: guestData })
         .then((res) => {
@@ -82,7 +82,7 @@ export default {
           const message = ['ログインしました']
           this.setMessages({ messages: message, type: 'success' })
         })
-    }
+    },
   },
 }
 </script>
