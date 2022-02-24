@@ -8,7 +8,7 @@
         plain
         retain-focus-on-click
         :loading="loading"
-        :disabled="myPost || loading"
+        :disabled="myPost || loading || !$auth.loggedIn"
         @click="dislike"
       >
         <v-icon>
@@ -22,7 +22,7 @@
         plain
         retain-focus-on-click
         :loading="loading"
-        :disabled="myPost || loading"
+        :disabled="myPost || loading || !$auth.loggedIn"
         @click="undislike"
       >
         <v-icon color="#DD2C00">
@@ -40,7 +40,7 @@
           plain
           retain-focus-on-click
           :loading="loading"
-          :disabled="myPost || loading"
+          :disabled="myPost || loading || !$auth.loggedIn"
           @click="dislike"
         >
           <v-icon>
@@ -54,7 +54,7 @@
           plain
           retain-focus-on-click
           :loading="loading"
-          :disabled="myPost || loading"
+          :disabled="myPost || loading || !$auth.loggedIn"
           @click="undislike"
         >
           <v-icon color="#DD2C00">
@@ -99,14 +99,16 @@ export default {
     }
   },
   created () {
-    this.loading = true
-    setTimeout(() => {
-      const dislikedState = this.loggedInUser.dislikedPosts.includes(this.post.id)
-      if (dislikedState) {
-        this.$emit('change-to-disliked')
-      }
-      this.loading = false
-    }, 1500)
+    if (this.$auth.loggedIn) {
+      this.loading = true
+      setTimeout(() => {
+        const dislikedState = this.loggedInUser.dislikedPosts.includes(this.post.id)
+        if (dislikedState) {
+          this.$emit('change-to-disliked')
+        }
+        this.loading = false
+      }, 1500)
+    }
   },
   methods: {
     ...mapActions({

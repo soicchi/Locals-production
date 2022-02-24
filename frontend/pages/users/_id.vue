@@ -29,7 +29,9 @@ export default {
     const userId = this.$route.params.id
     this.getUser(userId)
     this.getUserPosts(userId)
-    this.setLoggedInUserFollowing(this.loggedInUser.id)
+    if (this.$auth.loggedIn) {
+      this.setLoggedInUserFollowing(this.loggedInUser.id)
+    }
   },
   methods: {
     ...mapActions({

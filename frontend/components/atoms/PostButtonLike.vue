@@ -6,7 +6,7 @@
         width="70px"
         icon
         plain
-        :disabled="myPost || loading"
+        :disabled="myPost || loading || !$auth.loggedIn"
         :loading="loading"
         retain-focus-on-click
         @click="like"
@@ -20,7 +20,7 @@
         width="70px"
         icon
         plain
-        :disabled="myPost || loading"
+        :disabled="myPost || loading || !$auth.loggedIn"
         :loading="loading"
         retain-focus-on-click
         @click="unlike"
@@ -38,7 +38,7 @@
           width="70px"
           icon
           plain
-          :disabled="myPost || loading"
+          :disabled="myPost || loading || !$auth.loggedIn"
           :loading="loading"
           retain-focus-on-click
           @click="like"
@@ -52,7 +52,7 @@
           width="70px"
           icon
           plain
-          :disabled="myPost || loading"
+          :disabled="myPost || loading || !$auth.loggedIn"
           :loading="loading"
           retain-focus-on-click
           @click="unlike"
@@ -99,15 +99,17 @@ export default {
     }
   },
   created () {
-    this.loading = true
-    setTimeout(() => {
-      const likedState = this.loggedInUser.likedPosts.includes(this.post.id)
-      if (likedState) {
-        // this.liked = true
-        this.$emit('change-to-liked')
-      }
-      this.loading = false
-    }, 1500)
+    if (this.$auth.loggedIn) {
+      this.loading = true
+      setTimeout(() => {
+        const likedState = this.loggedInUser.likedPosts.includes(this.post.id)
+        if (likedState) {
+          // this.liked = true
+          this.$emit('change-to-liked')
+        }
+        this.loading = false
+      }, 1500)
+    }
   },
   methods: {
     ...mapActions({

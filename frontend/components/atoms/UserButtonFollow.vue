@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loggedInUser && loggedInUser.id !== user.id">
+  <div v-if="loggedInUser && loggedInUser.id !== user.id && $auth.loggedIn">
     <v-btn
       v-if="!followed"
       class="follow-btn"
@@ -53,16 +53,18 @@ export default {
     },
   },
   created () {
-    this.loading = true
-    setTimeout(() => {
-      const followedState = this.loggedInUser.following.some((following) => {
-        return following.id === this.user.id
-      })
-      if (followedState) {
-        this.followed = true
-      }
-      this.loading = false
-    }, 1500)
+    if (this.$auth.loggedIn) {
+      this.loading = true
+      setTimeout(() => {
+        const followedState = this.loggedInUser.following.some((following) => {
+          return following.id === this.user.id
+        })
+        if (followedState) {
+          this.followed = true
+        }
+        this.loading = false
+      }, 1500)
+    }
   },
   methods: {
     ...mapActions({
