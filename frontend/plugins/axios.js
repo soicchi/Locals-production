@@ -1,11 +1,13 @@
-export default ({ $axios }) => {
+export default ({ $axios, isDev }) => {
   $axios.onRequest((config) => {
     config.headers['access-token'] = window.localStorage.getItem('access-token')
     config.headers['token-type'] = window.localStorage.getItem('token-type')
     config.headers.uid = window.localStorage.getItem('uid')
     config.headers.client = window.localStorage.getItem('client')
-    // eslint-disable-next-line no-console
-    console.log(config)
+    if (isDev) {
+      // eslint-disable-next-line no-console
+      console.log(config)
+    }
   })
   $axios.onResponse((config) => {
     if (config.headers.client) {
@@ -14,11 +16,15 @@ export default ({ $axios }) => {
       localStorage.setItem('uid', config.headers.uid)
       localStorage.setItem('client', config.headers.client)
     }
-    // eslint-disable-next-line no-console
-    console.log(config)
+    if (isDev) {
+      // eslint-disable-next-line no-console
+      console.log(config)
+    }
   })
   $axios.onError((e) => {
-    // eslint-disable-next-line no-console
-    console.log(e.response)
+    if (isDev) {
+      // eslint-disable-next-line no-console
+      console.log(e.response)
+    }
   })
 }
