@@ -6,21 +6,20 @@
     <template #form-card-content>
       <AtomsFormEmail :email.sync="user.email" />
       <AtomsFormPassword :password.sync="user.password" />
-      <!-- <div class='password-forget pl-8 mb-2'>
-        パスワードを忘れた場合は
-        <span>
-          <v-btn
-            text
-            plain
-            small
-            to='/password/email'
-            color='fontColor'
-            class='pa-0 pr-4 pb-1 text-decoration-underline'
-          >
-            こちら
-          </v-btn>
-        </span>
-      </div> -->
+      <v-row
+        justify="center"
+        class="my-1"
+      >
+        <v-btn
+          text
+          plain
+          color='fontColor'
+          @click='guestSignIn'
+          class="text-decoration-underline"
+        >
+          ゲストとしてログイン
+        </v-btn>
+      </v-row>
     </template>
     <template #form-card-button>
       <AtomsFormButtonSignIn
@@ -73,6 +72,19 @@ export default {
           this.setMessages({ messages, type: 'error' })
         })
     },
+    async guestSignIn () {
+      const guestData = {
+        email: 'guest@example.com',
+        password: 'password'
+      }
+      await this.$auth.loginWith('local', { data: guestData })
+        .then((res) => {
+          this.setLoggedInUser(res.data.data)
+          const message = ['ログインしました']
+          this.setMessages({ messages: message, type: 'success' })
+          this.$router.replace('/')
+        })
+    }
   },
 }
 </script>
