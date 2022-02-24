@@ -8,7 +8,10 @@
       <AtomsFormPasswordConfirmation :password-confirmation.sync="passwordConfirmation" />
     </template>
     <template #form-card-button>
-      <AtomsFormButtonUpdatePassword :is-valid="isValid" />
+      <AtomsFormButtonUpdatePassword
+        :is-valid="isValid"
+        @update="update"
+      />
     </template>
   </MoleculesFormCard>
 </template>
@@ -28,8 +31,12 @@ export default {
   methods: {
     async update () {
       const resetPasswordToken = this.$route.query.reset_password_token
-      const headers = { 'access-token': resetPasswordToken }
-      await this.$axios.put('/auth/password', { password: this.password, password_confirmation: this.passwordConfirmation, headers })
+      const headers = {
+        'access-token': resetPasswordToken,
+        uid: window.localStorage.getItem('uid'),
+        client: window.localStorage.getItem('client'),
+      }
+      await this.$axios.put('/auth/password', { password: this.password, password_confirmation: this.passwordConfirmation }, { headers })
         .then(() => {
           this.$router.replace('/auth/signin')
           const message = 'パスワードを再設定しました'

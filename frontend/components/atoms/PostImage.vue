@@ -9,8 +9,8 @@
         height="100%"
         width="100%"
         v-bind="attrs"
-        v-on="on"
         :style="{ 'cursor': 'pointer' }"
+        v-on="on"
       />
     </template>
     <v-img
@@ -30,13 +30,13 @@ export default {
   },
   data () {
     return {
-      dialog: false
+      dialog: false,
     }
   },
   computed: {
     dialogWidth () {
-      return this.$vuetify.breakpoint.xs ? "80%" : "60%"
-    }
-  }
+      return this.$vuetify.breakpoint.xs ? '80%' : '60%'
+    },
+  },
 }
 </script>

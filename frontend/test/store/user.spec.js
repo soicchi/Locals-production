@@ -1,6 +1,6 @@
-import { createLocalVue } from '@vue/test-utils';
-import Vuex from 'vuex';
-import * as user from '~/store/user';
+import { createLocalVue } from '@vue/test-utils'
+import Vuex from 'vuex'
+import * as user from '~/store/user'
 // axiosのテストの実装については保留
 // import axios from 'axios'
 
@@ -21,30 +21,7 @@ const exampleUser = {
   birth_day: 1,
   gender: 'man',
   introduction: '',
-  image: ''
-}
-
-const otherUser = {
-  name: 'other_example',
-  email: 'other_example@example.com',
-  birth_place: '北海道',
-  birth_year: 1,
-  birth_month: 1,
-  birth_day: 1,
-  gender: 'man',
-  introduction: '',
-  image: ''
-}
-
-const userList = [
-  user,
-  otherUser
-]
-
-const examplePost = {
-  comment: 'example',
-  restaurant_name: 'exampleRestaurant',
-  user_id: 1
+  image: '',
 }
 
 describe('mutations', () => {

@@ -11,16 +11,16 @@ beforeEach(() => {
 })
 const post1 = {
   comment: 'comment1',
-  restaurant_name: 'name1'
+  restaurant_name: 'name1',
 }
 const post2 = {
   comment: 'comment2',
-  restaurant_name: 'name2'
+  restaurant_name: 'name2',
 }
 
 const bookMarks = [
   post1,
-  post2
+  post2,
 ]
 
 describe('mutations', () => {

@@ -26,9 +26,9 @@ export default {
     }
   },
   computed: {
-    title: () => 'パスワード再設定用Email入力フォーム',
+    title: () => '送信用メールアドレス',
     redirectUrl () {
-      return process.env.NODE_ENV === 'production' ? 'https://locals-apps.com/users/password/edit' : 'http://localhost:3000/users/password/edit'
+      return process.env.NODE_ENV === 'production' ? 'https://local-s-app.com/password/reset' : 'http://localhost/password/reset'
     },
   },
   methods: {

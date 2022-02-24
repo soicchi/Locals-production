@@ -14,7 +14,7 @@ describe('エラーメッセージテスト', () => {
   })
 
   test('エラーメッセージを格納する', () => {
-    store.dispatch('setMessages', { messages: messages, type: 'error' })
+    store.dispatch('setMessages', { messages, type: 'error' })
     expect(store.getters.messages).toEqual(messages)
     expect(store.getters.type).toEqual('error')
     expect(store.getters.existed).toEqual(true)

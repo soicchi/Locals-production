@@ -1,6 +1,6 @@
-import { createLocalVue } from "@vue/test-utils";
-import Vuex from 'vuex';
-import * as post from '~/store/post';
+import { createLocalVue } from '@vue/test-utils'
+import Vuex from 'vuex'
+import * as post from '~/store/post'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -22,8 +22,8 @@ const postData = {
     birth_day: 1,
     gender: 'man',
     introduction: '',
-    image: ''
-  }
+    image: '',
+  },
 }
 
 describe('mutations', () => {
