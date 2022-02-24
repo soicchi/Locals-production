@@ -7,7 +7,6 @@
 
 <script>
 export default {
-  auth: false,
   layout ({ store }) {
     return store.state.auth.loggedIn ? 'default' : 'beforeLogin'
   },

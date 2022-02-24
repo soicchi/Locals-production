@@ -86,6 +86,7 @@
           >
             <AtomsCategoryItem :categories="post.categories" />
           </v-col>
+          <v-spacer v-if="!$vuetify.breakpoint.xs" />
           <v-col
             cols="6"
             sm="3"

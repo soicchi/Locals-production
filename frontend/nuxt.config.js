@@ -64,8 +64,8 @@ export default {
   router: {
     // 未認証時、ホーム画面にリダイレクトされる際にメッセージ表示機能実装予定
     middleware: [
-      'auth',
       'loggedInRedirect',
+      'notLoggedInRedirect',
     ],
   },
 
