@@ -11,7 +11,7 @@
         v-on="on"
       >
         <v-icon size="40">
-          mdi-account-circle
+          mdi-cog
         </v-icon>
       </v-btn>
     </template>
