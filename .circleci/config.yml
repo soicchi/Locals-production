@@ -102,6 +102,10 @@ workflows:
           requires:
             - jest
             - eslint
+          filters:
+            branched:
+              only:
+                - main
       - aws-ecr/build-and-push-image:
           name: build-and-push-image-backend
           account-url: AWS_ECR_ACCOUNT_URL
@@ -114,6 +118,10 @@ workflows:
           requires:
             - rspec
             - rubocop
+          filters:
+            branched:
+              only:
+                - main
       - aws-ecs/deploy-service-update:
           family: ${FRONT_FAMILY}
           service-name: ${FRONT_SERVICE}
@@ -121,6 +129,10 @@ workflows:
           container-image-name-updates: "container=${FRONT_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
           requires:
             - build-and-push-image-frontend
+          filters:
+            branched:
+              only:
+                - main
       - aws-ecs/deploy-service-update:
           name: backend-service-update
           family: ${BACK_FAMILY}
@@ -129,6 +141,10 @@ workflows:
           container-image-name-updates: "container=${BACK_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
           requires:
             - build-and-push-image-backend
+          filters:
+            branched:
+              only:
+                - main
       - aws-ecs/run-task:
           name: db-migrate-reset
           cluster: ${CLUSTER_NAME}
@@ -137,6 +153,10 @@ workflows:
           subnet-ids: ${SUBNET_ID_1A}, ${SUBNET_ID_1C} # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
             - backend-service-update
+          filters:
+            branched:
+              only:
+                - main
       # - aws-ecs/run-task:
       #     name: db-migrate
       #     cluster: ${CLUSTER_NAME}
@@ -145,6 +165,10 @@ workflows:
       #     subnet-ids: ${SUBNET_ID_1A}, ${SUBNET_ID_1C} # 環境再構築時は再設定が必要 最終的には環境変数化
       #     requires:
       #       - backend-service-update
+      #     filters:
+      #       branched:
+      #         only:
+      #           - main
       - aws-ecs/run-task:
           name: db-seed-task
           cluster: ${CLUSTER_NAME}
@@ -153,4 +177,8 @@ workflows:
           subnet-ids: ${SUBNET_ID_1A}, ${SUBNET_ID_1C} # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
             - db-migrate-reset
+          filters:
+            branched:
+              only:
+                - main
         
