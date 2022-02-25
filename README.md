@@ -53,13 +53,13 @@ https://local-s-app.com
 
 #### AWS構成図
 
-<img width="600" alt="AWS構成図" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/629084/0d302d32-3384-7e15-e00b-7e0c02340ac8.png">
+<img width="600" alt="スクリーンショット 2022-02-19 13 36 38" src="https://user-images.githubusercontent.com/61832219/155649299-ee55ddec-4bc7-4ba7-a6d7-b1b316719433.png">
 
 ※ 極力インスタンスをプライベートサブネットに配置することで不要なアクセスを減らしている。
 
 #### ER図
 
-<img width="600"　alt="ER図" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/629084/445ea1e0-601c-ccf1-1a17-431e44ad906a.png">
+<img width="600" alt="スクリーンショット 2022-02-05 19 30 25" src="https://user-images.githubusercontent.com/61832219/155649229-36355aba-04d1-415e-bbf6-dd536d6829bd.png">
 
 ## 機能一覧
 
