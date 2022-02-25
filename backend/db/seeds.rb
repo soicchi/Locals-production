@@ -8,7 +8,7 @@ User.create!(
   birth_month: 1,
   birth_day: 1,
   gender: 'woman',
-  introduction: 'guestの自己紹介です。',
+  introduction: '基本的にお肉が大好きです。',
   password: 'password',
   password_confirmation: 'password'
 )
@@ -18,15 +18,16 @@ user.avatar.attach(io: File.open('app/assets/images/avatar1.jpeg'), filename: 'a
 # 50人のuserサンプルデータ作成
 50.times do |n|
   User.create!(
-    name: "user#{n}",
+    name: Faker::Name.unique.first_name,
     email: Faker::Internet.unique.email,
     birth_place: '東京都',
     birth_year: Faker::Number.between(from: 1920, to: 2021),
     birth_month: Faker::Number.between(from: 1, to: 12),
-    birth_day: Faker::Number.between(from: 1, to: 30),
+    birth_day: Faker::Number.between(from: 1, to: 28),
     gender: 'man',
     password: 'password',
-    password_confirmation: 'password'
+    password_confirmation: 'password',
+    introduction: 'お肉やイタリアンが大好きです。'
   )
 end
 
@@ -145,11 +146,14 @@ end
 
 # リレーションシップ作成
 users = User.all
-guest_user = users.first
-following = users[2..9]
-followers = users[5..12]
-following.each{ |followed| guest_user.follow(followed) }
-followers.each{ |follower| follower.follow(guest_user) }
+users[0].follow(users[1])
+users[0].follow(users[2])
+users[1].follow(users[2])
+users[1].follow(users[3])
+users[2].follow(users[0])
+users[2].follow(users[3])
+users[3].follow(users[4])
+users[3].follow(users[1])
 
 # like, dislike作成
 users_group_1 = User.all[4..14]

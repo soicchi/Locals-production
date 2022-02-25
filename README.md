@@ -8,12 +8,12 @@
 https://local-s-app.com
 
 
-<img width="300" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/629084/74eb5b81-202c-7d40-ce31-c89efc3226f0.png">
-<img width="300" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/629084/6f988930-730b-c082-2161-ddb243fe0542.png">
+<img width="300" alt="スクリーンショット 2022-02-25 11 39 46" src="https://user-images.githubusercontent.com/61832219/155643432-bb1d5fa8-7021-4f94-b648-96104bea3fab.png">
 
 ※ mobile用UI
 
-<img width="200" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/629084/2b22dce7-e9f0-8fef-5a08-c63c928d2721.png">
+<img width="200" alt="スクリーンショット 2022-02-24 15 42 29" src="https://user-images.githubusercontent.com/61832219/155643812-64d497ff-b097-4869-83c8-26f8ede55905.png">
+
 
 ## 使用技術
 
@@ -71,9 +71,10 @@ https://local-s-app.com
 |カテゴリー検索機能|投稿をカテゴリー別で検索ができる|☓|
 |グラフ表示機能|vue-chartjsを用いて投稿に対して評価したユーザーの年代別いいね率を表示|☓|
 |GoogleMap表示機能|投稿の店名、最寄り駅からお店の位置をGoogleMapで表示|☓|
+|フォロー、フォロワー一覧表示|ユーザーのフォロー、フォロワーがリストになって閲覧可能|☓|
+|フォロー、アンフォロー機能|各ユーザーをフォロー、アンフォローができる|○|
 |パスワード変更機能|パスワードとパスワード確認を入力すると編集ができる|○|
 |プロフィール編集機能|ユーザー名、プロフィール画像、自己紹介、メールアドレスの変更ができる|○|
-|フォロー、アンフォロー機能|各ユーザーをフォロー、アンフォローができる|○|
 |投稿機能|店名、最寄り駅、写真、コメント、カテゴリーの投稿作成、削除ができる|○|
 |画像投稿機能|RailsのActiveStorageを使って複数画像の投稿ができる|○|
 |ユーザー削除機能|ユーザーの削除ができる|○|
@@ -94,3 +95,6 @@ https://local-s-app.com
 
 ## 反省点
 
+* コミット間隔を開けすぎたことが原因で、エラーの対処の際に時間がかかってしまった。
+* 本番環境へのデプロイを後回しにしたことで、いざデプロイした際に発生したエラーの所在を発見できず、開発期間が伸びてしまった。
+* 開発序盤は公式ドキュメントではなく、２次情報から情報を得てしまっていて課題解決に時間がかかってしまった。
