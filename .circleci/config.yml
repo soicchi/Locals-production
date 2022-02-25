@@ -164,7 +164,7 @@ workflows:
           security-group-ids: ${SECURITY_GROUP_ID} # 環境再構築時は再設定が必要 最終的には環境変数化
           subnet-ids: ${SUBNET_ID_1A}, ${SUBNET_ID_1C} # 環境再構築時は再設定が必要 最終的には環境変数化
           requires:
-            - db-migrate-reset
+            - db-migrate
           filters:
             branches:
               only:
