@@ -103,7 +103,7 @@ workflows:
             - jest
             - eslint
           filters:
-            branched:
+            branches:
               only:
                 - main
       - aws-ecr/build-and-push-image:
@@ -119,7 +119,7 @@ workflows:
             - rspec
             - rubocop
           filters:
-            branched:
+            branches:
               only:
                 - main
       - aws-ecs/deploy-service-update:
@@ -130,7 +130,7 @@ workflows:
           requires:
             - build-and-push-image-frontend
           filters:
-            branched:
+            branches:
               only:
                 - main
       - aws-ecs/deploy-service-update:
@@ -142,7 +142,7 @@ workflows:
           requires:
             - build-and-push-image-backend
           filters:
-            branched:
+            branches:
               only:
                 - main
       - aws-ecs/run-task:
@@ -154,7 +154,7 @@ workflows:
           requires:
             - backend-service-update
           filters:
-            branched:
+            branches:
               only:
                 - main
       # - aws-ecs/run-task:
@@ -166,7 +166,7 @@ workflows:
       #     requires:
       #       - backend-service-update
       #     filters:
-      #       branched:
+      #       branches:
       #         only:
       #           - main
       - aws-ecs/run-task:
@@ -178,7 +178,7 @@ workflows:
           requires:
             - db-migrate-reset
           filters:
-            branched:
+            branches:
               only:
                 - main
         
