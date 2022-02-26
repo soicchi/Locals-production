@@ -32,39 +32,6 @@ RSpec.describe "Api::V1::Users", type: :request do
     end
   end
 
-  describe 'GET :id/user_posts' do
-    let!(:user) { create(:user) }
-    let!(:other_user1) { create(:user) }
-    let!(:other_user2) { create(:user) }
-    let!(:user_post) { create(:post, user_id: user.id) }
-    let!(:like) { create(:like, user_id: other_user1.id, post_id: user_post.id) }
-    let!(:dislike) { create(:dislike, user_id: other_user2.id, post_id: user_post.id) }
-
-    before do
-      get user_posts_api_v1_user_path user
-    end
-
-    it 'ステータスコード200が返ってくる' do
-      expect(response.status).to eq 200
-    end
-
-    it 'userの投稿が返ってくる' do
-      expect(response.body).to include user_post.id.to_json
-    end
-
-    it '投稿に紐付いたユーザーが返ってくる' do
-      expect(response.body).to include user.to_json(methods: :avatar_url)
-    end
-
-    it 'いいねしているユーザーのデータが返ってくる' do
-      expect(response.body).to include other_user1.to_json
-    end
-
-    it 'う〜んの評価をしたユーザーのデータが返ってくる' do
-      expect(response.body).to include other_user2.to_json
-    end
-  end
-
   describe 'GET /book_mark_posts' do
     let!(:user) { create(:user) }
     let!(:other_user1) { create(:user) }
