@@ -81,22 +81,22 @@ export const actions = {
         commit('setLoggedInUserFollowing', res.data.following)
       })
   },
-  async setLoggedInUserBookMarks ({ commit }) {
-    await this.$axios.get('/users/book_mark_posts')
+  async setLoggedInUserInfo ({ commit }) {
+    await this.$axios.get(`/users/book_mark_posts`)
       .then((res) => {
         commit('setLoggedInUserBookMarks', res.data)
       })
-  },
-  async setLoggedInUserLikedPosts ({ commit }) {
     await this.$axios.get('/users/liked_posts_ids')
       .then((res) => {
         commit('setLoggedInUserLikedPosts', res.data)
       })
-  },
-  async setLoggedInUserDislikedPosts ({ commit }) {
     await this.$axios.get('/users/disliked_posts_ids')
       .then((res) => {
         commit('setLoggedInUserDislikedPosts', res.data)
+      })
+    await this.$axios.get('/users/following_posts')
+      .then((res) => {
+        commit('post/setPosts', res.data, { root: true })
       })
   },
   setUser ({ commit }, userData) {

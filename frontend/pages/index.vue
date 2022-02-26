@@ -9,11 +9,7 @@ export default {
   },
   created () {
     if (this.$auth.loggedIn) {
-      // 下記メソッドをstoreファイル上でまとめる
-      this.$store.dispatch('post/getFollowingPosts')
-      this.$store.dispatch('user/setLoggedInUserBookMarks')
-      this.$store.dispatch('user/setLoggedInUserLikedPosts')
-      this.$store.dispatch('user/setLoggedInUserDislikedPosts')
+      this.$store.dispatch('user/setLoggedInUserInfo')
     } else {
       this.$store.dispatch('post/getPosts')
       this.$store.dispatch('category/getCategories')
