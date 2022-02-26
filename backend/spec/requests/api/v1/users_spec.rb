@@ -27,10 +27,6 @@ RSpec.describe "Api::V1::Users", type: :request do
       expect(response.body).to include user.followers.to_json
     end
 
-    it 'ユーザーに紐付いたブックマークした投稿が返ってくる' do
-      expect(response.body).to include user.book_mark_posts.to_json
-    end
-
     it 'いいねした投稿が返ってくる' do
       expect(response.body).to include user.liked_posts.to_json
     end

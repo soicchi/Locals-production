@@ -1,17 +1,11 @@
 class Api::V1::UsersController < ApplicationController
   def show
-    user = User.includes(
-      { following: { avatar_attachment: :blob } },
-      { followers: { avatar_attachment: :blob } },
-      :book_mark_posts,
-      :liked_posts
-    ).with_attached_avatar.find(params[:id])
+    user = User.find(params[:id])
     render json: user.to_json(include:
       [
-        { following: { methods: :avatar_url } },
-        { followers: { methods: :avatar_url } },
-        :book_mark_posts,
-        :liked_posts,
+        :following,
+        :followers,
+        :liked_posts
       ],
                               methods: :avatar_url
     )
@@ -24,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
       :like_users,
       :dislike_users,
       :categories
-    )
+    ).with_attached_images
     render json: posts.to_json(include:
       [
         { user: { methods: :avatar_url } },
