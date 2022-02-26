@@ -19,6 +19,12 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  props: {
+    posts: {
+      type: Array,
+      required: true,
+    }
+  },
   data () {
     return {
       loading: false,
@@ -27,7 +33,6 @@ export default {
   computed: {
     ...mapGetters({
       loggedInUser: 'user/loggedInUser',
-      posts: 'post/posts'
     }),
     iconSize () {
       return this.$vuetify.breakpoint.xs ? 40 : 60

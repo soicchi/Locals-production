@@ -13,7 +13,7 @@
     >
       <AtomsCommonTitle :title="title" />
     </v-col>
-    <OrganismsPostFeed />
+    <OrganismsPostFeed :posts="posts" />
   </div>
 </template>
 
@@ -22,6 +22,10 @@ export default {
   props: {
     title: {
       type: String,
+      required: true,
+    },
+    posts: {
+      type: Array,
       required: true,
     },
   },

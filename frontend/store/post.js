@@ -67,12 +67,6 @@ export const actions = {
         commit('setPost', res.data)
       })
   },
-  async getUserPosts ({ commit }, userId) {
-    await this.$axios.get(`/users/${userId}/user_posts`)
-      .then((res) => {
-        commit('setPosts', res.data)
-      })
-  },
   async getLikedPosts ({ commit }, userId) {
     await this.$axios.get('/users/liked_posts', { params: { id: userId } })
       .then((res) => {

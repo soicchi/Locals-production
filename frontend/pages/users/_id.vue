@@ -2,7 +2,7 @@
   <div>
     <TemplatesUserPage
       v-if="matchName"
-      :posts="posts"
+      :posts="user.posts"
     />
     <NuxtChild
       :user="user"
@@ -19,7 +19,6 @@ export default {
     ...mapGetters({
       loggedInUser: 'user/loggedInUser',
       user: 'user/user',
-      posts: 'post/posts',
     }),
     matchName () {
       return this.$route.path === `/users/${this.user.id}`
@@ -28,7 +27,6 @@ export default {
   created () {
     const userId = this.$route.params.id
     this.getUser(userId)
-    this.getUserPosts(userId)
     if (this.$auth.loggedIn) {
       this.setLoggedInUserFollowing(this.loggedInUser.id)
     }
@@ -36,7 +34,6 @@ export default {
   methods: {
     ...mapActions({
       getUser: 'user/getUser',
-      getUserPosts: 'post/getUserPosts',
       setLoggedInUserFollowing: 'user/setLoggedInUserFollowing',
     }),
   },

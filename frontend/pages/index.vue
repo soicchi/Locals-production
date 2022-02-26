@@ -1,11 +1,17 @@
 <template>
-  <TemplatesTopPage :title="title" />
+  <TemplatesTopPage
+    :title="title"
+    :posts="posts"
+  />
 </template>
 
 <script>
 export default {
   computed: {
     title: () => '投稿一覧',
+    posts () {
+      return this.$store.getters['post/posts']
+    },
   },
   created () {
     if (this.$auth.loggedIn) {
