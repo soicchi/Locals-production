@@ -12,7 +12,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def user_posts
-    user = User.with_attached_avatar.find(params[:id])
+    user = User.find(params[:id])
     posts = user.posts.includes(
       { user: { avatar_attachment: :blob } },
       :like_users,
@@ -42,13 +42,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def book_mark_posts
-    user = User.includes(:book_mark_posts).find(current_user.id)
+    user = User.find(current_user.id)
     posts = user.book_mark_posts.includes(
       { user: { avatar_attachment: :blob } },
       :like_users,
       :dislike_users,
       :categories
-    )
+    ).with_attached_images
     render json: posts.to_json(include:
       [
         { user: { methods: :avatar_url } },
@@ -74,13 +74,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def following_posts
-    user = User.includes(:following).find(current_user.id)
+    user = User.find(current_user.id)
     posts = user.following_feed.includes(
       { user: { avatar_attachment: :blob } },
       :like_users,
       :dislike_users,
       :categories
-    )
+    ).with_attached_images
     render json: posts.to_json(include:
       [
         { user: { methods: :avatar_url } },
@@ -94,13 +94,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def liked_posts
-    user = User.includes(:liked_posts).find(params[:id])
+    user = User.find(params[:id])
     posts = user.liked_posts.includes(
       { user: { avatar_attachment: :blob } },
       :like_users,
       :dislike_users,
       :categories
-    )
+    ).with_attached_images
     render json: posts.to_json(include:
       [
         { user: { methods: :avatar_url } },
