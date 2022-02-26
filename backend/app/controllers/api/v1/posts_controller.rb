@@ -21,12 +21,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def show
-    post = Post.includes(
-      { user: { avatar_attachment: :blob } },
-      :like_users,
-      :dislike_users,
-      :categories
-    ).with_attached_images.find(params[:id])
+    post = Post.with_attached_images.find(params[:id])
     render json: post.to_json(include:
       [
         { user: { methods: :avatar_url } },

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'User', at: 'auth'
       resources :users, only: [:show] do
         member do
-          get :following, :followers, :user_posts
+          get :user_posts
         end
         collection do
           get :book_mark_posts, :liked_posts_ids, :disliked_posts_ids, :following_posts, :liked_posts

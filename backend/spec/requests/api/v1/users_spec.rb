@@ -65,42 +65,6 @@ RSpec.describe "Api::V1::Users", type: :request do
     end
   end
 
-  describe 'GET /:id/following' do
-    let!(:user) { create(:user) }
-    let!(:other_user) { create(:user) }
-    let!(:relationship) { create(:relationship, follower_id: user.id, followed_id: other_user.id) }
-
-    before do
-      get following_api_v1_user_path user
-    end
-
-    it 'ステータスコードが200が返ってくる' do
-      expect(response.status).to eq 200
-    end
-
-    it 'ユーザーがフォローしているユーザー一覧が返ってくる' do
-      expect(response.body).to eq [other_user].to_json
-    end
-  end
-
-  describe 'GET /:id/followers' do
-    let!(:user) { create(:user) }
-    let!(:other_user) { create(:user) }
-    let!(:relationship) { create(:relationship, follower_id: other_user.id, followed_id: user.id) }
-
-    before do
-      get followers_api_v1_user_path user
-    end
-
-    it 'ステータスコードが200' do
-      expect(response.status).to eq 200
-    end
-
-    it 'ユーザーのフォロワー一覧が返ってくる' do
-      expect(response.body).to eq [other_user].to_json
-    end
-  end
-
   describe 'GET /book_mark_posts' do
     let!(:user) { create(:user) }
     let!(:other_user1) { create(:user) }

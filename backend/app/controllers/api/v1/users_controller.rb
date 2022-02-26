@@ -31,16 +31,6 @@ class Api::V1::UsersController < ApplicationController
     )
   end
 
-  def following
-    user = User.find(params[:id])
-    render json: user.following
-  end
-
-  def followers
-    user = User.find(params[:id])
-    render json: user.followers
-  end
-
   def book_mark_posts
     user = User.find(current_user.id)
     posts = user.book_mark_posts.includes(
