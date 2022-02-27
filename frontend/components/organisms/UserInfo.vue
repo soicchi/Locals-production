@@ -20,9 +20,9 @@ export default {
     ...mapGetters({
       user: 'user/user',
       loggedInUser: 'user/loggedInUser',
-      followingCount: 'relationShip/followingCount',
-      followersCount: 'relationShip/followersCount',
-      likedPostsCount: 'like/likedPostsCount',
+      followingCount: 'user/followingCount',
+      followersCount: 'user/followersCount',
+      likedPostsCount: 'user/likedPostsCount',
     }),
   },
 }
