@@ -5,19 +5,30 @@ class Api::V1::UsersController < ApplicationController
       [
         { posts: {
             include: [
-              { user: { methods: :avatar_url } },
-              :like_users,
-              :dislike_users,
+              { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
+              { like_users: { only: :id } },
+              { dislike_users: { only: :id } },
               { categories: { only: :name } }
             ],
-            methods: :image_url
+            methods: :image_url,
+            except: [:comment, :updated_at]
           }
         },
-        :following,
-        :followers,
-        :liked_posts
+        { following: { only: [:id, :name, :avatar_url] } },
+        { followers: { only: [:id, :name, :avatar_url] } },
+        { liked_posts: { only: [:id] } }
       ],
-                              methods: :avatar_url
+                              methods: :avatar_url,
+                              only: [
+                                :id,
+                                :name,
+                                :introduction,
+                                :avatar_url,
+                                :posts,
+                                :followers,
+                                :following,
+                                :liked_posts
+                              ]
     )
   end
 

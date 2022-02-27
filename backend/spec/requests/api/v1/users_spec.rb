@@ -15,8 +15,25 @@ RSpec.describe "Api::V1::Users", type: :request do
       expect(response.status).to eq 200
     end
 
-    it 'ユーザー情報が返ってくる' do
-      expect(response.body).to include user.id.to_json
+    it 'ユーザーのid, name, introduction, avatar_urlが返ってくる' do
+      expect(response.body).to include(
+        user.id.to_json,
+        user.name.to_json,
+        user.introduction.to_json,
+        user.avatar_url.to_json
+      )
+    end
+
+    it 'ユーザーに紐づくpostsが返ってくる' do
+      expect(response.body).to include user.posts.to_json(
+        include: [
+          { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
+          { like_users: { only: :id } },
+          { dislike_users: { only: :id } },
+          { categories: { only: :name } }
+        ],
+        methods: :image_url,
+        except: [:comment, :updated_at])
     end
 
     it 'ユーザーに紐付いたフォローしているユーザーのデータが返ってくる' do
