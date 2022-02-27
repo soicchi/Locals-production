@@ -1,8 +1,8 @@
 class Api::V1::UsersController < ApplicationController
   def show
     user = User.includes(posts: { images_attachments: :blob }).find(params[:id])
-    render json: user.to_json(include:
-      [
+    render json: user.to_json(
+      include: [
         { posts: {
             include: [
               { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
@@ -18,37 +18,36 @@ class Api::V1::UsersController < ApplicationController
         { followers: { only: [:id, :name, :avatar_url] } },
         { liked_posts: { only: [:id] } }
       ],
-                              methods: :avatar_url,
-                              only: [
-                                :id,
-                                :name,
-                                :introduction,
-                                :avatar_url,
-                                :posts,
-                                :followers,
-                                :following,
-                                :liked_posts
-                              ]
+      methods: :avatar_url,
+      only: [
+        :id,
+        :name,
+        :introduction,
+        :avatar_url,
+        :posts,
+        :followers,
+        :following,
+        :liked_posts
+      ]
     )
   end
 
   def book_mark_posts
-    user = User.find(current_user.id)
-    posts = user.book_mark_posts.includes(
+    posts = current_user.book_mark_posts.includes(
       { user: { avatar_attachment: :blob } },
       :like_users,
       :dislike_users,
       :categories
     ).with_attached_images
-    render json: posts.to_json(include:
-      [
+    render json: posts.to_json(
+      include: [
         { user: { methods: :avatar_url } },
-        :like_users,
-        :dislike_users,
+        { like_users: { only: :id } },
+        { dislike_users: { only: :id } },
         { categories: { only: :name } }
       ],
-                               methods: :image_url,
-                               except: [:comment, :updated_at]
+      methods: :image_url,
+      except: [:comment, :updated_at]
     )
   end
 
