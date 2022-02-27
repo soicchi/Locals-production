@@ -82,7 +82,7 @@ export const actions = {
       })
   },
   async setLoggedInUserInfo ({ commit }) {
-    await this.$axios.get(`/users/book_mark_posts`)
+    await this.$axios.get('/users/book_mark_posts')
       .then((res) => {
         commit('setLoggedInUserBookMarks', res.data)
       })
