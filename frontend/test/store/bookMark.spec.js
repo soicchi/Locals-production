@@ -9,23 +9,24 @@ let store
 beforeEach(() => {
   store = new Vuex.Store(storeBookMark)
 })
-const post1 = {
-  comment: 'comment1',
+const bookMarkPost = {
+  id: 3,
   restaurant_name: 'name1',
-}
-const post2 = {
-  comment: 'comment2',
-  restaurant_name: 'name2',
+  station: 'station',
+  image_url: [],
+  category_ids: [1]
 }
 
-const bookMarks = [
-  post1,
-  post2,
-]
+describe('actions', () => {
+  test('ブックマークリストが増える', () => {
+    store.commit('setBookMarks', [bookMarkPost])
+    store.dispatch('addBookMarks', bookMarkPost)
+    expect(store.state.bookMarks).toContain(bookMarkPost)
+  })
 
-describe('mutations', () => {
   test('ブックマークが格納される', () => {
-    store.commit('setBookMarks', bookMarks)
-    expect(store.state.bookMarks).toEqual(bookMarks)
+    store.commit('setBookMarks', [bookMarkPost])
+    store.dispatch('removeBookMarks', bookMarkPost)
+    expect(store.state.bookMarks).not.toContain(bookMarkPost)
   })
 })
