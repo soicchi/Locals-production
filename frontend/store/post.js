@@ -28,14 +28,6 @@ export const mutations = {
   setBookMarkUsers (state, users) {
     state.post.bookMarkUsers = users
   },
-  addBookMarkUser (state, user) {
-    state.post.bookMarkUsers.unshift(user)
-  },
-  removeBookMarkUser (state, user) {
-    state.post.bookMarkUsers = state.post.bookMarkUsers.filter((bookMarkUser) => {
-      return bookMarkUser.id !== user.id
-    })
-  },
   addLikeUser (state, user) {
     state.post.like_users.unshift(user)
   },
@@ -78,12 +70,6 @@ export const actions = {
   },
   removePost ({ commit }, postData) {
     commit('removePost', postData)
-  },
-  addBookMarkUser ({ commit }, user) {
-    commit('addBookMarkUser', user)
-  },
-  removeBookMarkUser ({ commit }, user) {
-    commit('removeBookMarkUser', user)
   },
   addLikeUser ({ commit }, user) {
     commit('addLikeUser', user)
