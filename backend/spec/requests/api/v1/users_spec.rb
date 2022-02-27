@@ -207,16 +207,38 @@ RSpec.describe "Api::V1::Users", type: :request do
 
   describe 'GET /liked_posts' do
     let!(:user) { create(:user) }
+    let!(:user2) { create(:user) }
     let!(:other_user_post) { create(:post) }
     let!(:like) { create(:like, user_id: user.id, post_id: other_user_post.id) }
+    let!(:dislike) { create(:dislike, user_id: user2.id, post_id: other_user_post.id) }
+    let!(:category) { create(:category) }
+    let!(:classification) { create(:classification, post_id: other_user_post.id, category_id: category.id) }
     let(:auth_tokens) { sign_in user }
 
     before do
       get liked_posts_api_v1_users_path, params: { id: user.id }, headers: auth_tokens
     end
 
-    it 'いいねした投稿の店名が返ってくる' do
-      expect(response.body).to include other_user_post.restaurant_name
+    it 'いいねした投稿のid, restaurant_name, station, image_url, created_atが返ってくる' do
+      expect(response.body).to include(
+        other_user_post.id.to_json,
+        other_user_post.restaurant_name.to_json,
+        other_user_post.station.to_json,
+        other_user_post.image_url.to_json,
+        other_user_post.created_at.to_json,
+      )
+    end
+
+    it '投稿にいいねしたユーザーのIDが返ってくる' do
+      expect(response.body).to include user.id.to_json
+    end
+
+    it '投稿にう〜んの評価をしたユーザーのIDが返ってくる' do
+      expect(response.body).to include user2.id.to_json
+    end
+
+    it '投稿に紐付いているカテゴリー名が返ってくる' do
+      expect(response.body).to include category.name.to_json
     end
   end
 end
