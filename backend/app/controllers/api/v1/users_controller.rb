@@ -71,15 +71,15 @@ class Api::V1::UsersController < ApplicationController
       :dislike_users,
       :categories
     ).with_attached_images
-    render json: posts.to_json(include:
-      [
-        { user: { methods: :avatar_url } },
-        :like_users,
-        :dislike_users,
+    render json: posts.to_json(
+      include: [
+        { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
+        { like_users: { only: :id } },
+        { dislike_users: { only: :id } },
         { categories: { only: :name } }
       ],
-                               methods: :image_url,
-                               except: [:comment, :updated_at]
+      methods: :image_url,
+      except: [:comment, :updated_at]
     )
   end
 

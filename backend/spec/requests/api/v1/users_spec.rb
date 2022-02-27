@@ -174,20 +174,30 @@ RSpec.describe "Api::V1::Users", type: :request do
       expect(response.status).to eq 200
     end
 
-    it 'フォローしているユーザーの投稿が返ってくる' do
-      expect(response.body).to include other_user1_post.id.to_json
+    it 'フォロー済みユーザーの投稿のid, restaurant, station, image_url, created_atが返ってくる' do
+      expect(response.body).to include(
+        other_user1_post.id.to_json,
+        other_user1_post.restaurant_name.to_json,
+        other_user1_post.station.to_json,
+        other_user1_post.image_url.to_json,
+        other_user1_post.created_at.to_json,
+      )
     end
 
-    it '投稿に紐付いたuserが含まれている' do
-      expect(response.body).to include other_user1.to_json(methods: :avatar_url)
+    it '投稿に紐付いたuserのid, name, avatar_urlが含まれている' do
+      expect(response.body).to include(
+        other_user1.id.to_json,
+        other_user1.name.to_json,
+        other_user1.avatar_url.to_json
+      )
     end
 
-    it 'いいねしているユーザーのデータが返ってくる' do
+    it 'いいねしているユーザーのIDが返ってくる' do
       expect(response.body).to include user.id.to_json
     end
 
-    it 'う〜んの評価をしたユーザーのデータが返ってくる' do
-      expect(response.body).to include other_user2.to_json
+    it 'う〜んの評価をしたユーザーのIDが返ってくる' do
+      expect(response.body).to include other_user2.id.to_json
     end
 
     it 'カテゴリーのnameが返ってくる' do
