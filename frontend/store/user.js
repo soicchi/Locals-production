@@ -8,7 +8,7 @@ export const getters = {
   loggedInUser: state => state.loggedInUser,
   followingCount: state => state.user.following.length,
   followersCount: state => state.user.followers.length,
-  likedPostsCount: state => state.user.liked_posts.length
+  likedPostsCount: state => state.user.liked_posts.length,
 }
 
 export const mutations = {
