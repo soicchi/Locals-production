@@ -6,6 +6,9 @@ export const state = () => ({
 export const getters = {
   user: state => state.user,
   loggedInUser: state => state.loggedInUser,
+  followingCount: state => state.user.following.length,
+  followersCount: state => state.user.followers.length,
+  likedPostsCount: state => state.user.liked_posts.length
 }
 
 export const mutations = {
@@ -69,10 +72,6 @@ export const actions = {
     await this.$axios.get(`/users/${userId}`)
       .then((res) => {
         commit('setUser', res.data)
-        commit('relationShip/setFollowing', res.data.following, { root: true })
-        commit('relationShip/setFollowers', res.data.followers, { root: true })
-        commit('bookMark/setBookMarks', res.data.book_mark_posts, { root: true })
-        commit('like/setLikedPosts', res.data.liked_posts, { root: true })
       })
   },
   async setLoggedInUserFollowing ({ commit }, userId) {
