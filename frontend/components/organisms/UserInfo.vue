@@ -15,7 +15,7 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     iconSize () {
-      return 100
+      return this.$vuetify.breakpoint.xs ? 70 : 100
     },
     ...mapGetters({
       user: 'user/user',
