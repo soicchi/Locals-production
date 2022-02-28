@@ -2,8 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "Api::V1::Posts", type: :request do
   describe 'GET /index' do
-    let!(:post1) { create(:post) }
-    let!(:post2) { create(:post) }
+    let!(:user) { create(:user) }
+    let!(:other_user) { create(:user) }
+    let!(:user_post) { create(:post, user_id: user.id) }
+    let!(:other_user_post) { create(:post, user_id: other_user.id) }
+    let!(:like) { create(:like, user_id: user.id, post_id: other_user_post.id) }
+    let!(:dislike) { create(:dislike, user_id: other_user.id, post_id: user_post.id) }
+    let!(:category) { create(:category) }
+    let!(:classification1) { create(:classification, post_id: user_post.id, category_id: category.id) }
+    let!(:classification2) { create(:classification, post_id: other_user_post.id, category_id: category.id) }
 
     before do
       get api_v1_posts_path
@@ -13,24 +20,43 @@ RSpec.describe "Api::V1::Posts", type: :request do
       expect(response.status).to eq 200
     end
 
-    it 'すべての投稿データが返ってくる' do
-      expect(response.body).to include post1.comment, post2.comment
+    it 'user_postのid, restaurant_name, station, created_atデータが返ってくる' do
+      expect(response.body).to include(
+        user_post.id.to_json,
+        user_post.restaurant_name.to_json,
+        user_post.station.to_json,
+        user_post.created_at.to_json
+      )
     end
 
-    it '投稿に紐づくユーザーデータも返ってくる' do
-      expect(response.body).to include post1.user.name, post2.user.name
+    it 'other_user_postのid, restaurant_name, station, created_atデータが返ってくる' do
+      expect(response.body).to include(
+        other_user_post.id.to_json,
+        other_user_post.restaurant_name.to_json,
+        other_user_post.station.to_json,
+        other_user_post.created_at.to_json
+      )
     end
 
-    it '投稿に紐づくlike_usersが返ってくる' do
-      expect(response.body).to include post1.like_users.to_json, post2.like_users.to_json
+    it '投稿に紐づくlike_usersのID返ってくる' do
+      expect(response.body).to include user.id.to_json
     end
 
-    it '投稿に紐づくdislike_usersが返ってくる' do
-      expect(response.body).to include post1.dislike_users.to_json, post2.dislike_users.to_json
+    it '投稿に紐づくdislike_usersのIDが返ってくる' do
+      expect(response.body).to include user.id.to_json
     end
 
-    it '投稿に紐づくカテゴリーのidが返ってくる' do
-      expect(response.body).to include post1.categories.ids.to_json, post2.categories.ids.to_json
+    it '投稿に紐づくカテゴリーのnameが返ってくる' do
+      expect(response.body).to include category.name.to_json
+    end
+
+    it '各投稿にcommentとupdated_atは含まれていない' do
+      expect(response.body).not_to include(
+        user_post.comment.to_json,
+        user_post.updated_at.to_json,
+        other_user_post.comment.to_json,
+        other_user_post.updated_at.to_json
+      )
     end
   end
 
