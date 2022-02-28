@@ -13,7 +13,7 @@
       >
         <v-row align="center">
           <v-col
-            cols="2"
+            cols="3"
             sm="1"
           >
             <AtomsUserIcon
@@ -26,7 +26,6 @@
             sm="2"
           >
             <AtomsUserName :user="post.user" />
-            <AtomsUserGender :gender="post.user.gender" />
           </v-col>
           <v-spacer />
           <v-col

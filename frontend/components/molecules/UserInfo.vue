@@ -94,7 +94,7 @@ export default {
       return this.$vuetify.breakpoint.xs ? { 'font-size': '12px' } : { 'font-size': '16px' }
     },
     userInfoPadding () {
-      return this.$vuetify.breakpoint.xs ? '' : 'px-7'
+      return this.$vuetify.breakpoint.xs ? '' : 'px-10'
     },
   },
 }
