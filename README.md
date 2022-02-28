@@ -56,6 +56,8 @@ https://local-s-app.com
 
 ※ 極力インスタンスをプライベートサブネットに配置することで不要なアクセスを減らしている。
 
+※ CircleCIを用いてプルリクをしっかり作成し、いきなり本番環境へpushを行わないように工夫している。
+
 #### ER図
 
 <img width="600" alt="スクリーンショット 2022-02-05 19 30 25" src="https://user-images.githubusercontent.com/61832219/155649229-36355aba-04d1-415e-bbf6-dd536d6829bd.png">
