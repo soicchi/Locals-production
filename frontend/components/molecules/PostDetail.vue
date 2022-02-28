@@ -22,10 +22,11 @@
             />
           </v-col>
           <v-col
-            cols="3"
+            cols="5"
             sm="2"
           >
             <AtomsUserName :user="post.user" />
+            <AtomsUserGender :gender="post.user.gender" />
           </v-col>
           <v-spacer />
           <v-col
