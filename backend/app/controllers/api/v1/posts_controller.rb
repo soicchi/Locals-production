@@ -11,7 +11,7 @@ class Api::V1::PostsController < ApplicationController
     ).with_attached_images.all
     render json: posts.to_json(
       include: [
-        { user: { methods: :avatar_url, only: [:id, :name, :avatar_url, :gender] } },
+        { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
         { like_users: { only: :id } },
         { dislike_users: { only: :id } },
         { categories: { only: :name } }
@@ -23,14 +23,15 @@ class Api::V1::PostsController < ApplicationController
 
   def show
     post = Post.with_attached_images.find(params[:id])
-    render json: post.to_json(include:
-      [
-        { user: { methods: :avatar_url } },
-        :like_users,
-        :dislike_users,
-        { categories: { only: [:id, :name] } }
+    render json: post.to_json(
+      include: [
+        { user: { methods: :avatar_url, only: [:id, :name, :avatar_url, :gender] } },
+        { like_users: { only: :id } },
+        { dislike_users: { only: :id } },
+        { categories: { only: [:name] } }
       ],
-                              methods: [:image_url, :liked_age_group, :disliked_age_group]
+      methods: [:image_url, :liked_age_group, :disliked_age_group],
+      except: [:updated_at]
     )
   end
 
