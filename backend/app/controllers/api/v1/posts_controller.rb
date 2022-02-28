@@ -25,7 +25,7 @@ class Api::V1::PostsController < ApplicationController
     post = Post.with_attached_images.find(params[:id])
     render json: post.to_json(
       include: [
-        { user: { methods: :avatar_url, only: [:id, :name, :avatar_url, :gender] } },
+        { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
         { like_users: { only: :id } },
         { dislike_users: { only: :id } },
         { categories: { only: [:name] } }
