@@ -21,7 +21,7 @@ export default {
     gender: {
       type: String,
       required: true,
-    }
-  }
+    },
+  },
 }
 </script>

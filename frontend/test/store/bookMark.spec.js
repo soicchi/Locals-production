@@ -14,7 +14,7 @@ const bookMarkPost = {
   restaurant_name: 'name1',
   station: 'station',
   image_url: [],
-  category_ids: [1]
+  category_ids: [1],
 }
 
 describe('actions', () => {
