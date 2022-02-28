@@ -16,6 +16,7 @@
   <p
     v-else
     :style="mainFontSize"
+    class="mb-0"
   >
     {{ post.restaurant_name }}<span :style="subFontSize">/最寄り駅: {{ post.station }}</span>
   </p>

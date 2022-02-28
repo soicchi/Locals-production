@@ -16,8 +16,6 @@ export default {
   created () {
     this.$store.dispatch('post/getPosts')
     this.$store.dispatch('category/getCategories')
-    this.$store.dispatch('user/setLoggedInUserBookMarks')
-    this.$store.dispatch('user/setLoggedInUserLikedPosts')
   },
 }
 </script>

@@ -1,53 +1,59 @@
 <template>
   <v-container fluid>
-    <v-row>
-      <v-col
-        cols="12"
-        class="d-flex justify-center mt-5"
+    <v-row
+      justify="center"
+      align="center"
+      :class="userInfoPadding"
+    >
+      <v-sheet
+        :width="userInfoWidth"
+        color="baseColor"
       >
-        <AtomsUserIcon
-          :icon-size="iconSize"
-          :avatar-url="user.avatar_url"
-        />
-      </v-col>
-      <v-col
-        cols="12"
-        class="text-center"
-      >
-        <AtomsUserName :user="user" />
-      </v-col>
-      <template v-if="user.id !== loggedInUser.id">
-        <v-col
-          cols="12"
-          class="d-flex justify-center"
-        >
-          <AtomsUserButtonFollow
-            :logged-in-user="loggedInUser"
-            :user="user"
-          />
-        </v-col>
-      </template>
-      <v-col
-        v-if="user.introduction"
-        cols="12"
-        class="d-flex justify-center"
-      >
-        <AtomsUserIntroduction :introduction="user.introduction" />
-      </v-col>
-      <v-col
-        cols="12"
-        class="text-center"
-      >
-        <AtomsUserStatusFollow
-          :following-count="followingCount"
-          :user-id="user.id"
-        />
-        <AtomsUserStatusFollower
-          :followers-count="followersCount"
-          :user-id="user.id"
-        />
-        <AtomsUserStatusLikes :liked-posts-count="likedPostsCount" />
-      </v-col>
+        <v-row>
+          <v-col
+            cols="12"
+            class="d-flex justify-start align-center mt-5"
+          >
+            <AtomsUserIcon
+              :icon-size="iconSize"
+              :avatar-url="user.avatar_url"
+            />
+            <div>
+              <AtomsUserName :user="user" />
+            </div>
+            <v-spacer />
+            <div
+              v-if="user.id !== loggedInUser.id"
+              class="ml-3"
+            >
+              <AtomsUserButtonFollow
+                :logged-in-user="loggedInUser"
+                :user="user"
+              />
+            </div>
+          </v-col>
+          <v-col
+            v-if="user.introduction"
+            cols="12"
+          >
+            <AtomsUserIntroduction :introduction="user.introduction" />
+          </v-col>
+          <v-col
+            cols="12"
+            class="text-center d-flex justify-start"
+          >
+            <AtomsUserStatusFollow
+              :following-count="followingCount"
+              :user-id="user.id"
+            />
+            <AtomsUserStatusFollower
+              :followers-count="followersCount"
+              :user-id="user.id"
+            />
+            <AtomsUserStatusLikes :liked-posts-count="likedPostsCount" />
+          </v-col>
+        </v-row>
+      </v-sheet>
     </v-row>
   </v-container>
 </template>
@@ -78,6 +84,17 @@ export default {
     iconSize: {
       type: Number,
       required: true,
+    },
+  },
+  computed: {
+    userInfoWidth () {
+      return this.$vuetify.breakpoint.xs ? '90%' : '45%'
+    },
+    fontSize () {
+      return this.$vuetify.breakpoint.xs ? { 'font-size': '12px' } : { 'font-size': '16px' }
+    },
+    userInfoPadding () {
+      return this.$vuetify.breakpoint.xs ? '' : 'px-7'
     },
   },
 }

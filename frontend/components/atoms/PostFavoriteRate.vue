@@ -3,16 +3,16 @@
     <p class="percent-font mb-0">
       また行きたい！
     </p>
-    <div>
+    <div class="d-flex">
       <v-icon
         :size="iconSize"
         color="mainColor"
       >
         mdi-account
       </v-icon>
-      <span class="percentage">
+      <div class="percentage">
         {{ percentage }}<span>%</span>
-      </span>
+      </div>
     </div>
   </div>
 </template>

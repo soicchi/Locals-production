@@ -4,6 +4,7 @@
     text
     plain
     :to="`/users/${userId}/followers`"
+    class="pl-0"
   >
     Followers : {{ followersCount }}
   </v-btn>

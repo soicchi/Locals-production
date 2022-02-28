@@ -1,8 +1,6 @@
 <template>
   <v-sheet
-    width="50%"
     color="baseColor"
-    class="text-center"
     :style="fontSize"
   >
     {{ introduction }}
