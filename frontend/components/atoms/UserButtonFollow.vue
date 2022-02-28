@@ -2,7 +2,7 @@
   <div v-if="loggedInUser && loggedInUser.id !== user.id && $auth.loggedIn">
     <v-btn
       v-if="!followed"
-      class="follow-btn"
+      class="follow-btn px-5"
       color="mainColor"
       rounded
       :loading="loading"
@@ -16,7 +16,7 @@
       v-if="followed"
       color="subColor"
       rounded
-      class="follow-btn"
+      class="follow-btn px-5"
       :loading="loading"
       :disabled="loading"
       :style="fontSize"

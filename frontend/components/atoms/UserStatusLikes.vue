@@ -3,6 +3,7 @@
     text
     plain
     :to="`/users/${userId}/liked_posts`"
+    class="pl-0"
   >
     Like : {{ likedPostsCount }}
   </v-btn>

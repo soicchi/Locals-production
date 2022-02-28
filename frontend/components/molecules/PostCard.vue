@@ -7,8 +7,8 @@
       <v-card
         :width="postCardWidth"
         height="auto"
-        elevation="1"
-        class="my-5 pa-5"
+        class="mb-3 pa-5"
+        outlined
       >
         <v-row align="center">
           <v-col
@@ -31,7 +31,7 @@
           <v-col
             cols="4"
             class="d-flex justify-center"
-            sm="2"
+            sm="3"
           >
             <AtomsCommonDate :date="post.created_at" />
           </v-col>
@@ -58,7 +58,7 @@
             />
           </v-col>
         </v-row>
-        <V-card-title>
+        <V-card-title class="pl-0">
           <AtomsPostRestaurantName :post="post" />
         </V-card-title>
         <v-row class="d-flex">
@@ -74,18 +74,21 @@
                 outlined
                 :width="imageWidth"
                 :height="imageHeight"
-                class="mr-4"
               >
                 <AtomsPostImage :image="image" />
               </v-sheet>
             </v-col>
           </div>
+
+          <!-- mobile版レイアウト用 -->
           <v-col
             v-if="$vuetify.breakpoint.xs"
             cols="6"
           >
             <AtomsCategoryItem :categories="post.categories" />
           </v-col>
+          <!-- mobile版レイアウト用 -->
+
           <v-spacer v-if="!$vuetify.breakpoint.xs" />
           <v-col
             cols="6"
@@ -145,7 +148,7 @@ export default {
       return this.$vuetify.breakpoint.xs ? '100px' : '200px'
     },
     postCardWidth () {
-      return this.$vuetify.breakpoint.xs ? '90%' : '55%'
+      return this.$vuetify.breakpoint.xs ? '100%' : '45%'
     },
   },
   methods: {

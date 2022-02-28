@@ -3,6 +3,7 @@
     text
     plain
     :to="`/users/${userId}/following`"
+    class="pl-0"
   >
     Follow : {{ followingCount }}
   </v-btn>
