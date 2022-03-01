@@ -26,10 +26,6 @@
       {
         "name": "API_DOMAIN",
         "value": "https://local-s-app.com"
-      },
-      {
-        "name": "DISABLE_DATABASE_ENVIRONMENT_CHECK",
-        "value": "1"
       }
     ],
     "secrets": [
