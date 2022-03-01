@@ -73,8 +73,6 @@ RSpec.configure do |config|
 
   # test後の画像ストレージ削除設定
   config.after(:all) do
-    if Rails.env.test?
-      FileUtils.rm_rf(ActiveStorage::Blob.service.root)
-    end
+    FileUtils.rm_rf(ActiveStorage::Blob.service.root) if Rails.env.test?
   end
 end
