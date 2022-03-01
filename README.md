@@ -52,7 +52,7 @@ https://local-s-app.com
 
 #### AWS構成図
 
-<img width="600" alt="スクリーンショット 2022-02-19 13 36 38" src="https://user-images.githubusercontent.com/61832219/155649299-ee55ddec-4bc7-4ba7-a6d7-b1b316719433.png">
+<img width="900" alt="スクリーンショット 2022-03-01 11 44 33" src="https://user-images.githubusercontent.com/61832219/156094691-59e950b4-b205-4586-94ab-8ea39e8020d3.png">
 
 ※ 極力インスタンスをプライベートサブネットに配置することで不要なアクセスを減らしている。
 
@@ -62,7 +62,7 @@ https://local-s-app.com
 
 #### ER図
 
-<img width="600" alt="スクリーンショット 2022-02-05 19 30 25" src="https://user-images.githubusercontent.com/61832219/155649229-36355aba-04d1-415e-bbf6-dd536d6829bd.png">
+<img width="900" alt="スクリーンショット 2022-02-05 19 30 25" src="https://user-images.githubusercontent.com/61832219/155649229-36355aba-04d1-415e-bbf6-dd536d6829bd.png">
 
 ## 機能一覧
 
