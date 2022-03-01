@@ -19,4 +19,5 @@ export default {
 <style lang="sass" scoped>
   .locals
     color: #fff
+    font-size: 12px
 </style>

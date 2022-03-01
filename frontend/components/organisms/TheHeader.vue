@@ -1,6 +1,7 @@
 <template>
   <div>
     <AtomsAppBarNavDrawer
+      v-if="$vuetify.breakpoint.xs"
       :drawer.sync="drawer"
       :drawer-menu-list="drawerMenuList"
     />
@@ -32,6 +33,11 @@ export default {
     drawerMenuList () {
       return [
         {
+          title: '投稿',
+          to: '/posts/create',
+          icon: 'mdi-note-edit',
+        },
+        {
           title: 'すべての投稿',
           to: '/posts/all',
           icon: 'mdi-note-multiple',
@@ -40,11 +46,6 @@ export default {
           title: '保存した投稿',
           to: '/posts/bookmark',
           icon: 'mdi-pin',
-        },
-        {
-          title: '投稿',
-          to: '/posts/create',
-          icon: 'mdi-note-edit',
         },
         {
           title: 'マイページ',
@@ -72,6 +73,9 @@ export default {
 
     async signOut () {
       if (window.confirm('ログアウトしてよろしいですか')) {
+        if (this.loggedInUser.guest === true) {
+          this.$axios.delete('/auth')
+        }
         await this.$auth.logout()
           .then((res) => {
             localStorage.removeItem('token-type')

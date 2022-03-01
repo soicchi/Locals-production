@@ -72,15 +72,14 @@ export default {
         })
     },
     async guestSignIn () {
-      const guestData = {
-        email: 'guest@example.com',
-        password: 'password',
-      }
-      await this.$auth.loginWith('local', { data: guestData })
+      await this.$axios.post('/guests')
         .then((res) => {
-          this.setLoggedInUser(res.data.data)
-          const message = ['ログインしました']
-          this.setMessages({ messages: message, type: 'success' })
+          this.$auth.loginWith('local', { data: { email: res.data.email, password: res.data.password } })
+            .then((res) => {
+              this.setLoggedInUser(res.data.data)
+              const message = ['ログインしました']
+              this.setMessages({ messages: message, type: 'success' })
+            })
         })
     },
   },

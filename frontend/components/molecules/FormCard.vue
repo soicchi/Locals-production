@@ -14,8 +14,7 @@
         <slot name="form-title" />
       </v-col>
       <v-card
-        width="80%"
-        max-width="320"
+        :width="cardWidth"
         class="pa-6"
       >
         <v-form v-model="setValid">
@@ -41,6 +40,9 @@ export default {
     setValid: {
       get () { return this.isValid },
       set (newVal) { return this.$emit('update:is-valid', newVal) },
+    },
+    cardWidth () {
+      return this.$vuetify.breakpoint.xs ? '90%' : '25%'
     },
   },
 }

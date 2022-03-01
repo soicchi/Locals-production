@@ -1,19 +1,4 @@
 require 'faker'
-# ゲストユーザーのサンプルデータ
-User.create!(
-  name: 'guest',
-  email: 'guest@example.com',
-  birth_place: '北海道',
-  birth_year: 2000,
-  birth_month: 1,
-  birth_day: 1,
-  gender: 'woman',
-  introduction: '基本的にお肉が大好きです。',
-  password: 'password',
-  password_confirmation: 'password'
-)
-user = User.find(1)
-user.avatar.attach(io: File.open('app/assets/images/avatar1.jpeg'), filename: 'avatar1.jpeg')
 
 # 50人のuserサンプルデータ作成
 50.times do |n|
@@ -24,17 +9,18 @@ user.avatar.attach(io: File.open('app/assets/images/avatar1.jpeg'), filename: 'a
     birth_year: Faker::Number.between(from: 1920, to: 2021),
     birth_month: Faker::Number.between(from: 1, to: 12),
     birth_day: Faker::Number.between(from: 1, to: 28),
-    gender: 'man',
     password: 'password',
     password_confirmation: 'password',
     introduction: 'お肉やイタリアンが大好きです。'
   )
 end
 
+user1 = User.find(1)
+user1.avatar.attach(io: File.open('app/assets/images/avatar2.jpeg'), filename: 'avatar1.jpeg')
 user2 = User.find(2)
-user2.avatar.attach(io: File.open('app/assets/images/avatar2.jpeg'), filename: 'avatar2.jpeg')
+user2.avatar.attach(io: File.open('app/assets/images/avatar3.jpeg'), filename: 'avatar2.jpeg')
 user3 = User.find(3)
-user3.avatar.attach(io: File.open('app/assets/images/avatar3.jpeg'), filename: 'avatar3.jpeg')
+user3.avatar.attach(io: File.open('app/assets/images/avatar4.jpg'), filename: 'avatar3.jpg')
 user4 = User.find(4)
 user4.avatar.attach(io: File.open('app/assets/images/avatar4.jpg'), filename: 'avatar4.jpg')
 

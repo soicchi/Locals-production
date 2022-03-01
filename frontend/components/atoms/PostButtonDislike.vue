@@ -25,7 +25,7 @@
         :disabled="myPost || loading || !$auth.loggedIn"
         @click="undislike"
       >
-        <v-icon color="#DD2C00">
+        <v-icon color="subColor">
           mdi-thumb-down
         </v-icon>
       </v-btn>

@@ -12,19 +12,14 @@
       >
         <v-row align="center">
           <v-col
-            cols="2"
-            sm="1"
+            cols="4"
+            sm="5"
+            class="d-flex align-center"
           >
             <AtomsUserIcon
               :icon-size="iconSize"
               :avatar-url="post.user.avatar_url"
             />
-          </v-col>
-          <v-col
-            cols="3"
-            sm="2"
-            class="pl-0"
-          >
             <slot name="post-card-user-name" />
           </v-col>
           <v-spacer />
@@ -58,28 +53,24 @@
             />
           </v-col>
         </v-row>
-        <V-card-title class="pl-0">
+        <v-card-title class="pl-0">
           <AtomsPostRestaurantName :post="post" />
-        </V-card-title>
+        </v-card-title>
         <v-row class="d-flex">
-          <div
+          <v-col
             v-for="(image, i) in limitCount"
             :key="i"
+            cols="6"
+            sm="3"
           >
-            <v-col
-              cols="6"
-              sm="3"
+            <v-sheet
+              outlined
+              :width="imageWidth"
+              :height="imageHeight"
             >
-              <v-sheet
-                outlined
-                :width="imageWidth"
-                :height="imageHeight"
-              >
-                <AtomsPostImage :image="image" />
-              </v-sheet>
-            </v-col>
-          </div>
-
+              <AtomsPostImage :image="image" />
+            </v-sheet>
+          </v-col>
           <!-- mobile版レイアウト用 -->
           <v-col
             v-if="$vuetify.breakpoint.xs"
@@ -142,10 +133,10 @@ export default {
       return this.$vuetify.breakpoint.xs ? this.post.image_url.slice(0, 2) : this.post.image_url.slice(0, 3)
     },
     imageWidth () {
-      return this.$vuetify.breakpoint.xs ? '120px' : '200px'
+      return this.$vuetify.breakpoint.xs ? '120px' : '100%'
     },
     imageHeight () {
-      return this.$vuetify.breakpoint.xs ? '100px' : '200px'
+      return this.$vuetify.breakpoint.xs ? '100px' : '150px'
     },
     postCardWidth () {
       return this.$vuetify.breakpoint.xs ? '100%' : '45%'

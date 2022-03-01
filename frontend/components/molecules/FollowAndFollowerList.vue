@@ -9,14 +9,16 @@
         class="follow-box"
         elevation="1"
       >
-        <v-list-item-group class="d-flex justify-center text-center">
+        <v-btn-toggle
+          class="d-flex justify-space-between"
+        >
           <v-col cols="6">
             <AtomsUserButtonFollowing :user-id="user.id" />
           </v-col>
           <v-col cols="6">
             <AtomsUserButtonFollowers :user-id="user.id" />
           </v-col>
-        </v-list-item-group>
+        </v-btn-toggle>
         <template v-if="pathName">
           <v-list-item
             v-for="followedUser in user.following"
@@ -90,7 +92,7 @@ export default {
   },
   computed: {
     listWidth () {
-      return this.$vuetify.breakpoint.xs ? '90%' : '40%'
+      return this.$vuetify.breakpoint.xs ? '100%' : '30%'
     },
   },
 }

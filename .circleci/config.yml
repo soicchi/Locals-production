@@ -149,24 +149,24 @@ workflows:
           name: db-migrate
           cluster: ${CLUSTER_NAME}
           task-definition: locals-db-migrate
-          security-group-ids: ${SECURITY_GROUP_ID} # 環境再構築時は再設定が必要 最終的には環境変数化
-          subnet-ids: ${SUBNET_ID_1A}, ${SUBNET_ID_1C} # 環境再構築時は再設定が必要 最終的には環境変数化
+          security-group-ids: ${SECURITY_GROUP_ID}
+          subnet-ids: ${SUBNET_ID_1A}, ${SUBNET_ID_1C}
           requires:
             - backend-service-update
           filters:
             branches:
               only:
                 - main
-      # - aws-ecs/run-task:
-      #     name: db-seed-task
-      #     cluster: ${CLUSTER_NAME}
-      #     task-definition: locals-db-seed
-      #     security-group-ids: ${SECURITY_GROUP_ID} # 環境再構築時は再設定が必要 最終的には環境変数化
-      #     subnet-ids: ${SUBNET_ID_1A}, ${SUBNET_ID_1C} # 環境再構築時は再設定が必要 最終的には環境変数化
-      #     requires:
-      #       - db-migrate
-      #     filters:
-      #       branches:
-      #         only:
-      #           - main
+      - aws-ecs/run-task:
+          name: db-seed-task
+          cluster: ${CLUSTER_NAME}
+          task-definition: locals-db-seed
+          security-group-ids: ${SECURITY_GROUP_ID}
+          subnet-ids: ${SUBNET_ID_1A}, ${SUBNET_ID_1C}
+          requires:
+            - db-migrate
+          filters:
+            branches:
+              only:
+                - main
         

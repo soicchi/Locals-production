@@ -5,6 +5,7 @@
       icon
       :loading="loading"
       :disabled="loading"
+      class="bookmark-btn"
       @click="bookMark"
     >
       <v-img
@@ -19,6 +20,7 @@
       icon
       :loading="loading"
       :disabled="loading"
+      class="bookmark-btn"
       @click="removeBookMark"
     >
       <v-img

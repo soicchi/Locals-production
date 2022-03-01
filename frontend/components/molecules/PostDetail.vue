@@ -13,18 +13,14 @@
       >
         <v-row align="center">
           <v-col
-            cols="3"
-            sm="1"
+            cols="8"
+            sm="3"
+            class="d-flex align-center"
           >
             <AtomsUserIcon
               :icon-size="iconSize"
               :avatar-url="post.user.avatar_url"
             />
-          </v-col>
-          <v-col
-            cols="5"
-            sm="2"
-          >
             <AtomsUserName :user="post.user" />
           </v-col>
           <v-spacer />
@@ -223,4 +219,7 @@ export default {
     font-size: 12px
   .bad
     padding-left: 12px
+  .swiper-button-prev,
+  .swiper-button-next
+    --swiper-navigation-color: #58554e
 </style>

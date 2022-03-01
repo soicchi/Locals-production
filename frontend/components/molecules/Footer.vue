@@ -1,7 +1,7 @@
 <template>
   <v-footer
     color="subColor"
-    height="60px"
+    height="40px"
   >
     <v-row justify="end">
       <v-col class="text-center">

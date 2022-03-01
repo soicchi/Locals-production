@@ -10,7 +10,7 @@
         icon
         v-on="on"
       >
-        <v-icon size="40">
+        <v-icon size="30">
           mdi-cog
         </v-icon>
       </v-btn>
@@ -49,19 +49,21 @@
             </v-list-item-content>
           </v-list-item>
         </template>
-        <v-divider />
-        <v-list-item @click="signOut">
-          <v-list-item-icon>
-            <v-icon>
-              mdi-logout-variant
-            </v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              ログアウト
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <template v-if="$vuetify.breakpoint.xs">
+          <v-divider />
+          <v-list-item @click="signOut">
+            <v-list-item-icon>
+              <v-icon>
+                mdi-logout-variant
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                ログアウト
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
       </v-list-item-group>
     </v-list>
   </v-menu>

@@ -4,6 +4,7 @@
     x-large
     class="text-h6"
     :to="`/users/${userId}/followers`"
+    width="100%"
   >
     フォロワー
   </v-btn>

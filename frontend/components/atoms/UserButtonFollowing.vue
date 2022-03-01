@@ -4,6 +4,7 @@
     x-large
     class="text-h6"
     :to="`/users/${userId}/following`"
+    width="100%"
   >
     フォロー中
   </v-btn>
