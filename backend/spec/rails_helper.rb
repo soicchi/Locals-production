@@ -68,5 +68,13 @@ RSpec.configure do |config|
   config.include AuthorizationSpecHelper, type: :request
   config.include JsonHelper, type: :request
 
+  # test環境でurl_forを使用する設定
   config.include Rails.application.routes.url_helpers
+
+  # test後の画像ストレージ削除設定
+  config.after(:all) do
+    if Rails.env.test?
+      FileUtils.rm_rf(ActiveStorage::Blob.service.root)
+    end
+  end
 end
