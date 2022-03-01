@@ -12,7 +12,6 @@ RSpec.describe "Api::V1::Guests", type: :request do
       end
 
       it 'ゲストユーザーが生成される' do
-        binding.pry
         expect(User.count).to eq 1
       end
     end
