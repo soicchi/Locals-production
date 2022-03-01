@@ -3,7 +3,7 @@
 
 好きな飲食店の情報を投稿、他者が投稿した内容を評価することができ、飲食店を探すツールとして利用します。
 
-ゲストログインで簡単にログインできます。
+**ゲストログインで簡単にログインできます。**
 
 https://local-s-app.com
 
@@ -52,15 +52,17 @@ https://local-s-app.com
 
 #### AWS構成図
 
-<img width="600" alt="スクリーンショット 2022-02-19 13 36 38" src="https://user-images.githubusercontent.com/61832219/155649299-ee55ddec-4bc7-4ba7-a6d7-b1b316719433.png">
+<img width="900" alt="スクリーンショット 2022-03-01 11 44 33" src="https://user-images.githubusercontent.com/61832219/156094691-59e950b4-b205-4586-94ab-8ea39e8020d3.png">
 
 ※ 極力インスタンスをプライベートサブネットに配置することで不要なアクセスを減らしている。
+
+※ ALBを通すことで常時SSL化を行っている。
 
 ※ CircleCIを用いてプルリクをしっかり作成し、いきなり本番環境へpushを行わないように工夫している。
 
 #### ER図
 
-<img width="600" alt="スクリーンショット 2022-02-05 19 30 25" src="https://user-images.githubusercontent.com/61832219/155649229-36355aba-04d1-415e-bbf6-dd536d6829bd.png">
+<img width="900" alt="スクリーンショット 2022-02-05 19 30 25" src="https://user-images.githubusercontent.com/61832219/155649229-36355aba-04d1-415e-bbf6-dd536d6829bd.png">
 
 ## 機能一覧
 
@@ -91,8 +93,7 @@ https://local-s-app.com
 4. 投稿編集機能
 5. 管理者権限
 6. フロントエンドのTypeScript化
-7. コードのリファクタリング
-8. フロントエンドのSSR化
+7. SSR化
 
 ## 反省点
 
