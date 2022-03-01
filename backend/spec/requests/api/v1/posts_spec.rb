@@ -171,6 +171,10 @@ RSpec.describe "Api::V1::Posts", type: :request do
       it 'messageが返される' do
         expect(json['message']).to eq success_message
       end
+
+      it 'ストレージから画像が削除される' do
+        expect(user_post.images.blobs).to eq []
+      end
     end
 
     context '他者の投稿を削除しようとした場合' do

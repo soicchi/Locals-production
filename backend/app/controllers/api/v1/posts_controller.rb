@@ -46,6 +46,7 @@ class Api::V1::PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
+    post.images.purge
     post.destroy
     render json: { message: '投稿が削除されました' }
   end
