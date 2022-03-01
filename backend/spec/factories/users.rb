@@ -6,7 +6,6 @@ FactoryBot.define do
     birth_year { 1992 }
     birth_month { 4 }
     birth_day { 4 }
-    gender { 'man' }
     introduction { '' }
     password { 'password' }
     password_confirmation { 'password' }

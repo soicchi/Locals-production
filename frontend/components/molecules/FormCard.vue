@@ -43,7 +43,7 @@ export default {
     },
     cardWidth () {
       return this.$vuetify.breakpoint.xs ? '90%' : '25%'
-    }
+    },
   },
 }
 </script>

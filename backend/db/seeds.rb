@@ -7,7 +7,6 @@ User.create!(
   birth_year: 2000,
   birth_month: 1,
   birth_day: 1,
-  gender: 'woman',
   introduction: '基本的にお肉が大好きです。',
   password: 'password',
   password_confirmation: 'password'
@@ -24,7 +23,6 @@ user.avatar.attach(io: File.open('app/assets/images/avatar1.jpeg'), filename: 'a
     birth_year: Faker::Number.between(from: 1920, to: 2021),
     birth_month: Faker::Number.between(from: 1, to: 12),
     birth_day: Faker::Number.between(from: 1, to: 28),
-    gender: 'man',
     password: 'password',
     password_confirmation: 'password',
     introduction: 'お肉やイタリアンが大好きです。'

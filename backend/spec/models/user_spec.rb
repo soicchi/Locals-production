@@ -92,14 +92,6 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'genderがnilの場合' do
-      let(:user_params) { attributes_for(:user, gender: nil) }
-
-      it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
-      end
-    end
-
     context 'introductionが256文字以上の場合' do
       let(:user_params) { attributes_for(:user, :over_length_introduction) }
 

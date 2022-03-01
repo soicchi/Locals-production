@@ -38,7 +38,7 @@
       <v-toolbar-items>
         <v-row
           justify="end"
-          align="center"  
+          align="center"
         >
           <v-col
             cols="10"
@@ -93,7 +93,7 @@ export default {
   computed: {
     myPage () {
       return this.$route.path === `/users/${this.loggedInUser.id}`
-    }
+    },
   },
   methods: {
     signOut () {

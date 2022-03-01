@@ -38,7 +38,6 @@ class User < ActiveRecord::Base
   validates :birth_year,   presence: true
   validates :birth_month,  presence: true
   validates :birth_day,    presence: true
-  validates :gender,       presence: true
   validates :introduction, length: { maximum: 255 },
                            allow_nil: true
   validates :avatar,       content_type: { in: %w[image/jpeg image/png image/gif image/jpg],

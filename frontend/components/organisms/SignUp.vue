@@ -71,7 +71,7 @@ export default {
           this.$auth.loginWith('local', { data: { email: this.user.email, password: this.user.password } })
             .then((res) => {
               this.setLoggedInUser(res.data.data)
-              this.setMessages({ messages: 'ログインしました', type: 'success' })
+              this.setMessages({ messages: ['ログインしました'], type: 'success' })
             })
         })
         .catch((e) => {
