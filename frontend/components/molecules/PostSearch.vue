@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-dialog
       v-model="dialog"
-      max-width="500px"
+      width="25%"
     >
       <template #activator="{ on, attrs }">
         <v-btn
@@ -109,7 +109,7 @@ export default {
       return this.$vuetify.breakpoint.xs ? '50%' : '12%'
     },
     btnFontSize () {
-      return this.$vuetify.breakpoint.xs ? { 'font-size': '20px' } : { 'font-size': '24px' }
+      return this.$vuetify.breakpoint.xs ? { 'font-size': '20px' } : { 'font-size': '20px' }
     },
   },
   methods: {

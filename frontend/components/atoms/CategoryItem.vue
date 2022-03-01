@@ -7,7 +7,7 @@
         label
         outlined
         color="subColor"
-        class="mr-3"
+        class="category-chip mr-3"
       >
         {{ category.name }}
       </v-chip>
@@ -38,3 +38,8 @@ export default {
   },
 }
 </script>
+
+<style lang="sass" scoped>
+  .category-chip::before
+    background-color: #fff
+</style>

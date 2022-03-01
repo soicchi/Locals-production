@@ -5,7 +5,7 @@
     required
     prepend-icon="mdi-store"
     placeholder="店名を記入"
-    hint="〜店まで記載してください"
+    hint="店舗名まで入力"
   />
 </template>
 

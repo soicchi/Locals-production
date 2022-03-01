@@ -3,7 +3,7 @@
     :disabled="loading"
     :loading="loading"
     rounded
-    color="mainColor"
+    color="subColor"
     class="delete-btn"
     @click="deleteUser"
   >

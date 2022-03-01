@@ -1,15 +1,13 @@
 <template>
   <div class="d-flex">
-    <v-col cols="5">
+    <v-col
+      cols="10"
+      class="d-flex align-center"
+    >
       <AtomsUserIcon
         :icon-size="iconSize"
         :avatar-url="user.avatar_url"
       />
-    </v-col>
-    <v-col
-      cols="5"
-      align-self="center"
-    >
       <AtomsUserName :user="user" />
     </v-col>
   </div>

@@ -10,19 +10,19 @@
       :style="fontSize"
       @click="follow"
     >
-      フォロー
+      フォローする
     </v-btn>
     <v-btn
       v-if="followed"
       color="subColor"
       rounded
-      class="follow-btn px-5"
+      class="unfollow-btn px-5"
       :loading="loading"
       :disabled="loading"
       :style="fontSize"
       @click="unfollow"
     >
-      フォロー解除
+      フォロー中
     </v-btn>
   </div>
 </template>
@@ -92,6 +92,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .follow-btn
+  .follow-btn,
+  .unfollow-btn
     @include commonBtn
+  .unfollow-btn
+    letter-spacing: 3.5px
 </style>

@@ -1,5 +1,8 @@
 <template>
-  <v-sheet height="100px">
+  <v-sheet
+    height="100px"
+    class="pa-2"  
+  >
     {{ post.comment }}
   </v-sheet>
 </template>

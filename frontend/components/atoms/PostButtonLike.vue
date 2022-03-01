@@ -25,7 +25,7 @@
         retain-focus-on-click
         @click="unlike"
       >
-        <v-icon color="#2962FF">
+        <v-icon color="mainColor">
           mdi-thumb-up
         </v-icon>
       </v-btn>

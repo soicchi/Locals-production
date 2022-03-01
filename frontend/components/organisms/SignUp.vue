@@ -16,7 +16,6 @@
         :birth-day.sync="user.birth_day"
         @reset-day="resetDay"
       />
-      <AtomsFormGender :gender.sync="user.gender" />
       <AtomsFormPassword
         :password.sync="user.password"
         :no-validation="noValidation"
@@ -46,7 +45,6 @@ export default {
         birth_year: 0,
         birth_month: 0,
         birth_day: 0,
-        gender: '',
         password: '',
         password_confirmation: '',
       },
@@ -73,6 +71,7 @@ export default {
           this.$auth.loginWith('local', { data: { email: this.user.email, password: this.user.password } })
             .then((res) => {
               this.setLoggedInUser(res.data.data)
+              this.setMessages({ messages: 'ログインしました', type: 'success' })
             })
         })
         .catch((e) => {

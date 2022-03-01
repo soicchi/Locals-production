@@ -6,6 +6,7 @@
       :loading="loading"
       :disabled="loading"
       @click="bookMark"
+      class="bookmark-btn"
     >
       <v-img
         height="40px"
@@ -20,6 +21,7 @@
       :loading="loading"
       :disabled="loading"
       @click="removeBookMark"
+      class="bookmark-btn"
     >
       <v-img
         height="40px"
