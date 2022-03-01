@@ -73,6 +73,9 @@ export default {
 
     async signOut () {
       if (window.confirm('ログアウトしてよろしいですか')) {
+        if (this.loggedInUser.guest === true) {
+          this.$axios.delete('/auth')
+        }
         await this.$auth.logout()
           .then((res) => {
             localStorage.removeItem('token-type')

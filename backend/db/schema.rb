@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_021411) do
     t.integer "birth_month", null: false
     t.integer "birth_day", null: false
     t.text "introduction"
+    t.boolean "guest", default: false
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

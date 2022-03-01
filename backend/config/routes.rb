@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :dislikes,        only: [:create, :destroy]
       resources :categories,      only: [:index]
       resources :health_checks,   only: [:index]
+      resources :guests,          only: [:create]
       get       '/search',        to: 'searches#search'
     end
   end

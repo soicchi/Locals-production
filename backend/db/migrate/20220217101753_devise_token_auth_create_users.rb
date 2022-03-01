@@ -46,6 +46,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[6.1]
       t.integer :birth_month,  null: false
       t.integer :birth_day,    null: false
       t.text    :introduction
+      t.boolean :guest,        default: false
 
       ## Tokens
       t.text :tokens
