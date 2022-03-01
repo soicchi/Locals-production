@@ -40,8 +40,3 @@ export default {
   },
 }
 </script>
-
-<style lang="sass" scoped>
-  .restaurant-name
-    font-color: '#58554e'
-</style>

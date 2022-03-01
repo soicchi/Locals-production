@@ -53,9 +53,9 @@
             />
           </v-col>
         </v-row>
-        <V-card-title class="pl-0">
+        <v-card-title class="pl-0">
           <AtomsPostRestaurantName :post="post" />
-        </V-card-title>
+        </v-card-title>
         <v-row class="d-flex">
           <v-col
             v-for="(image, i) in limitCount"
