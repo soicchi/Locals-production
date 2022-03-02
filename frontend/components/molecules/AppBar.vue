@@ -59,7 +59,7 @@
               text
               @click="signOut"
             >
-              サインアウト
+              ログアウト
             </v-btn>
           </v-col>
         </v-row>

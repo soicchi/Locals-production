@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div v-if="!$vuetify.breakpoint.xs">
+    <div
+      v-if="!$vuetify.breakpoint.xs"
+      class="d-flex justify-center align-center"  
+    >
       <v-btn
         v-if="!liked"
         width="70px"
@@ -29,13 +32,18 @@
           mdi-thumb-up
         </v-icon>
       </v-btn>
-      {{ post.like_users.length }}
+      <span>
+        {{ post.like_users.length }}
+      </span>
     </div>
-    <template v-else>
+    <div
+      v-else
+      class="d-flex justify-space-around align-center"  
+    >
       <div>
         <v-btn
           v-if="!liked"
-          width="70px"
+          width="100%"
           icon
           plain
           :disabled="myPost || loading || !$auth.loggedIn"
@@ -49,7 +57,7 @@
         </v-btn>
         <v-btn
           v-else
-          width="70px"
+          width="100%"
           icon
           plain
           :disabled="myPost || loading || !$auth.loggedIn"
@@ -65,7 +73,7 @@
       <div class="text-center">
         {{ post.like_users.length }}
       </div>
-    </template>
+    </div>
   </div>
 </template>
 

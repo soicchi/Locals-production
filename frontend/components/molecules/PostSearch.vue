@@ -105,12 +105,6 @@ export default {
       get () { return this.isValid },
       set (newVal) { return this.$emit('update:is-valid', newVal) },
     },
-    btnWidth () {
-      return this.$vuetify.breakpoint.xs ? '50%' : '12%'
-    },
-    btnFontSize () {
-      return this.$vuetify.breakpoint.xs ? { 'font-size': '20px' } : { 'font-size': '20px' }
-    },
   },
   methods: {
     search () {
@@ -126,4 +120,5 @@ export default {
 <style lang="sass" scoped>
   .search-btn
     color: #fff
+    font-size: 20px
 </style>

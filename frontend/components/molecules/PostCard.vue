@@ -60,13 +60,13 @@
           <v-col
             v-for="(image, i) in limitCount"
             :key="i"
-            cols="6"
+            cols="4"
             sm="3"
           >
             <v-sheet
               outlined
-              :width="imageWidth"
-              :height="imageHeight"
+              width="100%"
+              height="100%"
             >
               <AtomsPostImage :image="image" />
             </v-sheet>
@@ -130,17 +130,17 @@ export default {
       return this.post.user_id === this.loggedInUser.id
     },
     limitCount () {
-      return this.$vuetify.breakpoint.xs ? this.post.image_url.slice(0, 2) : this.post.image_url.slice(0, 3)
-    },
-    imageWidth () {
-      return this.$vuetify.breakpoint.xs ? '120px' : '100%'
-    },
-    imageHeight () {
-      return this.$vuetify.breakpoint.xs ? '100px' : '150px'
+      return this.post.image_url.slice(0, 3)
     },
     postCardWidth () {
-      return this.$vuetify.breakpoint.xs ? '100%' : '45%'
-    },
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return '100%'
+        case 'sm': return '80%'
+        case 'md': return '80%'
+        case 'lg': return '45%'
+        case 'xl': return '45%'
+      }
+    }
   },
   methods: {
     destroyPost () {

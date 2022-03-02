@@ -80,8 +80,8 @@
           <v-col
             cols="3"
             sm="1"
-            align-self="center"
-            class="mt-8 px-0"
+            align-self="end"
+            class="px-0"
           >
             <AtomsPostButtonLike
               :post="post"
@@ -97,8 +97,8 @@
           <v-col
             cols="3"
             sm="1"
-            align-self="center"
-            class="mt-8 px-0"
+            align-self="end"
+            class="px-0"
           >
             <AtomsPostButtonDislike
               :post="post"
@@ -107,7 +107,7 @@
               :my-post="myPost"
               @change-to-disliked="changeToDisliked"
             />
-            <p class="bad">
+            <p class="bad text-center">
               <span :style="fontSize">う〜ん...</span>
             </p>
           </v-col>
@@ -124,13 +124,13 @@
       >
         <MoleculesPostChart
           :favorite-rate-group="favoriteRateGroup"
-          :width="width"
-          :height="height"
+          width="80%"
+          height="50%"
         />
       </v-col>
       <v-col
         cols="12"
-        sm="4"
+        sm="5"
         class="mt-8"
       >
         <MoleculesPostMap
@@ -194,8 +194,6 @@ export default {
     }
   },
   computed: {
-    width: () => 500,
-    height: () => 350,
     cardWidth () {
       return this.$vuetify.breakpoint.xs ? '90%' : '80%'
     },
@@ -217,8 +215,6 @@ export default {
 <style lang="sass" scoped>
   .btn-font
     font-size: 12px
-  .bad
-    padding-left: 12px
   .swiper-button-prev,
   .swiper-button-next
     --swiper-navigation-color: #58554e
