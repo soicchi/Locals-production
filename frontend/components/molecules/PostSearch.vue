@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-dialog
       v-model="dialog"
-      width="25%"
+      :width="dialogWidth"
     >
       <template #activator="{ on, attrs }">
         <v-btn
@@ -104,6 +104,15 @@ export default {
     setIsValid: {
       get () { return this.isValid },
       set (newVal) { return this.$emit('update:is-valid', newVal) },
+    },
+    dialogWidth () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return '90%'
+        case 'sm': return '60%'
+        case 'md': return '45%'
+        case 'lg': return '30%'
+        case 'xl': return '20%'
+      }
     },
   },
   methods: {
