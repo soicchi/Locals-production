@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div v-if="!$vuetify.breakpoint.xs">
+    <div
+      v-if="!$vuetify.breakpoint.xs"
+      class="d-flex justify-center align-center"
+    >
       <v-btn
         v-if="!disliked"
         width="60px"
@@ -31,11 +34,14 @@
       </v-btn>
       {{ post.dislike_users.length }}
     </div>
-    <template v-else>
+    <div
+      v-else
+      class="d-flex justify-space-around align-center"
+    >
       <div>
         <v-btn
           v-if="!disliked"
-          width="60px"
+          width="100%"
           icon
           plain
           retain-focus-on-click
@@ -49,7 +55,7 @@
         </v-btn>
         <v-btn
           v-else
-          width="60px"
+          width="100%"
           icon
           plain
           retain-focus-on-click
@@ -65,7 +71,7 @@
       <div class="text-center">
         {{ post.dislike_users.length }}
       </div>
-    </template>
+    </div>
   </div>
 </template>
 

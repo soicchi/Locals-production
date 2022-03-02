@@ -2,17 +2,15 @@
   <v-row justify="center">
     <v-dialog
       v-model="dialog"
-      width="25%"
+      :width="dialogWidth"
     >
       <template #activator="{ on, attrs }">
         <v-btn
           color="subColor"
           class="search-btn"
           height="60"
-          :width="btnWidth"
           v-bind="attrs"
           rounded
-          :style="btnFontSize"
           v-on="on"
         >
           カテゴリー検索
@@ -105,11 +103,14 @@ export default {
       get () { return this.isValid },
       set (newVal) { return this.$emit('update:is-valid', newVal) },
     },
-    btnWidth () {
-      return this.$vuetify.breakpoint.xs ? '50%' : '12%'
-    },
-    btnFontSize () {
-      return this.$vuetify.breakpoint.xs ? { 'font-size': '20px' } : { 'font-size': '20px' }
+    dialogWidth () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return '90%'
+        case 'sm': return '60%'
+        case 'md': return '45%'
+        case 'lg': return '30%'
+      }
+      return '20%'
     },
   },
   methods: {
@@ -126,4 +127,5 @@ export default {
 <style lang="sass" scoped>
   .search-btn
     color: #fff
+    font-size: 20px
 </style>

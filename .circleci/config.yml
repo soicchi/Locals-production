@@ -157,16 +157,16 @@ workflows:
             branches:
               only:
                 - main
-      - aws-ecs/run-task:
-          name: db-seed-task
-          cluster: ${CLUSTER_NAME}
-          task-definition: locals-db-seed
-          security-group-ids: ${SECURITY_GROUP_ID}
-          subnet-ids: ${SUBNET_ID_1A}, ${SUBNET_ID_1C}
-          requires:
-            - db-migrate
-          filters:
-            branches:
-              only:
-                - main
+      # - aws-ecs/run-task:
+      #     name: db-seed-task
+      #     cluster: ${CLUSTER_NAME}
+      #     task-definition: locals-db-seed
+      #     security-group-ids: ${SECURITY_GROUP_ID}
+      #     subnet-ids: ${SUBNET_ID_1A}, ${SUBNET_ID_1C}
+      #     requires:
+      #       - db-migrate
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
         

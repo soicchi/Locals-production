@@ -67,21 +67,25 @@
         <v-row>
           <v-col
             cols="12"
-            sm="6"
+            md="6"
           >
             <AtomsPostComment :post="post" />
           </v-col>
           <v-col
             cols="6"
-            sm="2"
+            sm="3"
+            md="2"
+            xl="1"
           >
             <AtomsPostFavoriteRate :post="post" />
           </v-col>
           <v-col
             cols="3"
-            sm="1"
-            align-self="center"
-            class="mt-8 px-0"
+            sm="2"
+            md="2"
+            lg="1"
+            align-self="end"
+            class="px-0"
           >
             <AtomsPostButtonLike
               :post="post"
@@ -96,9 +100,11 @@
           </v-col>
           <v-col
             cols="3"
-            sm="1"
-            align-self="center"
-            class="mt-8 px-0"
+            sm="2"
+            md="2"
+            lg="1"
+            align-self="end"
+            class="px-0"
           >
             <AtomsPostButtonDislike
               :post="post"
@@ -107,7 +113,7 @@
               :my-post="myPost"
               @change-to-disliked="changeToDisliked"
             />
-            <p class="bad">
+            <p class="bad text-center">
               <span :style="fontSize">う〜ん...</span>
             </p>
           </v-col>
@@ -130,7 +136,7 @@
       </v-col>
       <v-col
         cols="12"
-        sm="4"
+        sm="5"
         class="mt-8"
       >
         <MoleculesPostMap
@@ -217,8 +223,6 @@ export default {
 <style lang="sass" scoped>
   .btn-font
     font-size: 12px
-  .bad
-    padding-left: 12px
   .swiper-button-prev,
   .swiper-button-next
     --swiper-navigation-color: #58554e
