@@ -14,8 +14,8 @@ class Api::V1::UsersController < ApplicationController
             except: [:comment, :updated_at]
           }
         },
-        { following: { only: [:id, :name, :avatar_url] } },
-        { followers: { only: [:id, :name, :avatar_url] } },
+        { following: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
+        { followers: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
         { liked_posts: { only: [:id] } }
       ],
       methods: :avatar_url,

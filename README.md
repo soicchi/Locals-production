@@ -12,7 +12,8 @@ https://local-s-app.com
 
 ※ mobile用UI
 
-<img width="200" alt="スクリーンショット 2022-02-25 15 25 37" src="https://user-images.githubusercontent.com/61832219/155665542-fed1960e-70af-474f-8cb1-c5f4f0432827.png">
+<img width="250" alt="スクリーンショット 2022-03-02 13 11 27" src="https://user-images.githubusercontent.com/61832219/156293570-012d7d24-e4e8-4d65-8434-51bee3227b27.png">
+
 
 ## 使用技術
 
