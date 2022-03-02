@@ -140,7 +140,7 @@ export default {
         case 'lg': return '45%'
         case 'xl': return '45%'
       }
-    }
+    },
   },
   methods: {
     destroyPost () {

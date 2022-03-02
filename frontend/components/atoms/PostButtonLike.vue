@@ -2,7 +2,7 @@
   <div>
     <div
       v-if="!$vuetify.breakpoint.xs"
-      class="d-flex justify-center align-center"  
+      class="d-flex justify-center align-center"
     >
       <v-btn
         v-if="!liked"
@@ -38,7 +38,7 @@
     </div>
     <div
       v-else
-      class="d-flex justify-space-around align-center"  
+      class="d-flex justify-space-around align-center"
     >
       <div>
         <v-btn
