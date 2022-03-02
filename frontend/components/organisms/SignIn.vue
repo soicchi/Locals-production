@@ -74,7 +74,7 @@ export default {
     async guestSignIn () {
       await this.$axios.post('/guests')
         .then((res) => {
-          this.$auth.loginWith('local', { data: { email: res.data.email, password: res.data.password } })
+          this.$auth.loginWith('local', { data: res.data })
             .then((res) => {
               this.setLoggedInUser(res.data.data)
               const message = ['ログインしました']
