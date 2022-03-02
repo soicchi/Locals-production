@@ -9,10 +9,8 @@
           color="subColor"
           class="search-btn"
           height="60"
-          :width="btnWidth"
           v-bind="attrs"
           rounded
-          :style="btnFontSize"
           v-on="on"
         >
           カテゴリー検索
@@ -111,8 +109,8 @@ export default {
         case 'sm': return '60%'
         case 'md': return '45%'
         case 'lg': return '30%'
-        case 'xl': return '20%'
       }
+      return '20%'
     },
   },
   methods: {

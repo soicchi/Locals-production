@@ -67,19 +67,23 @@
         <v-row>
           <v-col
             cols="12"
-            sm="6"
+            md="6"
           >
             <AtomsPostComment :post="post" />
           </v-col>
           <v-col
             cols="6"
-            sm="2"
+            sm="3"
+            md="2"
+            xl="1"
           >
             <AtomsPostFavoriteRate :post="post" />
           </v-col>
           <v-col
             cols="3"
-            sm="1"
+            sm="2"
+            md="2"
+            lg="1"
             align-self="end"
             class="px-0"
           >
@@ -96,7 +100,9 @@
           </v-col>
           <v-col
             cols="3"
-            sm="1"
+            sm="2"
+            md="2"
+            lg="1"
             align-self="end"
             class="px-0"
           >
@@ -124,8 +130,8 @@
       >
         <MoleculesPostChart
           :favorite-rate-group="favoriteRateGroup"
-          width="80%"
-          height="50%"
+          :width="width"
+          :height="height"
         />
       </v-col>
       <v-col
@@ -194,6 +200,8 @@ export default {
     }
   },
   computed: {
+    width: () => 500,
+    height: () => 350,
     cardWidth () {
       return this.$vuetify.breakpoint.xs ? '90%' : '80%'
     },

@@ -137,9 +137,8 @@ export default {
         case 'xs': return '100%'
         case 'sm': return '80%'
         case 'md': return '80%'
-        case 'lg': return '45%'
-        case 'xl': return '45%'
       }
+      return '45%'
     },
   },
   methods: {
