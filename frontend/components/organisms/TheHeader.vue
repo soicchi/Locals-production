@@ -13,19 +13,30 @@
       @signOut="signOut"
     >
       <template #nav-icon>
-        <v-app-bar-nav-icon @click="drawer = !drawer" />
+        <v-app-bar-nav-icon @click="drawer = !drawer">
+          <v-icon>
+            {{ mdiMenu }}
+          </v-icon>
+        </v-app-bar-nav-icon>
       </template>
     </MoleculesAppBar>
   </div>
 </template>
 
 <script>
+import { mdiNoteEdit, mdiNoteMultiple, mdiPin, mdiAccount, mdiAccountCog, mdiLockOutline, mdiMenu } from '@mdi/js'
+
 export default {
-  data () {
-    return {
-      drawer: false,
-    }
-  },
+  data: () => ({
+    drawer: false,
+    mdiNoteEdit,
+    mdiNoteMultiple,
+    mdiAccount,
+    mdiPin,
+    mdiAccountCog,
+    mdiLockOutline,
+    mdiMenu,
+  }),
   computed: {
     loggedInUser () {
       return this.$store.getters['user/loggedInUser']
@@ -35,22 +46,22 @@ export default {
         {
           title: '投稿',
           to: '/posts/create',
-          icon: 'mdi-note-edit',
+          icon: this.mdiNoteEdit,
         },
         {
           title: 'すべての投稿',
           to: '/posts/all',
-          icon: 'mdi-note-multiple',
+          icon: this.mdiNoteMultiple,
         },
         {
           title: '保存した投稿',
           to: '/posts/bookmark',
-          icon: 'mdi-pin',
+          icon: this.mdiPin,
         },
         {
           title: 'マイページ',
           to: `/users/${this.loggedInUser.id}`,
-          icon: 'mdi-account',
+          icon: this.mdiAccount,
         },
       ]
     },
@@ -59,12 +70,12 @@ export default {
         {
           title: 'アカウント設定',
           to: '/users/edit',
-          icon: 'mdi-account-cog',
+          icon: this.mdiAccountCog,
         },
         {
           title: 'パスワード設定',
           to: '/users/password',
-          icon: 'mdi-lock-outline',
+          icon: this.mdiLockOutline,
         },
       ]
     },

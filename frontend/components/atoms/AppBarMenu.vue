@@ -11,7 +11,7 @@
         v-on="on"
       >
         <v-icon size="30">
-          mdi-cog
+          {{ mdiCog }}
         </v-icon>
       </v-btn>
     </template>
@@ -54,7 +54,7 @@
           <v-list-item @click="signOut">
             <v-list-item-icon>
               <v-icon>
-                mdi-logout-variant
+                {{ mdiLogoutVariant }}
               </v-icon>
             </v-list-item-icon>
             <v-list-item-content>
@@ -70,6 +70,8 @@
 </template>
 
 <script>
+import { mdiCog, mdiLogoutVariant } from '@mdi/js'
+
 export default {
   props: {
     accountMenuList: {
@@ -81,6 +83,10 @@ export default {
       required: true,
     },
   },
+  data: () => ({
+    mdiCog,
+    mdiLogoutVariant,
+  }),
   methods: {
     signOut () {
       this.$emit('signOut')

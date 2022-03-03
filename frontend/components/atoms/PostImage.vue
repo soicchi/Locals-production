@@ -4,14 +4,14 @@
     :max-width="dialogWidth"
   >
     <template #activator="{ on, attrs }">
-      <v-img
+      <img
         :src="image"
         height="100%"
         width="100%"
         v-bind="attrs"
         :style="{ 'cursor': 'pointer' }"
         v-on="on"
-      />
+      >
     </template>
     <v-img
       :src="image"

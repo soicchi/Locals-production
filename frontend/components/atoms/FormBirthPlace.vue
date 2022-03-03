@@ -4,11 +4,13 @@
     label="出身地"
     :rules="rules"
     :items="prefectures"
-    prepend-icon="mdi-map-marker"
+    :prepend-icon="mdiMapMarker"
   />
 </template>
 
 <script>
+import { mdiMapMarker } from '@mdi/js'
+
 export default {
   props: {
     birthPlace: {
@@ -17,6 +19,9 @@ export default {
       default: '',
     },
   },
+  data: () => ({
+    mdiMapMarker,
+  }),
   computed: {
     rules () {
       return [

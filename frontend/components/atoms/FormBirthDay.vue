@@ -6,7 +6,7 @@
         label="生年月日 西暦"
         :items="birthYears"
         :rules="rules"
-        prepend-icon="mdi-cake"
+        :prepend-icon="mdiCake"
         @change="resetDay"
       />
     </v-col>
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import { mdiCake } from '@mdi/js'
+
 export default {
   props: {
     birthYear: {
@@ -46,6 +48,9 @@ export default {
       required: true,
     },
   },
+  data: () => ({
+    mdiCake,
+  }),
   computed: {
     rules () {
       return [v => !!v || '']
