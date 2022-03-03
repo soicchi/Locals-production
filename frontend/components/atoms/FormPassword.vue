@@ -6,7 +6,7 @@
     :counter="!noValidation"
     :type="type"
     :append-icon="icon"
-    prepend-icon="mdi-lock"
+    :prepend-icon="mdiLock"
     :placeholder="placeHolder"
     autocomplete="on"
     @click:append="show = !show"
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { mdiLock, mdiEye, mdiEyeOff } from '@mdi/js'
+
 export default {
   props: {
     noValidation: {
@@ -25,11 +27,12 @@ export default {
       required: true,
     },
   },
-  data () {
-    return {
-      show: false,
-    }
-  },
+  data: () => ({
+    show: false,
+    mdiLock,
+    mdiEye,
+    mdiEyeOff,
+  }),
   computed: {
     min () {
       return 8
@@ -43,7 +46,7 @@ export default {
       return this.noValidation ? [requiredRule] : [requiredRule, lengthRule]
     },
     icon () {
-      return this.show ? 'mdi-eye' : 'mdi-eye-off'
+      return this.show ? this.mdiEye : this.mdiEyeOff
     },
     type () {
       return this.show ? 'text' : 'password'

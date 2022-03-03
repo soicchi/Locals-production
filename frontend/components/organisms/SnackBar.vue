@@ -14,12 +14,12 @@
     >
       <template v-if="type === 'success'">
         <v-icon :color="type">
-          mdi-checkbox-marked-circle
+          {{ mdiCheckboxMarkedCircle }}
         </v-icon> <span class="success-message">{{ message }}</span>
       </template>
       <template v-if="type === 'error'">
         <v-icon :color="type">
-          mdi-alert-circle
+          {{ mdiAlertCircle }}
         </v-icon> <span class="error-message">{{ message }}</span>
       </template>
     </div>
@@ -28,8 +28,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { mdiCheckboxMarkedCircle, mdiAlertCircle } from '@mdi/js'
 
 export default {
+  data: () => ({
+    mdiCheckboxMarkedCircle,
+    mdiAlertCircle,
+  }),
   computed: {
     ...mapGetters({
       messages: 'message/messages',

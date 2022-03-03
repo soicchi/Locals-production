@@ -15,7 +15,7 @@
         @click="like"
       >
         <v-icon>
-          mdi-thumb-up-outline
+          {{ mdiThumbUpOutline }}
         </v-icon>
       </v-btn>
       <v-btn
@@ -29,7 +29,7 @@
         @click="unlike"
       >
         <v-icon color="mainColor">
-          mdi-thumb-up
+          {{ mdiThumbUp }}
         </v-icon>
       </v-btn>
       <span>
@@ -52,7 +52,7 @@
           @click="like"
         >
           <v-icon>
-            mdi-thumb-up-outline
+            {{ mdiThumbUpOutline }}
           </v-icon>
         </v-btn>
         <v-btn
@@ -66,7 +66,7 @@
           @click="unlike"
         >
           <v-icon color="#2962FF">
-            mdi-thumb-up
+            {{ mdiThumbUp }}
           </v-icon>
         </v-btn>
       </div>
@@ -79,6 +79,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { mdiThumbUp, mdiThumbUpOutline } from '@mdi/js'
 
 export default {
   props: {
@@ -101,11 +102,11 @@ export default {
       default: false,
     },
   },
-  data () {
-    return {
-      loading: false,
-    }
-  },
+  data: () => ({
+    loading: false,
+    mdiThumbUp,
+    mdiThumbUpOutline,
+  }),
   created () {
     if (this.$auth.loggedIn) {
       this.loading = true

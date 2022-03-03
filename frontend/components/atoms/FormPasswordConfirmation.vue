@@ -5,7 +5,7 @@
     :rules="rules"
     :type="type"
     :append-icon="icon"
-    prepend-icon="mdi-lock"
+    :prepend-icon="mdiLock"
     placeholder="8文字以上"
     autocomplete="on"
     @click:append="show = !show"
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { mdiLock, mdiEye, mdiEyeOff } from '@mdi/js'
+
 export default {
   props: {
     passwordConfirmation: {
@@ -20,11 +22,12 @@ export default {
       required: true,
     },
   },
-  data () {
-    return {
-      show: false,
-    }
-  },
+  data: () => ({
+    show: false,
+    mdiLock,
+    mdiEye,
+    mdiEyeOff,
+  }),
   computed: {
     min () {
       return 8
@@ -36,7 +39,7 @@ export default {
       ]
     },
     icon () {
-      return this.show ? 'mdi-eye' : 'mdi-eye-off'
+      return this.show ? this.mdiEye : mdiEyeOff
     },
     type () {
       return this.show ? 'text' : 'password'

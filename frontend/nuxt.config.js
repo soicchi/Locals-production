@@ -87,7 +87,13 @@ export default {
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
+    defaultAssets: {
+      icons: false,
+      font: false,
+    },
+    optionPath: './vuetify.options.js',
     customVariables: ['~/assets/variables.scss'],
+    treeShake: true,
     theme: {
       dark: false,
       themes: {
