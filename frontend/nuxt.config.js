@@ -44,11 +44,17 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     '@nuxtjs/date-fns',
+    '@aceforth/nuxt-optimized-images',
   ],
 
   dateFns: [
     'ja',
   ],
+
+  optimizedImages: {
+    optimizeImages: true,
+    optimizeImagesInDev: true,
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
