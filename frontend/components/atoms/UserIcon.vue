@@ -14,7 +14,7 @@
       v-else
       :size="iconSize"
     >
-      <v-img :src="`${avatarUrl}?webp`" />
+      <v-img :src="avatarUrl" />
     </v-avatar>
   </div>
 </template>

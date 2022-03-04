@@ -13,10 +13,10 @@
         v-on="on"
       >
     </template>
-    <v-img
-      :src="`${image}?webp`"
+    <img
+      :src="image"
       height="auto"
-    />
+    >
   </v-dialog>
 </template>
 
