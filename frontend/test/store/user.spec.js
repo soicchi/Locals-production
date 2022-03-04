@@ -20,7 +20,6 @@ const exampleUser = {
   birth_year: 1,
   birth_month: 1,
   birth_day: 1,
-  gender: 'man',
   introduction: '',
 }
 
@@ -32,7 +31,6 @@ const loggedInUser = {
   birth_year: 1,
   birth_month: 1,
   birth_day: 1,
-  gender: 'man',
   introduction: '',
   following: [],
   bookMarks: [],

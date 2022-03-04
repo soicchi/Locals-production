@@ -29,7 +29,6 @@ const user = {
   birth_year: 1,
   birth_month: 1,
   birth_day: 1,
-  gender: 'man',
   introduction: '',
 }
 
