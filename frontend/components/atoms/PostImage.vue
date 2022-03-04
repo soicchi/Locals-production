@@ -11,12 +11,12 @@
         v-bind="attrs"
         :style="{ 'cursor': 'pointer' }"
         v-on="on"
-      />
+      >
     </template>
     <img
       :src="image"
       height="auto"
-    />
+    >
   </v-dialog>
 </template>
 

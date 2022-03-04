@@ -34,7 +34,7 @@ export default {
     },
   },
   data: () => ({
-    mdiAccountCircle: mdiAccountCircle
+    mdiAccountCircle,
   }),
 }
 </script>
