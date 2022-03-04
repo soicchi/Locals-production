@@ -5,6 +5,9 @@ ENV LANG=C.UTF-8 \
     GOOGLE_API_KEY=$GOOGLE_API_KEY
 
 WORKDIR /frontend
+
+RUN apk add --no-cache autoconf automake file g++ libtool make nasm libpng-dev
+
 COPY . /frontend
 
 RUN yarn install \

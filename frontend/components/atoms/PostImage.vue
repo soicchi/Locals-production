@@ -14,7 +14,7 @@
       >
     </template>
     <v-img
-      :src="image"
+      :src="`${image}?webp`"
       height="auto"
     />
   </v-dialog>
