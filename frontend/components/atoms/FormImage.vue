@@ -8,7 +8,7 @@
     show-size
     persistent-hint
     :prepend-icon="mdiCamera"
-    hint="写真10枚まで、20MB未満まで"
+    hint="写真10枚まで、5MB未満まで"
     @change="setImages"
   />
 </template>

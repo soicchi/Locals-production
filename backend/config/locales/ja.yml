@@ -6,7 +6,6 @@ ja:
         name: 'ユーザーネーム'
         email: 'メールアドレス'
         birth_place: '出身地'
-        gender: '性別'
       post:
         images: '写真'
         category_ids: 'カテゴリー'
