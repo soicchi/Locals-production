@@ -34,7 +34,7 @@ class Post < ApplicationRecord
     count = images.length
     image_list = []
     while i < count
-      image_list.unshift(rails_storage_proxy_url(images[i]))
+      image_list.unshift(rails_storage_proxy_url(images[i].variant(resize_to_limit: [200, 200])))
       i += 1
     end
     image_list
