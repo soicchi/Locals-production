@@ -8,20 +8,10 @@
         <source
           :srcSet="`${image}?webp`"
           type="image/webp"
-          height="100%"
-          width="100%"
-          v-bind="attrs"
-          :style="{ 'cursor': 'pointer' }"
-          v-on="on"
         >
         <source
           :srcSet="image"
           type="image/jpeg"
-          height="100%"
-          width="100%"
-          v-bind="attrs"
-          :style="{ 'cursor': 'pointer' }"
-          v-on="on"
         >
         <img
           :src="image"
