@@ -22,6 +22,7 @@
               :avatar-url="post.user.avatar_url"
             />
             <AtomsUserName :user="post.user" />
+            <AtomsCommonDate :date="post.created_at" />
           </v-col>
           <v-spacer />
           <v-col

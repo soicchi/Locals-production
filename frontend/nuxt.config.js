@@ -48,7 +48,8 @@ export default {
   ],
 
   dateFns: [
-    'ja',
+    { locales: ['ja'] },
+    { methods: ['format'] }
   ],
 
   optimizedImages: {
