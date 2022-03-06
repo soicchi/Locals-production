@@ -8,11 +8,6 @@
         <source
           :srcSet="`${image}?webp`"
           type="image/webp"
-          height="100%"
-          width="100%"
-          v-bind="attrs"
-          :style="{ 'cursor': 'pointer' }"
-          v-on="on"
         >
         <img
           :src="image"
@@ -24,10 +19,10 @@
         >
       </picture>
     </template>
-      <img
-        :src="image"
-        height="auto"
-      >
+    <img
+      :src="image"
+      height="auto"
+    >
   </v-dialog>
 </template>
 

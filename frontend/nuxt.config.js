@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import webpack from 'webpack'
 
 export default {
   server: {
@@ -48,7 +49,8 @@ export default {
   ],
 
   dateFns: [
-    'ja',
+    { locales: ['ja'] },
+    { methods: ['format'] },
   ],
 
   optimizedImages: {
@@ -126,6 +128,9 @@ export default {
   build: {
     vender: [
       'vue-awesome-swiper',
+    ],
+    plugins: [
+      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ja/),
     ],
   },
 
