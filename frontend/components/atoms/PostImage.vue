@@ -4,19 +4,30 @@
     :max-width="dialogWidth"
   >
     <template #activator="{ on, attrs }">
+      <picture>
+        <source
+          :srcSet="`${image}?webp`"
+          type="image/webp"
+          height="100%"
+          width="100%"
+          v-bind="attrs"
+          :style="{ 'cursor': 'pointer' }"
+          v-on="on"
+        >
+        <img
+          :src="image"
+          height="100%"
+          width="100%"
+          v-bind="attrs"
+          :style="{ 'cursor': 'pointer' }"
+          v-on="on"
+        >
+      </picture>
+    </template>
       <img
         :src="image"
-        height="100%"
-        width="100%"
-        v-bind="attrs"
-        :style="{ 'cursor': 'pointer' }"
-        v-on="on"
+        height="auto"
       >
-    </template>
-    <img
-      :src="image"
-      height="auto"
-    >
   </v-dialog>
 </template>
 
