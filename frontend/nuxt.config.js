@@ -50,7 +50,7 @@ export default {
 
   dateFns: [
     { locales: ['ja'] },
-    { methods: ['format'] }
+    { methods: ['format'] },
   ],
 
   optimizedImages: {

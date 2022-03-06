@@ -19,10 +19,10 @@
         >
       </picture>
     </template>
-      <img
-        :src="image"
-        height="auto"
-      >
+    <img
+      :src="image"
+      height="auto"
+    >
   </v-dialog>
 </template>
 
