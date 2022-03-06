@@ -40,7 +40,7 @@ RSpec.describe Post, type: :model do
       let(:post) { build(:post, user_id: user.id) }
 
       before do
-        post.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '5mb_image.jpg')))
+        post.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', 'image.jpg')))
       end
 
       it '投稿は有効である' do
@@ -60,29 +60,23 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    # context 'imagesのサイズが20MBより大きい場合' do
-    #   let!(:invalid_post) { build(:post, user_id: user.id) }
-    #   let(:images) { [
-    #     Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '5.1mb_image.jpg')),
-    #     Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '5mb_image.jpg')),
-    #     Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '6MB_image.jpg')),
-    #     Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '10MB_image.jpg'))
-    #   ] }
-
-    #   before do
-    #     invalid_post.images.attach(images)
-    #   end
-
-    #   it 'インスタンスは有効ではない' do
-    #     expect(invalid_post.save).to be_invalid
-    #   end
-    # end
-
-    context 'imagesのサイズが20MB以下の場合' do
+    context 'imagesのサイズが5MB以上の場合' do
       let(:post) { build(:post, user_id: user.id) }
 
       before do
-        post.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '5mb_image.jpg')))
+        post.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', '5.1mb_image.jpg')))
+      end
+
+      it 'インスタンスは有効ではない' do
+        expect(post).to be_invalid
+      end
+    end
+
+    context 'imagesのサイズが5MB以下の場合' do
+      let(:post) { build(:post, user_id: user.id) }
+
+      before do
+        post.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', 'image.jpg')))
       end
 
       it 'インスタンスは有効である' do
