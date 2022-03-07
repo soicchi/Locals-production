@@ -4,14 +4,12 @@
     label="ユーザー名"
     :rules="rules"
     :counter="max"
-    :prepend-icon="mdiAccount"
+    prepend-icon="mdi-account"
     placeholder="あなたの表示名"
   />
 </template>
 
 <script>
-import { mdiAccount } from '@mdi/js'
-
 export default {
   props: {
     name: {
@@ -19,9 +17,6 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-    mdiAccount,
-  }),
   computed: {
     max () {
       return 10

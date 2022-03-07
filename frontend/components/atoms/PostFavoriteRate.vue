@@ -8,7 +8,7 @@
         :size="iconSize"
         color="mainColor"
       >
-        {{ mdiAccount }}
+        mdi-account
       </v-icon>
       <div class="percentage">
         {{ percentage }}<span>%</span>
@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import { mdiAccount } from '@mdi/js'
-
 export default {
   props: {
     post: {
@@ -27,9 +25,6 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-    mdiAccount,
-  }),
   computed: {
     percentage () {
       const likesCount = Number(this.post.like_users.length)

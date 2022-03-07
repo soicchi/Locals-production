@@ -1,7 +1,7 @@
 <template>
   <v-text-field
     v-model="setStation"
-    :prepend-icon="mdiTrain"
+    prepend-icon="mdi-train"
     suffix="駅"
     label="最寄り駅"
     :rules="rules"
@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import { mdiTrain } from '@mdi/js'
-
 export default {
   props: {
     station: {
@@ -18,9 +16,6 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-    mdiTrain,
-  }),
   computed: {
     setStation: {
       get () { return this.station },

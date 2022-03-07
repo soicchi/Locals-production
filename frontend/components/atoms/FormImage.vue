@@ -7,15 +7,13 @@
     :rules="rules"
     show-size
     persistent-hint
-    :prepend-icon="mdiCamera"
+    prepend-icon="mdi-camera"
     hint="写真10枚まで、5MB未満まで"
     @change="setImages"
   />
 </template>
 
 <script>
-import { mdiCamera } from '@mdi/js'
-
 export default {
   props: {
     images: {
@@ -23,9 +21,6 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-    mdiCamera,
-  }),
   computed: {
     rules () {
       return [

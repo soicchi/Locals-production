@@ -15,7 +15,7 @@
       <template #nav-icon>
         <v-app-bar-nav-icon @click="drawer = !drawer">
           <v-icon>
-            {{ mdiMenu }}
+            mdi-menu
           </v-icon>
         </v-app-bar-nav-icon>
       </template>
@@ -24,18 +24,9 @@
 </template>
 
 <script>
-import { mdiNoteEdit, mdiNoteMultiple, mdiPin, mdiAccount, mdiAccountCog, mdiLockOutline, mdiMenu } from '@mdi/js'
-
 export default {
   data: () => ({
     drawer: false,
-    mdiNoteEdit,
-    mdiNoteMultiple,
-    mdiAccount,
-    mdiPin,
-    mdiAccountCog,
-    mdiLockOutline,
-    mdiMenu,
   }),
   computed: {
     loggedInUser () {
@@ -46,22 +37,22 @@ export default {
         {
           title: '投稿',
           to: '/posts/create',
-          icon: this.mdiNoteEdit,
+          icon: 'mdi-note-edit',
         },
         {
           title: 'すべての投稿',
           to: '/posts/all',
-          icon: this.mdiNoteMultiple,
+          icon: 'mdi-note-multiple',
         },
         {
           title: '保存した投稿',
           to: '/posts/bookmark',
-          icon: this.mdiPin,
+          icon: 'mdi-pin',
         },
         {
           title: 'マイページ',
           to: `/users/${this.loggedInUser.id}`,
-          icon: this.mdiAccount,
+          icon: 'mdi-account',
         },
       ]
     },
@@ -70,12 +61,12 @@ export default {
         {
           title: 'アカウント設定',
           to: '/users/edit',
-          icon: this.mdiAccountCog,
+          icon: 'mdi-account-cog',
         },
         {
           title: 'パスワード設定',
           to: '/users/password',
-          icon: this.mdiLockOutline,
+          icon: 'mdi-lock-outline',
         },
       ]
     },

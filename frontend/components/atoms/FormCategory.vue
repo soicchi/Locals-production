@@ -5,15 +5,13 @@
     item-value="id"
     item-text="name"
     :items="categoryItems"
-    :prepend-icon="mdiFoodForkDrink"
+    prepend-icon="mdi-food-fork-drink"
     chips
     placeholder="カテゴリーを選択"
   />
 </template>
 
 <script>
-import { mdiFoodForkDrink } from '@mdi/js'
-
 export default {
   props: {
     categoryIds: {
@@ -25,9 +23,6 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-    mdiFoodForkDrink,
-  }),
   computed: {
     setCategory: {
       get () { return this.categoryIds },

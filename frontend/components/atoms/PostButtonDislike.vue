@@ -15,7 +15,7 @@
         @click="dislike"
       >
         <v-icon>
-          {{ mdiThumbDownOutline }}
+          mdi-thumb-down-outline
         </v-icon>
       </v-btn>
       <v-btn
@@ -29,7 +29,7 @@
         @click="undislike"
       >
         <v-icon color="subColor">
-          {{ mdiThumbDown }}
+          mdi-thumb-down
         </v-icon>
       </v-btn>
       {{ post.dislike_users.length }}
@@ -50,7 +50,7 @@
           @click="dislike"
         >
           <v-icon>
-            {{ mdiThumbDownOutline }}
+            mdi-thumb-down-outline
           </v-icon>
         </v-btn>
         <v-btn
@@ -64,7 +64,7 @@
           @click="undislike"
         >
           <v-icon color="#DD2C00">
-            {{ mdiThumbDown }}
+            mdi-thumb-down
           </v-icon>
         </v-btn>
       </div>
@@ -77,7 +77,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { mdiThumbDown, mdiThumbDownOutline } from '@mdi/js'
 
 export default {
   props: {
@@ -102,14 +101,12 @@ export default {
   },
   data: () => ({
     loading: false,
-    mdiThumbDown,
-    mdiThumbDownOutline,
   }),
   created () {
     if (this.$auth.loggedIn) {
       this.loading = true
       setTimeout(() => {
-        const dislikedState = this.loggedInUser.dislikedPosts.includes(this.post.id)
+        const dislikedState = this.loggedInUser.disliked_posts.includes(this.post.id)
         if (dislikedState) {
           this.$emit('change-to-disliked')
         }

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   computed: {
@@ -26,16 +26,7 @@ export default {
   },
   created () {
     const userId = this.$route.params.id
-    this.getUser(userId)
-    if (this.$auth.loggedIn) {
-      this.setLoggedInUserFollowing(this.loggedInUser.id)
-    }
-  },
-  methods: {
-    ...mapActions({
-      getUser: 'user/getUser',
-      setLoggedInUserFollowing: 'user/setLoggedInUserFollowing',
-    }),
+    this.$store.dispatch('user/getUser', userId)
   },
 }
 </script>

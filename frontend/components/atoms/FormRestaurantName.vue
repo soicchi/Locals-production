@@ -3,15 +3,13 @@
     v-model="setRestaurantName"
     label="お店の名前"
     required
-    :prepend-icon="mdiStore"
+    prepend-icon="mdi-store"
     placeholder="店名を記入"
     hint="店舗名まで入力"
   />
 </template>
 
 <script>
-import { mdiStore } from '@mdi/js'
-
 export default {
   props: {
     restaurantName: {
@@ -19,9 +17,6 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-    mdiStore,
-  }),
   computed: {
     setRestaurantName: {
       get () { return this.restaurantName },
