@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-col
-      v-if="!$auth.loggedIn || matchPath"
       cols="12"
       class="my-5"
     >
@@ -27,11 +26,6 @@ export default {
     posts: {
       type: Array,
       required: true,
-    },
-  },
-  computed: {
-    matchPath () {
-      return this.$route.path === '/posts/all'
     },
   },
 }
