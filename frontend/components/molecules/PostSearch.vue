@@ -110,7 +110,7 @@ export default {
         case 'md': return '45%'
         case 'lg': return '30%'
       }
-      return '20%'
+      return '25%'
     },
   },
   methods: {
