@@ -1,17 +1,29 @@
 <template>
   <div>
-    <MoleculesPostCard
-      v-for="post in posts"
-      :key="post.id"
-      :post="post"
-      :icon-size="iconSize"
-      :logged-in-user="loggedInUser"
-      @destroy-post="destroyPost"
-    >
-      <template #post-card-user-name>
-        <AtomsUserName :user="post.user" />
-      </template>
-    </MoleculesPostCard>
+    <template v-if="posts.length === 0">
+      <v-row class="text-center">
+        <v-col cols="12">
+          誰かをフォローしよう!
+        </v-col>
+        <v-col cols="12">
+          フォローしたユーザーの投稿一覧が表示されるよ
+        </v-col>
+      </v-row>
+    </template>
+    <template v-else>
+      <MoleculesPostCard
+        v-for="post in posts"
+        :key="post.id"
+        :post="post"
+        :icon-size="iconSize"
+        :logged-in-user="loggedInUser"
+        @destroy-post="destroyPost"
+      >
+        <template #post-card-user-name>
+          <AtomsUserName :user="post.user" />
+        </template>
+      </MoleculesPostCard>
+    </template>
   </div>
 </template>
 
