@@ -71,7 +71,7 @@
         </v-btn>
       </div>
       <div class="text-center">
-        post.like_users.length
+        {{ post.like_users.length }}
       </div>
     </div>
   </div>
