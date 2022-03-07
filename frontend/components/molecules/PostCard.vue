@@ -142,7 +142,7 @@ export default {
     },
     favoriteLayout () {
       return this.$vuetify.breakpoint.xs ? 'd-flex justify-end' : 'd-flex justify-center'
-    }
+    },
   },
   methods: {
     destroyPost () {
