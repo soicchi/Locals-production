@@ -66,7 +66,7 @@
           @click="unlike"
         >
           <v-icon color="#2962FF">
-            {{ mdi-thumb-up }}
+            mdi-thumb-up
           </v-icon>
         </v-btn>
       </div>
