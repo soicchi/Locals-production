@@ -35,13 +35,13 @@ export default {
     drawerMenuList () {
       return [
         {
-          title: '投稿',
+          title: '投稿作成',
           to: '/posts/create',
           icon: 'mdi-note-edit',
         },
         {
-          title: 'すべての投稿',
-          to: '/posts/all',
+          title: '投稿一覧',
+          to: '/posts/following',
           icon: 'mdi-note-multiple',
         },
         {
