@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
   data () {
     return {
@@ -42,16 +40,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      setLoggedInUser: 'user/setLoggedInUser',
-      setMessages: 'message/setMessages',
-    }),
     async update () {
       await this.$axios.put('/auth/password', this.user)
         .then((res) => {
-          this.setLoggedInUser(res.data.data)
+          this.$store.dispatch('user/getLoggedInUser')
           const message = [res.data.message]
-          this.setMessages({ messages: message, type: 'success' })
+          this.$store.dispatch('message/setMessages', ({ messages: message, type: 'success' }))
           this.$router.replace(`/users/${this.loggedInUser.id}`)
         })
         .catch((e) => {

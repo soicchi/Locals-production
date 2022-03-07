@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -43,10 +43,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      setLoggedInUser: 'user/setLoggedInUser',
-      setMessages: 'message/setMessages',
-    }),
     async update () {
       const confirm = window.confirm('更新を確定しますか')
       if (confirm) {
@@ -59,9 +55,9 @@ export default {
         }
         await this.$axios.put('/auth', formData, headers)
           .then((res) => {
-            this.setLoggedInUser(res.data.data)
+            this.$store.dispatch('user/getLoggedInUser')
             const message = ['更新が成功しました']
-            this.setMessages({ messages: message, type: 'success' })
+            this.$store.dispatch('message/setMessages', ({ messages: message, type: 'success' }))
             this.$router.replace(`/users/${this.loggedInUser.id}`)
           })
       }

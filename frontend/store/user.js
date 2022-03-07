@@ -21,47 +21,35 @@ export const mutations = {
   resetLoggedInUser (state) {
     state.loggedInUser = {}
   },
-  setLoggedInUserFollowing (state, following) {
-    state.loggedInUser.following = following
-  },
   addLoggedInUserFollowing (state, followed) {
     state.loggedInUser.following.unshift(followed)
   },
   removeLoggedInUserFollowing (state, followed) {
     state.loggedInUser.following = state.loggedInUser.following.filter((user) => {
-      return user !== followed
+      return user.id !== followed.id
     })
   },
-  setLoggedInUserBookMarks (state, bookMarks) {
-    state.loggedInUser.bookMarks = bookMarks
-  },
   addLoggedInUserBookMark (state, bookMark) {
-    state.loggedInUser.bookMarks.unshift(bookMark)
+    state.loggedInUser.book_mark_posts.unshift(bookMark)
   },
   removeLoggedInUserBookMark (state, post) {
-    state.loggedInUser.bookMarks = state.loggedInUser.bookMarks.filter((bookMark) => {
+    state.loggedInUser.book_mark_posts = state.loggedInUser.book_mark_posts.filter((bookMark) => {
       return bookMark.id !== post.id
     })
   },
-  setLoggedInUserLikedPosts (state, likedPostsIds) {
-    state.loggedInUser.likedPosts = likedPostsIds
-  },
   addLoggedInUserLikedPost (state, likedPostId) {
-    state.loggedInUser.likedPosts.unshift(likedPostId)
+    state.loggedInUser.liked_posts.unshift(likedPostId)
   },
   removeLoggedInUserLikedPost (state, postId) {
-    state.loggedInUser.likedPosts = state.loggedInUser.likedPosts.filter((likedPost) => {
+    state.loggedInUser.liked_posts = state.loggedInUser.liked_posts.filter((likedPost) => {
       return likedPost !== postId
     })
   },
-  setLoggedInUserDislikedPosts (state, dislikedPostsIds) {
-    state.loggedInUser.dislikedPosts = dislikedPostsIds
-  },
   addLoggedInUserDislikedPost (state, dislikedPostId) {
-    state.loggedInUser.dislikedPosts.unshift(dislikedPostId)
+    state.loggedInUser.disliked_posts.unshift(dislikedPostId)
   },
   removeLoggedInUserDislikedPost (state, postId) {
-    state.loggedInUser.dislikedPosts = state.loggedInUser.dislikedPosts.filter((dislikePost) => {
+    state.loggedInUser.disliked_posts = state.loggedInUser.disliked_posts.filter((dislikePost) => {
       return dislikePost !== postId
     })
   },
@@ -74,32 +62,11 @@ export const actions = {
         commit('setUser', res.data)
       })
   },
-  async setLoggedInUserFollowing ({ commit }, userId) {
-    await this.$axios.get(`/users/${userId}`)
+  async getLoggedInUser ({ commit }) {
+    await this.$axios.get('/current_users')
       .then((res) => {
-        commit('setLoggedInUserFollowing', res.data.following)
+        commit('setLoggedInUser', res.data)
       })
-  },
-  async setLoggedInUserInfo ({ commit }) {
-    await this.$axios.get('/users/book_mark_posts')
-      .then((res) => {
-        commit('setLoggedInUserBookMarks', res.data)
-      })
-    await this.$axios.get('/users/liked_posts_ids')
-      .then((res) => {
-        commit('setLoggedInUserLikedPosts', res.data)
-      })
-    await this.$axios.get('/users/disliked_posts_ids')
-      .then((res) => {
-        commit('setLoggedInUserDislikedPosts', res.data)
-      })
-    await this.$axios.get('/users/following_posts')
-      .then((res) => {
-        commit('post/setPosts', res.data, { root: true })
-      })
-  },
-  setUser ({ commit }, userData) {
-    commit('setUser', userData)
   },
   setLoggedInUser ({ commit }, userData) {
     commit('setLoggedInUser', userData)

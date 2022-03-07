@@ -65,6 +65,12 @@ export const actions = {
         commit('setLikedPosts', res.data)
       })
   },
+  async getFollowingPosts ({ commit }) {
+    await this.$axios.get('/users/following_posts')
+      .then((res) => {
+        commit('setPosts', res.data)
+      })
+  },
   setPosts ({ commit }, posts) {
     commit('setPosts', posts)
   },

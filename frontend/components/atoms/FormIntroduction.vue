@@ -4,13 +4,11 @@
     label="自己紹介"
     :rules="rules"
     :counter="max"
-    :prepend-icon="mdiPencil"
+    prepend-icon="mdi-pencil"
   />
 </template>
 
 <script>
-import { mdiPencil } from '@mdi/js'
-
 export default {
   props: {
     introduction: {
@@ -18,9 +16,6 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-    mdiPencil,
-  }),
   computed: {
     max () {
       return 255

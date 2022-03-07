@@ -4,14 +4,12 @@
     label="メールアドレス"
     :rules="rules"
     type="email"
-    :prepend-icon="mdiEmail"
+    prepend-icon="mdi-email"
     :placeholder="placeHolder"
   />
 </template>
 
 <script>
-import { mdiEmail } from '@mdi/js'
-
 export default {
   props: {
     email: {
@@ -23,9 +21,6 @@ export default {
       default: true,
     },
   },
-  data: () => ({
-    mdiEmail,
-  }),
   computed: {
     rules () {
       return [
