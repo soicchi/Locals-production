@@ -16,11 +16,9 @@ export default {
   created () {
     if (this.$auth.loggedIn) {
       this.$store.dispatch('user/getLoggedInUser')
-      this.$store.dispatch('post/getFollowingPosts')
-    } else {
-      this.$store.dispatch('post/getPosts')
-      this.$store.dispatch('category/getCategories')
     }
+    this.$store.dispatch('post/getPosts')
+    this.$store.dispatch('category/getCategories')
   },
 }
 </script>
