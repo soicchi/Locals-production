@@ -17,6 +17,28 @@ resource "aws_ecr_repository" "front" {
   }
 }
 
+resource "aws_ecr_lifecycle_policy" "front" {
+  repository = aws_ecr_repository.front.name
+  policy = jsonencode(
+    {
+      rules = [
+        {
+          action = {
+            type = "expire"
+          }
+          description  = "最新の1つを残してイメージを削除する"
+          rulePriority = 1
+          selection = {
+            countNumber = 1
+            countType   = "imageCountMoreThan"
+            tagStatus   = "any"
+          }
+        },
+      ]
+    }
+  )
+}
+
 resource "aws_ecr_repository" "back" {
   name                 = "locals-app-back-repo"
   image_tag_mutability = "MUTABLE"
@@ -34,4 +56,26 @@ resource "aws_ecr_repository" "back" {
       AWS_ACCOUNT_ID      = var.AWS_ACCOUNT_ID
     }
   }
+}
+
+resource "aws_ecr_lifecycle_policy" "back" {
+  repository = aws_ecr_repository.back.name
+  policy = jsonencode(
+    {
+      rules = [
+        {
+          action = {
+            type = "expire"
+          }
+          description  = "最新の1つを残してイメージを削除する"
+          rulePriority = 1
+          selection = {
+            countNumber = 1
+            countType   = "imageCountMoreThan"
+            tagStatus   = "any"
+          }
+        },
+      ]
+    }
+  )
 }
