@@ -13,7 +13,19 @@
     >
       <AtomsCommonTitle :title="title" />
     </v-col>
-    <OrganismsPostFeed :posts="posts" />
+    <template v-if="posts === []">
+      <OrganismsPostFeed :posts="posts" />
+    </template>
+    <template v-else>
+      <v-row class="text-center">
+        <v-col cols="12">
+          誰かをフォローしよう!
+        </v-col>
+        <v-col cols="12">
+          フォローしたユーザーの投稿一覧が表示されるよ
+        </v-col>
+      </v-row>
+    </template>
   </div>
 </template>
 
