@@ -20,7 +20,7 @@
         outlined
         color="subColor"
         class="mr-3"
-        x-small
+        small
       >
         {{ category.name }}
       </v-chip>

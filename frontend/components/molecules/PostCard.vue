@@ -32,8 +32,8 @@
           </v-col>
           <v-col
             v-if="$auth.loggedIn && !myPost"
-            cols="3"
-            sm="2"
+            cols="2"
+            sm="1"
             class="d-flex justify-center"
           >
             <AtomsPostButtonBookMark
@@ -74,7 +74,7 @@
           <!-- mobile版レイアウト用 -->
           <v-col
             v-if="$vuetify.breakpoint.xs"
-            cols="6"
+            cols="7"
           >
             <AtomsCategoryItem :categories="post.categories" />
           </v-col>
@@ -82,11 +82,11 @@
 
           <v-spacer v-if="!$vuetify.breakpoint.xs" />
           <v-col
-            cols="6"
+            cols="5"
             sm="3"
             align-self="end"
+            :class="favoriteLayout"
           >
-            <!-- <AtomsPostViews /> -->
             <AtomsPostFavoriteRate :post="post" />
           </v-col>
         </v-row>
@@ -140,6 +140,9 @@ export default {
       }
       return '45%'
     },
+    favoriteLayout () {
+      return this.$vuetify.breakpoint.xs ? 'd-flex justify-end' : 'd-flex justify-center'
+    }
   },
   methods: {
     destroyPost () {
