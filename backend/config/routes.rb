@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :categories,      only: [:index]
       resources :health_checks,   only: [:index]
       resources :guests,          only: [:create]
+      resources :current_users,   only: [:index]
       get       '/search',        to: 'searches#search'
     end
   end
