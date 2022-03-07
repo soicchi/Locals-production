@@ -35,7 +35,7 @@ export default {
     drawerMenuList () {
       return [
         {
-          title: '投稿作成',
+          title: '投稿する',
           to: '/posts/create',
           icon: 'mdi-note-edit',
         },
@@ -45,7 +45,7 @@ export default {
           icon: 'mdi-note-multiple',
         },
         {
-          title: '保存した投稿',
+          title: 'ブックマーク',
           to: '/posts/bookmark',
           icon: 'mdi-pin',
         },

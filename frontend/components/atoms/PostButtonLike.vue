@@ -66,12 +66,12 @@
           @click="unlike"
         >
           <v-icon color="#2962FF">
-            {{ mdi-thumb-up }}
+            mdi-thumb-up
           </v-icon>
         </v-btn>
       </div>
       <div class="text-center">
-        post.like_users.length
+        {{ post.like_users.length }}
       </div>
     </div>
   </div>
