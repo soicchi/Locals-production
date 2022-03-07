@@ -40,14 +40,26 @@ class Post < ApplicationRecord
     image_list
   end
 
+  # 投稿のいいね比率を返す
+  def like_percentage
+    like_count = like_users.length
+    dislike_count = dislike_users.length
+    percent = like_count / (like_count + dislike_count) * 100
+    if !percent
+      0
+    else
+      percent.round
+    end
+  end
+
   # いいねしているユーザーの人数を年代別で抽出
   def liked_age_group
-    the_10s = self.like_users.select { |user| user.age < 20 }.length
-    the_20s = self.like_users.select { |user| user.age >= 20 && user.age < 30 }.length
-    the_30s = self.like_users.select { |user| user.age >= 30 && user.age < 40 }.length
-    the_40s = self.like_users.select { |user| user.age >= 40 && user.age < 50 }.length
-    the_50s = self.like_users.select { |user| user.age >= 50 && user.age < 60 }.length
-    over_60s = self.like_users.select { |user| user.age >= 60 }.length
+    the_10s = like_users.select { |user| user.age < 20 }.length
+    the_20s = like_users.select { |user| user.age >= 20 && user.age < 30 }.length
+    the_30s = like_users.select { |user| user.age >= 30 && user.age < 40 }.length
+    the_40s = like_users.select { |user| user.age >= 40 && user.age < 50 }.length
+    the_50s = like_users.select { |user| user.age >= 50 && user.age < 60 }.length
+    over_60s = like_users.select { |user| user.age >= 60 }.length
     [the_10s, the_20s, the_30s, the_40s, the_50s, over_60s]
   end
 

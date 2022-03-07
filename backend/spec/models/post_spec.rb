@@ -147,5 +147,18 @@ RSpec.describe Post, type: :model do
         expect(post.disliked_age_group).to match_array([1, 0, 0, 0, 0, 0])
       end
     end
+
+    context 'like_percentageメソッド' do
+      let!(:user) { create(:user) }
+      let!(:other_user) { create(:user) }
+      let!(:post) { create(:post) }
+      let!(:like) { create(:like, user_id: user.id, post_id: post.id) }
+      let!(:dislike) { create(:like, user_id: other_user.id, post_id: post.id) }
+      let(:percent) { post.like_users.length / (post.like_users.length + post.dislike_users.length) * 100 }
+
+      it 'いいね率を返す' do
+        expect(post.like_percentage).to eq percent.round
+      end
+    end
   end
 end
