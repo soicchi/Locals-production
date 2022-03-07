@@ -33,9 +33,9 @@ const loggedInUser = {
   birth_day: 1,
   introduction: '',
   following: [],
-  bookMarks: [],
-  likedPosts: [],
-  dislikedPosts: [],
+  book_mark_posts: [],
+  liked_posts: [],
+  disliked_posts: [],
 }
 
 const post = {
@@ -48,11 +48,6 @@ const post = {
 }
 
 describe('actions', () => {
-  test('ユーザーをstoreに格納する', () => {
-    store.dispatch('setUser', exampleUser)
-    expect(store.state.user).toEqual(exampleUser)
-  })
-
   test('ログインユーザーをstoreに格納する', () => {
     store.dispatch('setLoggedInUser', exampleUser)
     expect(store.state.loggedInUser).toEqual(exampleUser)
@@ -77,37 +72,37 @@ describe('actions', () => {
 
   test('ログインユーザーのブックマークリストが増える', () => {
     store.dispatch('setLoggedInUser', loggedInUser)
-    store.dispatch('addLoggedInUserBookMark', post)
-    expect(store.state.loggedInUser.bookMarks).toContain(post)
+    store.dispatch('addLoggedInUserBookMark', post.id)
+    expect(store.state.loggedInUser.book_mark_posts).toContain(post.id)
   })
 
   test('ログインユーザーのブックマークリストが減る', () => {
     store.dispatch('setLoggedInUser', loggedInUser)
-    store.dispatch('removeLoggedInUserBookMark', post)
-    expect(store.state.loggedInUser.bookMarks).not.toContain(post)
+    store.dispatch('removeLoggedInUserBookMark', post.id)
+    expect(store.state.loggedInUser.book_mark_posts).not.toContain(post.id)
   })
 
   test('ログインユーザーのいいねリストが増える', () => {
     store.dispatch('setLoggedInUser', loggedInUser)
-    store.dispatch('addLoggedInUserLikedPost', post)
-    expect(store.state.loggedInUser.likedPosts).toContain(post)
+    store.dispatch('addLoggedInUserLikedPost', post.id)
+    expect(store.state.loggedInUser.liked_posts).toContain(post.id)
   })
 
   test('ログインユーザーのいいねリストが減る', () => {
     store.dispatch('setLoggedInUser', loggedInUser)
-    store.dispatch('removeLoggedInUserLikedPost', post)
-    expect(store.state.loggedInUser.likedPosts).not.toContain(post)
+    store.dispatch('removeLoggedInUserLikedPost', post.id)
+    expect(store.state.loggedInUser.liked_posts).not.toContain(post.id)
   })
 
   test('ログインユーザーのう〜んリストが増える', () => {
     store.dispatch('setLoggedInUser', loggedInUser)
-    store.dispatch('addLoggedInUserDislikedPost', post)
-    expect(store.state.loggedInUser.dislikedPosts).toContain(post)
+    store.dispatch('addLoggedInUserDislikedPost', post.id)
+    expect(store.state.loggedInUser.disliked_posts).toContain(post.id)
   })
 
   test('ログインユーザーのう〜んリストが減る', () => {
     store.dispatch('setLoggedInUser', loggedInUser)
-    store.dispatch('removeLoggedInUserDislikedPost', post)
-    expect(store.state.loggedInUser.dislikedPosts).not.toContain(post)
+    store.dispatch('removeLoggedInUserDislikedPost', post.id)
+    expect(store.state.loggedInUser.disliked_posts).not.toContain(post.id)
   })
 })
