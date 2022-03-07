@@ -8,7 +8,7 @@
 <script>
 export default {
   computed: {
-    title: () => '投稿一覧',
+    title: () => 'すべての投稿',
     posts () {
       return this.$store.getters['post/posts']
     },

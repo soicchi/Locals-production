@@ -6,7 +6,7 @@
 export default {
   computed: {
     title () {
-      return '保存した投稿'
+      return 'ブックマーク'
     },
   },
   created () {

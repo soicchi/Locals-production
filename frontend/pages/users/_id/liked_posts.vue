@@ -13,7 +13,7 @@
 <script>
 export default {
   computed: {
-    title: () => 'いいね済み投稿一覧',
+    title: () => 'また行きたいリスト',
     likedPosts () {
       return this.$store.getters['post/likedPosts']
     },
