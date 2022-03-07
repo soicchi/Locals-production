@@ -133,7 +133,6 @@ data "aws_iam_policy_document" "ecs_task_execution" {
     effect = "Allow"
     actions = [
       "ssm:Getparameters",
-      "kms:Decrypt"
     ]
     resources = ["*"]
   }
