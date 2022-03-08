@@ -6,11 +6,9 @@ class Api::V1::UsersController < ApplicationController
         { posts: {
             include: [
               { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
-              { like_users: { only: :id } },
-              { dislike_users: { only: :id } },
               { categories: { only: :name } }
             ],
-            methods: :image_url,
+            methods: [:image_url, :like_percentage],
             except: [:comment, :updated_at]
           }
         },
@@ -46,7 +44,7 @@ class Api::V1::UsersController < ApplicationController
         { dislike_users: { only: :id } },
         { categories: { only: :name } }
       ],
-      methods: :image_url,
+      methods: [:image_url, :like_percentage],
       except: [:comment, :updated_at]
     )
   end
@@ -74,11 +72,9 @@ class Api::V1::UsersController < ApplicationController
     render json: posts.to_json(
       include: [
         { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
-        { like_users: { only: :id } },
-        { dislike_users: { only: :id } },
         { categories: { only: :name } }
       ],
-      methods: :image_url,
+      methods: [:image_url, :like_percentage],
       except: [:comment, :updated_at]
     )
   end
@@ -94,11 +90,9 @@ class Api::V1::UsersController < ApplicationController
     render json: posts.to_json(
       include: [
         { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
-        { like_users: { only: :id } },
-        { dislike_users: { only: :id } },
         { categories: { only: :name } }
       ],
-      methods: :image_url,
+      methods: [:image_url, :like_percentage],
       except: [:comment, :updated_at]
     )
   end

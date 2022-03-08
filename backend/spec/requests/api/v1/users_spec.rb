@@ -37,8 +37,9 @@ RSpec.describe "Api::V1::Users", type: :request do
           { dislike_users: { only: :id } },
           { categories: { only: :name } }
         ],
-        methods: :image_url,
-        except: [:comment, :updated_at])
+        methods: [:image_url, :like_percentage],
+        except: [:comment, :updated_at]
+      )
     end
 
     it 'ユーザーに紐付いたフォローしているユーザーのデータが返ってくる' do
@@ -90,7 +91,7 @@ RSpec.describe "Api::V1::Users", type: :request do
           { dislike_users: { only: :id } },
           { categories: { only: :name } }
         ],
-        methods: :image_url,
+        methods: [:image_url, :like_percentage],
         except: [:comment, :updated_at]
       )
     end
@@ -239,6 +240,14 @@ RSpec.describe "Api::V1::Users", type: :request do
 
     it '投稿に紐付いているカテゴリー名が返ってくる' do
       expect(response.body).to include category.name.to_json
+    end
+
+    it '投稿のimage_urlが返ってくる' do
+      expect(response.body).to include other_user_post.image_url.to_json
+    end
+
+    it '投稿のlike_percentageが返ってくる' do
+      expect(response.body).to include other_user_post.like_percentage.to_json
     end
   end
 end
