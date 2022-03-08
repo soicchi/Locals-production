@@ -4,6 +4,7 @@
     outlined
     :items="sortList"
     color="#9E9A94"
+    rounded
   />
 </template>
 

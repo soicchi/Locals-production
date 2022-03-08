@@ -15,7 +15,7 @@
       </v-col>
       <v-col
         cols="12"
-        sm="2"
+        sm="3"
         md="2"
         xl="1"
         class="pt-11 d-flex justify-center"
