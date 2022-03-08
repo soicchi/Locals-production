@@ -12,11 +12,9 @@ class Api::V1::PostsController < ApplicationController
     render json: posts.to_json(
       include: [
         { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
-        { like_users: { only: :id } },
-        { dislike_users: { only: :id } },
         { categories: { only: :name } }
       ],
-      methods: :image_url,
+      methods: [:image_url, :like_percentage],
       except: [:comment, :updated_at]
     )
   end
@@ -30,7 +28,7 @@ class Api::V1::PostsController < ApplicationController
         { dislike_users: { only: :id } },
         { categories: { only: [:name] } }
       ],
-      methods: [:image_url, :liked_age_group, :disliked_age_group],
+      methods: [:image_url, :liked_age_group, :disliked_age_group, :like_percentage],
       except: [:updated_at]
     )
   end

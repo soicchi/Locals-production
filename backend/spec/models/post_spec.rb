@@ -148,4 +148,27 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+
+  describe 'like_percentageメソッド' do
+    let!(:user) { create(:user) }
+    let!(:other_user) { create(:user) }
+    let!(:post) { create(:post) }
+    let!(:like) { create(:like, user_id: user.id, post_id: post.id) }
+    let!(:dislike) { create(:dislike, user_id: other_user.id, post_id: post.id) }
+    let(:percent) { post.like_users.length.to_f / (post.like_users.length.to_f + post.dislike_users.length.to_f) * 100 }
+
+    context 'percentのlike_usersとdislike_usersが0ではない場合' do
+      it 'いいね率を返す' do
+        expect(post.like_percentage).to eq percent.round
+      end
+    end
+
+    context 'percentのlike_usersとdislike_usersが0の場合' do
+      let!(:other_post) { create(:post) }
+
+      it 'いいね率を0で返す' do
+        expect(other_post.like_percentage).to eq 0
+      end
+    end
+  end
 end

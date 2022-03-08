@@ -65,6 +65,14 @@ RSpec.describe "Api::V1::Posts", type: :request do
         other_user_post.updated_at.to_json
       )
     end
+
+    it '投稿のimage_urlが返ってくる' do
+      expect(response.body).to include user_post.image_url.to_json
+    end
+
+    it '投稿のlike_percentageが返ってくる' do
+      expect(response.body).to include user_post.like_percentage.to_json
+    end
   end
 
   describe 'GET /show' do
@@ -100,6 +108,22 @@ RSpec.describe "Api::V1::Posts", type: :request do
 
     it 'postに紐づくカテゴリーのidが返ってくる' do
       expect(response.body).to include post.categories.ids.to_json
+    end
+
+    it 'postのimage_urlが返ってくる' do
+      expect(response.body).to include post.image_url.to_json
+    end
+
+    it '投稿のlike_percentageが返ってくる' do
+      expect(response.body).to include post.like_percentage.to_json
+    end
+
+    it '投稿のliked_age_groupが返ってくる' do
+      expect(response.body).to include post.liked_age_group.to_json
+    end
+
+    it '投稿のdisliked_age_groupが返ってくる' do
+      expect(response.body).to include post.disliked_age_group.to_json
     end
   end
 
