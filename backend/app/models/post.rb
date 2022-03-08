@@ -46,7 +46,7 @@ class Post < ApplicationRecord
     dislike_count = dislike_users.length.to_f
     percent = like_count / (like_count + dislike_count) * 100
     if like_count == 0.0 && dislike_count = 0.0
-      return 0
+      0
     else
       percent.round
     end

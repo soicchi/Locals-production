@@ -46,18 +46,18 @@ export const mutations = {
   },
   newSort (state) {
     state.posts.sort((a, b) => {
-      if (a.created_at > b.created_at) return -1
-      if (a.created_at < b.created_at) return 1
+      if (a.created_at > b.created_at) { return -1 }
+      if (a.created_at < b.created_at) { return 1 }
       return 0
     })
   },
   likeSort (state) {
     state.posts.sort((a, b) => {
-      if (a.like_percentage > b.like_percentage) return -1
-      if (a.like_percentage < b.like_percentage) return 1
+      if (a.like_percentage > b.like_percentage) { return -1 }
+      if (a.like_percentage < b.like_percentage) { return 1 }
       return 0
     })
-  }
+  },
 }
 
 export const actions = {
@@ -108,5 +108,5 @@ export const actions = {
   },
   likeSort ({ commit }) {
     commit('likeSort')
-  }
+  },
 }

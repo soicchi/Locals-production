@@ -50,7 +50,7 @@ export default {
   computed: {
     sortWidth () {
       return this.$vuetify.breakpoint.xs ? '40%' : '100%'
-    }
-  }
+    },
+  },
 }
 </script>

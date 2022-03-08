@@ -33,8 +33,6 @@ RSpec.describe "Api::V1::Users", type: :request do
       expect(response.body).to include user_post.to_json(
         include: [
           { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
-          { like_users: { only: :id } },
-          { dislike_users: { only: :id } },
           { categories: { only: :name } }
         ],
         methods: [:image_url, :like_percentage],
@@ -193,14 +191,6 @@ RSpec.describe "Api::V1::Users", type: :request do
       )
     end
 
-    it 'いいねしているユーザーのIDが返ってくる' do
-      expect(response.body).to include user.id.to_json
-    end
-
-    it 'う〜んの評価をしたユーザーのIDが返ってくる' do
-      expect(response.body).to include other_user2.id.to_json
-    end
-
     it 'カテゴリーのnameが返ってくる' do
       expect(response.body).to include category.name.to_json
     end
@@ -228,14 +218,6 @@ RSpec.describe "Api::V1::Users", type: :request do
         other_user_post.image_url.to_json,
         other_user_post.created_at.to_json,
       )
-    end
-
-    it '投稿にいいねしたユーザーのIDが返ってくる' do
-      expect(response.body).to include user.id.to_json
-    end
-
-    it '投稿にう〜んの評価をしたユーザーのIDが返ってくる' do
-      expect(response.body).to include user2.id.to_json
     end
 
     it '投稿に紐付いているカテゴリー名が返ってくる' do

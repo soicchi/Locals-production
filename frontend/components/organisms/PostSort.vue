@@ -15,9 +15,6 @@ export default {
       return ['最新順', 'また行きたい順（高）']
     },
   },
-  created () {
-    this.sortVal = '最新順'
-  },
   watch: {
     sortVal () {
       if (this.sortVal === '最新順') {
@@ -25,7 +22,10 @@ export default {
       } else if (this.sortVal === 'また行きたい順（高）') {
         this.$store.dispatch('post/likeSort')
       }
-    }
-  }
+    },
+  },
+  created () {
+    this.sortVal = '最新順'
+  },
 }
 </script>
