@@ -11,7 +11,7 @@
         mdi-account
       </v-icon>
       <div class="percentage">
-        {{ percentage }}<span>%</span>
+        {{ post.like_percentage }}<span>%</span>
       </div>
     </div>
   </div>
@@ -26,16 +26,6 @@ export default {
     },
   },
   computed: {
-    percentage () {
-      const likesCount = Number(this.post.like_users.length)
-      const dislikesCount = Number(this.post.dislike_users.length)
-      const percent = likesCount / (likesCount + dislikesCount) * 100
-      if (!percent) {
-        return 0
-      } else {
-        return Math.round(percent)
-      }
-    },
     iconSize () {
       return this.$vuetify.breakpoint.xs ? '50' : '70'
     },
