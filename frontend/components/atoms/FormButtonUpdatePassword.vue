@@ -30,7 +30,7 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.loading = false
-      }, 1500)
+      }, 5000)
       this.$emit('update')
     },
   },
