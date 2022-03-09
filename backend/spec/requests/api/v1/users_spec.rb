@@ -61,7 +61,7 @@ RSpec.describe "Api::V1::Users", type: :request do
     end
   end
 
-  describe 'DELETE /users/:id' do
+  describe 'DELETE /destroy' do
     let!(:user) { create(:user) }
     let!(:admin_user) { create(:user, :admin) }
     let!(:not_admin_user) { create(:user) }
