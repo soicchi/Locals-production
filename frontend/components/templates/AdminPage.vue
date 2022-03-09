@@ -21,6 +21,7 @@
           :sort-val="sortVal"
           :sort-list="sortList"
           @destroy-post="destroyPost"
+          @destroy-user="destroyUser"
         />
       </v-col>
     </v-row>
@@ -61,9 +62,12 @@ export default {
     addCategory () {
       this.$emit('add-category')
     },
-    destroyPost () {
-      this.$emit('destroy-post')
+    destroyPost (postId) {
+      this.$emit('destroy-post', postId)
     },
+    destroyUser (userId) {
+      this.$emit('destroy-user', userId)
+    }
   }
 }
 </script>

@@ -20,6 +20,7 @@
         :post="post"
         :icon-size="iconSize"
         @destroy-post="destroyPost"
+        @destroy-user="destroyUser"
       />
     </v-row>
   </v-container>
@@ -48,7 +49,10 @@ export default {
   },
   methods: {
     destroyPost () {
-      this.$emit('destroy-post')
+      this.$emit('destroy-post', this.post.id)
+    },
+    destroyUser () {
+      this.$emit('destroy-user', this.post.user.id)
     }
   }
 }

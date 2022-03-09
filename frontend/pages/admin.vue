@@ -27,7 +27,7 @@ export default {
     iconSize: () => 60,
     sortList() {
       return [
-        '本日',
+        '今日',
         '1週間',
         '1ヶ月間',
       ]
@@ -36,7 +36,7 @@ export default {
   created () {
     this.$store.dispatch('category/getCategories')
     this.$store.dispatch('post/getPosts')
-    this.sortVal = '本日'
+    this.sortVal = '今日'
   },
   // watch: {
   //   sortVal () {
@@ -59,9 +59,9 @@ export default {
           this.setMessages({ messages: messages, type: 'success' })
         })
     },
-    async destroyPost (post) {
+    async destroyPost (postId) {
       if (window.confirm('投稿を削除しますか')) {
-        await this.$axios.delete(`/posts/${post.id}`)
+        await this.$axios.delete(`/posts/${postId}`)
           .then((res) => {
             this.removePost(post)
             const message = [res.data.message]
@@ -69,6 +69,16 @@ export default {
           })
       }
     },
+    async destroyUser (userId) {
+      if (window.confirm('ユーザーを削除しますか')) {
+        await this.$axios.delete(`/users/${userId}`)
+          .then((res) => {
+            const message = ['ユーザが削除されました']
+            this.setMessages({ messages: message, type: 'success' })
+            this.$store.dispatch('post/getPosts')
+          })
+      }
+    }
   }
 }
 </script>

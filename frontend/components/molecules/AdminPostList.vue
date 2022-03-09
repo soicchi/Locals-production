@@ -6,7 +6,7 @@
   >
     <v-row align="center">
       <v-col
-        cols="4"
+        cols="5"
         class="d-flex align-center"  
       >
         <AtomsUserIcon
@@ -21,9 +21,9 @@
         cols="3"
         class="d-flex justify-end"
       >
-        <AtomsPostButtonDestroy
-          :post="post"
+        <MoleculesAdminMenu
           @destroy-post="destroyPost"
+          @destroy-user="destroyUser"
         />
       </v-col>
     </v-row>
@@ -64,6 +64,9 @@ export default {
   methods: {
     destroyPost () {
       this.$emit('destroy-post')
+    },
+    destroyUser () {
+      this.$emit('destroy-user')
     }
   }
 }
