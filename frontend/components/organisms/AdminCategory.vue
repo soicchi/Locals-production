@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="12">
           <MoleculesAdminFormCategory
-            :category.sync="category"
+            :category.sync="setCategory"
             @add-category="addCategory"
           />
         </v-col>
@@ -27,12 +27,16 @@ export default {
       type: String,
       required: true,
       default: '',
-    }
+    },
   },
   methods: {
     addCategory () {
       this.$emit('add-category')
-    }
-  }
+    },
+    setCategory: {
+      get () { return this.category },
+      set (newVal) { return this.$emit('update:category', newVal) },
+    },
+  },
 }
 </script>

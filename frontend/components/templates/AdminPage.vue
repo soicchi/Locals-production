@@ -10,8 +10,8 @@
       <v-col cols="3" class="mt-14 pt-14">
         <OrganismsAdminCategory
           :categories="categories"
-          :category.sync="category"
-          @add-category="addCategory" 
+          :category.sync="setCategory"
+          @add-category="addCategory"
         />
       </v-col>
       <v-col cols="6">
@@ -62,16 +62,22 @@ export default {
       required: true,
     },
   },
+  computed: {
+    setCategory: {
+      get () { return this.category },
+      set (newVal) { return this.$emit('update:category', newVal) },
+    },
+  },
   methods: {
     addCategory () {
       this.$emit('add-category')
     },
-    destroyPost (postId) {
-      this.$emit('destroy-post', postId)
+    destroyPost (post) {
+      this.$emit('destroy-post', post)
     },
     destroyUser (userId) {
       this.$emit('destroy-user', userId)
-    }
-  }
+    },
+  },
 }
 </script>

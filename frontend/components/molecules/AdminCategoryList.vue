@@ -18,7 +18,7 @@ export default {
     categories: {
       type: Array,
       required: true,
-    }
-  }
+    },
+  },
 }
 </script>

@@ -34,9 +34,9 @@
       </v-toolbar-items>
       <v-toolbar-items>
         <v-switch
+          v-model="setAdmin"
           class="pt-3 ml-2"
           :label="mode"
-          v-model="setAdmin"
           flat
           inset
           color="white"
@@ -123,7 +123,7 @@ export default {
     },
     mode () {
       return this.admin ? '管理者' : 'ユーザー'
-    }
+    },
   },
   methods: {
     signOut () {

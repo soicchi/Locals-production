@@ -30,6 +30,7 @@ module.exports = {
         'edit',
         'password',
         'Footer',
+        'admin',
       ],
     }],
   },

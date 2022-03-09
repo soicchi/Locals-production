@@ -7,7 +7,7 @@
     <v-row align="center">
       <v-col
         cols="5"
-        class="d-flex align-center"  
+        class="d-flex align-center"
       >
         <AtomsUserIcon
           :icon-size="iconSize"
@@ -67,7 +67,7 @@ export default {
     },
     destroyUser () {
       this.$emit('destroy-user')
-    }
-  }
+    },
+  },
 }
 </script>

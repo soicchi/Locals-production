@@ -81,7 +81,7 @@ export default {
         this.$store.dispatch('user/notAdmin')
         this.$router.replace('/')
       }
-    }
+    },
   },
   created () {
     if (this.loggedInUser.admin) {

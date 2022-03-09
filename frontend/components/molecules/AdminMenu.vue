@@ -58,6 +58,6 @@ export default {
     destroyUser () {
       this.$emit('destroy-user')
     },
-  }
+  },
 }
 </script>

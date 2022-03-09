@@ -7,7 +7,7 @@
       >
         <MoleculesPostSort
           :sort-val="sortVal"
-          :sort-list="sortList"  
+          :sort-list="sortList"
         />
       </v-col>
     </v-row>
@@ -49,11 +49,11 @@ export default {
   },
   methods: {
     destroyPost () {
-      this.$emit('destroy-post', this.post.id)
+      this.$emit('destroy-post', this.post)
     },
     destroyUser () {
       this.$emit('destroy-user', this.post.user.id)
-    }
-  }
+    },
+  },
 }
 </script>

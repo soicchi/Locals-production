@@ -27,7 +27,7 @@ export default {
     }),
     iconSize: () => 60,
     title: () => '管理画面',
-    sortList() {
+    sortList () {
       return [
         '今日',
         '1週間',
@@ -43,7 +43,7 @@ export default {
   // watch: {
   //   sortVal () {
   //     if (this.sortVal === '本日') {
-        
+
   //     }
   //   }
   // },
@@ -58,12 +58,12 @@ export default {
         .then((res) => {
           this.setCategories(res.data)
           const messages = ['カテゴリーを追加しました']
-          this.setMessages({ messages: messages, type: 'success' })
+          this.setMessages({ messages, type: 'success' })
         })
     },
-    async destroyPost (postId) {
+    async destroyPost (post) {
       if (window.confirm('投稿を削除しますか')) {
-        await this.$axios.delete(`/posts/${postId}`)
+        await this.$axios.delete(`/posts/${post.id}`)
           .then((res) => {
             this.removePost(post)
             const message = [res.data.message]
@@ -80,7 +80,7 @@ export default {
             this.$store.dispatch('post/getPosts')
           })
       }
-    }
-  }
+    },
+  },
 }
 </script>
