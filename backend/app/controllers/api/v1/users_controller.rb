@@ -30,6 +30,16 @@ class Api::V1::UsersController < ApplicationController
     )
   end
 
+  def destroy
+    user = User.find(params[:id])
+    if current_user.admin
+      user.avatar.purge
+      user.destroy
+    else
+      render json: { message: '管理者でないと削除できません' }, status: 401
+    end
+  end
+
   def book_mark_posts
     posts = current_user.book_mark_posts.includes(
       { user: { avatar_attachment: :blob } },

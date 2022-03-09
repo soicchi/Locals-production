@@ -43,5 +43,9 @@ FactoryBot.define do
       birth_month { 1 }
       birth_day { 1 }
     end
+
+    trait :admin do
+      admin { true }
+    end
   end
 end
