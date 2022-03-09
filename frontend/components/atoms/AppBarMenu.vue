@@ -10,7 +10,10 @@
         icon
         v-on="on"
       >
-        <v-icon size="30">
+        <v-icon
+          size="30"
+          color="white"
+        >
           mdi-cog
         </v-icon>
       </v-btn>
