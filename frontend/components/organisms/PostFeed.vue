@@ -7,11 +7,7 @@
       :icon-size="iconSize"
       :logged-in-user="loggedInUser"
       @destroy-post="destroyPost"
-    >
-      <template #post-card-user-name>
-        <AtomsUserName :user="post.user" />
-      </template>
-    </MoleculesPostCard>
+    />
   </div>
 </template>
 
