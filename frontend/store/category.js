@@ -19,4 +19,7 @@ export const actions = {
         commit('setCategories', res.data)
       })
   },
+  setCategories (state, categories) {
+    state.categories = categories
+  },
 }
