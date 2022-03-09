@@ -4,7 +4,7 @@
       justify="center"
       class="mt-5"
     >
-      <h1>管理画面</h1>
+      <AtomsCommonTitle :title="title" />
     </v-row>
     <v-row justify="center">
       <v-col cols="3" class="mt-14 pt-14">
@@ -55,6 +55,10 @@ export default {
     },
     sortList: {
       type: Array,
+      required: true,
+    },
+    title: {
+      type: String,
       required: true,
     },
   },

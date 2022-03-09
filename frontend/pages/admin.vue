@@ -6,6 +6,7 @@
     :icon-size="iconSize"
     :sort-val="sortVal"
     :sort-list="sortList"
+    :title="title"
     @add-category="addCategory"
     @destroy-post="destroyPost"
   />
@@ -25,6 +26,7 @@ export default {
       categories: 'category/categories',
     }),
     iconSize: () => 60,
+    title: () => '管理画面',
     sortList() {
       return [
         '今日',

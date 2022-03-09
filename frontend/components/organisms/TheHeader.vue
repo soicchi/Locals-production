@@ -10,6 +10,7 @@
       :drawer-menu-list="drawerMenuList"
       :account-menu-list="accountMenuList"
       :logged-in-user="loggedInUser"
+      :admin.sync="admin"
       @signOut="signOut"
     >
       <template #nav-icon>
@@ -27,6 +28,7 @@
 export default {
   data: () => ({
     drawer: false,
+    admin: false,
   }),
   computed: {
     loggedInUser () {
@@ -71,8 +73,22 @@ export default {
       ]
     },
   },
+  watch: {
+    admin () {
+      if (this.admin) {
+        this.$store.dispatch('user/admin')
+      } else {
+        this.$store.dispatch('user/notAdmin')
+        this.$router.replace('/')
+      }
+    }
+  },
+  created () {
+    if (this.loggedInUser.admin) {
+      this.admin = true
+    }
+  },
   methods: {
-
     async signOut () {
       if (window.confirm('ログアウトしてよろしいですか')) {
         if (this.loggedInUser.guest === true) {

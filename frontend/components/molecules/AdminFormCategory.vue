@@ -7,7 +7,9 @@
     />
     <v-btn
       @click="addCategory"
-      class="ml-3"
+      class="ml-3 add-btn"
+      rounded
+      color="mainColor"
     >
       追加
     </v-btn>
@@ -36,3 +38,8 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+  .add-btn
+    font-color: white
+</style>

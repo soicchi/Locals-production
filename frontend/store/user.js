@@ -53,6 +53,12 @@ export const mutations = {
       return dislikePost !== postId
     })
   },
+  admin (state) {
+    state.loggedInUser.admin = true
+  },
+  notAdmin (state) {
+    state.loggedInUser.admin = false
+  },
 }
 
 export const actions = {
@@ -97,5 +103,11 @@ export const actions = {
   },
   removeLoggedInUserDislikedPost ({ commit }, postId) {
     commit('removeLoggedInUserDislikedPost', postId)
+  },
+  admin ({ commit }) {
+    commit('admin')
+  },
+  notAdmin ({ commit }) {
+    commit('notAdmin')
   },
 }

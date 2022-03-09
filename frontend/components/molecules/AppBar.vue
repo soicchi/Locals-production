@@ -32,13 +32,27 @@
       <v-toolbar-items>
         <AtomsAppBarTitle />
       </v-toolbar-items>
-      <v-spacer />
-      <!-- <b-toolbar-items>
+      <v-toolbar-items>
         <v-switch
-          class="pt-6"
-          :label="`管理者: ${loggedInUser.admin}`"
+          class="pt-3 ml-2"
+          :label="mode"
+          v-model="setAdmin"
+          flat
+          inset
+          color="white"
         />
-      </b-toolbar-items> -->
+      </v-toolbar-items>
+      <v-spacer />
+      <v-toolbar-items v-if="loggedInUser.admin">
+        <v-btn
+          text
+          color="white"
+          retain-focus-on-click
+          to="/admin"
+        >
+          管理
+        </v-btn>
+      </v-toolbar-items>
       <v-toolbar-items>
         <v-row
           justify="end"
@@ -93,11 +107,23 @@ export default {
       type: Object,
       required: true,
     },
+    admin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   computed: {
     myPage () {
       return this.$route.path === `/users/${this.loggedInUser.id}` || this.$route.path === '/users/password' || this.$route.path === '/users/edit'
     },
+    setAdmin: {
+      get () { return this.admin },
+      set (newVal) { return this.$emit('update:admin', newVal) },
+    },
+    mode () {
+      return this.admin ? '管理者' : 'ユーザー'
+    }
   },
   methods: {
     signOut () {
