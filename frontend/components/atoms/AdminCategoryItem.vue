@@ -18,7 +18,7 @@ export default {
   methods: {
     removeCategory () {
       this.$emit('remove-category', this.category.id)
-    }
-  }
+    },
+  },
 }
 </script>

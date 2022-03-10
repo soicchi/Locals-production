@@ -35,15 +35,15 @@
       <v-spacer />
       <!-- 運用する場合適用 -->
       <!-- <template v-if="loggedInUser.admin"> -->
-        <v-toolbar-items>
-          <v-btn
-            color="white"
-            text
-            to="/admin"
-          >
-            管理
-          </v-btn>
-        </v-toolbar-items>
+      <v-toolbar-items>
+        <v-btn
+          color="white"
+          text
+          to="/admin"
+        >
+          管理
+        </v-btn>
+      </v-toolbar-items>
       <!-- </template> -->
       <v-toolbar-items>
         <v-row

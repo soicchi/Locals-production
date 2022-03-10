@@ -14,7 +14,7 @@ export const mutations = {
     state.categories = state.categories.filter((category) => {
       return category.id !== categoryId
     })
-  }
+  },
 }
 
 export const actions = {
@@ -29,5 +29,5 @@ export const actions = {
   },
   removeCategory ({ commit }, categoryId) {
     commit('removeCategory', categoryId)
-  }
+  },
 }

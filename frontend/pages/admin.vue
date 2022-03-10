@@ -96,7 +96,7 @@ export default {
             this.$store.dispatch('category/removeCategory', categoryId)
           })
       }
-    }
+    },
   },
 }
 </script>

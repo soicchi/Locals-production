@@ -82,7 +82,7 @@ export default {
     },
     removeCategory (categoryId) {
       this.$emit('remove-category', categoryId)
-    }
+    },
   },
 }
 </script>
