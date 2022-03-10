@@ -82,7 +82,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
     it 'カテゴリーが削除される' do
       expect(Category.all).not_to include category
     end
-    
+
     it 'メッセージが返ってくる' do
       expect(json['message']).to eq message
     end

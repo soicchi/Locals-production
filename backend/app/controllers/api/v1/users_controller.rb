@@ -36,7 +36,7 @@ class Api::V1::UsersController < ApplicationController
     user.avatar.purge
     user.destroy
     # else
-      # render json: { message: '管理者でないと削除できません' }, status: 401
+    # render json: { message: '管理者でないと削除できません' }, status: 401
     # end
   end
 

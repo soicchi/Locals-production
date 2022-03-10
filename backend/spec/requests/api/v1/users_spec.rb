@@ -66,7 +66,7 @@ RSpec.describe "Api::V1::Users", type: :request do
     let!(:admin_user) { create(:user, :admin) }
     let!(:not_admin_user) { create(:user) }
     let!(:default_user_count) { User.count }
-    
+
     context 'adminがtrueの場合' do
       let(:auth_tokens) { sign_in admin_user }
 
