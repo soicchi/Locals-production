@@ -83,21 +83,22 @@ RSpec.describe "Api::V1::Users", type: :request do
       end
     end
 
-    context 'adminがfalseの場合' do
-      let(:auth_tokens) { sign_in not_admin_user }
+    # ポートフォリオ上はコメントアウト
+    # context 'adminがfalseの場合' do
+    #   let(:auth_tokens) { sign_in not_admin_user }
 
-      before do
-        delete api_v1_user_path(user), headers: auth_tokens
-      end
+    #   before do
+    #     delete api_v1_user_path(user), headers: auth_tokens
+    #   end
 
-      it 'ステータスコード401が返ってくる' do
-        expect(response.status).to eq 401
-      end
+    #   it 'ステータスコード401が返ってくる' do
+    #     expect(response.status).to eq 401
+    #   end
 
-      it 'userは削除されない' do
-        expect(User.count).to eq default_user_count
-      end
-    end
+    #   it 'userは削除されない' do
+    #     expect(User.count).to eq default_user_count
+    #   end
+    # end
   end
 
   describe 'GET /book_mark_posts' do

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       resources :book_marks,      only: [:create, :destroy]
       resources :likes,           only: [:create, :destroy]
       resources :dislikes,        only: [:create, :destroy]
-      resources :categories,      only: [:index, :create]
+      resources :categories,      only: [:index, :create, :destroy]
       resources :health_checks,   only: [:index]
       resources :guests,          only: [:create]
       resources :current_users,   only: [:index]

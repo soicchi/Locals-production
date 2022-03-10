@@ -14,6 +14,12 @@ class Api::V1::CategoriesController < ApplicationController
     end
   end
 
+  def destroy
+    category = Category.find(params[:id])
+    category.destroy # if current_user.admin ポートフォリオ上はコメントアウト
+    render json: { message: "カテゴリーの#{category.name}を削除しました" }
+  end
+
   private
 
   def category_params

@@ -24,7 +24,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
 
   describe 'POST /create' do
     let!(:admin_user) { create(:user, :admin) }
-    let!(:not_admin_user) { create(:user) }
+    # let!(:not_admin_user) { create(:user) }
     let!(:default_category_count) { Category.count }
     let(:category_name) { '魚' }
 
@@ -48,20 +48,43 @@ RSpec.describe "Api::V1::Categories", type: :request do
       end
     end
 
-    context 'adminがfalseの場合' do
-      let(:auth_tokens) { sign_in not_admin_user }
+    # ポートフォリオ上はコメントアウト
+    # context 'adminがfalseの場合' do
+    #   let(:auth_tokens) { sign_in not_admin_user }
 
-      before do
-        post api_v1_categories_path, params: { name: category_name }, headers: auth_tokens
-      end
+    #   before do
+    #     post api_v1_categories_path, params: { name: category_name }, headers: auth_tokens
+    #   end
 
-      it 'ステータスコード401が返っている' do
-        expect(response.status).to eq 401
-      end
+    #   it 'ステータスコード401が返っている' do
+    #     expect(response.status).to eq 401
+    #   end
 
-      it 'カテゴリーは追加されない' do
-        expect(Category.count).to eq default_category_count
-      end
+    #   it 'カテゴリーは追加されない' do
+    #     expect(Category.count).to eq default_category_count
+    #   end
+    # end
+  end
+
+  describe 'DELETE /destroy' do
+    let!(:category) { create(:category) }
+    let!(:user) { create(:user) }
+    let(:message) { "カテゴリーの#{category.name}を削除しました" }
+
+    before do
+      delete api_v1_category_path(category)
+    end
+
+    it 'ステータスコード200が返ってくる' do
+      expect(response.status).to eq 200
+    end
+
+    it 'カテゴリーが削除される' do
+      expect(Category.all).not_to include category
+    end
+    
+    it 'メッセージが返ってくる' do
+      expect(json['message']).to eq message
     end
   end
 end
