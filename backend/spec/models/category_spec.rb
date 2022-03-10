@@ -32,4 +32,16 @@ RSpec.describe Category, type: :model do
       end
     end
   end
+
+  describe 'モデルメソッドに関するテスト' do
+    let!(:category1) { create(:category, name: '焼き肉') }
+    let!(:category2) { create(:category, name: 'その他') }
+    let!(:category3) { create(:category, name: 'すき焼き') }
+
+    context 'self.order_category_list' do
+      it 'カテゴリーが昇順でかつその他が一番うしろに置かれた配列が返ってくる' do
+        expect(Category.order_category_list).to match_array([category3, category1, category2])
+      end
+    end
+  end
 end
