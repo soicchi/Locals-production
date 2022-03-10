@@ -27,14 +27,24 @@
       fixed
       app
       dense
-      dark
       elevation="1"
-      clipped-left
     >
       <v-toolbar-items>
         <AtomsAppBarTitle />
       </v-toolbar-items>
       <v-spacer />
+      <!-- 運用する場合適用 -->
+      <!-- <template v-if="loggedInUser.admin"> -->
+      <v-toolbar-items>
+        <v-btn
+          color="white"
+          text
+          to="/admin"
+        >
+          管理
+        </v-btn>
+      </v-toolbar-items>
+      <!-- </template> -->
       <v-toolbar-items>
         <v-row
           justify="end"
@@ -92,7 +102,7 @@ export default {
   },
   computed: {
     myPage () {
-      return this.$route.path === `/users/${this.loggedInUser.id}`
+      return this.$route.path === `/users/${this.loggedInUser.id}` || this.$route.path === '/users/password' || this.$route.path === '/users/edit'
     },
   },
   methods: {

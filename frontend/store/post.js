@@ -58,6 +58,15 @@ export const mutations = {
       return 0
     })
   },
+  // todaySort (state) {
+  //   const today = new Date()
+  //   state.posts = state.posts.filter((post) => {
+  //     const postYear = new Date(post.created_at).getFullYear()
+  //     const postMonth = new Date(post.created_at).getMonth()
+  //     const postDay = new Date(post.created_at).getDay()
+  //     return postYear === today.getFullYear() && postMonth === today.getMonth() && postDay === today.getDay()
+  //   })
+  // },
 }
 
 export const actions = {
@@ -109,4 +118,7 @@ export const actions = {
   likeSort ({ commit }) {
     commit('likeSort')
   },
+  // todaySort ({ commit }) {
+  //   commit('todaySort')
+  // }
 }

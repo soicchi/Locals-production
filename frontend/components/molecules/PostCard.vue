@@ -20,7 +20,7 @@
               :icon-size="iconSize"
               :avatar-url="post.user.avatar_url"
             />
-            <slot name="post-card-user-name" />
+            <AtomsUserName :user="post.user" />
           </v-col>
           <v-spacer />
           <v-col
@@ -79,7 +79,6 @@
             <AtomsCategoryItem :categories="post.categories" />
           </v-col>
           <!-- mobile版レイアウト用 -->
-
           <v-spacer v-if="!$vuetify.breakpoint.xs" />
           <v-col
             cols="5"

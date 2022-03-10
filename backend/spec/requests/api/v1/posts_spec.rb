@@ -59,9 +59,7 @@ RSpec.describe "Api::V1::Posts", type: :request do
 
     it '各投稿にcommentとupdated_atは含まれていない' do
       expect(response.body).not_to include(
-        user_post.comment.to_json,
         user_post.updated_at.to_json,
-        other_user_post.comment.to_json,
         other_user_post.updated_at.to_json
       )
     end

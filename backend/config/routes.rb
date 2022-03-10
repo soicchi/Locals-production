@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth'
-      resources :users, only: [:show] do
+      resources :users, only: [:show, :destroy] do
         member do
           get :user_posts
         end
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       resources :book_marks,      only: [:create, :destroy]
       resources :likes,           only: [:create, :destroy]
       resources :dislikes,        only: [:create, :destroy]
-      resources :categories,      only: [:index]
+      resources :categories,      only: [:index, :create, :destroy]
       resources :health_checks,   only: [:index]
       resources :guests,          only: [:create]
       resources :current_users,   only: [:index]

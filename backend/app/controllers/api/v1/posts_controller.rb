@@ -15,7 +15,7 @@ class Api::V1::PostsController < ApplicationController
         { categories: { only: :name } }
       ],
       methods: [:image_url, :like_percentage],
-      except: [:comment, :updated_at]
+      except: :updated_at
     )
   end
 

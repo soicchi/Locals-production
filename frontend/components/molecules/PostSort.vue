@@ -18,7 +18,6 @@ export default {
     sortVal: {
       type: String,
       required: true,
-      default: '最新順',
     },
   },
   computed: {

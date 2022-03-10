@@ -2,7 +2,8 @@
   <v-btn
     :disabled="loading"
     :loading="loading"
-    rounded
+    text
+    plain
     color="subColor"
     class="delete-btn"
     @click="deleteUser"

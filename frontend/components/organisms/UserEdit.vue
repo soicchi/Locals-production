@@ -68,12 +68,13 @@ export default {
         await this.$axios.delete('/auth')
         await this.$auth.logout()
           .then((res) => {
+            localStorage.removeItem('access-token')
+            localStorage.removeItem('token-type')
+            localStorage.removeItem('uid')
+            localStorage.removeItem('client')
             this.$store.dispatch('user/resetLoggedInUser')
-            localStorage.remove('access-token')
-            localStorage.remove('token-type')
-            localStorage.remove('uid')
-            localStorage.remove('client')
             this.$router.replace('/auth/signup')
+            this.$store.dispatch('message/setMessages', { messages: ['退会しました'], type: 'success' })
           })
       }
     },

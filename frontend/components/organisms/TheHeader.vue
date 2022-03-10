@@ -72,7 +72,6 @@ export default {
     },
   },
   methods: {
-
     async signOut () {
       if (window.confirm('ログアウトしてよろしいですか')) {
         if (this.loggedInUser.guest === true) {

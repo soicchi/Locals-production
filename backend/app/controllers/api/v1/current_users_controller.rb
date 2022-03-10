@@ -17,7 +17,8 @@ class Api::V1::CurrentUsersController < ApplicationController
         :liked_posts,
         :disliked_posts,
         :book_mark_posts,
-        :guest
+        :guest,
+        :admin
       ]
     )
   end
