@@ -18,7 +18,6 @@
       </v-col>
       <v-col cols="4">
         <OrganismsAdminPost
-          v-model="setSortVal"
           :posts="posts"
           :icon-size="iconSize"
           @destroy-post="destroyPost"
