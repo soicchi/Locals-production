@@ -3,6 +3,7 @@
     :posts="posts"
     :categories="categories"
     :category.sync="category"
+    :dialog.sync="dialog"
     :icon-size="iconSize"
     :title="title"
     @add-category="addCategory"
@@ -17,6 +18,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data: () => ({
     category: '',
+    dialog: true,
     // sortVal: '',
   }),
   computed: {

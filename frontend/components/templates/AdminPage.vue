@@ -4,6 +4,10 @@
       justify="center"
       class="mt-5"
     >
+      <OrganismsAdminDialog
+        v-model="setDialog"
+        :dialog.sync="setDialog"
+      />
       <AtomsCommonTitle :title="title" />
     </v-row>
     <v-row justify="center">
@@ -48,6 +52,15 @@ export default {
       type: Number,
       required: true,
     },
+    title: {
+      type: String,
+      required: true,
+    },
+    dialog: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
     // sortVal: {
     //   type: String,
     //   rquired: true,
@@ -56,15 +69,15 @@ export default {
     //   type: Array,
     //   required: true,
     // },
-    title: {
-      type: String,
-      required: true,
-    },
   },
   computed: {
     setCategory: {
       get () { return this.category },
       set (newVal) { return this.$emit('update:category', newVal) },
+    },
+    setDialog: {
+      get () { return this.dialog },
+      set (newVal) { return this.$emit('update:dialog', newVal) },
     },
     // setSortVal: {
     //   get () { return this.sortVal },
