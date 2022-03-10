@@ -2,7 +2,7 @@
   <div class="d-flex justify-center align-center">
     <v-text-field
       v-model="setCategory"
-      label="カテゴリー"
+      label="カテゴリー追加"
       hint="追加したいカテゴリー入力"
     />
     <v-btn

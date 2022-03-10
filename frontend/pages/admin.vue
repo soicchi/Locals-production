@@ -4,8 +4,6 @@
     :categories="categories"
     :category.sync="category"
     :icon-size="iconSize"
-    :sort-val="sortVal"
-    :sort-list="sortList"
     :title="title"
     @add-category="addCategory"
     @destroy-post="destroyPost"
@@ -19,7 +17,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data: () => ({
     category: '',
-    sortVal: '',
+    // sortVal: '',
   }),
   computed: {
     ...mapGetters({
@@ -28,13 +26,13 @@ export default {
     }),
     iconSize: () => 60,
     title: () => '管理画面',
-    sortList () {
-      return [
-        '今日',
-        '1週間',
-        '1ヶ月間',
-      ]
-    },
+    // sortList () {
+    //   return [
+    //     '今日',
+    //     '前日',
+    //     '1週間',
+    //   ]
+    // },
     confirm () {
       return window.confirm('本当に削除しますか')
     },
@@ -42,12 +40,12 @@ export default {
   created () {
     this.$store.dispatch('category/getCategories')
     this.$store.dispatch('post/getPosts')
-    this.sortVal = '今日'
+    // this.sortVal = '今日'
   },
   // watch: {
   //   sortVal () {
-  //     if (this.sortVal === '本日') {
-
+  //     if (this.sortVal === '今日') {
+  //       this.$store.dispatch('post/todaySort')
   //     }
   //   }
   // },

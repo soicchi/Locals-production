@@ -7,7 +7,7 @@
       <AtomsCommonTitle :title="title" />
     </v-row>
     <v-row justify="center">
-      <v-col cols="4" class="mt-14 pt-14">
+      <v-col cols="4">
         <OrganismsAdminCategory
           v-model="setCategory"
           :categories="categories"
@@ -16,12 +16,11 @@
           @remove-category="removeCategory"
         />
       </v-col>
-      <v-col cols="5">
+      <v-col cols="4">
         <OrganismsAdminPost
+          v-model="setSortVal"
           :posts="posts"
           :icon-size="iconSize"
-          :sort-val="sortVal"
-          :sort-list="sortList"
           @destroy-post="destroyPost"
           @destroy-user="destroyUser"
         />
@@ -50,15 +49,14 @@ export default {
       type: Number,
       required: true,
     },
-    sortVal: {
-      type: String,
-      rquired: true,
-      default: '本日',
-    },
-    sortList: {
-      type: Array,
-      required: true,
-    },
+    // sortVal: {
+    //   type: String,
+    //   rquired: true,
+    // },
+    // sortList: {
+    //   type: Array,
+    //   required: true,
+    // },
     title: {
       type: String,
       required: true,
@@ -69,6 +67,10 @@ export default {
       get () { return this.category },
       set (newVal) { return this.$emit('update:category', newVal) },
     },
+    // setSortVal: {
+    //   get () { return this.sortVal },
+    //   set (newVal) { return this.$emit('update:sortVal', newVal) }
+    // },
   },
   methods: {
     addCategory () {

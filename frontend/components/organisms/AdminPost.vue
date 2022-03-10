@@ -1,16 +1,13 @@
 <template>
   <v-container>
-    <v-row justify="end">
+    <!-- <v-row justify="end">
       <v-col
         cols="3"
         align-self="center"
       >
-        <MoleculesPostSort
-          :sort-val="sortVal"
-          :sort-list="sortList"
-        />
+        <MoleculesPostSort />
       </v-col>
-    </v-row>
+    </v-row> -->
     <v-row
       v-for="post in posts"
       :key="post.id"
@@ -37,16 +34,22 @@ export default {
       type: Number,
       required: true,
     },
-    sortVal: {
-      type: String,
-      required: true,
-      default: '本日',
-    },
-    sortList: {
-      type: Array,
-      required: true,
-    },
+    // sortVal: {
+    //   type: String,
+    //   required: true,
+    //   default: '本日',
+    // },
+    // sortList: {
+    //   type: Array,
+    //   required: true,
+    // },
   },
+  // computed: {
+  //   setSortVal: {
+  //     get () { return this.sortVal },
+  //     set (newVal) { return this.$emit('update:sortVal', newVal) }
+  //   }
+  // },
   methods: {
     destroyPost () {
       this.$emit('destroy-post', this.post)
