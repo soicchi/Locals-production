@@ -5,9 +5,8 @@ class Api::V1::CategoriesController < ApplicationController
   end
 
   def create
-    # if current_user.admin
     category = Category.new(category_params)
-    if category.save
+    if category.save # && current_user.admin ポートフォリオ上はコメントアウト
       categories = Category.order_category_list
       render json: categories.to_json(only: [:id, :name])
     else

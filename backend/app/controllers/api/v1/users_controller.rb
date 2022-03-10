@@ -32,7 +32,7 @@ class Api::V1::UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    # if current_user.admin
+    # if current_user.admin ポートフォリオ上はコメントアウト
     user.avatar.purge
     user.destroy
     # else
