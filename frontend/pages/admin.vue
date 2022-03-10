@@ -60,6 +60,10 @@ export default {
           const messages = ['カテゴリーを追加しました']
           this.setMessages({ messages, type: 'success' })
         })
+        .catch((e) => {
+          const messages = e.response.data
+          this.setMessages({ messages, type: 'error' })
+        })
     },
     async destroyPost (post) {
       if (window.confirm('投稿を削除しますか')) {

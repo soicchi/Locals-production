@@ -6,7 +6,7 @@
       hint="追加したいカテゴリー入力"
     />
     <v-btn
-      class="ml-3 add-btn"
+      class="ml-3 white--text"
       rounded
       color="mainColor"
       @click="addCategory"
@@ -22,7 +22,6 @@ export default {
     category: {
       type: String,
       required: true,
-      default: '',
     },
   },
   computed: {
@@ -38,8 +37,3 @@ export default {
   },
 }
 </script>
-
-<style lang="sass" scoped>
-  .add-btn
-    font-color: white
-</style>

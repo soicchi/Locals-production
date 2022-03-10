@@ -9,6 +9,7 @@
     <v-row justify="center">
       <v-col cols="3" class="mt-14 pt-14">
         <OrganismsAdminCategory
+          v-model="setCategory"
           :categories="categories"
           :category.sync="setCategory"
           @add-category="addCategory"
