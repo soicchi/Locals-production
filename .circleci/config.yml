@@ -145,6 +145,16 @@ workflows:
             branches:
               only:
                 - main
+      - aws-ecs/update-task-definition:
+          name: update-db-migrate-task
+          family: locals-db-migrate
+          container-image-name-updates: "container=${BACK_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
+          requires:
+            - backend-service-update
+          filters:
+            branches:
+              only:
+                - main
       - aws-ecs/run-task:
           name: db-migrate
           cluster: ${CLUSTER_NAME}
@@ -152,7 +162,7 @@ workflows:
           security-group-ids: ${SECURITY_GROUP_ID}
           subnet-ids: ${SUBNET_ID_1A}, ${SUBNET_ID_1C}
           requires:
-            - backend-service-update
+            - update-db-migrate-task
           filters:
             branches:
               only:
