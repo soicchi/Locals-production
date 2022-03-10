@@ -10,7 +10,7 @@
       <v-card-text>
         管理機能は現在ポートフォリオ公開に合わせて一時的にすべてのユーザーで使用可能にしています。
       </v-card-text>
-    </v-card>      
+    </v-card>
   </v-dialog>
 </template>
 
@@ -28,6 +28,6 @@ export default {
       get () { return this.dialog },
       set (newVal) { return this.$emit('update:dialog', newVal) },
     },
-  }
+  },
 }
 </script>
