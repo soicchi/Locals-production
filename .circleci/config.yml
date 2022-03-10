@@ -149,7 +149,7 @@ workflows:
           name: update-db-migrate-task
           family: locals-db-migrate
           container-image-name-updates: "container=${BACK_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
-          aws-region: ${AWS_REGION}
+          aws-region: ${AWS_DEFAULT_REGION}
           requires:
             - backend-service-update
           filters:
