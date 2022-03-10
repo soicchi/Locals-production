@@ -10,7 +10,10 @@
           />
         </v-col>
         <v-col cols="12">
-          <MoleculesAdminCategoryList :categories="categories" />
+          <MoleculesAdminCategoryList
+            :categories="categories"
+            @remove-category="removeCategory"
+          />
         </v-col>
       </v-row>
     </v-card>
@@ -38,6 +41,9 @@ export default {
   methods: {
     addCategory () {
       this.$emit('add-category')
+    },
+    removeCategory (categoryId) {
+      this.$emit('remove-category', categoryId)
     },
   },
 }

@@ -10,6 +10,11 @@ export const mutations = {
   setCategories (state, categories) {
     state.categories = categories
   },
+  removeCategory (state, categoryId) {
+    state.categories = state.categories.filter((category) => {
+      return category.id !== categoryId
+    })
+  }
 }
 
 export const actions = {
@@ -21,5 +26,8 @@ export const actions = {
   },
   setCategories ({ commit }, categories) {
     commit('setCategories', categories)
+  },
+  removeCategory ({ commit }, categoryId) {
+    commit('removeCategory', categoryId)
   }
 }

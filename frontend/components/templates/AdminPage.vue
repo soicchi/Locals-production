@@ -7,15 +7,16 @@
       <AtomsCommonTitle :title="title" />
     </v-row>
     <v-row justify="center">
-      <v-col cols="3" class="mt-14 pt-14">
+      <v-col cols="4" class="mt-14 pt-14">
         <OrganismsAdminCategory
           v-model="setCategory"
           :categories="categories"
           :category.sync="setCategory"
           @add-category="addCategory"
+          @remove-category="removeCategory"
         />
       </v-col>
-      <v-col cols="6">
+      <v-col cols="5">
         <OrganismsAdminPost
           :posts="posts"
           :icon-size="iconSize"
@@ -79,6 +80,9 @@ export default {
     destroyUser (userId) {
       this.$emit('destroy-user', userId)
     },
+    removeCategory (categoryId) {
+      this.$emit('remove-category', categoryId)
+    }
   },
 }
 </script>

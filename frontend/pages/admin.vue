@@ -9,6 +9,7 @@
     :title="title"
     @add-category="addCategory"
     @destroy-post="destroyPost"
+    @remove-category="removeCategory"
   />
 </template>
 
@@ -33,6 +34,9 @@ export default {
         '1週間',
         '1ヶ月間',
       ]
+    },
+    confirm () {
+      return window.confirm('本当に削除しますか')
     },
   },
   created () {
@@ -66,7 +70,7 @@ export default {
         })
     },
     async destroyPost (post) {
-      if (window.confirm('投稿を削除しますか')) {
+      if (this.confirm) {
         await this.$axios.delete(`/posts/${post.id}`)
           .then((res) => {
             this.removePost(post)
@@ -76,7 +80,7 @@ export default {
       }
     },
     async destroyUser (userId) {
-      if (window.confirm('ユーザーを削除しますか')) {
+      if (this.confirm) {
         await this.$axios.delete(`/users/${userId}`)
           .then((res) => {
             const message = ['ユーザが削除されました']
@@ -85,6 +89,14 @@ export default {
           })
       }
     },
+    async removeCategory (categoryId) {
+      if (this.confirm) {
+        await this.$axios.delete(`/categories/${categoryId}`)
+          .then((res) => {
+            this.$store.dispatch('category/removeCategory', categoryId)
+          })
+      }
+    }
   },
 }
 </script>

@@ -1,13 +1,14 @@
 <template>
   <v-row>
-    <v-col>
-      <v-chip
-        v-for="category in categories"
-        :key="category.id"
-        class="mr-2 mb-2"
-      >
-        {{ category.name }}
-      </v-chip>
+    <v-col
+      cols="4"
+      v-for="category in categories"
+      :key="category.id"
+    >
+      <AtomsAdminCategoryItem
+        :category="category"
+        @remove-category="removeCategory"  
+      />
     </v-col>
   </v-row>
 </template>
@@ -20,5 +21,10 @@ export default {
       required: true,
     },
   },
+  methods: {
+    removeCategory (categoryId) {
+      this.$emit('remove-category', categoryId)
+    }
+  }
 }
 </script>
