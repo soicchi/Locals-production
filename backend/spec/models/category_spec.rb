@@ -9,6 +9,15 @@ RSpec.describe Category, type: :model do
         expect(category).to be_invalid
       end
     end
+
+    context 'nameが重複する場合' do
+      let!(:category) { create(:category) }
+      let(:new_category) { build(:category, name: category.name) }
+
+      it 'インスタンスは有効ではない' do
+        expect(new_category).to be_invalid
+      end
+    end
   end
 
   describe 'アソシエーションに関するテスト' do
