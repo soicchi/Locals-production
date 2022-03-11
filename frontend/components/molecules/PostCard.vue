@@ -12,8 +12,7 @@
       >
         <v-row align="center">
           <v-col
-            cols="4"
-            sm="5"
+            cols="6"
             class="d-flex align-center"
           >
             <AtomsUserIcon
@@ -21,15 +20,9 @@
               :avatar-url="post.user.avatar_url"
             />
             <AtomsUserName :user="post.user" />
+            <AtomsCommonDistanceToNow :date="post.created_at" />
           </v-col>
           <v-spacer />
-          <v-col
-            cols="4"
-            class="d-flex justify-center"
-            sm="3"
-          >
-            <AtomsCommonDate :date="post.created_at" />
-          </v-col>
           <v-col
             v-if="$auth.loggedIn && !myPost"
             cols="2"
