@@ -1,5 +1,5 @@
 <template>
-  <div :style="fontSize">
+  <div :style="{'font-size': '15px'}">
     {{ createDate }}
   </div>
 </template>
@@ -15,9 +15,6 @@ export default {
   computed: {
     createDate () {
       return this.$dateFns.format(this.date, 'yyyy/MM/dd HH:mm')
-    },
-    fontSize () {
-      return this.$vuetify.breakpoint.xs ? { 'font-size': '10px' } : { 'font-size': '14px' }
     },
   },
 }

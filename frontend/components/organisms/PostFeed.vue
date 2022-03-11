@@ -31,7 +31,7 @@ export default {
       loggedInUser: 'user/loggedInUser',
     }),
     iconSize () {
-      return this.$vuetify.breakpoint.xs ? 40 : 60
+      return 48
     },
   },
   methods: {
