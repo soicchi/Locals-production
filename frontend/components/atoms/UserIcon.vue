@@ -7,7 +7,7 @@
       <v-icon
         :size="iconSize"
       >
-        {{ mdiAccountCircle }}
+        mdi-account-circle
       </v-icon>
     </v-avatar>
     <v-avatar
@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import { mdiAccountCircle } from '@mdi/js'
-
 export default {
   props: {
     iconSize: {
@@ -33,8 +31,5 @@ export default {
       default: null,
     },
   },
-  data: () => ({
-    mdiAccountCircle,
-  }),
 }
 </script>
