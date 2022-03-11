@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row
       justify="center"
       class="mt-5"
@@ -11,7 +11,12 @@
       <AtomsCommonTitle :title="title" />
     </v-row>
     <v-row justify="center">
-      <v-col cols="4">
+      <v-col
+        cols="4"
+        md="5"
+        xl="3"
+      >
+        <p>カテゴリー管理</p>
         <OrganismsAdminCategory
           v-model="setCategory"
           :categories="categories"
@@ -20,7 +25,12 @@
           @remove-category="removeCategory"
         />
       </v-col>
-      <v-col cols="4">
+      <v-col
+        cols="4"
+        sm="5"
+        lg="3"
+      >
+        <p>投稿管理</p>
         <OrganismsAdminPost
           :posts="posts"
           :icon-size="iconSize"
