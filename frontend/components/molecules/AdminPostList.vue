@@ -6,7 +6,7 @@
   >
     <v-row align="center">
       <v-col
-        cols="5"
+        cols="7"
         class="d-flex align-center"
       >
         <AtomsUserIcon
@@ -14,7 +14,7 @@
           :avatar-url="post.user.avatar_url"
         />
         <AtomsUserName :user="post.user" />
-        <AtomsCommonDate :date="post.created_at" />
+        <AtomsCommonDistanceToNow :date="post.created_at" />
       </v-col>
       <v-spacer />
       <v-col
