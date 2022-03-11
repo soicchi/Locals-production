@@ -28,7 +28,8 @@
       <v-col
         cols="4"
         sm="5"
-        lg="3"
+        lg="4"
+        xl="3"
       >
         <p>投稿管理</p>
         <OrganismsAdminPost
