@@ -44,7 +44,12 @@
       </v-col>
     </v-row>
     <v-row>
-      <AtomsPostComment :post="post" />
+      <v-col cols="12" class="py-0">
+        <p>＜コメント＞</p>
+      </v-col>
+      <v-col cols="12" class="py-0">
+        <AtomsPostComment :post="post" />
+      </v-col>
     </v-row>
   </v-card>
 </template>

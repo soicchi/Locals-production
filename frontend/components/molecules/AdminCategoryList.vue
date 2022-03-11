@@ -4,6 +4,8 @@
       v-for="category in categories"
       :key="category.id"
       cols="4"
+      sm="5"
+      lg="4"
     >
       <AtomsAdminCategoryItem
         :category="category"
