@@ -18,6 +18,6 @@ export default {
     distanceToNow () {
       return this.$dateFns.formatDistanceToNow(new Date(this.date), { addSuffix: true, locale: ja })
     },
-  }
+  },
 }
 </script>
