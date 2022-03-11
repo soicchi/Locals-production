@@ -35,6 +35,7 @@
         <OrganismsAdminPost
           :posts="posts"
           :icon-size="iconSize"
+          :logged-in-user="loggedInUser"
           @destroy-post="destroyPost"
           @destroy-user="destroyUser"
         />
@@ -72,14 +73,10 @@ export default {
       required: true,
       default: true,
     },
-    // sortVal: {
-    //   type: String,
-    //   rquired: true,
-    // },
-    // sortList: {
-    //   type: Array,
-    //   required: true,
-    // },
+    loggedInUser: {
+      type: Object,
+      required: true,
+    },
   },
   computed: {
     setCategory: {
@@ -90,10 +87,6 @@ export default {
       get () { return this.dialog },
       set (newVal) { return this.$emit('update:dialog', newVal) },
     },
-    // setSortVal: {
-    //   get () { return this.sortVal },
-    //   set (newVal) { return this.$emit('update:sortVal', newVal) }
-    // },
   },
   methods: {
     addCategory () {

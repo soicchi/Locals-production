@@ -1,7 +1,6 @@
 <template>
   <v-btn
     icon
-    large
     @click="destroyPost"
   >
     <v-icon>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="fontSize">
     {{ distanceToNow }}
   </div>
 </template>
@@ -17,6 +17,9 @@ export default {
   computed: {
     distanceToNow () {
       return this.$dateFns.formatDistanceToNow(new Date(this.date), { addSuffix: true, locale: ja })
+    },
+    fontSize () {
+      return this.$vuetify.breakpoint.xs ? { 'font-size': '10px' } : { 'font-size': '14px' }
     },
   },
 }

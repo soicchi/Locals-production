@@ -22,6 +22,8 @@
         class="d-flex justify-end"
       >
         <MoleculesAdminMenu
+          :post="post"
+          :logged-in-user="loggedInUser"
           @destroy-post="destroyPost"
           @destroy-user="destroyUser"
         />
@@ -63,6 +65,10 @@ export default {
     },
     iconSize: {
       type: Number,
+      required: true,
+    },
+    loggedInUser: {
+      type: Object,
       required: true,
     },
   },

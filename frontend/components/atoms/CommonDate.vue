@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{'font-size': '15px'}">
     {{ createDate }}
   </div>
 </template>

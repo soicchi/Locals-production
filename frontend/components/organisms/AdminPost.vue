@@ -1,13 +1,5 @@
 <template>
   <v-container>
-    <!-- <v-row justify="end">
-      <v-col
-        cols="3"
-        align-self="center"
-      >
-        <MoleculesPostSort />
-      </v-col>
-    </v-row> -->
     <v-row
       v-for="post in posts"
       :key="post.id"
@@ -16,6 +8,7 @@
       <MoleculesAdminPostList
         :post="post"
         :icon-size="iconSize"
+        :logged-in-user="loggedInUser"
         @destroy-post="destroyPost"
         @destroy-user="destroyUser"
       />
@@ -34,22 +27,11 @@ export default {
       type: Number,
       required: true,
     },
-    // sortVal: {
-    //   type: String,
-    //   required: true,
-    //   default: '本日',
-    // },
-    // sortList: {
-    //   type: Array,
-    //   required: true,
-    // },
+    loggedInUser: {
+      type: Object,
+      required: true,
+    },
   },
-  // computed: {
-  //   setSortVal: {
-  //     get () { return this.sortVal },
-  //     set (newVal) { return this.$emit('update:sortVal', newVal) }
-  //   }
-  // },
   methods: {
     destroyPost () {
       this.$emit('destroy-post', this.post)

@@ -6,6 +6,7 @@
     :dialog.sync="dialog"
     :icon-size="iconSize"
     :title="title"
+    :logged-in-user="loggedInUser"
     @add-category="addCategory"
     @destroy-post="destroyPost"
     @remove-category="removeCategory"
@@ -25,8 +26,9 @@ export default {
     ...mapGetters({
       posts: 'post/posts',
       categories: 'category/categories',
+      loggedInUser: 'user/loggedInUser',
     }),
-    iconSize: () => 60,
+    iconSize: () => 48,
     title: () => '管理画面',
     // sortList () {
     //   return [

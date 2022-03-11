@@ -4,7 +4,7 @@
     plain
     :to="`/users/${user.id}`"
     color="fontColor"
-    :style="fontSize"
+    :style="{'font-size': '15px'}"
   >
     {{ user.name }}
   </v-btn>
@@ -16,11 +16,6 @@ export default {
     user: {
       type: Object,
       required: true,
-    },
-  },
-  computed: {
-    fontSize () {
-      return this.$vuetify.breakpoint.xs ? { 'font-size': '18px' } : { 'font-size': '20px' }
     },
   },
 }

@@ -12,7 +12,7 @@
       >
         <v-row align="center">
           <v-col
-            cols="6"
+            cols="9"
             class="d-flex align-center"
           >
             <AtomsUserIcon
@@ -38,7 +38,7 @@
             v-if="$auth.loggedIn && myPost"
             cols="3"
             sm="2"
-            class="d-flex justify-center"
+            class="d-flex justify-end"
           >
             <AtomsPostButtonDestroy
               :post="post"
@@ -49,45 +49,66 @@
         <v-card-title class="pl-0">
           <AtomsPostRestaurantName :post="post" />
         </v-card-title>
-        <v-row class="d-flex">
-          <v-col
-            v-for="(image, i) in limitCount"
-            :key="i"
-            cols="4"
-            sm="3"
-          >
-            <v-sheet
-              outlined
-              width="100%"
-              height="100%"
-            >
-              <AtomsPostImage :image="image" />
-            </v-sheet>
-          </v-col>
-          <!-- mobile版レイアウト用 -->
-          <v-col
-            v-if="$vuetify.breakpoint.xs"
-            cols="7"
-          >
-            <AtomsCategoryItem :categories="post.categories" />
-          </v-col>
-          <!-- mobile版レイアウト用 -->
-          <v-spacer v-if="!$vuetify.breakpoint.xs" />
-          <v-col
-            cols="5"
-            sm="3"
-            align-self="end"
-            :class="favoriteLayout"
-          >
-            <AtomsPostFavoriteRate :post="post" />
-          </v-col>
-        </v-row>
         <template v-if="!$vuetify.breakpoint.xs">
+          <v-row class="d-flex">
+            <v-col
+              v-for="(image, i) in limitCount"
+              :key="i"
+              cols="4"
+              sm="3"
+            >
+              <v-sheet
+                outlined
+                width="100%"
+                height="100%"
+              >
+                <AtomsPostImage :image="image" />
+              </v-sheet>
+            </v-col>
+            <v-spacer v-if="!$vuetify.breakpoint.xs" />
+            <v-col
+              cols="5"
+              sm="3"
+              align-self="end"
+              :class="favoriteLayout"
+            >
+              <AtomsPostFavoriteRate :post="post" />
+            </v-col>
+          </v-row>
           <v-row class="d-flex justify-end">
             <v-col>
               <AtomsCategoryItem :categories="post.categories" />
             </v-col>
-            <v-spacer />
+          </v-row>
+        </template>
+        <template v-else>
+          <v-row class="d-flex">
+            <v-col
+              v-for="(image, i) in limitCount"
+              :key="i"
+              cols="4"
+              sm="3"
+            >
+              <v-sheet
+                outlined
+                width="100%"
+                height="100%"
+              >
+                <AtomsPostImage :image="image" />
+              </v-sheet>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="6">
+              <AtomsCategoryItem :categories="post.categories" />
+            </v-col>
+            <v-col
+              cols="6"
+              align-self="end"
+              :class="favoriteLayout"
+            >
+              <AtomsPostFavoriteRate :post="post" />
+            </v-col>
           </v-row>
         </template>
         <v-row
