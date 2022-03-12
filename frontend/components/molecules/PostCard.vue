@@ -70,7 +70,7 @@
               cols="5"
               sm="3"
               align-self="end"
-              :class="favoriteLayout"
+              class="d-flex justify-center"
             >
               <AtomsPostFavoriteRate :post="post" />
             </v-col>
@@ -105,7 +105,7 @@
             <v-col
               cols="6"
               align-self="end"
-              :class="favoriteLayout"
+              class="d-flex justify-end"
             >
               <AtomsPostFavoriteRate :post="post" />
             </v-col>
@@ -137,6 +137,10 @@ export default {
       type: Number,
       required: true,
     },
+    postCardWidth: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     myPost () {
@@ -144,17 +148,6 @@ export default {
     },
     limitCount () {
       return this.post.image_url.slice(0, 3)
-    },
-    postCardWidth () {
-      switch (this.$vuetify.breakpoint.name) {
-        case 'xs': return '100%'
-        case 'sm': return '80%'
-        case 'md': return '80%'
-      }
-      return '45%'
-    },
-    favoriteLayout () {
-      return this.$vuetify.breakpoint.xs ? 'd-flex justify-end' : 'd-flex justify-center'
     },
   },
   methods: {

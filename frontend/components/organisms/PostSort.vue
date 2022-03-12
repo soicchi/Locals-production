@@ -1,31 +1,30 @@
 <template>
-  <MoleculesPostSort
-    :sort-list="sortList"
-    :sort-val.sync="sortVal"
+  <v-select
+    v-model="setSortVal"
+    outlined
+    :items="sortList"
+    color="#9E9A94"
+    rounded
   />
 </template>
 
 <script>
 export default {
-  data: () => ({
-    sortVal: '',
-  }),
+  props: {
+    sortVal: {
+      type: String,
+      required: true,
+    },
+    sortList: {
+      type: Array,
+      required: true,
+    },
+  },
   computed: {
-    sortList () {
-      return ['最新順', 'また行きたい順（高）']
-    },
-  },
-  watch: {
-    sortVal () {
-      if (this.sortVal === '最新順') {
-        this.$store.dispatch('post/newSort')
-      } else if (this.sortVal === 'また行きたい順（高）') {
-        this.$store.dispatch('post/likeSort')
-      }
-    },
-  },
-  created () {
-    this.sortVal = '最新順'
-  },
+    setSortVal: {
+      get () { return this.sortVal },
+      set (newVal) { return this.$emit('update:sortVal', newVal) }
+    }
+  }
 }
 </script>
