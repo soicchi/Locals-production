@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   data: () => ({
@@ -41,6 +41,15 @@ export default {
     pageTitle: () => 'すべての投稿',
     iconSize: () => 48,
   },
+  watch: {
+    sortVal () {
+      if (this.sortVal === this.sortList[0]) {
+        this.$store.dispatch('post/newSort')
+      } else if (this.sortVal === this.sortList[1]) {
+        this.$store.dispatch('post/likeSort')
+      }
+    },
+  },
   created () {
     if (this.$auth.loggedIn) {
       this.$store.dispatch('user/getLoggedInUser')
@@ -49,20 +58,7 @@ export default {
     this.$store.dispatch('category/getCategories')
     this.sortVal = '最新順'
   },
-  watch: {
-    sortVal () {
-      if (this.sortVal === this.sortList[0]) {
-        this.$store.dispatch('post/newSort')
-      } else if (this.sortVal === this.sortList[1]) {
-        this.$store.dispatch('post/likeSort')
-      }
-    }
-  },
   methods: {
-    ...mapActions({
-      setMessages: 'message/setMessages',
-      setPosts: 'post/setPosts',
-    }),
     async destroyPost (post) {
       if (window.confirm('投稿を削除しますか')) {
         await this.$axios.delete(`/posts/${post.id}`)

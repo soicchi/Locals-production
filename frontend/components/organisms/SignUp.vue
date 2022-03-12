@@ -1,26 +1,26 @@
 <template>
-  <MoleculesFormCard :is-valid.sync="isValid">
+  <MoleculesFormCard :is-valid.sync="setIsValid">
     <template #form-title>
-      <AtomsFormTitle :title="title" />
+      <AtomsFormTitle :title="pageTitle" />
     </template>
     <template #form-card-content>
-      <AtomsFormName :name.sync="user.name" />
+      <AtomsFormName :name.sync="setUser.name" />
       <AtomsFormEmail
-        :email.sync="user.email"
+        :email.sync="setUser.email"
         :no-validation="noValidation"
       />
-      <AtomsFormBirthPlace :birth-place.sync="user.birth_place" />
+      <AtomsFormBirthPlace :birth-place.sync="setUser.birth_place" />
       <AtomsFormBirthDay
-        :birth-year.sync="user.birth_year"
-        :birth-month.sync="user.birth_month"
-        :birth-day.sync="user.birth_day"
+        :birth-year.sync="setUser.birth_year"
+        :birth-month.sync="setUser.birth_month"
+        :birth-day.sync="setUser.birth_day"
         @reset-day="resetDay"
       />
       <AtomsFormPassword
-        :password.sync="user.password"
+        :password.sync="setUser.password"
         :no-validation="noValidation"
       />
-      <AtomsFormPasswordConfirmation :password-confirmation.sync="user.password_confirmation" />
+      <AtomsFormPasswordConfirmation :password-confirmation.sync="setUser.password_confirmation" />
     </template>
     <template #form-card-button>
       <AtomsFormButtonSignUp
@@ -33,55 +33,48 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
-  data () {
-    return {
-      user: {
-        name: '',
-        email: '',
-        birth_place: '',
-        birth_year: 0,
-        birth_month: 0,
-        birth_day: 0,
-        password: '',
-        password_confirmation: '',
-      },
-      noValidation: false,
-      isValid: false,
-      loading: false,
-    }
+  props: {
+    user: {
+      type: Object,
+      requried: true,
+    },
+    noValidation: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    isValid: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    pageTitle: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
-    title: () => '新規アカウント作成',
+    setUser: {
+      get () { return this.user },
+      set (newVal) { return this.$emit('update:user', newVal) },
+    },
+    setIsValid: {
+      get () { return this.isValid },
+      set (newVal) { return this.$emit('update:isValid', newVal) },
+    },
   },
   methods: {
-    ...mapActions({
-      setLoggedInUser: 'user/setLoggedInUser',
-      setMessages: 'message/setMessages',
-    }),
-    async signUp () {
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 4000)
-      await this.$axios.post('/auth', this.user)
-        .then(() => {
-          this.$auth.loginWith('local', { data: { email: this.user.email, password: this.user.password } })
-            .then((res) => {
-              this.setLoggedInUser(res.data.data)
-              this.setMessages({ messages: ['ログインしました'], type: 'success' })
-            })
-        })
-        .catch((e) => {
-          const messages = e.response.data.errors.full_messages
-          const type = e.response.data.status
-          this.setMessages({ messages, type })
-        })
+    signUp () {
+      this.$emit('sign-up')
     },
     resetDay () {
-      this.day = ''
+      this.$emit('reset-day')
     },
   },
 }

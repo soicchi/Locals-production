@@ -23,8 +23,8 @@ export default {
   computed: {
     setSortVal: {
       get () { return this.sortVal },
-      set (newVal) { return this.$emit('update:sortVal', newVal) }
-    }
-  }
+      set (newVal) { return this.$emit('update:sortVal', newVal) },
+    },
+  },
 }
 </script>

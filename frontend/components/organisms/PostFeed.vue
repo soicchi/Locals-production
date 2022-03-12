@@ -35,7 +35,7 @@ export default {
   methods: {
     destroyPost (post) {
       this.$emit('destroy-post', post)
-    }
+    },
   },
 }
 </script>
