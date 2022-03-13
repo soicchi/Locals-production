@@ -1,5 +1,9 @@
 <template>
-  <MoleculesFormCard :is-valid.sync="isValid">
+  <MoleculesFormCard
+    :is-valid.sync="isValid"
+    :card-width="cardWidth"
+    p
+  >
     <template #form-title>
       <AtomsFormTitle :title="title" />
     </template>
@@ -48,6 +52,9 @@ export default {
   computed: {
     title () {
       return 'ログイン'
+    },
+    cardWidth () {
+      return this.$vuetify.breakpoint.xs ? '90%' : '25%'
     },
   },
   methods: {
