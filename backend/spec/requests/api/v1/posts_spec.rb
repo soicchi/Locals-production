@@ -38,6 +38,10 @@ RSpec.describe "Api::V1::Posts", type: :request do
       )
     end
 
+    it '各投稿のtastesが返ってくる' do
+      expect(response.body).to include(user_post.tastes.to_json, other_user_post.tastes.to_json)
+    end
+
     it '投稿に紐づくユーザーデータも返ってくる' do
       expect(response.body).to include(
         user.to_json(methods: :avatar_url, only: [:id, :name, :avatar_url]),
