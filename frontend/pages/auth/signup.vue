@@ -7,6 +7,7 @@
     :preference-list="preferenceList"
     :transition-name="transitionName"
     :card-width="cardWidth"
+    :loading="loading"
     @sign-up="signUp"
     @reset-day="resetDay"
     @next="next"
@@ -36,6 +37,7 @@ export default {
     noValidation: false,
     isValid: false,
     transitionName: '',
+    loading: false,
   }),
   computed: {
     subPage () {

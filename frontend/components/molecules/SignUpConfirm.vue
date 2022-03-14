@@ -47,6 +47,8 @@
           <v-btn
             text
             plain
+            :disabled="loading"
+            :loading="loading"
             @click="signUp"
           >
             登録する
@@ -67,6 +69,11 @@ export default {
     cardWidth: {
       type: String,
       required: true,
+    },
+    loading: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
   },
   methods: {
