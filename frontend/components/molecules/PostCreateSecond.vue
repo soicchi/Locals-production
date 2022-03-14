@@ -11,20 +11,20 @@
         :width="cardWidth"
       >
         <v-card-title>
-          飲食店に求めるものを選択
+          評価ポイント
         </v-card-title>
         <v-card-subtitle>
-          ※たくさん選択すればより正確なマッチ度が出ます
+          ※お店の良かったところは？
         </v-card-subtitle>
         <v-card-text>
           <v-row>
             <v-col
-              v-for="list in preferenceList"
+              v-for="list in evaluationList"
               :key="list.id"
               cols="4"
             >
               <v-checkbox
-                v-model="setUser.taste_ids"
+                v-model="setPost.taste_ids"
                 :label="list.content"
                 :value="list.id"
               />
@@ -43,10 +43,10 @@
           <v-btn
             text
             plain
-            :disabled="user.taste_ids.length < 3"
-            @click="next"
+            :disabled="post.taste_ids.length < 1"
+            @click="createPost"
           >
-            次へ
+            投稿する
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -57,12 +57,12 @@
 <script>
 export default {
   props: {
-    user: {
+    post: {
       type: Object,
       required: true,
       default: null,
     },
-    preferenceList: {
+    evaluationList: {
       type: Array,
       required: true,
     },
@@ -70,19 +70,23 @@ export default {
       type: String,
       required: true,
     },
+    subPage: {
+      type: Object,
+      required: true,
+    },
   },
   computed: {
-    setUser: {
-      get () { return this.user },
-      set (newVal) { return this.$emit('update:user', newVal) },
+    setPost: {
+      get () { return this.post },
+      set (newVal) { return this.$emit('update:post', newVal) },
     },
   },
   methods: {
     back () {
       this.$emit('back')
     },
-    next () {
-      this.$emit('next')
+    createPost () {
+      this.$emit('create-post')
     },
   },
 }

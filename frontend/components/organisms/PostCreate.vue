@@ -1,28 +1,23 @@
 <template>
-  <MoleculesFormCard
-    :is-valid.sync="isValid"
-    :card-width="cardWidth"
-  >
-    <template #form-title>
-      <h2>投稿作成</h2>
-    </template>
-    <template #form-card-content>
-      <AtomsFormRestaurantName :restaurant-name.sync="setPost.restaurant_name" />
-      <AtomsFormStation :station.sync="setPost.station" />
-      <AtomsFormCategory
-        :category-ids.sync="setPost.category_ids"
+  <div>
+    <transition
+      mode="out-in"
+      :name="transitionName"
+    >
+      <component
+        :is="subPage"
+        :post.sync="setPost"
+        :is-valid.sync="setIsValid"
         :category-items="categoryItems"
-      />
-      <AtomsFormImage :images.sync="setPost.images" />
-      <AtomsFormComment :comment.sync="setPost.comment" />
-    </template>
-    <template #form-card-button>
-      <AtomsFormButtonCreatePost
-        :is-valid="isValid"
+        :sub-page="subPage"
+        :card-width="cardWidth"
+        :evaluation-list="evaluationList"
         @create-post="createPost"
+        @next="next"
+        @back="back"
       />
-    </template>
-  </MoleculesFormCard>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -31,6 +26,7 @@ export default {
     post: {
       type: Object,
       required: true,
+      default: null,
     },
     isValid: {
       type: Boolean,
@@ -45,21 +41,57 @@ export default {
       type: String,
       required: true,
     },
+    subPage: {
+      type: Object,
+      required: true,
+    },
+    transitionName: {
+      type: String,
+      required: true,
+    },
+    evaluationList: {
+      type: Array,
+      required: true,
+    },
   },
   computed: {
     setPost: {
       get () { return this.post },
-      set (newVal) { return this.$emit('update:post', newVal) }
+      set (newVal) { return this.$emit('update:post', newVal) },
     },
     setIsValid: {
       get () { return this.isValid },
-      set (newVal) { return this.$emit('update:isValid', newVal) }
+      set (newVal) { return this.$emit('update:isValid', newVal) },
     },
   },
   methods: {
     createPost () {
       this.$emit('create-post')
-    }
+    },
+    next () {
+      this.$emit('next')
+    },
+    back () {
+      this.$emit('back')
+    },
   },
 }
 </script>
+
+<style lang='sass' scoped>
+.slide-next-enter-active,
+.slide-next-leave-active,
+.slide-back-enter-active,
+.slide-back-leave-active
+  transition: all 0.15s ease
+
+.slide-next-enter,
+.slide-back-leave-to
+  transform: translateX(20%)
+  opacity: 0
+
+.slide-next-leave-to,
+.slide-back-enter
+  transform: translateX(-20%)
+  opacity: 0
+</style>

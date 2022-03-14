@@ -3,7 +3,6 @@
     :user.sync="user"
     :no-validation="noValidation"
     :is-valid.sync="isValid"
-    :loading="loading"
     :sub-page="subPage"
     :preference-list="preferenceList"
     :transition-name="transitionName"
@@ -36,7 +35,6 @@ export default {
     },
     noValidation: false,
     isValid: false,
-    loading: false,
     transitionName: '',
   }),
   computed: {

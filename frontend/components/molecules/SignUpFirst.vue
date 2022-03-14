@@ -56,11 +56,6 @@ export default {
       required: true,
       default: false,
     },
-    loading: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
     subPage: {
       type: Object,
       required: true,

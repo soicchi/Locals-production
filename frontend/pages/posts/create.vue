@@ -4,11 +4,19 @@
     :is-valid.sync="isValid"
     :category-items="categoryItems"
     :card-width="cardWidth"
+    :transition-name="transitionName"
+    :evaluation-list="evaluationList"
+    :sub-page="subPage"
     @create-post="createPost"
+    @next="next"
+    @back="back"
   />
 </template>
 
 <script>
+import PostCreateFirst from '~/components/molecules/PostCreateFirst'
+import PostCreateSecond from '~/components/molecules/PostCreateSecond'
+
 export default {
   data: () => ({
     post: {
@@ -17,8 +25,10 @@ export default {
       station: '',
       images: [],
       category_ids: [],
+      taste_ids: [],
     },
     isValid: false,
+    transitionName: '',
   }),
   computed: {
     categoryItems () {
@@ -27,9 +37,22 @@ export default {
     cardWidth () {
       return this.$vuetify.breakpoint.xs ? '90%' : '25%'
     },
+    subPage () {
+      switch (this.$route.hash) {
+        case '#second':
+          return PostCreateSecond
+        default:
+          return PostCreateFirst
+      }
+    },
+    evaluationList () {
+      return this.$store.getters['taste/tastes']
+    },
   },
   created () {
     this.$store.dispatch('category/getCategories')
+    this.$router.push('/posts/create')
+    this.$store.dispatch('taste/getTastes')
   },
   methods: {
     async createPost () {
@@ -54,6 +77,14 @@ export default {
           const message = e.response.data
           this.$store.dispatch('message/setMessages', { messages: message, type: 'error' })
         })
+    },
+    next () {
+      this.transitionName = 'slide-next'
+      this.$router.push({ hash: '#second' })
+    },
+    back () {
+      this.transitionName = 'slide-back'
+      this.$router.push('/posts/create')
     },
   },
 }

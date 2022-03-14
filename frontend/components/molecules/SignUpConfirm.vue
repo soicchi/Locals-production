@@ -43,7 +43,7 @@
           >
             前へ
           </v-btn>
-        <v-spacer />
+          <v-spacer />
           <v-btn
             text
             plain

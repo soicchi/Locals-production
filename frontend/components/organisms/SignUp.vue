@@ -9,7 +9,6 @@
         :user.sync="setUser"
         :no-validation="noValidation"
         :is-valid.sync="setIsValid"
-        :loading="loading"
         :sub-page="subPage"
         :preference-list="preferenceList"
         :card-width="cardWidth"
@@ -36,11 +35,6 @@ export default {
       default: false,
     },
     isValid: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    loading: {
       type: Boolean,
       required: true,
       default: false,
