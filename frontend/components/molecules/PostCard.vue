@@ -113,12 +113,14 @@
         </template>
         <v-row class="mb-3">
           <v-col cols="12">
-            <p>評価ポイント</p>
+            <p>
+              評価ポイント <span v-if="post.user_id !== loggedInUser.id">マッチ度: {{ matchRate }}%</span>
+            </p>
             <v-chip
               v-for="taste in post.tastes"
               :key="taste.id"
               outlined
-              class="mr-2"
+              class="mr-2 evaluation-chip"
             >
               {{ taste.content }}
             </v-chip>
@@ -162,6 +164,16 @@ export default {
     limitCount () {
       return this.post.image_url.slice(0, 3)
     },
+    matchRate () {
+      const loggedInUserTastesCount = this.loggedInUser.tastes.length
+      const duplicateArray = this.loggedInUser.tastes.concat(this.post.tastes)
+      const matchTasteArray = duplicateArray.filter((x, i, array) => {
+        return array.findIndex((y) => {
+          return y.id === x.id && y.content === x.content
+        }) !== i
+      })
+      return Math.round(matchTasteArray.length / loggedInUserTastesCount * 100)
+    },
   },
   methods: {
     destroyPost () {
@@ -170,3 +182,8 @@ export default {
   },
 }
 </script>
+
+<style lang="sass" scoped>
+  .evaluation-chip::before
+    background-color: #fff
+</style>

@@ -9,7 +9,7 @@ class Api::V1::CurrentUsersController < ApplicationController
         { liked_posts: { only: :id } },
         { disliked_posts: { only: :id } },
         { book_mark_posts: { only: :id } },
-        { tastes: { only: :id } }
+        { tastes: { only: [:id, :content] } }
       ],
       only: [
         :id,
