@@ -46,6 +46,19 @@
         </v-row>
         <v-row>
           <v-col cols="12">
+            <p>評価ポイント</p>
+            <v-chip
+              v-for="taste in post.tastes"
+              :key="taste.id"
+              outlined
+              class="mr-2"
+            >
+              {{ taste.content }}
+            </v-chip>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
             <swiper :options="swiperOptions">
               <swiper-slide
                 v-for="(image, i) in post.image_url"
