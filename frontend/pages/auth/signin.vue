@@ -24,7 +24,7 @@ export default {
   computed: {
     cardWidth () {
       return this.$vuetify.breakpoint.xs ? '90%' : '25%'
-    }
+    },
   },
   methods: {
     ...mapActions({
@@ -51,7 +51,7 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.loading = false
-      }, 3000);
+      }, 3000)
       await this.$axios.post('/guests')
         .then((res) => {
           this.$auth.loginWith('local', { data: res.data })

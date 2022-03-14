@@ -75,7 +75,7 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.loading = false
-      }, 4000);
+      }, 4000)
       await this.$axios.post('/posts', formData, headers)
         .then((res) => {
           const message = [res.data.message]
