@@ -113,7 +113,7 @@
         </template>
         <v-row class="mb-3">
           <v-col cols="12">
-            <p>
+            <p class="mb-1">
               評価ポイント
             </p>
             <v-chip

@@ -46,8 +46,21 @@
         </v-row>
         <v-row>
           <v-col cols="12">
-            <p>
-              評価ポイント <span v-if="post.user_id !== loggedInUser.id && $auth.loggedIn">マッチ度: {{ matchRate }}%</span>
+            <p class="mb-1">
+              評価ポイント
+              <span
+                v-if="post.user_id !== loggedInUser.id && $auth.loggedIn"
+                class="text-h6 ml-3"
+              >
+                マッチ度
+                <v-icon
+                  color="mainColor"
+                  class="pb-2"
+                >
+                  mdi-handshake-outline
+                </v-icon>
+                {{ matchRate }}%
+              </span>
             </p>
             <v-chip
               v-for="taste in post.tastes"
