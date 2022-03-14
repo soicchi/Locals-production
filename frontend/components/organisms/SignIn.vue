@@ -2,7 +2,6 @@
   <MoleculesFormCard
     :is-valid.sync="isValid"
     :card-width="cardWidth"
-    p
   >
     <template #form-title>
       <AtomsFormTitle :title="title" />
