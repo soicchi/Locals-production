@@ -6,8 +6,7 @@ taste_list = [
   '接客',
   '場所',
   'コスパ',
-  '驚き',
-  '価格',
+  '演出',
   '長く居れる',
   '提供スピード',
 ]
@@ -103,28 +102,32 @@ post1 = Post.new({
   comment: '王様ハラミが柔らかくて美味しい!店長さんの接客も非常に良く、大満足です',
   station: '武蔵浦和',
   category_ids: [2],
-  user_id: 1
+  user_id: 1,
+  taste_ids: [1, 2, 3]
 })
 post2 = Post.new({
   restaurant_name: '新時代　渋谷道玄坂店',
   comment: '名物の伝串は1本50円でとても美味しかったです。ぜひまた行きたいです!',
   station: '渋谷',
   category_ids: [12, 19],
-  user_id: 2
+  user_id: 2,
+  taste_ids: [2, 3, 4]
 })
 post3 = Post.new({
   restaurant_name: '串鳥　琴似店',
   comment: '基本的に焼鳥屋さんなので居酒屋さんほどメニューの種類は多くはありませんが、どの料理も安くて美味しいと思います。',
   station: '琴似駅',
   category_ids: [2, 19],
-  user_id: 3
+  user_id: 3,
+  taste_ids: [3, 4]
 })
 post4 = Post.new({
   restaurant_name: '五右衛門　新発寒店',
   comment: 'どのパスタを食べてもはずれはありません！ぜひ食べに行ってみってください。',
   station: '発寒駅',
   category_ids: [3, 10],
-  user_id: 4
+  user_id: 4,
+  taste_ids: [4, 5, 6, 7]
 })
 image_meet_group.each do |image|
   post1.images.attach(io: File.open("app/assets/images/#{image}"), filename: image)
