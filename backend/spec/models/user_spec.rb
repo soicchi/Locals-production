@@ -3,108 +3,108 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'バリデーションに関するテスト' do
     context 'すべての値が正常な場合' do
-      let(:user_params) { attributes_for(:user) }
+      let(:user) { build(:user) }
 
       it 'インスタンスが有効である' do
-        expect(User.new(user_params)).to be_valid
+        expect(user).to be_valid
       end
     end
 
     context 'nameがnilの場合' do
-      let(:user_params) { attributes_for(:user, name: nil) }
+      let(:user) { build(:user, name: nil) }
 
       it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
+        expect(user).to be_invalid
       end
     end
 
     context 'nameが11文字以上の場合' do
-      let(:user_params) { attributes_for(:user, :over_length_name) }
+      let(:user) { build(:user, :over_length_name) }
 
       it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
+        expect(user).to be_invalid
       end
     end
 
     context '既存のnameと重複する場合' do
       let!(:user) { create(:user) }
-      let(:user_params) { attributes_for(:user, name: user.name) }
+      let(:new_user) { build(:user, name: user.name) }
 
       it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
+        expect(new_user).to be_invalid
       end
     end
 
     context 'emailがnilの場合' do
-      let(:user_params) { attributes_for(:user, email: nil) }
+      let(:user) { build(:user, email: nil) }
 
       it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
+        expect(user).to be_invalid
       end
     end
 
     context '既存のemailと新規登録のemailが大文字、小文字区別なく重複する場合' do
       let!(:user) { create(:user) }
-      let(:user_params) { attributes_for(:user, email: user.email.upcase) }
+      let(:new_user) { build(:user, email: user.email.upcase) }
 
       it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
+        expect(new_user).to be_invalid
       end
     end
 
     context 'emailのフォーマットが間違っている場合' do
-      let(:user_params) { attributes_for(:user, :invalid_email) }
+      let(:user) { build(:user, :invalid_email) }
 
       it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
+        expect(user).to be_invalid
       end
     end
 
     context 'birth_placeがnilの場合' do
-      let(:user_params) { attributes_for(:user, birth_place: nil) }
+      let(:user) { build(:user, birth_place: nil) }
 
       it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
+        expect(user).to be_invalid
       end
     end
 
     context 'birth_yearがnilの場合' do
-      let(:user_params) { attributes_for(:user, birth_year: nil) }
+      let(:user) { build(:user, birth_year: nil) }
 
       it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
+        expect(user).to be_invalid
       end
     end
 
     context 'birth_monthがnilの場合' do
-      let(:user_params) { attributes_for(:user, birth_month: nil) }
+      let(:user) { build(:user, birth_month: nil) }
 
       it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
+        expect(user).to be_invalid
       end
     end
 
     context 'birth_dayがnilの場合' do
-      let(:user_params) { attributes_for(:user, birth_day: nil) }
+      let(:user) { build(:user, birth_day: nil) }
 
       it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
+        expect(user).to be_invalid
       end
     end
 
     context 'introductionが256文字以上の場合' do
-      let(:user_params) { attributes_for(:user, :over_length_introduction) }
+      let(:user) { build(:user, :over_length_introduction) }
 
       it 'インスタンスは有効ではない' do
-        expect(User.new(user_params)).to be_invalid
+        expect(user).to be_invalid
       end
     end
 
     context 'introductionが255文字以内の場合' do
-      let(:user_params) { attributes_for(:user, :valid_introduction) }
+      let(:user) { build(:user, :valid_introduction) }
 
       it 'インスタンスは有効である' do
-        expect(User.new(user_params)).to be_valid
+        expect(user).to be_valid
       end
     end
 
@@ -134,6 +134,62 @@ RSpec.describe User, type: :model do
 
     context 'avatarのファイルサイズが5MBより大きい場合' do
       let(:user) { build(:user, :with_over_size_avatar) }
+
+      it 'インスタンスは有効ではない' do
+        expect(user).to be_invalid
+      end
+    end
+
+    context 'taste_idsがnilの場合' do
+      let(:user) { build(:user, taste_ids: nil) }
+
+      it 'インスタンスは有効ではない' do
+        expect(user).to be_invalid
+      end
+    end
+
+    context 'taste_idsが2つの場合' do
+      let!(:taste1) { create(:taste) }
+      let!(:taste2) { create(:taste) }
+      let(:user) { build(:user, taste_ids: [taste1.id, taste2.id]) }
+
+      it 'インスタンスは有効ではない' do
+        expect(user).to be_invalid
+      end
+    end
+
+    context 'taste_idsが3つの場合' do
+      let!(:taste1) { create(:taste) }
+      let!(:taste2) { create(:taste) }
+      let!(:taste3) { create(:taste) }
+      let(:user) { build(:user, taste_ids: [taste1.id, taste2.id, taste3.id]) }
+
+      it 'インスタンスは有効である' do
+        expect(user).to be_valid
+      end
+    end
+
+    context 'taste_idsが5つの場合' do
+      let!(:taste1) { create(:taste) }
+      let!(:taste2) { create(:taste) }
+      let!(:taste3) { create(:taste) }
+      let!(:taste4) { create(:taste) }
+      let!(:taste5) { create(:taste) }
+      let(:user) { build(:user, taste_ids: [taste1.id, taste2.id, taste3.id, taste4.id, taste5.id]) }
+
+      it 'インスタンスは有効である' do
+        expect(user).to be_valid
+      end
+    end
+
+    context 'taste_idsが6つの場合' do
+      let!(:taste1) { create(:taste) }
+      let!(:taste2) { create(:taste) }
+      let!(:taste3) { create(:taste) }
+      let!(:taste4) { create(:taste) }
+      let!(:taste5) { create(:taste) }
+      let!(:taste6) { create(:taste) }
+      let(:user) { build(:user, taste_ids: [taste1.id, taste2.id, taste3.id, taste4.id, taste5.id, taste6.id]) }
 
       it 'インスタンスは有効ではない' do
         expect(user).to be_invalid

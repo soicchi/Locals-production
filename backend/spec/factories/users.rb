@@ -9,6 +9,11 @@ FactoryBot.define do
     introduction { '' }
     password { 'password' }
     password_confirmation { 'password' }
+    after(:build) do |user|
+      3.times do
+        user.taste_ids << build(:taste)
+      end
+    end
 
     trait :invalid_email do
       email { 'example.com' }
