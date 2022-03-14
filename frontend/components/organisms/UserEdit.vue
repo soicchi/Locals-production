@@ -1,5 +1,5 @@
 <template>
-  <MoleculesFormCard>
+  <MoleculesFormCard :card-width="cardWidth">
     <template #form-title>
       <AtomsFormTitle :title="title" />
     </template>
@@ -40,6 +40,9 @@ export default {
     },
     disabled () {
       return this.user.avatar || this.user.email || this.user.introduction
+    },
+    cardWidth () {
+      return this.$vuetify.breakpoint.xs ? '90%' : '25%'
     },
   },
   methods: {
