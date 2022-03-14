@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :health_checks,   only: [:index]
       resources :guests,          only: [:create]
       resources :current_users,   only: [:index]
+      resources :tastes,          only: [:index]
       get       '/search',        to: 'searches#search'
     end
   end
