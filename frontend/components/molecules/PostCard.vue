@@ -70,7 +70,7 @@
               cols="5"
               sm="3"
               align-self="end"
-              :class="favoriteLayout"
+              class="d-flex justify-center"
             >
               <AtomsPostFavoriteRate :post="post" />
             </v-col>
@@ -105,15 +105,30 @@
             <v-col
               cols="6"
               align-self="end"
-              :class="favoriteLayout"
+              class="d-flex justify-end"
             >
               <AtomsPostFavoriteRate :post="post" />
             </v-col>
           </v-row>
         </template>
+        <v-row class="mb-3">
+          <v-col cols="12">
+            <p class="mb-1">
+              評価ポイント
+            </p>
+            <v-chip
+              v-for="taste in post.tastes"
+              :key="taste.id"
+              outlined
+              class="mr-2 evaluation-chip"
+            >
+              {{ taste.content }}
+            </v-chip>
+          </v-col>
+        </v-row>
         <v-row
           justify="center"
-          class="mb-5"
+          class="mb-3"
         >
           <AtomsPostButtonDetail :post-id="post.id" />
         </v-row>
@@ -137,6 +152,10 @@ export default {
       type: Number,
       required: true,
     },
+    postCardWidth: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     myPost () {
@@ -145,16 +164,15 @@ export default {
     limitCount () {
       return this.post.image_url.slice(0, 3)
     },
-    postCardWidth () {
-      switch (this.$vuetify.breakpoint.name) {
-        case 'xs': return '100%'
-        case 'sm': return '80%'
-        case 'md': return '80%'
-      }
-      return '45%'
-    },
-    favoriteLayout () {
-      return this.$vuetify.breakpoint.xs ? 'd-flex justify-end' : 'd-flex justify-center'
+    matchRate () {
+      const loggedInUserTastesCount = this.loggedInUser.tastes.length
+      const duplicateArray = this.loggedInUser.tastes.concat(this.post.tastes)
+      const matchTasteArray = duplicateArray.filter((x, i, array) => {
+        return array.findIndex((y) => {
+          return y.id === x.id && y.content === x.content
+        }) !== i
+      })
+      return Math.round(matchTasteArray.length / loggedInUserTastesCount * 100)
     },
   },
   methods: {
@@ -164,3 +182,8 @@ export default {
   },
 }
 </script>
+
+<style lang="sass" scoped>
+  .evaluation-chip::before
+    background-color: #fff
+</style>

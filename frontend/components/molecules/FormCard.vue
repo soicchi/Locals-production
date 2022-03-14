@@ -35,14 +35,15 @@ export default {
       type: Boolean,
       default: false,
     },
+    cardWidth: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     setValid: {
       get () { return this.isValid },
       set (newVal) { return this.$emit('update:is-valid', newVal) },
-    },
-    cardWidth () {
-      return this.$vuetify.breakpoint.xs ? '90%' : '25%'
     },
   },
 }

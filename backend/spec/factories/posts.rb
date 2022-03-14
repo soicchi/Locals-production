@@ -9,6 +9,9 @@ FactoryBot.define do
     after(:build) do |post|
       post.images.attach(io: File.open('spec/fixtures/files/image.jpg'), filename: 'image.jpg', content_type: 'image/jpg')
     end
+    after(:build) do |post|
+      post.taste_ids << build(:taste)
+    end
     association :user
 
     trait :valid_comment do

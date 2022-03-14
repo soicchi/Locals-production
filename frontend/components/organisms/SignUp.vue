@@ -1,88 +1,106 @@
 <template>
-  <MoleculesFormCard :is-valid.sync="isValid">
-    <template #form-title>
-      <AtomsFormTitle :title="title" />
-    </template>
-    <template #form-card-content>
-      <AtomsFormName :name.sync="user.name" />
-      <AtomsFormEmail
-        :email.sync="user.email"
+  <div>
+    <transition
+      mode="out-in"
+      :name="transitionName"
+    >
+      <component
+        :is="subPage"
+        :user.sync="setUser"
         :no-validation="noValidation"
-      />
-      <AtomsFormBirthPlace :birth-place.sync="user.birth_place" />
-      <AtomsFormBirthDay
-        :birth-year.sync="user.birth_year"
-        :birth-month.sync="user.birth_month"
-        :birth-day.sync="user.birth_day"
-        @reset-day="resetDay"
-      />
-      <AtomsFormPassword
-        :password.sync="user.password"
-        :no-validation="noValidation"
-      />
-      <AtomsFormPasswordConfirmation :password-confirmation.sync="user.password_confirmation" />
-    </template>
-    <template #form-card-button>
-      <AtomsFormButtonSignUp
-        :loading="loading"
-        :is-valid="isValid"
+        :is-valid.sync="setIsValid"
+        :sub-page="subPage"
+        :preference-list="preferenceList"
+        :card-width="cardWidth"
         @sign-up="signUp"
+        @reset-day="resetDay"
+        @next="next"
+        @back="back"
       />
-    </template>
-  </MoleculesFormCard>
+    </transition>
+  </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
-  data () {
-    return {
-      user: {
-        name: '',
-        email: '',
-        birth_place: '',
-        birth_year: 0,
-        birth_month: 0,
-        birth_day: 0,
-        password: '',
-        password_confirmation: '',
-      },
-      noValidation: false,
-      isValid: false,
-      loading: false,
-    }
+  props: {
+    user: {
+      type: Object,
+      requried: true,
+      default: null,
+    },
+    noValidation: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    isValid: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    subPage: {
+      type: Object,
+      required: true,
+    },
+    preferenceList: {
+      type: Array,
+      required: true,
+    },
+    transitionName: {
+      type: String,
+      required: true,
+    },
+    cardWidth: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
-    title: () => '新規アカウント作成',
+    setUser: {
+      get () { return this.user },
+      set (newVal) { return this.$emit('update:user', newVal) },
+    },
+    setIsValid: {
+      get () { return this.isValid },
+      set (newVal) { return this.$emit('update:isValid', newVal) },
+    },
+    setCheckboxIds: {
+      get () { return this.checkboxIds },
+      set (newVal) { return this.$emit('update:checkboxIds', newVal) },
+    },
   },
   methods: {
-    ...mapActions({
-      setLoggedInUser: 'user/setLoggedInUser',
-      setMessages: 'message/setMessages',
-    }),
-    async signUp () {
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 4000)
-      await this.$axios.post('/auth', this.user)
-        .then(() => {
-          this.$auth.loginWith('local', { data: { email: this.user.email, password: this.user.password } })
-            .then((res) => {
-              this.setLoggedInUser(res.data.data)
-              this.setMessages({ messages: ['ログインしました'], type: 'success' })
-            })
-        })
-        .catch((e) => {
-          const messages = e.response.data.errors.full_messages
-          const type = e.response.data.status
-          this.setMessages({ messages, type })
-        })
+    signUp () {
+      this.$emit('sign-up')
     },
     resetDay () {
-      this.day = ''
+      this.$emit('reset-day')
+    },
+    next () {
+      this.$emit('next')
+    },
+    back () {
+      this.$emit('back')
     },
   },
 }
 </script>
+
+<style lang='sass' scoped>
+.slide-next-enter-active,
+.slide-next-leave-active,
+.slide-back-enter-active,
+.slide-back-leave-active
+  transition: all 0.15s ease
+
+.slide-next-enter,
+.slide-back-leave-to
+  transform: translateX(20%)
+  opacity: 0
+
+.slide-next-leave-to,
+.slide-back-enter
+  transform: translateX(-20%)
+  opacity: 0
+</style>

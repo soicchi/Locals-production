@@ -14,6 +14,8 @@ class Post < ApplicationRecord
   has_many :classifications, dependent: :destroy
   has_many :categories,      through: 'classifications'
   has_many_attached :images, dependent: :destroy
+  has_many :evaluations,     dependent: :destroy
+  has_many :tastes,          through: 'evaluations'
 
   default_scope -> { order(created_at: :desc) }
 
@@ -27,6 +29,7 @@ class Post < ApplicationRecord
                      size: { less_than: 5.megabytes,
                              message: '5MB以下のファイルを選択してください' },
                      attached: true
+  validates :taste_ids, presence: true, length: { minimum: 1 }
 
   # imagesのURLを返す
   def image_url

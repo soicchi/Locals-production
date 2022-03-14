@@ -4,7 +4,14 @@
       <OrganismsUserInfo />
     </v-col>
     <v-col cols="12">
-      <OrganismsPostFeed :posts="posts" />
+      <OrganismsPostFeed
+        :posts="posts"
+        :logged-in-user="loggedInUser"
+        :icon-size="iconSize"
+        :post-card-width="postCardWidth"
+        @destroy-post="destroyPost"
+      />
+      />
     </v-col>
   </v-row>
 </template>
@@ -15,6 +22,23 @@ export default {
     posts: {
       type: Array,
       required: true,
+    },
+    loggedInUser: {
+      type: Object,
+      required: true,
+    },
+    iconSize: {
+      type: Number,
+      required: true,
+    },
+    postCardWidth: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    destroyPost (post) {
+      this.$emit('destroy-post', post)
     },
   },
 }

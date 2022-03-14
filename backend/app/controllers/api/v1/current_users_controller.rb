@@ -8,7 +8,8 @@ class Api::V1::CurrentUsersController < ApplicationController
         { following: { only: :id } },
         { liked_posts: { only: :id } },
         { disliked_posts: { only: :id } },
-        { book_mark_posts: { only: :id } }
+        { book_mark_posts: { only: :id } },
+        { tastes: { only: [:id, :content] } }
       ],
       only: [
         :id,
@@ -18,7 +19,8 @@ class Api::V1::CurrentUsersController < ApplicationController
         :disliked_posts,
         :book_mark_posts,
         :guest,
-        :admin
+        :admin,
+        :tastes
       ]
     )
   end

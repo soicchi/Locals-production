@@ -38,6 +38,10 @@ RSpec.describe "Api::V1::Posts", type: :request do
       )
     end
 
+    it '各投稿のtastesが返ってくる' do
+      expect(response.body).to include(user_post.tastes.to_json, other_user_post.tastes.to_json)
+    end
+
     it '投稿に紐づくユーザーデータも返ってくる' do
       expect(response.body).to include(
         user.to_json(methods: :avatar_url, only: [:id, :name, :avatar_url]),
@@ -130,9 +134,10 @@ RSpec.describe "Api::V1::Posts", type: :request do
     let(:auth_tokens) { sign_in user }
 
     context '投稿が成功する場合' do
+      let!(:taste) { create(:taste) }
       let!(:category) { create(:category) }
       let(:image_url) { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', 'image.jpg')) }
-      let(:post_params) { attributes_for(:post, category_ids: [category.id], images: [image_url]) }
+      let(:post_params) { attributes_for(:post, category_ids: [category.id], images: [image_url], taste_ids: [taste.id]) }
       let(:success_message) { '投稿が作成されました' }
 
       before do

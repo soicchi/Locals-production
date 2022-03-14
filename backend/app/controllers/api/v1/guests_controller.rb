@@ -11,7 +11,9 @@ class Api::V1::GuestsController < ApplicationController
       birth_day: 4,
       password: "#{random_pass}",
       password_confirmation: "#{random_pass}",
-      guest: true
+      guest: true,
+      admin: false,
+      taste_ids: [1, 2, 3]
     }
     user = User.create!(user_params)
     render json: { email: user.email, password: user.password }

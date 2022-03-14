@@ -1,73 +1,97 @@
 <template>
-  <MoleculesFormCard :is-valid.sync="isValid">
-    <template #form-title>
-      <AtomsFormTitle :title="title" />
-    </template>
-    <template #form-card-content>
-      <AtomsFormRestaurantName :restaurant-name.sync="post.restaurant_name" />
-      <AtomsFormStation :station.sync="post.station" />
-      <AtomsFormCategory
-        :category-ids.sync="post.category_ids"
+  <div>
+    <transition
+      mode="out-in"
+      :name="transitionName"
+    >
+      <component
+        :is="subPage"
+        :post.sync="setPost"
+        :is-valid.sync="setIsValid"
         :category-items="categoryItems"
-      />
-      <AtomsFormImage :images.sync="post.images" />
-      <AtomsFormComment :comment.sync="post.comment" />
-    </template>
-    <template #form-card-button>
-      <AtomsFormButtonCreatePost
-        :is-valid="isValid"
+        :sub-page="subPage"
+        :card-width="cardWidth"
+        :evaluation-list="evaluationList"
         @create-post="createPost"
+        @next="next"
+        @back="back"
       />
-    </template>
-  </MoleculesFormCard>
+    </transition>
+  </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      post: {
-        restaurant_name: '',
-        comment: '',
-        station: '',
-        images: [],
-        category_ids: [],
-      },
-      isValid: false,
-    }
+  props: {
+    post: {
+      type: Object,
+      required: true,
+      default: null,
+    },
+    isValid: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    categoryItems: {
+      type: Array,
+      required: true,
+    },
+    cardWidth: {
+      type: String,
+      required: true,
+    },
+    subPage: {
+      type: Object,
+      required: true,
+    },
+    transitionName: {
+      type: String,
+      required: true,
+    },
+    evaluationList: {
+      type: Array,
+      required: true,
+    },
   },
   computed: {
-    title () {
-      return '投稿作成'
+    setPost: {
+      get () { return this.post },
+      set (newVal) { return this.$emit('update:post', newVal) },
     },
-    categoryItems () {
-      return this.$store.getters['category/categories']
+    setIsValid: {
+      get () { return this.isValid },
+      set (newVal) { return this.$emit('update:isValid', newVal) },
     },
   },
   methods: {
-    async createPost () {
-      const headers = { 'Content-Type': 'multipart/form-data' }
-      const formData = new FormData()
-      formData.append('restaurant_name', this.post.restaurant_name)
-      formData.append('comment', this.post.comment)
-      formData.append('station', this.post.station)
-      for (const categoryId of this.post.category_ids) {
-        formData.append('category_ids[]', categoryId)
-      }
-      for (const image of this.post.images) {
-        formData.append('images[]', image)
-      }
-      await this.$axios.post('/posts', formData, headers)
-        .then((res) => {
-          const message = [res.data.message]
-          this.$store.dispatch('message/setMessages', { messages: message, type: 'success' })
-          this.$router.replace('/')
-        })
-        .catch((e) => {
-          const message = e.response.data
-          this.$store.dispatch('message/setMessages', { messages: message, type: 'error' })
-        })
+    createPost () {
+      this.$emit('create-post')
+    },
+    next () {
+      this.$emit('next')
+    },
+    back () {
+      this.$emit('back')
     },
   },
 }
 </script>
+
+<style lang='sass' scoped>
+.slide-next-enter-active,
+.slide-next-leave-active,
+.slide-back-enter-active,
+.slide-back-leave-active
+  transition: all 0.15s ease
+
+.slide-next-enter,
+.slide-back-leave-to
+  transform: translateX(20%)
+  opacity: 0
+
+.slide-next-leave-to,
+.slide-back-enter
+  transform: translateX(-20%)
+  opacity: 0
+</style>

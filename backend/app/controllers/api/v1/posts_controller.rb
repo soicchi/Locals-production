@@ -12,7 +12,8 @@ class Api::V1::PostsController < ApplicationController
     render json: posts.to_json(
       include: [
         { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
-        { categories: { only: :name } }
+        { categories: { only: :name } },
+        { tastes: { only: [:id, :content] } }
       ],
       methods: [:image_url, :like_percentage],
       except: :updated_at
@@ -26,7 +27,8 @@ class Api::V1::PostsController < ApplicationController
         { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
         { like_users: { only: :id } },
         { dislike_users: { only: :id } },
-        { categories: { only: [:name] } }
+        { categories: { only: [:name] } },
+        { tastes: { only: [:id, :content] } }
       ],
       methods: [:image_url, :liked_age_group, :disliked_age_group, :like_percentage],
       except: [:updated_at]
@@ -52,7 +54,7 @@ class Api::V1::PostsController < ApplicationController
   private
 
   def post_params
-    params.permit(:comment, :restaurant_name, :station, images: [], category_ids: [])
+    params.permit(:comment, :restaurant_name, :station, images: [], category_ids: [], taste_ids: [])
   end
 
   def correct_user

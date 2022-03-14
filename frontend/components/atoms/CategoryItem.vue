@@ -19,7 +19,7 @@
         label
         outlined
         color="subColor"
-        class="mr-3"
+        class="category-chip mr-3"
         small
       >
         {{ category.name }}

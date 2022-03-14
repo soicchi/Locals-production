@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_09_111858) do
+ActiveRecord::Schema.define(version: 2022_03_14_051506) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -76,6 +76,16 @@ ActiveRecord::Schema.define(version: 2022_03_09_111858) do
     t.index ["user_id"], name: "index_dislikes_on_user_id"
   end
 
+  create_table "evaluations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "taste_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id", "taste_id"], name: "index_evaluations_on_post_id_and_taste_id", unique: true
+    t.index ["post_id"], name: "index_evaluations_on_post_id"
+    t.index ["taste_id"], name: "index_evaluations_on_taste_id"
+  end
+
   create_table "likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -97,6 +107,16 @@ ActiveRecord::Schema.define(version: 2022_03_09_111858) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "preferences", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "taste_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["taste_id"], name: "index_preferences_on_taste_id"
+    t.index ["user_id", "taste_id"], name: "index_preferences_on_user_id_and_taste_id", unique: true
+    t.index ["user_id"], name: "index_preferences_on_user_id"
+  end
+
   create_table "relationships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "follower_id", null: false
     t.integer "followed_id", null: false
@@ -105,6 +125,12 @@ ActiveRecord::Schema.define(version: 2022_03_09_111858) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "tastes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -151,7 +177,11 @@ ActiveRecord::Schema.define(version: 2022_03_09_111858) do
   add_foreign_key "classifications", "posts"
   add_foreign_key "dislikes", "posts"
   add_foreign_key "dislikes", "users"
+  add_foreign_key "evaluations", "posts"
+  add_foreign_key "evaluations", "tastes"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "preferences", "tastes"
+  add_foreign_key "preferences", "users"
 end

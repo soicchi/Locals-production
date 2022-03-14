@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
   has_many :disliked_posts,         through: 'dislikes',
                                     source: :post
   has_one_attached :avatar,         dependent: :destroy
+  has_many :preferences,            dependent: :destroy
+  has_many :tastes,                 through: 'preferences'
 
   validates :name,         presence: true,
                            uniqueness: true,
@@ -44,6 +46,7 @@ class User < ActiveRecord::Base
                                            message: '正しいフォーマットを選択してください' },
                            size: { less_than: 5.megabytes,
                                    message: '5MB以下のファイルサイズを選んでください' }
+  validates :taste_ids,    presence: true, length: { in: 3..5 }
 
   # ユーザーをフォローする
   def follow(user)

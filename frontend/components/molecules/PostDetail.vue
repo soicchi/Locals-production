@@ -46,6 +46,34 @@
         </v-row>
         <v-row>
           <v-col cols="12">
+            <p class="mb-1">
+              評価ポイント
+              <span
+                v-if="post.user_id !== loggedInUser.id && $auth.loggedIn"
+                class="text-h6 ml-3"
+              >
+                マッチ度
+                <v-icon
+                  color="mainColor"
+                  class="pb-2"
+                >
+                  mdi-handshake-outline
+                </v-icon>
+                {{ matchRate }}%
+              </span>
+            </p>
+            <v-chip
+              v-for="taste in post.tastes"
+              :key="taste.id"
+              outlined
+              class="mr-2"
+            >
+              {{ taste.content }}
+            </v-chip>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
             <swiper :options="swiperOptions">
               <swiper-slide
                 v-for="(image, i) in post.image_url"
@@ -208,6 +236,16 @@ export default {
     },
     fontSize () {
       return this.$vuetify.breakpoint.xs ? { 'font-size': '7px' } : { 'font-size': '12px' }
+    },
+    matchRate () {
+      const loggedInUserTastesCount = this.loggedInUser.tastes.length
+      const duplicateArray = this.loggedInUser.tastes.concat(this.post.tastes)
+      const matchTasteArray = duplicateArray.filter((x, i, array) => {
+        return array.findIndex((y) => {
+          return y.id === x.id && y.content === x.content
+        }) !== i
+      })
+      return Math.round(matchTasteArray.length / loggedInUserTastesCount * 100)
     },
   },
   methods: {

@@ -1,5 +1,8 @@
 <template>
-  <MoleculesFormCard :is-valid.sync="isValid">
+  <MoleculesFormCard
+    :is-valid.sync="isValid"
+    :card-width="cardWidth"
+  >
     <template #form-title>
       <AtomsFormTitle :title="title" />
     </template>
@@ -37,6 +40,9 @@ export default {
     },
     loggedInUser () {
       return this.$store.getters['user/loggedInUser']
+    },
+    cardWidth () {
+      return this.$vuetify.breakpoint.xs ? '90%' : '25%'
     },
   },
   methods: {
