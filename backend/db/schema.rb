@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_14_003933) do
+ActiveRecord::Schema.define(version: 2022_03_14_051506) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(version: 2022_03_14_003933) do
     t.index ["post_id"], name: "index_dislikes_on_post_id"
     t.index ["user_id", "post_id"], name: "index_dislikes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_dislikes_on_user_id"
+  end
+
+  create_table "evaluations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "taste_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id", "taste_id"], name: "index_evaluations_on_post_id_and_taste_id", unique: true
+    t.index ["post_id"], name: "index_evaluations_on_post_id"
+    t.index ["taste_id"], name: "index_evaluations_on_taste_id"
   end
 
   create_table "likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -167,6 +177,8 @@ ActiveRecord::Schema.define(version: 2022_03_14_003933) do
   add_foreign_key "classifications", "posts"
   add_foreign_key "dislikes", "posts"
   add_foreign_key "dislikes", "users"
+  add_foreign_key "evaluations", "posts"
+  add_foreign_key "evaluations", "tastes"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
