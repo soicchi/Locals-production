@@ -32,7 +32,7 @@ export default {
       birth_day: 0,
       password: '',
       password_confirmation: '',
-      tasteIds: [],
+      taste_ids: [],
     },
     noValidation: false,
     isValid: false,
@@ -51,14 +51,7 @@ export default {
       }
     },
     preferenceList () {
-      // return this.$store.getters['preference/preferenceList']
-      return [
-        { id: 1, content: '価格' },
-        { id: 2, content: '雰囲気' },
-        { id: 3, content: '場所' },
-        { id: 4, content: '接客' },
-        { id: 5, content: '味' },
-      ]
+      return this.$store.getters['taste/tastes']
     },
     cardWidth () {
       return this.$vuetify.breakpoint.xs ? '90%' : '25%'
@@ -66,6 +59,7 @@ export default {
   },
   created () {
     this.$router.push('/auth/signup')
+    this.$store.dispatch('taste/getTastes')
   },
   methods: {
     ...mapActions({

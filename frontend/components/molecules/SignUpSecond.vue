@@ -24,7 +24,7 @@
               cols="4"
             >
               <v-checkbox
-                v-model="setUser.tasteIds"
+                v-model="setUser.taste_ids"
                 :label="list.content"
                 :value="list.id"
               />
@@ -47,7 +47,7 @@
               <v-btn
                 text
                 plain
-                :disabled="user.tasteIds.length < 3"
+                :disabled="user.taste_ids.length < 3"
                 @click="next"
               >
                 次へ
