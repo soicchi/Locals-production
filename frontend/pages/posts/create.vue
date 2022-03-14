@@ -64,6 +64,9 @@ export default {
       for (const categoryId of this.post.category_ids) {
         formData.append('category_ids[]', categoryId)
       }
+      for (const tasteId of this.post.taste_ids) {
+        formData.append('taste_ids[]', tasteId)
+      }
       for (const image of this.post.images) {
         formData.append('images[]', image)
       }

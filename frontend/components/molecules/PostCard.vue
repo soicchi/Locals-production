@@ -111,9 +111,22 @@
             </v-col>
           </v-row>
         </template>
+        <v-row class="mb-3">
+          <v-col cols="12">
+            <p>評価ポイント</p>
+            <v-chip
+              v-for="taste in post.tastes"
+              :key="taste.id"
+              outlined
+              class="mr-2"
+            >
+              {{ taste.content }}
+            </v-chip>
+          </v-col>
+        </v-row>
         <v-row
           justify="center"
-          class="mb-5"
+          class="mb-3"
         >
           <AtomsPostButtonDetail :post-id="post.id" />
         </v-row>
