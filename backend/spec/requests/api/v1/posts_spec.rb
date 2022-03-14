@@ -130,9 +130,10 @@ RSpec.describe "Api::V1::Posts", type: :request do
     let(:auth_tokens) { sign_in user }
 
     context '投稿が成功する場合' do
+      let!(:taste) { create(:taste) }
       let!(:category) { create(:category) }
       let(:image_url) { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', 'image.jpg')) }
-      let(:post_params) { attributes_for(:post, category_ids: [category.id], images: [image_url]) }
+      let(:post_params) { attributes_for(:post, category_ids: [category.id], images: [image_url], taste_ids: [taste.id]) }
       let(:success_message) { '投稿が作成されました' }
 
       before do

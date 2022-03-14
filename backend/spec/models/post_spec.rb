@@ -83,6 +83,24 @@ RSpec.describe Post, type: :model do
         expect(post).to be_valid
       end
     end
+
+    context 'taste_idsがnilの場合' do
+      let(:post) { build(:post, taste_ids: nil) }
+
+      it 'インスタンスは有効ではない' do
+        expect(post).to be_invalid
+      end
+    end
+
+    context 'taste_idが1つのの場合' do
+      let!(:user) { create(:user) }
+      let!(:taste) { create(:taste) }
+      let(:post) { build(:post, user_id: user.id, taste_ids: [taste.id]) }
+
+      it 'インスタンスは有効である' do
+        expect(post).to be_valid
+      end
+    end
   end
 
   describe '投稿の作成順序に関するテスト' do
