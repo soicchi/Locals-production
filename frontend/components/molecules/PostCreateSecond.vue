@@ -43,7 +43,8 @@
           <v-btn
             text
             plain
-            :disabled="post.taste_ids.length < 1"
+            :disabled="post.taste_ids.length < 1 || loading"
+            :loading="loading"
             @click="createPost"
           >
             投稿する
@@ -73,6 +74,11 @@ export default {
     subPage: {
       type: Object,
       required: true,
+    },
+    loading: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
   },
   computed: {

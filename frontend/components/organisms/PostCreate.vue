@@ -12,6 +12,7 @@
         :sub-page="subPage"
         :card-width="cardWidth"
         :evaluation-list="evaluationList"
+        :loading="loading"
         @create-post="createPost"
         @next="next"
         @back="back"
@@ -52,6 +53,11 @@ export default {
     evaluationList: {
       type: Array,
       required: true,
+    },
+    loading: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
   },
   computed: {

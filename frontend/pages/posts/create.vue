@@ -7,6 +7,7 @@
     :transition-name="transitionName"
     :evaluation-list="evaluationList"
     :sub-page="subPage"
+    :loading="loading"
     @create-post="createPost"
     @next="next"
     @back="back"
@@ -29,6 +30,7 @@ export default {
     },
     isValid: false,
     transitionName: '',
+    loading: false,
   }),
   computed: {
     categoryItems () {
@@ -70,6 +72,10 @@ export default {
       for (const image of this.post.images) {
         formData.append('images[]', image)
       }
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+      }, 4000)
       await this.$axios.post('/posts', formData, headers)
         .then((res) => {
           const message = [res.data.message]

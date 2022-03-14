@@ -1,14 +1,14 @@
 <template>
   <MoleculesFormCard
-    :is-valid.sync="isValid"
+    :is-valid.sync="setIsValid"
     :card-width="cardWidth"
   >
     <template #form-title>
-      <AtomsFormTitle :title="title" />
+      <h2>ログイン</h2>
     </template>
     <template #form-card-content>
-      <AtomsFormEmail :email.sync="user.email" />
-      <AtomsFormPassword :password.sync="user.password" />
+      <AtomsFormEmail :email.sync="setUser.email" />
+      <AtomsFormPassword :password.sync="setUser.password" />
       <v-row
         justify="center"
         class="my-1"
@@ -18,6 +18,8 @@
           plain
           color="fontColor"
           class="text-decoration-underline"
+          :disabled="loading"
+          :loading="loading"
           @click="guestSignIn"
         >
           ゲストとしてログイン
@@ -35,64 +37,44 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
-  data () {
-    return {
-      isValid: false,
-      loading: false,
-      user: {
-        email: '',
-        password: '',
-      },
-    }
+  props: {
+    isValid: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    user: {
+      type: Object,
+      required: true,
+    },
+    cardWidth: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
-    title () {
-      return 'ログイン'
+    setUser: {
+      get () { return this.user },
+      set (newVal) { return this.$emit('update:user', newVal) },
     },
-    cardWidth () {
-      return this.$vuetify.breakpoint.xs ? '90%' : '25%'
+    setIsValid: {
+      get () { return this.isValid },
+      set (newVal) { return this.$emit('update:isValid', newVal) },
     },
   },
   methods: {
-    ...mapActions({
-      setLoggedInUser: 'user/setLoggedInUser',
-      setMessages: 'message/setMessages',
-    }),
-    async signIn () {
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 3000)
-      await this.$auth.loginWith('local', { data: this.user })
-        .then((res) => {
-          this.setLoggedInUser(res.data.data)
-          const message = ['ログインしました']
-          this.setMessages({ messages: message, type: 'success' })
-        })
-        .catch((e) => {
-          const messages = e.response.data.errors
-          this.setMessages({ messages, type: 'error' })
-        })
+    signIn () {
+      this.$emit('sign-in')
     },
-    async guestSignIn () {
-      await this.$axios.post('/guests')
-        .then((res) => {
-          this.$auth.loginWith('local', { data: res.data })
-            .then((res) => {
-              this.setLoggedInUser(res.data.data)
-              const message = ['ログインしました']
-              this.setMessages({ messages: message, type: 'success' })
-            })
-        })
+    guestSignIn () {
+      this.$emit('guest-sign-in')
     },
   },
 }
 </script>
-
-<style lang="sass" scoped>
-  .password-forget
-    font-size: 12px
-</style>

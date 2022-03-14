@@ -12,6 +12,7 @@
         :sub-page="subPage"
         :preference-list="preferenceList"
         :card-width="cardWidth"
+        :loading="loading"
         @sign-up="signUp"
         @reset-day="resetDay"
         @next="next"
@@ -54,6 +55,11 @@ export default {
     cardWidth: {
       type: String,
       required: true,
+    },
+    loading: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
   },
   computed: {
