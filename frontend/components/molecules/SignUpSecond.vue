@@ -32,28 +32,22 @@
           </v-row>
         </v-card-text>
         <v-card-actions>
-          <v-row>
-            <v-col cols="2">
-              <v-btn
-                text
-                plain
-                @click="back"
-              >
-                前へ
-              </v-btn>
-            </v-col>
-            <v-spacer />
-            <v-col cols="2">
-              <v-btn
-                text
-                plain
-                :disabled="user.taste_ids.length < 3"
-                @click="next"
-              >
-                次へ
-              </v-btn>
-            </v-col>
-          </v-row>
+          <v-btn
+            text
+            plain
+            @click="back"
+          >
+            前へ
+          </v-btn>
+        <v-spacer />
+          <v-btn
+            text
+            plain
+            :disabled="user.taste_ids.length < 3"
+            @click="next"
+          >
+            次へ
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-row>

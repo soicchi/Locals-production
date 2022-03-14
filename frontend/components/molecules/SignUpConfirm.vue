@@ -36,27 +36,21 @@
           </v-row>
         </v-card-text>
         <v-card-actions>
-          <v-row>
-            <v-col cols="3">
-              <v-btn
-                text
-                plain
-                @click="back"
-              >
-                前へ
-              </v-btn>
-            </v-col>
-            <v-spacer />
-            <v-col cols="3">
-              <v-btn
-                text
-                plain
-                @click="signUp"
-              >
-                登録する
-              </v-btn>
-            </v-col>
-          </v-row>
+          <v-btn
+            text
+            plain
+            @click="back"
+          >
+            前へ
+          </v-btn>
+        <v-spacer />
+          <v-btn
+            text
+            plain
+            @click="signUp"
+          >
+            登録する
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-row>
