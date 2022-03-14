@@ -1,5 +1,20 @@
 require 'faker'
 
+# tasteのデータ作成
+taste_list = [
+  '雰囲気',
+  '接客',
+  '場所',
+  'コスパ',
+  '驚き',
+  '価格',
+  '長く居れる',
+  '提供スピード',
+]
+taste_list.each{ |taste| Taste.create!(
+  content: taste
+) }
+
 # 50人のuserサンプルデータ作成
 50.times do |n|
   User.create!(
@@ -11,7 +26,8 @@ require 'faker'
     birth_day: Faker::Number.between(from: 1, to: 28),
     password: 'password',
     password_confirmation: 'password',
-    introduction: 'お肉やイタリアンが大好きです。'
+    introduction: 'お肉やイタリアンが大好きです。',
+    taste_ids: [1, 3, 5]
   )
 end
 
@@ -57,8 +73,7 @@ category_list = [
 ]
 category_list.each{ |category| Category.create!(
   name: category
-  )
-}
+) }
 
 # 投稿サンプルデータ
 image_meet_group = [
