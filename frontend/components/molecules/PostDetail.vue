@@ -47,7 +47,7 @@
         <v-row>
           <v-col cols="12">
             <p>
-              評価ポイント <span v-if="post.user_id !== loggedInUser.id">マッチ度: {{ matchRate }}%</span>
+              評価ポイント <span v-if="post.user_id !== loggedInUser.id && $auth.loggedIn">マッチ度: {{ matchRate }}%</span>
             </p>
             <v-chip
               v-for="taste in post.tastes"
