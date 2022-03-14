@@ -13,7 +13,7 @@ class Api::V1::PostsController < ApplicationController
       include: [
         { user: { methods: :avatar_url, only: [:id, :name, :avatar_url] } },
         { categories: { only: :name } },
-        { tastes: { only: [:id, :name] } }
+        { tastes: { only: [:id, :content] } }
       ],
       methods: [:image_url, :like_percentage],
       except: :updated_at
@@ -28,7 +28,7 @@ class Api::V1::PostsController < ApplicationController
         { like_users: { only: :id } },
         { dislike_users: { only: :id } },
         { categories: { only: [:name] } },
-        { tastes: { only: [:id, :name] } }
+        { tastes: { only: [:id, :content] } }
       ],
       methods: [:image_url, :liked_age_group, :disliked_age_group, :like_percentage],
       except: [:updated_at]
