@@ -7,7 +7,8 @@ class Api::V1::PostsController < ApplicationController
       { user: { avatar_attachment: :blob } },
       :like_users,
       :dislike_users,
-      :categories
+      :categories,
+      :tastes
     ).with_attached_images.all
     render json: posts.to_json(
       include: [
