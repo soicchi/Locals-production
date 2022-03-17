@@ -19,18 +19,14 @@ export default {
       required: true,
       default: false,
     },
-  },
-  data () {
-    return {
-      loading: false,
-    }
+    loading: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   methods: {
     update () {
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 5000)
       this.$emit('update')
     },
   },

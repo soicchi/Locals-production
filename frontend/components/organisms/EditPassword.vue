@@ -1,21 +1,22 @@
 <template>
   <MoleculesFormCard
-    :is-valid.sync="isValid"
+    :is-valid.sync="setIsValid"
     :card-width="cardWidth"
   >
     <template #form-title>
-      <AtomsFormTitle :title="title" />
+      <h2>パスワード変更</h2>
     </template>
     <template #form-card-content>
       <AtomsFormPassword
-        :password.sync="user.password"
+        :password.sync="setUser.password"
         :no-validation="noValidation"
       />
-      <AtomsFormPasswordConfirmation :password-confirmation.sync="user.password_confirmation" />
+      <AtomsFormPasswordConfirmation :password-confirmation.sync="setUser.password_confirmation" />
     </template>
     <template #form-card-button>
       <AtomsFormButtonUpdatePassword
         :is-valid="isValid"
+        :loading="loading"
         @update="update"
       />
     </template>
@@ -24,40 +25,48 @@
 
 <script>
 export default {
-  data () {
-    return {
-      user: {
-        password: '',
-        password_confirmation: '',
-      },
-      noValidation: false,
-      isValid: false,
-    }
+  props: {
+    user: {
+      type: Object,
+      required: true,
+    },
+    noValidation: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    isValid: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    loggedInUser: {
+      type: Object,
+      required: true,
+    },
+    cardWidth: {
+      type: String,
+      required: true,
+    },
+    loading: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   computed: {
-    title () {
-      return 'パスワード変更'
+    setUser: {
+      get () { return this.user },
+      set (newVal) { return this.$emit('update:user', newVal) },
     },
-    loggedInUser () {
-      return this.$store.getters['user/loggedInUser']
-    },
-    cardWidth () {
-      return this.$vuetify.breakpoint.xs ? '90%' : '25%'
-    },
+    setIsValid: {
+      get () { return this.isValid },
+      set (newVal) { return this.$emit('update:isValid', newVal) }
+    }
   },
   methods: {
-    async update () {
-      await this.$axios.put('/auth/password', this.user)
-        .then((res) => {
-          this.$store.dispatch('user/getLoggedInUser')
-          const message = [res.data.message]
-          this.$store.dispatch('message/setMessages', ({ messages: message, type: 'success' }))
-          this.$router.replace(`/users/${this.loggedInUser.id}`)
-        })
-        .catch((e) => {
-          const message = e.response.data.errors.full_messages
-          this.setMessages({ messages: message, type: 'error' })
-        })
+    update () {
+      this.$emit('update')
     },
   },
 }
