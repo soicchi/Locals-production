@@ -157,7 +157,7 @@
         cols="12"
         sm="5"
       >
-        <MoleculesPostChart
+        <MoleculesPostBarChart
           :favorite-rate-group="post.favorite_rate_group"
           :width="width"
           :height="height"
