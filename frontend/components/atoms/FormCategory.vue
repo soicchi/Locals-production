@@ -7,6 +7,7 @@
     :items="categoryItems"
     prepend-icon="mdi-food-fork-drink"
     chips
+    deletable-chips
     placeholder="カテゴリーを選択"
   />
 </template>
