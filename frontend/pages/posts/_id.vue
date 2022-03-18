@@ -7,7 +7,6 @@
     :icon-size="iconSize"
     :my-post="myPost"
     :swiper-options="swiperOptions"
-    :match-rate="matchRate"
     :chart-width="chartWidth"
     :chart-height="chartHeight"
     :card-width="cardWidth"
@@ -55,16 +54,6 @@ export default {
     },
     cardWidth () {
       return this.$vuetify.breakpoint.xs ? '90%' : '80%'
-    },
-    matchRate () {
-      const loggedInUserTastesCount = this.loggedInUser.tastes.length
-      const duplicateArray = this.loggedInUser.tastes.concat(this.post.tastes)
-      const matchTasteArray = duplicateArray.filter((x, i, array) => {
-        return array.findIndex((y) => {
-          return y.id === x.id && y.content === x.content
-        }) !== i
-      })
-      return Math.round(matchTasteArray.length / loggedInUserTastesCount * 100)
     },
   },
   methods: {
