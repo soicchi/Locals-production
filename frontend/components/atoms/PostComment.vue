@@ -1,6 +1,6 @@
 <template>
   <v-sheet
-    height="100px"
+    height="100%"
     class="pa-2"
   >
     {{ post.comment }}
