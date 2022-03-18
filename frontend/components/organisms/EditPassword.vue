@@ -61,8 +61,8 @@ export default {
     },
     setIsValid: {
       get () { return this.isValid },
-      set (newVal) { return this.$emit('update:isValid', newVal) }
-    }
+      set (newVal) { return this.$emit('update:isValid', newVal) },
+    },
   },
   methods: {
     update () {

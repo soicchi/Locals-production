@@ -34,7 +34,7 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.loading = false
-      }, 5000);
+      }, 5000)
       await this.$axios.put('/auth/password', this.user)
         .then((res) => {
           this.$store.dispatch('user/getLoggedInUser')

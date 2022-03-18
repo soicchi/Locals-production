@@ -27,7 +27,7 @@ export default {
     },
     post: {
       type: Object,
-      required :true,
+      required: true,
     },
     loggedInUser: {
       type: Object,

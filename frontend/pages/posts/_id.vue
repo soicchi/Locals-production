@@ -16,6 +16,12 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  async asyncData ({ params, $axios, store }) {
+    await $axios.get(`/posts/${params.id}`)
+      .then((res) => {
+        store.commit('post/setPost', res.data)
+      })
+  },
   data: () => ({
     liked: false,
     disliked: false,
@@ -45,12 +51,6 @@ export default {
       }
       return favoriteRate
     },
-  },
-  async asyncData ({ params, $axios, store }) {
-    await $axios.get(`/posts/${params.id}`)
-      .then((res) => {
-        store.commit('post/setPost', res.data)
-      })
   },
   methods: {
     changeToLiked (postId) {
