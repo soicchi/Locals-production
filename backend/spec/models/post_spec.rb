@@ -134,36 +134,33 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  describe 'インスタンスメソッドに関するテスト' do
+  describe 'image_urlメソッドに関するテスト' do
     let!(:user) { create(:user) }
+    let(:post) { build(:post, user_id: user.id) }
+    let(:not_attached_post) { build(:post, user_id: user.id) }
 
-      context 'image_urlメソッド' do
-        let(:post) { build(:post, user_id: user.id) }
-        let(:not_attached_post) { build(:post, user_id: user.id) }
-
-        it 'imagesのURLを返す' do
-          expect(post.image_url).to eq [url_for(post.images.blobs[0].variant(resize_to_limit: [200, 200]))]
-        end
-      end
-
-    context 'liked_age_groupメソッド' do
-      let!(:user) { create(:user, :age_10s) }
-      let!(:post) { create(:post) }
-      let!(:like) { create(:like, user_id: user.id, post_id: post.id) }
-
-      it '年代別の人数を配列で返す' do
-        expect(post.liked_age_group).to match_array([1, 0, 0, 0, 0, 0])
-      end
+    it 'imagesのURLを返す' do
+      expect(post.image_url).to eq [url_for(post.images.blobs[0].variant(resize_to_limit: [200, 200]))]
     end
+  end
 
-    context 'disliked_age_groupメソッド' do
-      let!(:user) { create(:user, :age_10s) }
-      let!(:post) { create(:post) }
-      let!(:dislike) { create(:dislike, user_id: user.id, post_id: post.id) }
+  describe 'liked_age_groupメソッドに関するテスト' do
+    let!(:user) { create(:user, :age_10s) }
+    let!(:post) { create(:post) }
+    let!(:like) { create(:like, user_id: user.id, post_id: post.id) }
 
-      it '年代別の人数を配列で返す' do
-        expect(post.disliked_age_group).to match_array([1, 0, 0, 0, 0, 0])
-      end
+    it '年代別の人数を配列で返す' do
+      expect(post.liked_age_group).to match_array([1, 0, 0, 0, 0, 0])
+    end
+  end
+
+  describe 'disliked_age_groupメソッドに関するテスト' do
+    let!(:user) { create(:user, :age_10s) }
+    let!(:post) { create(:post) }
+    let!(:dislike) { create(:dislike, user_id: user.id, post_id: post.id) }
+
+    it '年代別の人数を配列で返す' do
+      expect(post.disliked_age_group).to match_array([1, 0, 0, 0, 0, 0])
     end
   end
 
@@ -187,6 +184,16 @@ RSpec.describe Post, type: :model do
       it 'いいね率を0で返す' do
         expect(other_post.like_percentage).to eq 0
       end
+    end
+  end
+
+  describe 'favorite_rate_groupメソッドに関するテスト' do
+    let!(:user) { create(:user, :age_10s) }
+    let!(:post) { create(:post) }
+    let!(:like) { create(:like, user_id: user.id, post_id: post.id) }
+
+    it '年代別のいいね率を配列で返す' do
+      expect(post.favorite_rate_group).to match_array([100, 0, 0, 0, 0, 0])
     end
   end
 end

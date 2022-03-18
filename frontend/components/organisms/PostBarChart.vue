@@ -12,7 +12,7 @@ export default {
   data () {
     return {
       favoriteData: {
-        labels: ['〜20代', '30代', '40代', '50代', '60代〜'],
+        labels: ['〜10代', '20代', '30代', '40代', '50代', '60代〜'],
         datasets: [{
           label: '年齢別いいね率',
           data: this.favoriteRateGroup,

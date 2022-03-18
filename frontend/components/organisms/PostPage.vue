@@ -6,7 +6,6 @@
     :liked="liked"
     :disliked="disliked"
     :my-post="myPost"
-    :favorite-rate-group="favoriteRateGroup"
     @change-to-liked="changeToLiked"
     @change-to-disliked="changeToDisliked"
   />
@@ -41,10 +40,6 @@ export default {
       type: Boolean,
       required: true,
       default: false,
-    },
-    favoriteRateGroup: {
-      type: Array,
-      required: true,
     },
   },
   methods: {

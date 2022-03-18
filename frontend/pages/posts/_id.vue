@@ -1,12 +1,16 @@
 <template>
-  <OrganismsPostPage
+  <TemplatesPostPage
     :liked="liked"
     :disliked="disliked"
     :post="post"
     :logged-in-user="loggedInUser"
     :icon-size="iconSize"
     :my-post="myPost"
-    :favorite-rate-group="favoriteRateGroup"
+    :swiper-options="swiperOptions"
+    :match-rate="matchRate"
+    :chart-width="chartWidth"
+    :chart-height="chartHeight"
+    :card-width="cardWidth"
     @change-to-liked="changeToLiked"
     @change-to-disliked="changeToDisliked"
   />
@@ -25,31 +29,42 @@ export default {
   data: () => ({
     liked: false,
     disliked: false,
+    swiperOptions: {
+      width: 200,
+      spaceBetween: 40,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    },
   }),
   computed: {
     ...mapGetters({
       post: 'post/post',
       loggedInUser: 'user/loggedInUser',
     }),
-    iconSize () {
-      return 48
-    },
+    iconSize: () => 48,
+    chartWidth: () => 500,
+    chartHeight: () => 350,
     myPost () {
       return this.loggedInUser.id === this.post.user_id
     },
-    favoriteRateGroup () {
-      const favoriteRate = []
-      const likedUserGroup = this.post.liked_age_group
-      const dislikedUserGroup = this.post.disliked_age_group
-      for (let i = 0; i < likedUserGroup.length; i++) {
-        const percent = likedUserGroup[i] / (likedUserGroup[i] + dislikedUserGroup[i]) * 100
-        if (percent <= 0) {
-          favoriteRate.push(0)
-        } else {
-          favoriteRate.push(Math.round(percent))
-        }
-      }
-      return favoriteRate
+    cardWidth () {
+      return this.$vuetify.breakpoint.xs ? '90%' : '80%'
+    },
+    matchRate () {
+      const loggedInUserTastesCount = this.loggedInUser.tastes.length
+      const duplicateArray = this.loggedInUser.tastes.concat(this.post.tastes)
+      const matchTasteArray = duplicateArray.filter((x, i, array) => {
+        return array.findIndex((y) => {
+          return y.id === x.id && y.content === x.content
+        }) !== i
+      })
+      return Math.round(matchTasteArray.length / loggedInUserTastesCount * 100)
     },
   },
   methods: {

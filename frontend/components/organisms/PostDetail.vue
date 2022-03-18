@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <v-row
       justify="center"
       align="center"
@@ -104,7 +104,7 @@
             cols="6"
             sm="3"
             md="2"
-            xl="1"
+            xl="2"
           >
             <AtomsPostFavoriteRate :post="post" />
           </v-col>
@@ -124,7 +124,7 @@
               @change-to-liked="changeToLiked"
             />
             <p class="text-center">
-              <span :style="fontSize">また行きたい!</span>
+              <span class="btn-text">また行きたい!</span>
             </p>
           </v-col>
           <v-col
@@ -143,36 +143,11 @@
               @change-to-disliked="changeToDisliked"
             />
             <p class="bad text-center">
-              <span :style="fontSize">う〜ん...</span>
+              <span class="btn-text">う〜ん...</span>
             </p>
           </v-col>
         </v-row>
       </v-card>
-    </v-row>
-    <v-row
-      justify="center"
-      class="mb-3"
-    >
-      <v-col
-        cols="12"
-        sm="5"
-      >
-        <MoleculesPostChart
-          :favorite-rate-group="favoriteRateGroup"
-          :width="width"
-          :height="height"
-        />
-      </v-col>
-      <v-col
-        cols="12"
-        sm="5"
-        class="mt-8"
-      >
-        <MoleculesPostMap
-          :restaurant-name="post.restaurant_name"
-          :station="post.station"
-        />
-      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -207,45 +182,17 @@ export default {
       required: true,
       default: false,
     },
-    favoriteRateGroup: {
-      type: Array,
+    swiperOptions: {
+      type: Object,
       required: true,
     },
-  },
-  data () {
-    return {
-      swiperOptions: {
-        width: 200,
-        spaceBetween: 40,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-      },
-    }
-  },
-  computed: {
-    width: () => 500,
-    height: () => 350,
-    cardWidth () {
-      return this.$vuetify.breakpoint.xs ? '90%' : '80%'
+    matchRate: {
+      type: Number,
+      required: true,
     },
-    fontSize () {
-      return this.$vuetify.breakpoint.xs ? { 'font-size': '7px' } : { 'font-size': '12px' }
-    },
-    matchRate () {
-      const loggedInUserTastesCount = this.loggedInUser.tastes.length
-      const duplicateArray = this.loggedInUser.tastes.concat(this.post.tastes)
-      const matchTasteArray = duplicateArray.filter((x, i, array) => {
-        return array.findIndex((y) => {
-          return y.id === x.id && y.content === x.content
-        }) !== i
-      })
-      return Math.round(matchTasteArray.length / loggedInUserTastesCount * 100)
+    cardWidth: {
+      type: String,
+      required: true,
     },
   },
   methods: {
@@ -260,8 +207,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .btn-font
-    font-size: 12px
+  .btn-text
+    font-size: 7px
   .swiper-button-prev,
   .swiper-button-next
     --swiper-navigation-color: #58554e

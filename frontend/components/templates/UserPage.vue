@@ -11,7 +11,6 @@
         :post-card-width="postCardWidth"
         @destroy-post="destroyPost"
       />
-      />
     </v-col>
   </v-row>
 </template>
