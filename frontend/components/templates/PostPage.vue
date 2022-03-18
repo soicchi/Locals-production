@@ -9,7 +9,6 @@
         :disliked="disliked"
         :my-post="myPost"
         :swiper-options="swiperOptions"
-        :match-rate="matchRate"
         :card-width="cardWidth"
         @change-to-liked="changeToLiked"
         @change-to-disliked="changeToDisliked"
@@ -90,10 +89,6 @@ export default {
     },
     swiperOptions: {
       type: Object,
-      required: true,
-    },
-    matchRate: {
-      type: Number,
       required: true,
     },
     chartWidth: {
