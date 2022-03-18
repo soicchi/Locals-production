@@ -6,7 +6,12 @@
     >
       <AtomsCommonTitle :title="title" />
     </v-col>
-    <OrganismsBookMarkPage />
+    <OrganismsPostFeed
+      :icon-size="iconSize"
+      :posts="bookMarkPosts"
+      :logged-in-user="loggedInUser"
+      :post-card-width="postCardWidth"
+    />
   </div>
 </template>
 
@@ -14,6 +19,22 @@
 export default {
   props: {
     title: {
+      type: String,
+      required: true,
+    },
+    iconSize: {
+      type: Number,
+      required: true,
+    },
+    bookMarkPosts: {
+      type: Array,
+      required: true,
+    },
+    loggedInUser: {
+      type: Object,
+      required: true,
+    },
+    postCardWidth: {
       type: String,
       required: true,
     },

@@ -1,12 +1,12 @@
 <template>
   <MoleculesFormCard :card-width="cardWidth">
     <template #form-title>
-      <AtomsFormTitle :title="title" />
+      <h2>プロフィール編集</h2>
     </template>
     <template #form-card-content>
-      <AtomsFormAvatar :avatar.sync="user.avatar" />
-      <AtomsFormEmail :email.sync="user.email" />
-      <AtomsFormIntroduction :introduction.sync="user.introduction" />
+      <AtomsFormAvatar :avatar.sync="setUser.avatar" />
+      <AtomsFormEmail :email.sync="setUser.email" />
+      <AtomsFormIntroduction :introduction.sync="setUser.introduction" />
     </template>
     <template #form-card-button>
       <AtomsFormButtonUpdateUser
@@ -19,67 +19,38 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
-  data () {
-    return {
-      user: {
-        email: '',
-        introduction: '',
-        avatar: '',
-      },
-    }
+  props: {
+    user: {
+      type: Object,
+      required: true,
+    },
+    loggedInUser: {
+      type: Object,
+      required: true,
+    },
+    disabled: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    cardWidth: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
-    ...mapGetters({
-      loggedInUser: 'user/loggedInUser',
-    }),
-    title () {
-      return 'プロフィール編集'
-    },
-    disabled () {
-      return this.user.avatar || this.user.email || this.user.introduction
-    },
-    cardWidth () {
-      return this.$vuetify.breakpoint.xs ? '90%' : '25%'
+    setUser: {
+      get () { return this.user },
+      set (newVal) { return this.$emit('update:user', newVal) },
     },
   },
   methods: {
-    async update () {
-      const confirm = window.confirm('更新を確定しますか')
-      if (confirm) {
-        const formData = new FormData()
-        const headers = { 'Content-Type': 'multipart/form-data' }
-        for (const [key, value] of Object.entries(this.user)) {
-          if (value) {
-            formData.append(`${key}`, value)
-          }
-        }
-        await this.$axios.put('/auth', formData, headers)
-          .then((res) => {
-            this.$store.dispatch('user/getLoggedInUser')
-            const message = ['更新が成功しました']
-            this.$store.dispatch('message/setMessages', ({ messages: message, type: 'success' }))
-            this.$router.replace(`/users/${this.loggedInUser.id}`)
-          })
-      }
+    update () {
+      this.$emit('update')
     },
-    async deleteUser () {
-      const confirm = window.confirm('本当に退会してよろしいですか')
-      if (confirm) {
-        await this.$axios.delete('/auth')
-        await this.$auth.logout()
-          .then((res) => {
-            localStorage.removeItem('access-token')
-            localStorage.removeItem('token-type')
-            localStorage.removeItem('uid')
-            localStorage.removeItem('client')
-            this.$store.dispatch('user/resetLoggedInUser')
-            this.$router.replace('/auth/signup')
-            this.$store.dispatch('message/setMessages', { messages: ['退会しました'], type: 'success' })
-          })
-      }
+    deleteUser () {
+      this.$emit('delete-user')
     },
   },
 }
