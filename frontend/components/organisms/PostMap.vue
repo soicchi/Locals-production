@@ -24,10 +24,5 @@ export default {
       required: true,
     },
   },
-  computed: {
-    mapWidth () {
-      return this.$vuetify.breakpoint.xs ? '100%' : ''
-    },
-  },
 }
 </script>
