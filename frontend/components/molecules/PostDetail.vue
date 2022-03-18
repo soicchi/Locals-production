@@ -158,7 +158,7 @@
         sm="5"
       >
         <MoleculesPostChart
-          :favorite-rate-group="favoriteRateGroup"
+          :favorite-rate-group="post.favorite_rate_group"
           :width="width"
           :height="height"
         />
@@ -206,10 +206,6 @@ export default {
       type: Boolean,
       required: true,
       default: false,
-    },
-    favoriteRateGroup: {
-      type: Array,
-      required: true,
     },
   },
   data () {

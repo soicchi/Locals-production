@@ -6,7 +6,6 @@
     :logged-in-user="loggedInUser"
     :icon-size="iconSize"
     :my-post="myPost"
-    :favorite-rate-group="favoriteRateGroup"
     @change-to-liked="changeToLiked"
     @change-to-disliked="changeToDisliked"
   />
@@ -36,20 +35,6 @@ export default {
     },
     myPost () {
       return this.loggedInUser.id === this.post.user_id
-    },
-    favoriteRateGroup () {
-      const favoriteRate = []
-      const likedUserGroup = this.post.liked_age_group
-      const dislikedUserGroup = this.post.disliked_age_group
-      for (let i = 0; i < likedUserGroup.length; i++) {
-        const percent = likedUserGroup[i] / (likedUserGroup[i] + dislikedUserGroup[i]) * 100
-        if (percent <= 0) {
-          favoriteRate.push(0)
-        } else {
-          favoriteRate.push(Math.round(percent))
-        }
-      }
-      return favoriteRate
     },
   },
   methods: {
