@@ -23,24 +23,11 @@
           cols="12"
           sm="5"
         >
-          <!-- <v-carousel
-            hide-delimiter-background
-            continuous
-          >
-            <v-carousel-item> -->
           <OrganismsPostBarChart
             :favorite-rate-group="post.favorite_rate_group"
             :width="chartWidth"
             :height="chartHeight"
           />
-          <!-- </v-carousel-item>
-            <v-carousel-item>
-              <OrganismsPostCircleChart
-                :width="chartWidth"
-                :height="chartHeight"
-              />
-            </v-carousel-item>
-          </v-carousel> -->
         </v-col>
         <v-col
           cols="12"
