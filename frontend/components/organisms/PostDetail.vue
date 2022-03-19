@@ -66,7 +66,7 @@
               v-for="taste in post.tastes"
               :key="taste.id"
               outlined
-              class="mr-2"
+              class="mr-2 evaluation-chip"
             >
               {{ taste.content }}
             </v-chip>
@@ -220,4 +220,6 @@ export default {
   .swiper-button-prev,
   .swiper-button-next
     --swiper-navigation-color: #58554e
+  .evaluation-chip::before
+    background-color: #fff
 </style>
