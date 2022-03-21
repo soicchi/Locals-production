@@ -82,8 +82,9 @@ class Post < ApplicationRecord
     favorite_rate_group = []
     i = 0
     liked_age_group.length.times do
-      percent = liked_age_group[i].to_f / (liked_age_group[i].to_f + disliked_age_group[i].to_f) * 100
-      if liked_age_group[i].to_f == 0.0 && disliked_age_group[i].to_f == 0.0
+      total_age_group = liked_age_group[i] + disliked_age_group[i]
+      percent = liked_age_group[i].to_f / total_age_group.to_f * 100
+      if total_age_group == 0.0
         favorite_rate_group.push(0)
       else
         favorite_rate_group.push(percent.round)

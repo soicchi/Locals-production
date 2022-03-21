@@ -120,7 +120,7 @@
               v-for="taste in post.tastes"
               :key="taste.id"
               outlined
-              class="mr-2 evaluation-chip"
+              class="mr-2 mb-2 evaluation-chip"
             >
               {{ taste.content }}
             </v-chip>
