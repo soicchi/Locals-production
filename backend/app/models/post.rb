@@ -46,9 +46,9 @@ class Post < ApplicationRecord
   # 投稿のいいね比率を返す
   def like_percentage
     like_count = like_users.length.to_f
-    dislike_count = dislike_users.length.to_f
-    percent = like_count / (like_count + dislike_count) * 100
-    if like_count == 0.0 && dislike_count = 0.0
+    total_count = like_users.length.to_f + dislike_users.length.to_f
+    percent = like_count / total_count * 100
+    if total_count == 0.0
       0
     else
       percent.round
