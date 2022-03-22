@@ -55,25 +55,14 @@ class Post < ApplicationRecord
     end
   end
 
-  # いいねしているユーザーの人数を年代別で抽出
-  def liked_age_group
-    the_10s = like_users.select { |user| user.age < 20 }.length
-    the_20s = like_users.select { |user| user.age >= 20 && user.age < 30 }.length
-    the_30s = like_users.select { |user| user.age >= 30 && user.age < 40 }.length
-    the_40s = like_users.select { |user| user.age >= 40 && user.age < 50 }.length
-    the_50s = like_users.select { |user| user.age >= 50 && user.age < 60 }.length
-    over_60s = like_users.select { |user| user.age >= 60 }.length
-    [the_10s, the_20s, the_30s, the_40s, the_50s, over_60s]
-  end
-
-  # う〜んしているユーザーの人数を年代別で抽出
-  def disliked_age_group
-    the_10s = dislike_users.select { |user| user.age < 20 }.length
-    the_20s = dislike_users.select { |user| user.age >= 20 && user.age < 30 }.length
-    the_30s = dislike_users.select { |user| user.age >= 30 && user.age < 40 }.length
-    the_40s = dislike_users.select { |user| user.age >= 40 && user.age < 50 }.length
-    the_50s = dislike_users.select { |user| user.age >= 50 && user.age < 60 }.length
-    over_60s = dislike_users.select { |user| user.age >= 60 }.length
+  # 引数に入れた要素に対して年代別ユーザーグループを返す（例：いいねをした年代別ユーザー、う〜んの評価をした年代別ユーザーなど）
+  def age_group(user_group)
+    the_10s = user_group.select { |user| user.age < 20 }.length
+    the_20s = user_group.select { |user| user.age >= 20 && user.age < 30 }.length
+    the_30s = user_group.select { |user| user.age >= 30 && user.age < 40 }.length
+    the_40s = user_group.select { |user| user.age >= 40 && user.age < 50 }.length
+    the_50s = user_group.select { |user| user.age >= 50 && user.age < 60 }.length
+    over_60s = user_group.select { |user| user.age >= 60 }.length
     [the_10s, the_20s, the_30s, the_40s, the_50s, over_60s]
   end
 
@@ -81,9 +70,9 @@ class Post < ApplicationRecord
   def favorite_rate_group
     favorite_rate_group = []
     i = 0
-    liked_age_group.length.times do
-      total_age_group = liked_age_group[i] + disliked_age_group[i]
-      percent = liked_age_group[i].to_f / total_age_group.to_f * 100
+    age_group(like_users).length.times do
+      total_age_group = age_group(like_users)[i] + age_group(dislike_users)[i]
+      percent = age_group(like_users)[i].to_f / total_age_group.to_f * 100
       if total_age_group == 0.0
         favorite_rate_group.push(0)
       else

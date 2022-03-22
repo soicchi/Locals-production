@@ -33,8 +33,6 @@ class Api::V1::PostsController < ApplicationController
       ],
       methods: [
         :image_url,
-        :liked_age_group,
-        :disliked_age_group,
         :like_percentage,
         :favorite_rate_group
       ],
