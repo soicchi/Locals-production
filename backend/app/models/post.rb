@@ -23,7 +23,7 @@ class Post < ApplicationRecord
   validates :comment,         presence: true, length: { maximum: 255 }
   validates :restaurant_name, presence: true
   validates :station,         presence: true
-  validates :category_ids, presence: true
+  validates :category_ids,    presence: true
   validates :images, content_type: { in: %w[image/png image/gif image/jpeg image/jpg],
                                      message: '正しいフォーマットのファイルを選択してください' },
                      size: { less_than: 5.megabytes,
