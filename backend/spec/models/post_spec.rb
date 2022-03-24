@@ -144,23 +144,25 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  describe 'liked_age_groupメソッドに関するテスト' do
+  describe 'age_groupメソッドに関するテスト' do
     let!(:user) { create(:user, :age_10s) }
+    let!(:other_user) { create(:user, :age_10s) }
     let!(:post) { create(:post) }
-    let!(:like) { create(:like, user_id: user.id, post_id: post.id) }
 
-    it '年代別の人数を配列で返す' do
-      expect(post.liked_age_group).to match_array([1, 0, 0, 0, 0, 0])
+    context 'いいねの年代別ユーザーグループを返す場合' do
+      let!(:like) { create(:like, user_id: user.id, post_id: post.id) }
+
+      it '年代別の人数を配列で返す' do
+        expect(post.age_group(post.like_users)).to match_array([1, 0, 0, 0, 0, 0])
+      end
     end
-  end
 
-  describe 'disliked_age_groupメソッドに関するテスト' do
-    let!(:user) { create(:user, :age_10s) }
-    let!(:post) { create(:post) }
-    let!(:dislike) { create(:dislike, user_id: user.id, post_id: post.id) }
+    context 'う〜んの評価をした年代別ユーザーグループを返す場合' do
+      let!(:dislike) { create(:dislike, user_id: user.id, post_id: post.id) }
 
-    it '年代別の人数を配列で返す' do
-      expect(post.disliked_age_group).to match_array([1, 0, 0, 0, 0, 0])
+      it '年代別の人図を配列で返す' do
+        expect(post.age_group(post.dislike_users)).to match_array([1, 0, 0, 0, 0, 0])
+      end
     end
   end
 

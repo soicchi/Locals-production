@@ -119,14 +119,6 @@ RSpec.describe "Api::V1::Posts", type: :request do
     it '投稿のlike_percentageが返ってくる' do
       expect(response.body).to include post.like_percentage.to_json
     end
-
-    it '投稿のliked_age_groupが返ってくる' do
-      expect(response.body).to include post.liked_age_group.to_json
-    end
-
-    it '投稿のdisliked_age_groupが返ってくる' do
-      expect(response.body).to include post.disliked_age_group.to_json
-    end
   end
 
   describe 'POST /create' do
