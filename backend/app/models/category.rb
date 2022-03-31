@@ -6,6 +6,7 @@ class Category < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  # カテゴリーを昇順にしてその他を一番最後にした配列を返す
   def self.order_category_list
     category_list = []
     categories = where('name != ?', 'その他').order_asc
